@@ -50,6 +50,53 @@
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-indigo-500 selection:text-white">
 
+  <!-- PANTALLA DE LOGIN -->
+  <div id="login-overlay" class="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-md p-8 shadow-2xl space-y-6">
+      <div class="text-center space-y-2">
+        <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 flex items-center justify-center text-white shadow-lg shadow-indigo-900/50">
+          <i data-lucide="shield-check" class="w-8 h-8"></i>
+        </div>
+        <h2 class="text-xl font-black text-white tracking-tight">Acceso al Sistema</h2>
+        <p class="text-xs text-slate-400">Portal de Gestores y Administración de Vales</p>
+      </div>
+
+      <form id="form-login" onsubmit="event.preventDefault(); procesarLogin();" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1">Usuario</label>
+          <div class="relative">
+            <i data-lucide="user" class="w-4 h-4 absolute left-3 top-3 text-slate-500"></i>
+            <input type="text" id="login-username" required placeholder="Tu usuario o Karel" 
+                   class="w-full bg-slate-950 border border-slate-700 text-white rounded-xl pl-9 pr-3 py-2.5 text-xs focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1">Contraseña</label>
+          <div class="relative">
+            <i data-lucide="lock" class="w-4 h-4 absolute left-3 top-3 text-slate-500"></i>
+            <input type="password" id="login-password" required placeholder="••••••••" 
+                   class="w-full bg-slate-950 border border-slate-700 text-white rounded-xl pl-9 pr-3 py-2.5 text-xs focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </div>
+        </div>
+
+        <div id="login-error-msg" class="hidden text-rose-400 text-xs font-bold bg-rose-950/40 border border-rose-800/40 p-2.5 rounded-xl text-center"></div>
+
+        <button type="submit" 
+                class="w-full py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-black text-xs uppercase tracking-wider rounded-xl shadow-lg shadow-indigo-950/50 transition-all">
+          Iniciar Sesión
+        </button>
+      </form>
+
+      <div class="p-3 bg-slate-950/80 rounded-2xl border border-slate-800/80 text-[11px] text-slate-400 space-y-1">
+        <p class="font-bold text-indigo-400">Credenciales de acceso:</p>
+        <p>• <strong>Administrador:</strong> Karel / K@rel.2255 (Control total de todos los gestores)</p>
+        <p>• <strong>Gestores:</strong> Inician sesión con su usuario y sólo ven sus propios vales.</p>
+      </div>
+    </div>
+  </div>
+
+
   <!-- ======================================================== -->
   <!-- BARRA DE NAVEGACIÓN Y CABECERA                           -->
   <!-- ======================================================== -->
@@ -74,6 +121,13 @@
 
       <!-- Botones de Acción Global -->
       <div class="flex items-center flex-wrap gap-2">
+
+        <div id="badge-usuario-sesion" class="px-3 py-1.5 rounded-xl bg-slate-800 border border-slate-700 flex items-center gap-2 text-xs">
+          <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
+          <span id="label-usuario-sesion" class="font-bold text-white font-mono">Karel</span>
+          <span id="label-rol-sesion" class="text-[10px] px-1.5 py-0.2 rounded bg-indigo-500/20 text-indigo-300 font-mono font-bold">ADMIN</span>
+        </div>
+
         <button onclick="abrirModalRegistroVale()" 
                 class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-emerald-950/40 border border-emerald-500/30 transition-all">
           <i data-lucide="clipboard-paste" class="w-4 h-4 text-emerald-200"></i>
@@ -87,13 +141,13 @@
           <span>📊 Resumen Semanal</span>
         </button>
 
-        <button onclick="abrirModalNuevoGestor()" 
+        <button id="btn-admin-nuevo-gestor" onclick="abrirModalNuevoGestor()" 
                 class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs flex items-center gap-1.5 border border-slate-700 transition-all">
           <i data-lucide="user-plus" class="w-4 h-4 text-indigo-400"></i>
           <span>+ Gestor</span>
         </button>
 
-        <button onclick="abrirModalConfiguracion()" 
+        <button id="btn-admin-configuracion" onclick="abrirModalConfiguracion()" 
                 class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-amber-300 font-semibold text-xs flex items-center gap-1.5 border border-slate-700 transition-all"
                 title="Configuración de comisiones fijas">
           <i data-lucide="settings" class="w-4 h-4 text-amber-400"></i>
@@ -114,11 +168,18 @@
           <span>💾 Guardar</span>
         </button>
 
-        <button onclick="vaciarHistorialVales()" 
+        <button id="btn-admin-vaciar-historial" onclick="vaciarHistorialVales()" 
                 class="px-2.5 py-2 rounded-xl bg-rose-950/50 hover:bg-rose-900/60 text-rose-300 border border-rose-800/40 text-xs font-bold transition-all"
                 title="Limpiar todos los vales para empezar de 0">
           <i data-lucide="trash-2" class="w-4 h-4"></i>
         </button>
+
+        <button onclick="cerrarSesion()" 
+                class="px-2.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 text-xs font-bold transition-all"
+                title="Cerrar Sesión">
+          <i data-lucide="log-out" class="w-4 h-4 text-rose-400"></i>
+        </button>
+
       </div>
 
     </div>
@@ -622,6 +683,134 @@
     'use strict';
 
     // --------------------------------------------------------
+    // SISTEMA DE USUARIOS Y CONTROL DE ACCESO
+    // --------------------------------------------------------
+    var AUTH_STORAGE_KEY = 'ELECTROCONTA_AUTH_SESSION_V2';
+    var currentUser = null; // { role: 'ADMIN' | 'GESTOR', username: '...', gestorNombre: '...' }
+
+    window.procesarLogin = function() {
+      var uInput = document.getElementById('login-username').value.trim();
+      var pInput = document.getElementById('login-password').value.trim();
+      var errDiv = document.getElementById('login-error-msg');
+
+      if (!uInput || !pInput) {
+        errDiv.textContent = 'Por favor ingresa usuario y contraseña.';
+        errDiv.classList.remove('hidden');
+        return;
+      }
+
+      // Admin maestro: Karel / K@rel.2255
+      if (uInput.toLowerCase() === 'karel' && pInput === 'K@rel.2255') {
+        currentUser = {
+          role: 'ADMIN',
+          username: 'Karel',
+          gestorNombre: 'Administrador General'
+        };
+        completarInicioSesion();
+        return;
+      }
+
+      // Gestores individuales
+      var gestorEncontrado = null;
+      for (var i = 0; i < appState.gestores.length; i++) {
+        var g = appState.gestores[i];
+        if (g.username && g.username.toLowerCase() === uInput.toLowerCase()) {
+          if (g.password === pInput) {
+            gestorEncontrado = g;
+            break;
+          }
+        }
+      }
+
+      if (gestorEncontrado) {
+        currentUser = {
+          role: 'GESTOR',
+          username: gestorEncontrado.username,
+          gestorNombre: gestorEncontrado.nombre
+        };
+        completarInicioSesion();
+        return;
+      }
+
+      errDiv.textContent = 'Usuario o contraseña incorrectos.';
+      errDiv.classList.remove('hidden');
+    };
+
+    function completarInicioSesion() {
+      try {
+        localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(currentUser));
+      } catch(e) {}
+      
+      var overlay = document.getElementById('login-overlay');
+      if (overlay) overlay.classList.add('hidden');
+
+      aplicarPermisosEnInterfaz();
+      renderizarTodo();
+    }
+
+    window.cerrarSesion = function() {
+      if (!confirm('¿Deseas cerrar tu sesión actual?')) return;
+      currentUser = null;
+      try {
+        localStorage.removeItem(AUTH_STORAGE_KEY);
+      } catch(e) {}
+      
+      var overlay = document.getElementById('login-overlay');
+      if (overlay) {
+        overlay.classList.remove('hidden');
+        document.getElementById('form-login').reset();
+        document.getElementById('login-error-msg').classList.add('hidden');
+      }
+    };
+
+    function verificarSesionPrevia() {
+      try {
+        var stored = localStorage.getItem(AUTH_STORAGE_KEY);
+        if (stored) {
+          currentUser = JSON.parse(stored);
+          if (currentUser && currentUser.role) {
+            var overlay = document.getElementById('login-overlay');
+            if (overlay) overlay.classList.add('hidden');
+            aplicarPermisosEnInterfaz();
+            return;
+          }
+        }
+      } catch(e) {}
+
+      var overlayShow = document.getElementById('login-overlay');
+      if (overlayShow) overlayShow.classList.remove('hidden');
+    }
+
+    function aplicarPermisosEnInterfaz() {
+      if (!currentUser) return;
+
+      var labelUser = document.getElementById('label-usuario-sesion');
+      var labelRol = document.getElementById('label-rol-sesion');
+      if (labelUser) labelUser.textContent = currentUser.username;
+      if (labelRol) {
+        labelRol.textContent = currentUser.role;
+        labelRol.className = currentUser.role === 'ADMIN' 
+          ? 'text-[10px] px-1.5 py-0.2 rounded bg-purple-500/20 text-purple-300 font-mono font-bold' 
+          : 'text-[10px] px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-300 font-mono font-bold';
+      }
+
+      var btnNuevo = document.getElementById('btn-admin-nuevo-gestor');
+      var btnCfg = document.getElementById('btn-admin-configuracion');
+      var btnVac = document.getElementById('btn-admin-vaciar-historial');
+
+      if (currentUser.role === 'ADMIN') {
+        if (btnNuevo) btnNuevo.classList.remove('hidden');
+        if (btnCfg) btnCfg.classList.remove('hidden');
+        if (btnVac) btnVac.classList.remove('hidden');
+      } else {
+        if (btnNuevo) btnNuevo.classList.add('hidden');
+        if (btnCfg) btnCfg.classList.add('hidden');
+        if (btnVac) btnVac.classList.add('hidden');
+      }
+    }
+
+
+    // --------------------------------------------------------
     // SISTEMA DE CACHE ROBUSTO & MULTI-CAPA
     // --------------------------------------------------------
     const CACHE_KEYS = {
@@ -768,8 +957,28 @@
         appState.semanaActiva = getISOWeekString(new Date());
       }
 
+      
+      var defaultUsers = {
+        'Dayanis García Almanza': { u: 'dayanis', p: 'dayanis2026' },
+        'JOSÉ MIGUEL MARTÍNEZ ACOSTA': { u: 'josemiguel', p: 'josemiguel2026' },
+        'Luis Ariel Calderin': { u: 'luisariel', p: 'luisariel2026' },
+        'Yakelin': { u: 'yakelin', p: 'yakelin2026' },
+        'Betty': { u: 'betty', p: 'betty2026' },
+        'Elizabeth': { u: 'elizabeth', p: 'elizabeth2026' },
+        'Liz Mariam': { u: 'liz', p: 'liz2026' }
+      };
+
+      for (var k = 0; k < appState.gestores.length; k++) {
+        var gest = appState.gestores[k];
+        if (!gest.username && defaultUsers[gest.nombre]) {
+          gest.username = defaultUsers[gest.nombre].u;
+          gest.password = defaultUsers[gest.nombre].p;
+        }
+      }
+
       guardarEnCacheRobusto();
       actualizarSelectorSemanas();
+      verificarSesionPrevia();
       renderizarTodo();
     }
 
