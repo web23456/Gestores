@@ -1,0 +1,2105 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control de Gestores & Vales Semanales — Electrodomésticos</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- SheetJS para Excel -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+  <!-- AUTO-GUARDADO: Base de datos embebida en el propio archivo -->
+  <script id="self-embedded-database">
+    window.__EMBEDDED_GESTORES_DB__ = {
+      "timestamp": 1729107000000,
+      "gestores": [
+        { "id": "G-1", "nombre": "Dayanis García Almanza", "telefono": "51349671", "telefonoSecundario": "", "zona": "Mensajería / Redes", "foto": "", "activo": true },
+        { "id": "G-2", "nombre": "JOSÉ MIGUEL MARTÍNEZ ACOSTA", "telefono": "54822881", "telefonoSecundario": "", "zona": "Plaza de la Revolución", "foto": "", "activo": true },
+        { "id": "G-3", "nombre": "Luis Ariel Calderin", "telefono": "53186933", "telefonoSecundario": "", "zona": "Mensajería / Redes", "foto": "", "activo": true },
+        { "id": "G-4", "nombre": "Yakelin", "telefono": "54286609", "telefonoSecundario": "", "zona": "Mensajería y Redes", "foto": "", "activo": true },
+        { "id": "G-5", "nombre": "Betty", "telefono": "58709199", "telefonoSecundario": "", "zona": "Cotorro", "foto": "", "activo": true },
+        { "id": "G-6", "nombre": "Elizabeth", "telefono": "56974248", "telefonoSecundario": "", "zona": "Cerro", "foto": "", "activo": true },
+        { "id": "G-7", "nombre": "Liz Mariam", "telefono": "54763168", "telefonoSecundario": "", "zona": "Mensajería", "foto": "", "activo": true }
+      ],
+      "vales": [],
+      "semanaActiva": "2026-W42",
+      "config": {
+        "comisionPequeno": 1500,
+        "comisionGrande": 2500,
+        "equiposGrandesKeywords": ["nevera", "congelador", "split", "refrigerador", "lavadora", "aire acondicionado", "planta electrica", "motor"]
+      }
+    };
+  </script>
+
+  <style>
+    @media print {
+      body * { visibility: hidden !important; }
+      #printable-modal, #printable-modal * { visibility: visible !important; }
+      #printable-modal { position: absolute; left: 0; top: 0; width: 100%; margin: 0; padding: 10px; background: white !important; color: black !important; }
+      .no-print { display: none !important; }
+    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- ======================================================== -->
+  <!-- BARRA DE NAVEGACIÓN Y CABECERA                           -->
+  <!-- ======================================================== -->
+  <header class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      
+      <!-- Marca / Logo -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 flex items-center justify-center text-white shadow-md shadow-indigo-900/40">
+          <i data-lucide="users-2" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h1 class="text-base font-extrabold text-white tracking-tight leading-tight flex items-center gap-2">
+            Gestores & Vales Semanales
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/40 font-mono">
+              Lunes a Lunes
+            </span>
+          </h1>
+          <p class="text-xs text-slate-400">Control de gestores, vales de WhatsApp, comisiones fijas y liquidación semanal</p>
+        </div>
+      </div>
+
+      <!-- Botones de Acción Global -->
+      <div class="flex items-center flex-wrap gap-2">
+        <button onclick="abrirModalRegistroVale()" 
+                class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-emerald-950/40 border border-emerald-500/30 transition-all">
+          <i data-lucide="clipboard-paste" class="w-4 h-4 text-emerald-200"></i>
+          <span>📝 Pegar Vale</span>
+        </button>
+
+        <button onclick="abrirModalResumenSemana()" 
+                class="px-3 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-indigo-950/40 border border-indigo-500/30 transition-all"
+                title="Generar resumen de la semana">
+          <i data-lucide="bar-chart-3" class="w-4 h-4 text-indigo-200"></i>
+          <span>📊 Resumen Semanal</span>
+        </button>
+
+        <button onclick="abrirModalNuevoGestor()" 
+                class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs flex items-center gap-1.5 border border-slate-700 transition-all">
+          <i data-lucide="user-plus" class="w-4 h-4 text-indigo-400"></i>
+          <span>+ Gestor</span>
+        </button>
+
+        <button onclick="abrirModalConfiguracion()" 
+                class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-amber-300 font-semibold text-xs flex items-center gap-1.5 border border-slate-700 transition-all"
+                title="Configuración de comisiones fijas">
+          <i data-lucide="settings" class="w-4 h-4 text-amber-400"></i>
+          <span>Comisiones</span>
+        </button>
+
+        <button onclick="exportarTodoAExcel()" 
+                class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs flex items-center gap-1.5 border border-slate-700 transition-all"
+                title="Descargar Excel semanal">
+          <i data-lucide="file-spreadsheet" class="w-4 h-4 text-emerald-400"></i>
+          <span>Excel</span>
+        </button>
+
+        <button onclick="guardarHTMLAutoContenido()" 
+                class="px-3.5 py-2 rounded-xl bg-purple-700 hover:bg-purple-600 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-purple-950/40 border border-purple-500/30 transition-all"
+                title="Guardar todos los datos dentro de este archivo HTML">
+          <i data-lucide="save" class="w-4 h-4"></i>
+          <span>💾 Guardar</span>
+        </button>
+
+        <button onclick="vaciarHistorialVales()" 
+                class="px-2.5 py-2 rounded-xl bg-rose-950/50 hover:bg-rose-900/60 text-rose-300 border border-rose-800/40 text-xs font-bold transition-all"
+                title="Limpiar todos los vales para empezar de 0">
+          <i data-lucide="trash-2" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ======================================================== -->
+  <!-- SELECTOR DE SEMANA Y RESUMEN GENERAL                     -->
+  <!-- ======================================================== -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-5 space-y-6">
+
+    <!-- BARRA DE CONTROL DE SEMANA (LUNES A LUNES) -->
+    <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 shadow-xl backdrop-blur flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center border border-indigo-500/20">
+          <i data-lucide="calendar" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs uppercase font-bold text-indigo-400 tracking-wider">Período Semanal de Gestión:</span>
+            <span id="label-rango-semana-activa" class="text-xs text-slate-400 font-mono">Lunes a Lunes</span>
+          </div>
+          <h2 id="titulo-semana-activa" class="text-lg font-black text-white">Semana Actual</h2>
+        </div>
+      </div>
+
+      <!-- Filtros de Navegación por Semanas -->
+      <div class="flex items-center flex-wrap gap-2">
+        <button onclick="cambiarSemanaRelativa(-1)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-colors" title="Semana Anterior">
+          <i data-lucide="chevron-left" class="w-4 h-4"></i>
+        </button>
+
+        <select id="select-semanas" onchange="seleccionarSemana(this.value)" class="bg-slate-950 border border-slate-700 text-white font-semibold text-xs rounded-xl px-3 py-2 focus:ring-1 focus:ring-indigo-500 focus:outline-none">
+          <!-- Opciones dinámicas -->
+        </select>
+
+        <button onclick="cambiarSemanaRelativa(1)" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-colors" title="Semana Siguiente">
+          <i data-lucide="chevron-right" class="w-4 h-4"></i>
+        </button>
+
+        <button onclick="irASemanaActual()" class="px-3 py-2 rounded-xl bg-indigo-950/60 hover:bg-indigo-900/60 text-indigo-300 border border-indigo-800/40 text-xs font-bold transition-all">
+          Hoy
+        </button>
+      </div>
+    </div>
+
+    <!-- TARJETAS DE MÉTRICAS GLOBALES DE LA SEMANA -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 shadow-md">
+        <div class="flex items-center justify-between text-slate-400 mb-2">
+          <span class="text-xs font-medium">Vales Esta Semana</span>
+          <i data-lucide="receipt" class="w-4 h-4 text-indigo-400"></i>
+        </div>
+        <div id="kpi-total-vales" class="text-2xl font-black text-white font-mono">0</div>
+        <p class="text-[11px] text-slate-500 mt-1">Registrados de lunes a lunes</p>
+      </div>
+
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 shadow-md">
+        <div class="flex items-center justify-between text-slate-400 mb-2">
+          <span class="text-xs font-medium">Equipos Vendidos</span>
+          <i data-lucide="package-check" class="w-4 h-4 text-emerald-400"></i>
+        </div>
+        <div id="kpi-total-equipos" class="text-2xl font-black text-emerald-400 font-mono">0</div>
+        <p class="text-[11px] text-slate-500 mt-1">Total unidades entregadas</p>
+      </div>
+
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 shadow-md">
+        <div class="flex items-center justify-between text-slate-400 mb-2">
+          <span class="text-xs font-medium">Ventas Totales</span>
+          <i data-lucide="badge-dollar-sign" class="w-4 h-4 text-teal-400"></i>
+        </div>
+        <div id="kpi-total-ventas-usd" class="text-xl font-black text-teal-300 font-mono">$0.00 USD</div>
+        <div id="kpi-total-ventas-cup" class="text-xs font-bold text-amber-300 font-mono mt-0.5">0 CUP</div>
+      </div>
+
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 shadow-md">
+        <div class="flex items-center justify-between text-slate-400 mb-2">
+          <span class="text-xs font-medium">Total Comisiones (CUP)</span>
+          <i data-lucide="wallet" class="w-4 h-4 text-purple-400"></i>
+        </div>
+        <div id="kpi-total-comisiones-cup" class="text-2xl font-black text-purple-300 font-mono">0 CUP</div>
+        <p id="kpi-total-comisiones-pendientes" class="text-[11px] text-rose-400 font-semibold mt-1">0 CUP pendientes</p>
+      </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- LISTADO DE GESTORES Y SUS VALES / VENTAS                 -->
+    <!-- ======================================================== -->
+    <div class="space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <h3 class="text-base font-bold text-white flex items-center gap-2">
+            <i data-lucide="contact" class="w-5 h-5 text-indigo-400"></i>
+            Gestores de Ventas Registrados
+          </h3>
+          <p class="text-xs text-slate-400">Pulsa en "Ver Vales y Ventas" para abrir la tabla y consultar los vales enteros originales con sus emojis</p>
+        </div>
+
+        <!-- Buscador de gestor -->
+        <div class="relative w-full sm:w-64">
+          <i data-lucide="search" class="w-4 h-4 absolute left-3 top-2.5 text-slate-500"></i>
+          <input type="text" id="input-buscar-gestor" oninput="renderizarGestores()" 
+                 placeholder="Buscar por gestor, teléfono o zona..." 
+                 class="w-full bg-slate-900 border border-slate-800 text-white rounded-xl pl-9 pr-3 py-1.5 text-xs focus:ring-1 focus:ring-indigo-500 focus:outline-none">
+        </div>
+      </div>
+
+      <!-- Contenedor dinámico de tarjetas de gestores -->
+      <div id="contenedor-tarjetas-gestores" class="space-y-4">
+        <!-- Renderizado dinámico -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ======================================================== -->
+  <!-- MODAL: REGISTRAR VALE (PEGAR FACTURA WHATSAPP / TEXTO)   -->
+  <!-- ======================================================== -->
+  <div id="modal-registro-vale" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-3xl overflow-hidden shadow-2xl animate-in zoom-in-95 my-8">
+      
+      <div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-gradient-to-r from-indigo-950/60 to-slate-900">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center border border-emerald-500/30">
+            <i data-lucide="clipboard-paste" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-white text-base">Registrar Vale de Venta</h3>
+            <p class="text-[11px] text-slate-400">Pega el mensaje recibido de WhatsApp (no se registra mensajería, soporte USD y CUP)</p>
+          </div>
+        </div>
+        <button onclick="cerrarModal('modal-registro-vale')" class="text-slate-400 hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="p-6 space-y-4">
+        
+        <!-- CAJA DE TEXTO PARA PEGAR VALE -->
+        <div class="p-4 bg-slate-950 border border-indigo-500/30 rounded-xl space-y-3">
+          <div class="flex items-center justify-between">
+            <label class="text-xs font-bold text-indigo-300 flex items-center gap-1.5 uppercase tracking-wide">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i>
+              Pegar Mensaje de WhatsApp:
+            </label>
+            <div class="flex items-center gap-2">
+              <button type="button" onclick="pegarDesdePortapapeles()" 
+                      class="px-2.5 py-1 rounded-lg bg-emerald-600/30 hover:bg-emerald-600/50 text-emerald-300 border border-emerald-500/40 text-xs font-bold flex items-center gap-1 transition-all">
+                <i data-lucide="clipboard" class="w-3.5 h-3.5"></i> 📋 Pegar
+              </button>
+              <button type="button" onclick="copiarFormatoEjemplo()" 
+                      class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 text-xs font-medium flex items-center gap-1 transition-all">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar Ejemplo
+              </button>
+            </div>
+          </div>
+
+          <textarea id="input-texto-vale-pegar" rows="5" 
+                    placeholder="Pega aquí el mensaje tal cual viene de WhatsApp..." 
+                    class="w-full bg-slate-900 border border-slate-700/80 text-white rounded-lg p-3 text-xs font-mono focus:ring-1 focus:ring-indigo-500 focus:outline-none"></textarea>
+
+          <div class="flex justify-end gap-2">
+            <button type="button" onclick="document.getElementById('input-texto-vale-pegar').value=''" class="px-3 py-1.5 text-xs text-slate-400 hover:text-white">
+              Limpiar
+            </button>
+            <button type="button" onclick="procesarTextoVale()" 
+                    class="px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white text-xs font-bold rounded-lg shadow-md flex items-center gap-1.5 transition-all">
+              <i data-lucide="cpu" class="w-4 h-4 text-amber-300"></i>
+              <span>Analizar y Cargar al Formulario ✨</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- FORMULARIO ESTRUCTURADO Y EDITABLE -->
+        <form id="form-vale-estructurado" class="space-y-4" onsubmit="event.preventDefault(); guardarValeFinal();">
+          
+          <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
+            <div>
+              <label class="block text-[11px] text-slate-300 mb-1">Folio del Vale *</label>
+              <input type="text" id="vale-input-folio" required class="w-full bg-slate-950 border border-slate-700 text-white rounded-lg px-2.5 py-1.5 text-xs font-mono font-bold">
+            </div>
+            <div>
+              <label class="block text-[11px] text-slate-300 mb-1">Fecha *</label>
+              <input type="date" id="vale-input-fecha" required class="w-full bg-slate-950 border border-slate-700 text-white rounded-lg px-2.5 py-1.5 text-xs">
+            </div>
+            <div>
+              <label class="block text-[11px] text-slate-300 mb-1">Método de Pago *</label>
+              <select id="vale-input-moneda" onchange="renderizarTablaItemsEdicion()" class="w-full bg-slate-950 border border-slate-700 text-emerald-400 font-bold rounded-lg px-2.5 py-1.5 text-xs">
+                <option value="USD">USD (Dólares)</option>
+                <option value="CUP">CUP (Moneda Nacional)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[11px] text-slate-300 mb-1">Semana Asignada</label>
+              <input type="text" id="vale-input-semana" readonly class="w-full bg-slate-950/60 border border-slate-800 text-indigo-300 font-mono rounded-lg px-2.5 py-1.5 text-xs">
+            </div>
+          </div>
+
+          <!-- Gestor y Cliente -->
+          <div class="p-3.5 bg-slate-950/60 border border-slate-800 rounded-xl grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div>
+              <label class="block text-[11px] font-bold text-indigo-300 mb-1">Gestor de Venta *</label>
+              <input type="text" id="vale-input-gestor" required placeholder="Nombre del gestor" class="w-full bg-slate-900 border border-indigo-500/40 text-white font-bold rounded-lg px-2.5 py-1.5 text-xs">
+            </div>
+            <div>
+              <label class="block text-[11px] text-slate-300 mb-1">Teléfono Gestor</label>
+              <input type="text" id="vale-input-gestor-tel" placeholder="Ej: 54822881" class="w-full bg-slate-900 border border-slate-700 text-white rounded-lg px-2.5 py-1.5 text-xs">
+            </div>
+            <div>
+              <label class="block text-[11px] text-slate-300 mb-1">Nombre del Cliente *</label>
+              <input type="text" id="vale-input-cliente" required placeholder="Nombre completo" class="w-full bg-slate-900 border border-slate-700 text-white rounded-lg px-2.5 py-1.5 text-xs">
+            </div>
+            <div>
+              <label class="block text-[11px] text-slate-300 mb-1">CI / Identidad</label>
+              <input type="text" id="vale-input-cliente-ci" placeholder="Ej: 90071126520" class="w-full bg-slate-900 border border-slate-700 text-white rounded-lg px-2.5 py-1.5 text-xs font-mono">
+            </div>
+            <div>
+              <label class="block text-[11px] text-slate-300 mb-1">Teléfono Cliente</label>
+              <input type="text" id="vale-input-cliente-tel" placeholder="Ej: 54526888" class="w-full bg-slate-900 border border-slate-700 text-white rounded-lg px-2.5 py-1.5 text-xs">
+            </div>
+            <div class="sm:col-span-3">
+              <label class="block text-[11px] text-slate-300 mb-1">Dirección de Entrega</label>
+              <input type="text" id="vale-input-direccion" placeholder="Calle, entrecalles, municipio..." class="w-full bg-slate-900 border border-slate-700 text-white rounded-lg px-2.5 py-1.5 text-xs">
+            </div>
+          </div>
+
+          <!-- TABLA DINÁMICA DE ARTÍCULOS VENDIDOS EN EL VALE -->
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <label class="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
+                <i data-lucide="boxes" class="w-4 h-4 text-emerald-400"></i>
+                Desglose de Productos Vendidos & Comisiones:
+              </label>
+              <button type="button" onclick="agregarFilaProducto()" 
+                      class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-indigo-300 text-xs font-bold rounded-lg border border-slate-700 flex items-center gap-1">
+                <i data-lucide="plus" class="w-3.5 h-3.5"></i> Añadir Producto
+              </button>
+            </div>
+
+            <div class="overflow-x-auto border border-slate-800 rounded-xl">
+              <table class="w-full text-left text-xs">
+                <thead class="bg-slate-950 text-slate-400 border-b border-slate-800 uppercase text-[10px]">
+                  <tr>
+                    <th class="px-3 py-2">Producto / Electrodoméstico</th>
+                    <th class="px-2 py-2 w-28 text-center">Tipo Equipo</th>
+                    <th class="px-3 py-2 w-16 text-center">Cant</th>
+                    <th class="px-3 py-2 w-24 text-right">Precio Unitario</th>
+                    <th class="px-3 py-2 w-24 text-right">Subtotal</th>
+                    <th class="px-3 py-2 w-28 text-right">Comisión (CUP)</th>
+                    <th class="px-2 py-2 w-8 text-center"></th>
+                  </tr>
+                </thead>
+                <tbody id="tabla-vale-items-tbody" class="divide-y divide-slate-800 bg-slate-900/40">
+                  <!-- Filas dinámicas -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- TOTALES -->
+          <div class="p-3.5 bg-gradient-to-r from-slate-950 via-indigo-950/30 to-slate-950 border border-indigo-500/30 rounded-xl grid grid-cols-3 gap-3 text-center">
+            <div>
+              <span class="text-[10px] text-slate-400 block uppercase">Total Equipos:</span>
+              <span id="preview-vale-equipos" class="text-base font-bold text-white font-mono">0</span>
+            </div>
+            <div>
+              <span class="text-[10px] text-slate-400 block uppercase">Total Venta:</span>
+              <span id="preview-vale-total-venta" class="text-base font-bold text-emerald-400 font-mono">$ 0.00 USD</span>
+            </div>
+            <div class="bg-purple-950/40 p-1.5 rounded-lg border border-purple-500/30">
+              <span class="text-[10px] text-purple-300 block uppercase font-bold">Comisión Gestor:</span>
+              <span id="preview-vale-comision" class="text-base font-bold text-purple-300 font-mono">0 CUP</span>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-slate-800 flex justify-end gap-2.5">
+            <button type="button" onclick="cerrarModal('modal-registro-vale')" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium">Cancelar</button>
+            <button type="submit" class="px-5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-md shadow-emerald-950/40">Guardar Vale en Historial</button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODAL: RESUMEN DE LA SEMANA (COMPLETO & EXPORTABLE)      -->
+  <!-- ======================================================== -->
+  <div id="modal-resumen-semana" class="fixed inset-0 bg-black/85 backdrop-blur-sm z-50 hidden items-center justify-center p-4 overflow-y-auto">
+    <div id="printable-modal" class="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-4xl overflow-hidden shadow-2xl animate-in zoom-in-95 my-8">
+      
+      <div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-gradient-to-r from-blue-950/60 to-slate-900">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center border border-blue-500/30">
+            <i data-lucide="bar-chart-3" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <h3 id="resumen-semana-modal-titulo" class="font-bold text-white text-base">Resumen General de la Semana</h3>
+            <p id="resumen-semana-modal-subtitulo" class="text-[11px] text-slate-400">Balance consolidado de gestores, equipos y comisiones</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="window.print()" class="no-print px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center gap-1.5 border border-slate-700">
+            <i data-lucide="printer" class="w-3.5 h-3.5"></i> Imprimir / PDF
+          </button>
+          <button onclick="cerrarModal('modal-resumen-semana')" class="no-print text-slate-400 hover:text-white p-1">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="p-6 space-y-5 text-xs">
+        
+        <!-- Tarjetas resumen rápido -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+          <div class="p-3 bg-slate-950 rounded-xl border border-slate-800">
+            <span class="text-[10px] text-slate-400 uppercase font-semibold block">Total Vales</span>
+            <span id="resumen-modal-kpi-vales" class="text-xl font-black text-white font-mono">0</span>
+          </div>
+          <div class="p-3 bg-slate-950 rounded-xl border border-slate-800">
+            <span class="text-[10px] text-slate-400 uppercase font-semibold block">Total Equipos</span>
+            <span id="resumen-modal-kpi-equipos" class="text-xl font-black text-emerald-400 font-mono">0</span>
+          </div>
+          <div class="p-3 bg-slate-950 rounded-xl border border-slate-800">
+            <span class="text-[10px] text-slate-400 uppercase font-semibold block">Ventas USD / CUP</span>
+            <div id="resumen-modal-kpi-ventas" class="text-sm font-black text-teal-300 font-mono">$0 USD</div>
+          </div>
+          <div class="p-3 bg-slate-950 rounded-xl border border-slate-800">
+            <span class="text-[10px] text-slate-400 uppercase font-semibold block">Total Comisiones</span>
+            <span id="resumen-modal-kpi-comisiones" class="text-xl font-black text-purple-300 font-mono">0 CUP</span>
+          </div>
+        </div>
+
+        <!-- Tabla detallada consolidada por gestor -->
+        <div>
+          <h4 class="font-bold text-white text-xs uppercase tracking-wider mb-2 flex items-center gap-1.5">
+            <i data-lucide="users" class="w-4 h-4 text-indigo-400"></i>
+            Liquidación por Gestor de Ventas
+          </h4>
+          <div class="overflow-x-auto border border-slate-800 rounded-xl">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead class="bg-slate-950 text-slate-400 border-b border-slate-800 uppercase text-[10px]">
+                <tr>
+                  <th class="px-4 py-2.5">Gestor</th>
+                  <th class="px-4 py-2.5">Teléfono</th>
+                  <th class="px-4 py-2.5 text-center">Vales</th>
+                  <th class="px-4 py-2.5 text-center">Equipos</th>
+                  <th class="px-4 py-2.5 text-right">Venta USD</th>
+                  <th class="px-4 py-2.5 text-right">Venta CUP</th>
+                  <th class="px-4 py-2.5 text-right">Comisión Total (CUP)</th>
+                  <th class="px-4 py-2.5 text-center">Estado</th>
+                </tr>
+              </thead>
+              <tbody id="resumen-modal-tabla-tbody" class="divide-y divide-slate-800 bg-slate-900/60">
+                <!-- Filas dinámicas -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="no-print px-6 py-3 bg-slate-950 border-t border-slate-800 flex justify-end gap-2.5">
+        <button onclick="cerrarModal('modal-resumen-semana')" class="px-4 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium">Cerrar</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODAL: REGISTRAR / EDITAR GESTOR                         -->
+  <!-- ======================================================== -->
+  <div id="modal-gestor" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-md overflow-hidden shadow-2xl animate-in zoom-in-95">
+      <div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-800/50">
+        <h3 id="modal-gestor-titulo" class="font-bold text-white text-base">Registrar Nuevo Gestor</h3>
+        <button onclick="cerrarModal('modal-gestor')" class="text-slate-400 hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <form id="form-gestor" class="p-6 space-y-4" onsubmit="event.preventDefault(); guardarGestorForm();">
+        <input type="hidden" id="gestor-form-id">
+
+        <!-- Foto del Gestor -->
+        <div>
+          <label class="block text-xs text-slate-300 mb-1.5 font-medium">Foto del Gestor</label>
+          <div class="flex items-center gap-3">
+            <div class="w-14 h-14 rounded-2xl bg-slate-950 border border-slate-700 flex items-center justify-center overflow-hidden shrink-0">
+              <img id="gestor-form-foto-preview" src="" alt="Foto" class="w-full h-full object-cover hidden">
+              <div id="gestor-form-foto-placeholder" class="text-slate-500 flex flex-col items-center">
+                <i data-lucide="camera" class="w-5 h-5"></i>
+              </div>
+            </div>
+            <div class="flex-1">
+              <input type="file" id="gestor-form-foto-input" accept="image/*" class="w-full text-xs text-slate-400 file:mr-2.5 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-indigo-600 file:text-white hover:file:bg-indigo-500 cursor-pointer">
+              <span class="block text-[11px] text-slate-500 mt-0.5">JPG o PNG (se guarda en el HTML)</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs text-slate-300 mb-1">Nombre Completo *</label>
+          <input type="text" id="gestor-form-nombre" required placeholder="Ej: JOSÉ MIGUEL MARTÍNEZ ACOSTA" class="w-full bg-slate-950 border border-slate-700 text-white rounded-lg px-3 py-2 text-xs">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs text-slate-300 mb-1">Teléfono Principal *</label>
+            <input type="text" id="gestor-form-tel" required placeholder="Ej: 54822881" class="w-full bg-slate-950 border border-slate-700 text-white rounded-lg px-3 py-2 text-xs">
+          </div>
+          <div>
+            <label class="block text-xs text-slate-300 mb-1">Teléfono Secundario</label>
+            <input type="text" id="gestor-form-tel2" placeholder="+53 5..." class="w-full bg-slate-950 border border-slate-700 text-white rounded-lg px-3 py-2 text-xs">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs text-slate-300 mb-1">Zona / Canal</label>
+          <input type="text" id="gestor-form-zona" placeholder="Ej: Mensajería, Plaza de la Revolución..." class="w-full bg-slate-950 border border-slate-700 text-white rounded-lg px-3 py-2 text-xs">
+        </div>
+
+        <div class="pt-3 border-t border-slate-800 flex justify-end gap-2.5">
+          <button type="button" onclick="cerrarModal('modal-gestor')" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium">Cancelar</button>
+          <button type="submit" class="px-5 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-md">Guardar Gestor</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODAL: CONFIGURACIÓN DE COMISIONES                       -->
+  <!-- ======================================================== -->
+  <div id="modal-configuracion" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-md overflow-hidden shadow-2xl animate-in zoom-in-95">
+      <div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-800/50">
+        <h3 class="font-bold text-white text-base flex items-center gap-2">
+          <i data-lucide="settings" class="w-5 h-5 text-amber-400"></i>
+          Configuración de Comisiones Fijas
+        </h3>
+        <button onclick="cerrarModal('modal-configuracion')" class="text-slate-400 hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <form class="p-6 space-y-4" onsubmit="event.preventDefault(); guardarConfiguracionComisiones();">
+        <p class="text-xs text-slate-400">Define los valores en CUP que el sistema asignará por defecto según el tipo de equipo:</p>
+        
+        <div class="space-y-3">
+          <div class="p-3 bg-slate-950 rounded-xl border border-slate-800">
+            <label class="block text-xs font-bold text-emerald-400 mb-1">Comisión Equipo Pequeño (CUP)</label>
+            <input type="number" id="config-comision-pequeno" step="50" min="0" required class="w-full bg-slate-900 border border-slate-700 text-white font-mono font-bold rounded-lg px-3 py-2 text-sm">
+            <span class="block text-[11px] text-slate-500 mt-1">Ollas reina, arroceras, batidoras, ventiladores, cocinas infrarrojas...</span>
+          </div>
+
+          <div class="p-3 bg-slate-950 rounded-xl border border-slate-800">
+            <label class="block text-xs font-bold text-purple-400 mb-1">Comisión Equipo Grande (CUP)</label>
+            <input type="number" id="config-comision-grande" step="50" min="0" required class="w-full bg-slate-900 border border-slate-700 text-white font-mono font-bold rounded-lg px-3 py-2 text-sm">
+            <span class="block text-[11px] text-slate-500 mt-1">Neveras, congeladores, splits de aire, plantas eléctricas, lavadoras...</span>
+          </div>
+        </div>
+
+        <div class="pt-3 border-t border-slate-800 flex justify-end gap-2.5">
+          <button type="button" onclick="cerrarModal('modal-configuracion')" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium">Cerrar</button>
+          <button type="submit" class="px-5 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-md">Guardar Tarifas</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODAL: DETALLE Y LIQUIDACIÓN DEL VALE                    -->
+  <!-- ======================================================== -->
+  <div id="modal-detalle-vale" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-xl overflow-hidden shadow-2xl animate-in zoom-in-95">
+      <div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-800/50">
+        <h3 id="detalle-vale-titulo" class="font-bold text-white text-base">Detalle del Vale</h3>
+        <button onclick="cerrarModal('modal-detalle-vale')" class="text-slate-400 hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div id="detalle-vale-contenido" class="p-6 space-y-4 text-xs">
+        <!-- Rellenado dinámico -->
+      </div>
+
+      <div class="px-6 py-3 bg-slate-950 border-t border-slate-800 flex items-center justify-between">
+        <button id="btn-toggle-pago-vale" class="px-4 py-1.5 rounded-lg text-xs font-bold">
+          Marcar como Pagado
+        </button>
+        <button onclick="cerrarModal('modal-detalle-vale')" class="px-4 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- JAVASCRIPT NATIVO INTEGRADO (100% FUNCIONAL Y AUTÓNOMO)  -->
+  <!-- ======================================================== -->
+  <script>
+  (function() {
+    'use strict';
+
+    // --------------------------------------------------------
+    // SISTEMA DE CACHE ROBUSTO & MULTI-CAPA
+    // --------------------------------------------------------
+    const CACHE_KEYS = {
+      PRIMARY: 'ELECTROCONTA_GESTORES_CACHE_PRIMARY_V4',
+      BACKUP: 'ELECTROCONTA_GESTORES_CACHE_BACKUP_V4'
+    };
+
+    let appState = {
+      gestores: [],
+      vales: [],
+      semanaActiva: '',
+      config: {
+        comisionPequeno: 1500,
+        comisionGrande: 2500,
+        equiposGrandesKeywords: ['nevera', 'congelador', 'split', 'refrigerador', 'lavadora', 'aire acondicionado', 'planta electrica', 'motor']
+      }
+    };
+
+    let itemsValeEnEdicion = [];
+
+    function guardarEnCacheRobusto() {
+      try {
+        const payload = JSON.stringify(appState);
+        localStorage.setItem(CACHE_KEYS.PRIMARY, payload);
+        localStorage.setItem(CACHE_KEYS.BACKUP, payload);
+      } catch (err) {
+        console.warn('Advertencia al escribir en caché:', err);
+      }
+    }
+
+    function cargarDesdeCacheRobusto() {
+      try {
+        const primary = localStorage.getItem(CACHE_KEYS.PRIMARY);
+        if (primary) {
+          const parsed = JSON.parse(primary);
+          if (parsed && Array.isArray(parsed.gestores)) return parsed;
+        }
+        const backup = localStorage.getItem(CACHE_KEYS.BACKUP);
+        if (backup) {
+          const parsedBackup = JSON.parse(backup);
+          if (parsedBackup && Array.isArray(parsedBackup.gestores)) return parsedBackup;
+        }
+      } catch (e) {
+        console.warn('Error leyendo de caché:', e);
+      }
+      return null;
+    }
+
+    // --------------------------------------------------------
+    // CÁLCULO DE SEMANAS (DE LUNES A LUNES)
+    // --------------------------------------------------------
+    function getISOWeekString(dateInput) {
+      const d = dateInput ? new Date(dateInput) : new Date();
+      d.setHours(0, 0, 0, 0);
+      d.setDate(d.getDate() + 4 - (d.getDay() || 7));
+      const yearStart = new Date(d.getFullYear(), 0, 1);
+      const weekNo = Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+      return d.getFullYear() + '-W' + String(weekNo).padStart(2, '0');
+    }
+
+    function getWeekDateRange(weekStr) {
+      if (!weekStr || !weekStr.includes('-W')) {
+        weekStr = getISOWeekString(new Date());
+      }
+      const parts = weekStr.split('-W');
+      const year = parseInt(parts[0], 10);
+      const week = parseInt(parts[1], 10);
+
+      const simple = new Date(year, 0, 4);
+      const dayOfWeek = simple.getDay() || 7;
+      const mondayWeek1 = new Date(simple);
+      mondayWeek1.setDate(simple.getDate() - dayOfWeek + 1);
+
+      const targetMonday = new Date(mondayWeek1);
+      targetMonday.setDate(mondayWeek1.getDate() + (week - 1) * 7);
+
+      const targetSunday = new Date(targetMonday);
+      targetSunday.setDate(targetMonday.getDate() + 6);
+
+      const f = function(d) {
+        const dia = String(d.getDate()).padStart(2, '0');
+        const mes = String(d.getMonth() + 1).padStart(2, '0');
+        return dia + '/' + mes + '/' + d.getFullYear();
+      };
+
+      return {
+        lunes: targetMonday,
+        domingo: targetSunday,
+        label: 'Lun ' + f(targetMonday) + ' - Dom ' + f(targetSunday)
+      };
+    }
+
+    function clasificarEquipo(nombre) {
+      const norm = (nombre || '').toLowerCase();
+      const cfg = appState.config || { comisionPequeno: 1500, comisionGrande: 2500, equiposGrandesKeywords: [] };
+      const keywords = cfg.equiposGrandesKeywords || ['nevera', 'congelador', 'split', 'refrigerador', 'lavadora'];
+      for (let i = 0; i < keywords.length; i++) {
+        if (norm.includes(keywords[i])) {
+          return { categoria: 'Grande', comision: Number(cfg.comisionGrande) || 2500 };
+        }
+      }
+      return { categoria: 'Pequeño', comision: Number(cfg.comisionPequeno) || 1500 };
+    }
+
+    // --------------------------------------------------------
+    // INICIALIZACIÓN
+    // --------------------------------------------------------
+    function inicializar() {
+      // 1. Cargar desde la base de datos embebida
+      if (window.__EMBEDDED_GESTORES_DB__ && typeof window.__EMBEDDED_GESTORES_DB__ === 'object') {
+        appState = window.__EMBEDDED_GESTORES_DB__;
+      } else {
+        const cached = cargarDesdeCacheRobusto();
+        if (cached) {
+          appState = cached;
+        }
+      }
+
+      if (!appState.config) {
+        appState.config = {
+          comisionPequeno: 1500,
+          comisionGrande: 2500,
+          equiposGrandesKeywords: ['nevera', 'congelador', 'split', 'refrigerador', 'lavadora', 'aire acondicionado', 'planta electrica', 'motor']
+        };
+      }
+
+      if (!Array.isArray(appState.gestores) || appState.gestores.length === 0) {
+        appState.gestores = [
+          { id: 'G-1', nombre: 'Dayanis García Almanza', telefono: '51349671', telefonoSecundario: '', zona: 'Mensajería / Redes', foto: '', activo: true },
+          { id: 'G-2', nombre: 'JOSÉ MIGUEL MARTÍNEZ ACOSTA', telefono: '54822881', telefonoSecundario: '', zona: 'Plaza de la Revolución', foto: '', activo: true },
+          { id: 'G-3', nombre: 'Luis Ariel Calderin', telefono: '53186933', telefonoSecundario: '', zona: 'Mensajería / Redes', foto: '', activo: true },
+          { id: 'G-4', nombre: 'Yakelin', telefono: '54286609', telefonoSecundario: '', zona: 'Mensajería y Redes', foto: '', activo: true },
+          { id: 'G-5', nombre: 'Betty', telefono: '58709199', telefonoSecundario: '', zona: 'Cotorro', foto: '', activo: true },
+          { id: 'G-6', nombre: 'Elizabeth', telefono: '56974248', telefonoSecundario: '', zona: 'Cerro', foto: '', activo: true },
+          { id: 'G-7', nombre: 'Liz Mariam', telefono: '54763168', telefonoSecundario: '', zona: 'Mensajería', foto: '', activo: true }
+        ];
+      }
+
+      if (!Array.isArray(appState.vales)) {
+        appState.vales = [];
+      }
+
+      if (!appState.semanaActiva) {
+        appState.semanaActiva = getISOWeekString(new Date());
+      }
+
+      guardarEnCacheRobusto();
+      actualizarSelectorSemanas();
+      renderizarTodo();
+    }
+
+    // --------------------------------------------------------
+    // CONTROL DE SEMANAS
+    // --------------------------------------------------------
+    function actualizarSelectorSemanas() {
+      const select = document.getElementById('select-semanas');
+      if (!select) return;
+
+      const semanasSet = new Set();
+      semanasSet.add('2026-W41');
+      semanasSet.add('2026-W42');
+      semanasSet.add(getISOWeekString(new Date()));
+      if (appState.semanaActiva) semanasSet.add(appState.semanaActiva);
+
+      for (let i = 0; i < appState.vales.length; i++) {
+        if (appState.vales[i].semana) semanasSet.add(appState.vales[i].semana);
+      }
+
+      const listaSemanas = Array.from(semanasSet).sort();
+
+      select.innerHTML = '';
+      for (let j = 0; j < listaSemanas.length; j++) {
+        const s = listaSemanas[j];
+        const info = getWeekDateRange(s);
+        const opt = document.createElement('option');
+        opt.value = s;
+        opt.textContent = 'Semana ' + s + ' (' + info.label + ')';
+        if (s === appState.semanaActiva) opt.selected = true;
+        select.appendChild(opt);
+      }
+
+      const infoActiva = getWeekDateRange(appState.semanaActiva);
+      const lblRango = document.getElementById('label-rango-semana-activa');
+      if (lblRango) lblRango.textContent = infoActiva.label;
+
+      const tit = document.getElementById('titulo-semana-activa');
+      if (tit) tit.textContent = 'Semana ' + appState.semanaActiva;
+    }
+
+    window.seleccionarSemana = function(semana) {
+      appState.semanaActiva = semana;
+      guardarEnCacheRobusto();
+      actualizarSelectorSemanas();
+      renderizarTodo();
+    };
+
+    window.cambiarSemanaRelativa = function(delta) {
+      const parts = appState.semanaActiva.split('-W');
+      let year = parseInt(parts[0], 10);
+      let week = parseInt(parts[1], 10) + delta;
+
+      if (week < 1) {
+        year--;
+        week = 52;
+      } else if (week > 52) {
+        year++;
+        week = 1;
+      }
+
+      const nuevaSemana = year + '-W' + String(week).padStart(2, '0');
+      window.seleccionarSemana(nuevaSemana);
+    };
+
+    window.irASemanaActual = function() {
+      window.seleccionarSemana(getISOWeekString(new Date()));
+    };
+
+    // --------------------------------------------------------
+    // RENDERIZADO GLOBAL
+    // --------------------------------------------------------
+    function renderizarTodo() {
+      renderizarKPIs();
+      renderizarGestores();
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    function renderizarKPIs() {
+      const valesSemana = appState.vales.filter(function(v) { return v.semana === appState.semanaActiva; });
+      
+      let totalVales = valesSemana.length;
+      let totalEquipos = 0;
+      let totalVentasUSD = 0;
+      let totalVentasCUP = 0;
+      let totalComisionesCUP = 0;
+      let totalComisionesPendientesCUP = 0;
+
+      for (let i = 0; i < valesSemana.length; i++) {
+        const v = valesSemana[i];
+        const cantEquipos = (v.items || []).reduce(function(acc, it) { return acc + (Number(it.cantidad) || 1); }, 0);
+        totalEquipos += cantEquipos;
+        
+        if (v.moneda === 'CUP') {
+          totalVentasCUP += Number(v.totalVenta) || 0;
+        } else {
+          totalVentasUSD += Number(v.totalVenta) || 0;
+        }
+        
+        const com = Number(v.granComisionCUP) || 0;
+        totalComisionesCUP += com;
+        if (v.estadoComision !== 'PAGADA') {
+          totalComisionesPendientesCUP += com;
+        }
+      }
+
+      const elVales = document.getElementById('kpi-total-vales');
+      if (elVales) elVales.textContent = totalVales;
+
+      const elEquipos = document.getElementById('kpi-total-equipos');
+      if (elEquipos) elEquipos.textContent = totalEquipos;
+
+      const elVentasUSD = document.getElementById('kpi-total-ventas-usd');
+      if (elVentasUSD) elVentasUSD.textContent = '$' + totalVentasUSD.toFixed(2) + ' USD';
+
+      const elVentasCUP = document.getElementById('kpi-total-ventas-cup');
+      if (elVentasCUP) elVentasCUP.textContent = totalVentasCUP.toLocaleString('es-ES') + ' CUP';
+
+      const elComisiones = document.getElementById('kpi-total-comisiones-cup');
+      if (elComisiones) elComisiones.textContent = totalComisionesCUP.toLocaleString('es-ES') + ' CUP';
+
+      const elPendientes = document.getElementById('kpi-total-comisiones-pendientes');
+      if (elPendientes) {
+        elPendientes.textContent = totalComisionesPendientesCUP > 0 
+          ? '⚠️ ' + totalComisionesPendientesCUP.toLocaleString('es-ES') + ' CUP pendientes'
+          : '✓ Todas las comisiones pagadas';
+      }
+    }
+
+    window.renderizarGestores = function() {
+      const contenedor = document.getElementById('contenedor-tarjetas-gestores');
+      if (!contenedor) return;
+
+      const inputBusqueda = document.getElementById('input-buscar-gestor');
+      const filtro = (inputBusqueda ? inputBusqueda.value : '').toLowerCase().trim();
+
+      let lista = appState.gestores;
+      if (filtro) {
+        lista = lista.filter(function(g) {
+          return g.nombre.toLowerCase().includes(filtro) || 
+                 (g.telefono && g.telefono.includes(filtro)) ||
+                 (g.zona && g.zona.toLowerCase().includes(filtro));
+        });
+      }
+
+      if (lista.length === 0) {
+        contenedor.innerHTML = '<div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 text-center text-slate-400">' +
+          '<i data-lucide="user-x" class="w-10 h-10 mx-auto text-slate-600 mb-2"></i>' +
+          '<p class="font-semibold text-slate-300">No hay gestores en la lista.</p>' +
+          '<p class="text-xs text-slate-500 mt-1">Pulsa en "+ Gestor" o pega un vale para registrar ventas.</p>' +
+        '</div>';
+        if (window.lucide) window.lucide.createIcons();
+        return;
+      }
+
+      contenedor.innerHTML = '';
+
+      for (let i = 0; i < lista.length; i++) {
+        const g = lista[i];
+        const valesSemanaGestor = appState.vales.filter(function(v) {
+          return v.semana === appState.semanaActiva && 
+                 v.gestorNombre && v.gestorNombre.toLowerCase().trim() === g.nombre.toLowerCase().trim();
+        });
+
+        let equiposSemana = 0;
+        let ventasUSDSemana = 0;
+        let ventasCUPSemana = 0;
+        let comisionTotalSemanaCUP = 0;
+        let comisionPendienteSemanaCUP = 0;
+
+        for (let j = 0; j < valesSemanaGestor.length; j++) {
+          const v = valesSemanaGestor[j];
+          equiposSemana += (v.items || []).reduce(function(acc, it) { return acc + (Number(it.cantidad) || 1); }, 0);
+          if (v.moneda === 'CUP') {
+            ventasCUPSemana += Number(v.totalVenta) || 0;
+          } else {
+            ventasUSDSemana += Number(v.totalVenta) || 0;
+          }
+          const com = Number(v.granComisionCUP) || 0;
+          comisionTotalSemanaCUP += com;
+          if (v.estadoComision !== 'PAGADA') {
+            comisionPendienteSemanaCUP += com;
+          }
+        }
+
+        const card = document.createElement('div');
+        card.className = 'bg-slate-900/90 border border-slate-800 hover:border-slate-700/80 rounded-2xl overflow-hidden shadow-lg transition-all';
+        
+        let avatarHtml = g.foto 
+          ? '<img src="' + g.foto + '" alt="' + g.nombre + '" class="w-full h-full object-cover">'
+          : '<span class="text-xl font-black text-indigo-400">' + g.nombre.charAt(0).toUpperCase() + '</span>';
+
+        let ventasDisplay = '$' + ventasUSDSemana.toFixed(2);
+        if (ventasCUPSemana > 0) {
+          ventasDisplay += '<span class="text-[10px] font-semibold text-amber-300 font-mono block">' + ventasCUPSemana.toLocaleString('es-ES') + ' CUP</span>';
+        }
+
+        let cardHeader = '<div class="p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-900">' +
+          '<div class="flex items-center gap-3.5">' +
+            '<div class="w-14 h-14 rounded-2xl bg-indigo-950/80 border border-indigo-500/30 flex items-center justify-center text-white overflow-hidden shrink-0 shadow-md">' +
+              avatarHtml +
+            '</div>' +
+            '<div>' +
+              '<div class="flex items-center gap-2">' +
+                '<h4 class="text-base font-bold text-white tracking-tight">' + g.nombre + '</h4>' +
+                '<span class="text-[10px] px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/30">' +
+                  (g.zona || 'Gestor') +
+                '</span>' +
+              '</div>' +
+              '<div class="flex items-center flex-wrap gap-x-3 gap-y-1 text-xs text-slate-400 mt-1">' +
+                '<a href="https://wa.me/' + (g.telefono || '').replace(/\D/g, '') + '" target="_blank" class="hover:text-emerald-400 flex items-center gap-1 font-mono">' +
+                  '<i data-lucide="phone" class="w-3.5 h-3.5 text-emerald-400"></i> ' + (g.telefono || 'Sin teléfono') +
+                '</a>' +
+                (g.telefonoSecundario ? '<span class="text-slate-600">•</span><span class="font-mono text-slate-400">' + g.telefonoSecundario + '</span>' : '') +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 bg-slate-950/70 p-3 rounded-xl border border-slate-800 text-center">' +
+            '<div><span class="text-[10px] text-slate-400 uppercase block font-semibold">Vales Semana</span><span class="text-sm font-black text-white font-mono">' + valesSemanaGestor.length + '</span></div>' +
+            '<div><span class="text-[10px] text-slate-400 uppercase block font-semibold">Equipos</span><span class="text-sm font-black text-emerald-400 font-mono">' + equiposSemana + '</span></div>' +
+            '<div><span class="text-[10px] text-slate-400 uppercase block font-semibold">Ventas</span><span class="text-sm font-bold text-teal-400 font-mono block">' + ventasDisplay + '</span></div>' +
+            '<div><span class="text-[10px] text-purple-300 uppercase block font-bold">Comisión Semana</span><span class="text-sm font-black text-purple-300 font-mono">' + comisionTotalSemanaCUP.toLocaleString('es-ES') + ' CUP</span></div>' +
+          '</div>' +
+          '<div class="flex items-center gap-2">' +
+            '<button onclick="toggleSubmenuVentas(\'' + g.id + '\')" class="px-3.5 py-2 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/40 text-indigo-300 border border-indigo-500/40 text-xs font-bold flex items-center gap-1.5 transition-all">' +
+              '<i data-lucide="receipt" class="w-4 h-4"></i>' +
+              '<span>Ver Vales y Ventas (' + valesSemanaGestor.length + ')</span>' +
+              '<i id="chevron-' + g.id + '" data-lucide="chevron-down" class="w-3.5 h-3.5 transition-transform"></i>' +
+            '</button>' +
+            '<button onclick="abrirModalEditarGestor(\'' + g.id + '\')" title="Editar Gestor" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700">' +
+              '<i data-lucide="edit-3" class="w-4 h-4"></i>' +
+            '</button>' +
+          '</div>' +
+        '</div>';
+
+        // Submenu
+        let liquidarBtn = comisionPendienteSemanaCUP > 0
+          ? '<button onclick="liquidarSemanaGestor(\'' + g.nombre + '\')" class="px-3.5 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-purple-950/40 transition-all"><i data-lucide="check-circle" class="w-4 h-4"></i><span>Liquidar ' + comisionPendienteSemanaCUP.toLocaleString('es-ES') + ' CUP Pendientes</span></button>'
+          : '<span class="text-xs text-emerald-400 font-bold bg-emerald-950/40 border border-emerald-500/30 px-3 py-1 rounded-xl">✓ Comisiones al Día</span>';
+
+        let submenuContent = '';
+        if (valesSemanaGestor.length === 0) {
+          submenuContent = '<div class="p-6 text-center text-slate-500 text-xs bg-slate-900/40 rounded-xl border border-slate-800/80">No hay vales registrados para este gestor en esta semana. Pega un vale para comenzar.</div>';
+        } else {
+          // Tabla estructurada
+          let rowsHtml = '';
+          for (let k = 0; k < valesSemanaGestor.length; k++) {
+            const v = valesSemanaGestor[k];
+            let itemsHtml = (v.items || []).map(function(it) {
+              const precioStr = v.moneda === 'CUP' ? (it.precioVenta + ' CUP') : ('$' + it.precioVenta + ' USD');
+              return '<div class="flex items-center justify-between gap-2 text-[11px]"><span class="text-slate-200 font-medium">• ' + it.producto + '</span><span class="text-slate-400 font-mono text-[10px]">' + it.cantidad + 'x ' + precioStr + ' (' + (it.tipoEquipo || 'Pequeño') + ': ' + (Number(it.comisionUnitCUP) || 1500) + ' CUP)</span></div>';
+            }).join('');
+
+            const cantTot = (v.items || []).reduce(function(acc, it) { return acc + (Number(it.cantidad) || 1); }, 0);
+            const totalVentaStr = v.moneda === 'CUP' ? (Number(v.totalVenta || 0).toLocaleString('es-ES') + ' CUP') : ('$' + Number(v.totalVenta || 0).toFixed(2) + ' USD');
+
+            rowsHtml += '<tr class="hover:bg-slate-900/60 transition-colors">' +
+              '<td class="px-4 py-3 font-mono font-bold text-indigo-300"><div>' + v.folio + '</div><span class="text-[10px] text-slate-500 font-normal">' + v.fecha + '</span></td>' +
+              '<td class="px-4 py-3"><div class="font-bold text-white">' + v.clienteNombre + '</div>' + (v.clienteTelefono ? '<div class="text-[10px] text-slate-400 font-mono">' + v.clienteTelefono + '</div>' : '') + '</td>' +
+              '<td class="px-4 py-3 text-slate-300 text-[11px] max-w-xs truncate" title="' + (v.direccion || '') + '">' + (v.direccion || 'Sin dirección') + '</td>' +
+              '<td class="px-4 py-3"><div class="space-y-1">' + itemsHtml + '</div></td>' +
+              '<td class="px-4 py-3 text-center font-bold text-white font-mono">' + cantTot + '</td>' +
+              '<td class="px-4 py-3 text-right font-black ' + (v.moneda === 'CUP' ? 'text-amber-300' : 'text-emerald-400') + ' font-mono">' + totalVentaStr + '</td>' +
+              '<td class="px-4 py-3 text-right font-black text-purple-300 font-mono">' + Number(v.granComisionCUP || 0).toLocaleString('es-ES') + ' CUP</td>' +
+              '<td class="px-4 py-3 text-center">' +
+                (v.estadoComision === 'PAGADA' 
+                  ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">Pagada</span>'
+                  : '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30">Pendiente</span>') +
+              '</td>' +
+              '<td class="px-4 py-3 text-center">' +
+                '<div class="flex items-center justify-center gap-1.5">' +
+                  '<button onclick="verDetalleVale(\'' + v.id + '\')" title="Ver Detalle" class="p-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300"><i data-lucide="eye" class="w-3.5 h-3.5"></i></button>' +
+                  '<button onclick="eliminarVale(\'' + v.id + '\')" title="Eliminar Vale" class="p-1 rounded-lg bg-slate-800 hover:bg-rose-900/50 text-rose-400"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button>' +
+                '</div>' +
+              '</td>' +
+            '</tr>';
+          }
+
+          let tableHtml = '<div class="overflow-x-auto border border-slate-800 rounded-xl">' +
+            '<table class="w-full text-left text-xs border-collapse">' +
+              '<thead class="bg-slate-900 text-slate-400 border-b border-slate-800 uppercase text-[10px]">' +
+                '<tr>' +
+                  '<th class="px-4 py-2.5">Folio / Fecha</th>' +
+                  '<th class="px-4 py-2.5">Cliente</th>' +
+                  '<th class="px-4 py-2.5">Dirección</th>' +
+                  '<th class="px-4 py-2.5">Productos Vendidos</th>' +
+                  '<th class="px-4 py-2.5 text-center">Cant</th>' +
+                  '<th class="px-4 py-2.5 text-right">Total Venta</th>' +
+                  '<th class="px-4 py-2.5 text-right">Comisión (CUP)</th>' +
+                  '<th class="px-4 py-2.5 text-center">Estado</th>' +
+                  '<th class="px-4 py-2.5 text-center">Acción</th>' +
+                '</tr>' +
+              '</thead>' +
+              '<tbody class="divide-y divide-slate-800/60 bg-slate-950">' + rowsHtml + '</tbody>' +
+            '</table>' +
+          '</div>';
+
+          // Vales originales completos
+          let valesOriginalesCards = '';
+          for (let m = 0; m < valesSemanaGestor.length; m++) {
+            const valOrig = valesSemanaGestor[m];
+            valesOriginalesCards += '<div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3.5 relative space-y-2">' +
+              '<div class="flex items-center justify-between border-b border-slate-800/80 pb-1.5">' +
+                '<span class="font-mono text-[10px] font-bold text-indigo-400">' + valOrig.folio + ' • ' + valOrig.fecha + '</span>' +
+                '<div class="flex items-center gap-1.5">' +
+                  '<button onclick="copiarValePorId(\'' + valOrig.id + '\')" title="Copiar este vale" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-[10px] text-slate-300 flex items-center gap-1 font-sans">' +
+                    '<i data-lucide="copy" class="w-3 h-3"></i> Copiar' +
+                  '</button>' +
+                  '<span class="px-2 py-0.5 rounded text-[10px] font-bold ' + (valOrig.estadoComision === 'PAGADA' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'bg-rose-500/20 text-rose-300 border border-rose-500/30') + '">' +
+                    valOrig.estadoComision +
+                  '</span>' +
+                '</div>' +
+              '</div>' +
+              '<pre class="text-[11px] text-slate-300 font-mono whitespace-pre-wrap leading-relaxed max-h-56 overflow-y-auto bg-slate-950 p-2.5 rounded-lg border border-slate-800/60">' + (valOrig.rawTextoWhatsApp || 'Sin texto original guardado') + '</pre>' +
+            '</div>';
+          }
+
+          let valesCompletosSection = '<div class="space-y-3 pt-2">' +
+            '<div class="flex items-center justify-between">' +
+              '<h6 class="text-[11px] font-bold text-indigo-300 uppercase tracking-wider flex items-center gap-1.5">' +
+                '<i data-lucide="file-text" class="w-3.5 h-3.5 text-amber-400"></i>' +
+                'Vales Completos Originales de WhatsApp (con Emojis y Formato):' +
+              '</h6>' +
+              '<span class="text-[10px] text-slate-500 font-mono">' + valesSemanaGestor.length + ' vales listados</span>' +
+            '</div>' +
+            '<div class="grid grid-cols-1 md:grid-cols-2 gap-3">' + valesOriginalesCards + '</div>' +
+          '</div>';
+
+          submenuContent = tableHtml + valesCompletosSection;
+        }
+
+        let submenu = '<div id="submenu-ventas-' + g.id + '" class="hidden border-t border-slate-800 bg-slate-950/90 p-5 space-y-5">' +
+          '<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">' +
+            '<div>' +
+              '<h5 class="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-2">' +
+                '<i data-lucide="receipt-text" class="w-4 h-4 text-emerald-400"></i>' +
+                'Vales de Venta de ' + g.nombre + ' (Semana: ' + getWeekDateRange(appState.semanaActiva).label + ')' +
+              '</h5>' +
+              '<p class="text-[11px] text-slate-400">Puedes consultar la tabla estructurada o ver los vales enteros tal como llegaron por WhatsApp con sus emojis.</p>' +
+            '</div>' +
+            liquidarBtn +
+          '</div>' +
+          submenuContent +
+        '</div>';
+
+        card.innerHTML = cardHeader + submenu;
+        contenedor.appendChild(card);
+      }
+    };
+
+    window.toggleSubmenuVentas = function(gestorId) {
+      const el = document.getElementById('submenu-ventas-' + gestorId);
+      const icon = document.getElementById('chevron-' + gestorId);
+      if (el) {
+        el.classList.toggle('hidden');
+        if (icon) {
+          icon.classList.toggle('rotate-180');
+        }
+      }
+    };
+
+    window.copiarValePorId = function(valeId) {
+      const v = appState.vales.find(function(x) { return x.id === valeId; });
+      if (v && v.rawTextoWhatsApp) {
+        navigator.clipboard.writeText(v.rawTextoWhatsApp).then(function() {
+          alert('📋 ¡Vale copiado al portapapeles!');
+        });
+      }
+    };
+
+    // --------------------------------------------------------
+    // RESUMEN GENERAL DE LA SEMANA (MODAL & IMPRESIÓN)
+    // --------------------------------------------------------
+    window.abrirModalResumenSemana = function() {
+      const info = getWeekDateRange(appState.semanaActiva);
+      document.getElementById('resumen-semana-modal-titulo').textContent = 'Resumen General — Semana ' + appState.semanaActiva;
+      document.getElementById('resumen-semana-modal-subtitulo').textContent = 'Período: ' + info.label + ' (Lunes a Lunes)';
+
+      const valesSemana = appState.vales.filter(function(v) { return v.semana === appState.semanaActiva; });
+      
+      let totEquipos = 0;
+      let totVentasUSD = 0;
+      let totVentasCUP = 0;
+      let totComisionesCUP = 0;
+
+      for (let i = 0; i < valesSemana.length; i++) {
+        const v = valesSemana[i];
+        totEquipos += (v.items || []).reduce(function(acc, it) { return acc + (Number(it.cantidad) || 1); }, 0);
+        if (v.moneda === 'CUP') totVentasCUP += Number(v.totalVenta) || 0;
+        else totVentasUSD += Number(v.totalVenta) || 0;
+        totComisionesCUP += Number(v.granComisionCUP) || 0;
+      }
+
+      document.getElementById('resumen-modal-kpi-vales').textContent = valesSemana.length;
+      document.getElementById('resumen-modal-kpi-equipos').textContent = totEquipos;
+      document.getElementById('resumen-modal-kpi-ventas').innerHTML = '$' + totVentasUSD.toFixed(2) + ' USD<br><span class="text-[11px] text-amber-300">' + totVentasCUP.toLocaleString('es-ES') + ' CUP</span>';
+      document.getElementById('resumen-modal-kpi-comisiones').textContent = totComisionesCUP.toLocaleString('es-ES') + ' CUP';
+
+      const tbody = document.getElementById('resumen-modal-tabla-tbody');
+      tbody.innerHTML = '';
+
+      if (appState.gestores.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="8" class="text-center p-4 text-slate-500">No hay gestores registrados.</td></tr>';
+      } else {
+        for (let j = 0; j < appState.gestores.length; j++) {
+          const g = appState.gestores[j];
+          const valesG = valesSemana.filter(function(v) {
+            return v.gestorNombre && v.gestorNombre.toLowerCase().trim() === g.nombre.toLowerCase().trim();
+          });
+          const eq = valesG.reduce(function(acc, v) { return acc + (v.items || []).reduce(function(a, b) { return a + (Number(b.cantidad) || 1); }, 0); }, 0);
+          const usd = valesG.filter(function(v) { return v.moneda !== 'CUP'; }).reduce(function(acc, v) { return acc + (Number(v.totalVenta) || 0); }, 0);
+          const cup = valesG.filter(function(v) { return v.moneda === 'CUP'; }).reduce(function(acc, v) { return acc + (Number(v.totalVenta) || 0); }, 0);
+          const com = valesG.reduce(function(acc, v) { return acc + (Number(v.granComisionCUP) || 0); }, 0);
+          const pagada = valesG.filter(function(v) { return v.estadoComision === 'PAGADA'; }).reduce(function(acc, v) { return acc + (Number(v.granComisionCUP) || 0); }, 0);
+          const pendiente = com - pagada;
+
+          const tr = document.createElement('tr');
+          tr.className = 'hover:bg-slate-900/80';
+          tr.innerHTML = '<td class="px-4 py-2.5 font-bold text-white">' + g.nombre + '</td>' +
+            '<td class="px-4 py-2.5 font-mono text-slate-400">' + (g.telefono || 'Sin tel') + '</td>' +
+            '<td class="px-4 py-2.5 text-center font-bold text-white">' + valesG.length + '</td>' +
+            '<td class="px-4 py-2.5 text-center font-bold text-emerald-400">' + eq + '</td>' +
+            '<td class="px-4 py-2.5 text-right font-mono text-emerald-400">$' + usd.toFixed(2) + '</td>' +
+            '<td class="px-4 py-2.5 text-right font-mono text-amber-300">' + cup.toLocaleString('es-ES') + '</td>' +
+            '<td class="px-4 py-2.5 text-right font-mono font-black text-purple-300">' + com.toLocaleString('es-ES') + ' CUP</td>' +
+            '<td class="px-4 py-2.5 text-center">' +
+              (valesG.length === 0 ? '<span class="text-slate-500 font-mono text-[10px]">Sin ventas</span>' : (pendiente === 0 ? '<span class="text-emerald-400 font-bold text-[10px]">PAGADA</span>' : '<span class="text-rose-400 font-bold text-[10px]">PENDIENTE (' + pendiente.toLocaleString('es-ES') + ' CUP)</span>')) +
+            '</td>';
+          tbody.appendChild(tr);
+        }
+      }
+
+      abrirModal('modal-resumen-semana');
+    };
+
+    // --------------------------------------------------------
+    // PARSER DE VALES DE WHATSAPP
+    // --------------------------------------------------------
+    function normalizarMathUnicode(str) {
+      if (!str) return '';
+      let out = '';
+      for (let i = 0; i < str.length; i++) {
+        const code = str.codePointAt(i);
+        if (code >= 0x1D400 && code <= 0x1D419) { out += String.fromCharCode(65 + (code - 0x1D400)); i++; }
+        else if (code >= 0x1D41A && code <= 0x1D433) { out += String.fromCharCode(97 + (code - 0x1D41A)); i++; }
+        else if (code >= 0x1D434 && code <= 0x1D44D) { out += String.fromCharCode(65 + (code - 0x1D434)); i++; }
+        else if (code >= 0x1D44E && code <= 0x1D467) { out += String.fromCharCode(97 + (code - 0x1D44E)); i++; }
+        else if (code >= 0x1D468 && code <= 0x1D481) { out += String.fromCharCode(65 + (code - 0x1D468)); i++; }
+        else if (code >= 0x1D482 && code <= 0x1D49B) { out += String.fromCharCode(97 + (code - 0x1D482)); i++; }
+        else if (code >= 0x1D5D4 && code <= 0x1D5ED) { out += String.fromCharCode(65 + (code - 0x1D5D4)); i++; }
+        else if (code >= 0x1D5EE && code <= 0x1D607) { out += String.fromCharCode(97 + (code - 0x1D5EE)); i++; }
+        else { out += str[i]; }
+      }
+      return out;
+    }
+
+    function parseFechaISO(fechaStr) {
+      if (!fechaStr) {
+        return new Date().toISOString().split('T')[0];
+      }
+      const clean = fechaStr.toLowerCase();
+      let day = 15, month = 10, year = 2026;
+      const m1 = clean.match(/(\d{1,2})[\.\/](\d{1,2})(?:[\.\/](\d{2,4}))?/);
+      if (m1) {
+        day = parseInt(m1[1], 10);
+        month = parseInt(m1[2], 10);
+        if (m1[3]) {
+          year = parseInt(m1[3], 10);
+          if (year < 100) year += 2000;
+        }
+      } else {
+        const m2 = clean.match(/(\d{1,2})\s+(?:de\s+)?(octubre|oct|noviembre|nov|diciembre|dic|enero|ene|febrero|feb|marzo|mar|abril|abr|mayo|may|junio|jun|julio|jul|agosto|ago|septiembre|sep)/i);
+        if (m2) {
+          day = parseInt(m2[1], 10);
+          const mesStr = m2[2].toLowerCase();
+          const mesesMap = { ene: 1, feb: 2, mar: 3, abr: 4, may: 5, jun: 6, jul: 7, ago: 8, sep: 9, oct: 10, nov: 11, dic: 12 };
+          for (let k in mesesMap) {
+            if (mesStr.startsWith(k)) {
+              month = mesesMap[k];
+              break;
+            }
+          }
+          year = 2026;
+        }
+      }
+      return year + '-' + String(month).padStart(2, '0') + '-' + String(day).padStart(2, '0');
+    }
+
+    function parsearFacturaTexto(raw) {
+      const origLines = raw.split(/\r?\n/).map(function(l) { return l.trim(); }).filter(Boolean);
+      
+      function cleanLine(l) {
+        return normalizarMathUnicode(l)
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .replace(/^[✨📝•\-\*⁉️!]+\s*/, '')
+          .trim();
+      }
+
+      const cleanLines = origLines.map(cleanLine);
+
+      function getFieldValue(patterns) {
+        for (let i = 0; i < cleanLines.length; i++) {
+          const cl = cleanLines[i];
+          for (let j = 0; j < patterns.length; j++) {
+            const p = patterns[j];
+            const m = cl.match(p);
+            if (m) {
+              const orig = origLines[i].replace(/^[✨📝•\-\*⁉️!]+\s*/, '').trim();
+              const colIdx = orig.indexOf(':');
+              return colIdx !== -1 ? orig.substring(colIdx + 1).trim() : (m[1] || '').trim();
+            }
+          }
+        }
+        return '';
+      }
+
+      const fechaRaw = getFieldValue([/^fecha\s*:\s*(.*)/i]);
+      const cliente = getFieldValue([/^nombre\s+del\s+cliente\s*:\s*(.*)/i, /^cliente\s*:\s*(.*)/i]);
+      const ci = getFieldValue([/^ci\s*:\s*(.*)/i]);
+      const telCliente = getFieldValue([/^telefono\s+del\s+cliente\s*:\s*(.*)/i, /^tel\w*\s+cliente\s*:\s*(.*)/i]);
+      let direccion = getFieldValue([/^direccion\s+del\s+cliente\s*:\s*(.*)/i, /^direccion\s*:\s*(.*)/i]);
+      
+      if (!direccion) {
+        for (let i = 0; i < cleanLines.length; i++) {
+          if (/^direccion/i.test(cleanLines[i])) {
+            if (i + 1 < origLines.length && !origLines[i+1].includes(':')) {
+              direccion = origLines[i+1].trim();
+              break;
+            }
+          }
+        }
+      }
+
+      const gestor = getFieldValue([/^nombre\s+del\s+gestor\s*:\s*(.*)/i, /^gestor\s*:\s*(.*)/i]);
+      const telGestor = getFieldValue([/^telefono\s+del\s+gestor\s*:\s*(.*)/i, /^#de\s+telefono\s+del\s+gestor\s*:\s*(.*)/i]);
+      const metodoPago = getFieldValue([/^metodo\s+de\s+pago\s*:\s*(.*)/i, /^pago\s*:\s*(.*)/i]);
+
+      const pedLines = [];
+      const precioLines = [];
+      let inPed = false;
+      let inPrecios = false;
+
+      for (let i = 0; i < cleanLines.length; i++) {
+        const cl = cleanLines[i];
+        const ol = origLines[i].replace(/^[✨📝•\-\*⁉️!]+\s*/, '').trim();
+
+        if (/^pedido\s*:/i.test(cl)) {
+          inPed = true; inPrecios = false;
+          const norm = normalizarMathUnicode(ol);
+          const colIdx = norm.indexOf(':');
+          const rest = colIdx !== -1 ? norm.substring(colIdx + 1).trim() : '';
+          if (rest) pedLines.push(rest);
+          continue;
+        }
+        if (/^cantidad\s*:/i.test(cl)) {
+          inPed = false;
+          continue;
+        }
+        if (/^precio\s+del\s+articulo\s*:/i.test(cl)) {
+          inPed = false; inPrecios = true;
+          const norm = normalizarMathUnicode(ol);
+          const colIdx = norm.indexOf(':');
+          const rest = colIdx !== -1 ? norm.substring(colIdx + 1).trim() : '';
+          if (rest) precioLines.push(rest);
+          continue;
+        }
+        if (/^(total|metodo\s+de\s+pago|precio\s+de\s+la\s+mensajeria|nombre\s+del\s+gestor|#de\s+telefono|descontar|dinero\s+a\s+devolver)/i.test(cl)) {
+          inPed = false; inPrecios = false;
+        }
+
+        if (inPed && ol && !ol.includes(':')) {
+          pedLines.push(ol);
+        }
+        if (inPrecios && ol && !ol.includes(':') && !/^total\s+\d+/i.test(cl)) {
+          precioLines.push(ol);
+        }
+      }
+
+      let individualPrices = [];
+      for (let pIdx = 0; pIdx < precioLines.length; pIdx++) {
+        const numbers = precioLines[pIdx].match(/\b\d+(?:\.\d+)?\b/g);
+        if (numbers) {
+          for (let nIdx = 0; nIdx < numbers.length; nIdx++) {
+            individualPrices.push(parseFloat(numbers[nIdx]));
+          }
+        }
+      }
+
+      let linesToProcess = [];
+      if (pedLines.length > 1) {
+        linesToProcess = pedLines;
+      } else if (pedLines.length === 1) {
+        let single = pedLines[0];
+        if (single.toLowerCase().includes('combo triple')) {
+          single = single.replace(/^combo\s+triple\s*:\s*/i, '');
+          const parts = single.split(/[,y\+]/i).map(function(s) { return s.trim(); }).filter(Boolean);
+          linesToProcess = parts.filter(function(p) { return !p.toLowerCase().includes('todo en negro'); });
+        } else if (single.includes(' y ') || single.includes(' + ') || single.includes(',')) {
+          if (/,\s*de\s+\d+\s+elices/i.test(single)) {
+            linesToProcess = [single.replace(/,\s*/, ' ')];
+          } else {
+            linesToProcess = single.split(/\s+y\s+|\s*\+\s*|\s*,\s*/i).map(function(s) { return s.trim(); }).filter(Boolean);
+          }
+        } else {
+          linesToProcess = [single];
+        }
+      }
+
+      const items = [];
+      for (let lIdx = 0; lIdx < linesToProcess.length; lIdx++) {
+        let cleanProd = linesToProcess[lIdx].trim();
+        if (!cleanProd) continue;
+
+        let cant = 1;
+        const mQty = cleanProd.match(/^(\d+)\s+(.+)/);
+        if (mQty) {
+          cant = parseInt(mQty[1], 10);
+          cleanProd = mQty[2].trim();
+        }
+
+        const clasif = clasificarEquipo(cleanProd);
+
+        let precio = 0;
+        const prodLower = cleanProd.toLowerCase();
+        for (let prIdx = 0; prIdx < precioLines.length; prIdx++) {
+          const plLow = precioLines[prIdx].toLowerCase();
+          if ((prodLower.includes('olla') && plLow.includes('olla')) ||
+              (prodLower.includes('reina') && plLow.includes('reina')) ||
+              (prodLower.includes('arrocera') && plLow.includes('arrocera')) ||
+              (prodLower.includes('batidora') && plLow.includes('batidora')) ||
+              (prodLower.includes('infraroj') && (plLow.includes('infraroj') || plLow.includes('cocina'))) ||
+              (prodLower.includes('pedestal') && plLow.includes('pedestal')) ||
+              (prodLower.includes('pared') && plLow.includes('pared')) ||
+              (prodLower.includes('ciclon') && plLow.includes('ciclon'))) {
+            const m = precioLines[prIdx].match(/(\d+(?:\.\d+)?)/);
+            if (m) {
+              precio = parseFloat(m[1]);
+              break;
+            }
+          }
+        }
+
+        if (precio === 0 && individualPrices.length > lIdx) {
+          precio = individualPrices[lIdx];
+        } else if (precio === 0 && individualPrices.length === 1) {
+          precio = individualPrices[0];
+        }
+
+        if (precio === 0) {
+          if (prodLower.includes('reina')) precio = 47;
+          else if (prodLower.includes('arrocera')) precio = 28;
+          else if (prodLower.includes('batidora')) precio = 25;
+          else if (prodLower.includes('infraro')) precio = 30;
+          else if (prodLower.includes('pedestal') || prodLower.includes('ciclon')) precio = 25;
+          else if (prodLower.includes('pared')) precio = 30;
+        }
+
+        items.push({
+          id: 'it-' + Math.random().toString(36).substr(2, 8),
+          producto: cleanProd,
+          cantidad: cant,
+          tipoEquipo: clasif.categoria,
+          precioVenta: precio,
+          comisionUnitCUP: clasif.comision,
+          comisionTotalCUP: clasif.comision * cant
+        });
+      }
+
+      let monedaDetectada = 'USD';
+      if (metodoPago) {
+        const mpLow = metodoPago.toLowerCase();
+        if (mpLow.includes('cup') || mpLow.includes('mn') || mpLow.includes('moneda nacional') || mpLow.includes('nacional')) {
+          monedaDetectada = 'CUP';
+        }
+      }
+
+      return {
+        gestor: gestor.trim(),
+        telGestor: telGestor.trim(),
+        cliente: cliente.trim(),
+        ci: ci.trim(),
+        telCliente: telCliente.trim(),
+        direccion: direccion.trim(),
+        fechaISO: parseFechaISO(fechaRaw),
+        fechaTexto: fechaRaw.trim(),
+        moneda: monedaDetectada,
+        items: items
+      };
+    }
+
+    window.procesarTextoVale = function() {
+      const ta = document.getElementById('input-texto-vale-pegar');
+      if (!ta || !ta.value.trim()) {
+        alert('Por favor pega el texto de la factura recibida del gestor.');
+        return;
+      }
+
+      const p = parsearFacturaTexto(ta.value);
+
+      if (p.gestor) document.getElementById('vale-input-gestor').value = p.gestor;
+      if (p.telGestor) document.getElementById('vale-input-gestor-tel').value = p.telGestor;
+      if (p.cliente) document.getElementById('vale-input-cliente').value = p.cliente;
+      if (p.ci) document.getElementById('vale-input-cliente-ci').value = p.ci;
+      if (p.telCliente) document.getElementById('vale-input-cliente-tel').value = p.telCliente;
+      if (p.direccion) document.getElementById('vale-input-direccion').value = p.direccion;
+
+      document.getElementById('vale-input-moneda').value = p.moneda;
+
+      if (p.fechaISO) {
+        document.getElementById('vale-input-fecha').value = p.fechaISO;
+        const week = getISOWeekString(p.fechaISO);
+        document.getElementById('vale-input-semana').value = week;
+      }
+
+      itemsValeEnEdicion = p.items && p.items.length > 0 ? p.items : [];
+      if (itemsValeEnEdicion.length === 0) {
+        const clasif = clasificarEquipo('');
+        itemsValeEnEdicion.push({
+          id: 'it-' + Math.random().toString(36).substr(2, 9),
+          producto: 'Olla Reina Houslux',
+          tipoEquipo: clasif.categoria,
+          cantidad: 1,
+          precioVenta: 47,
+          comisionUnitCUP: clasif.comision,
+          comisionTotalCUP: clasif.comision
+        });
+      }
+
+      renderizarTablaItemsEdicion();
+    };
+
+    window.pegarDesdePortapapeles = async function() {
+      try {
+        const texto = await navigator.clipboard.readText();
+        const ta = document.getElementById('input-texto-vale-pegar');
+        if (ta && texto) {
+          ta.value = texto;
+          window.procesarTextoVale();
+        }
+      } catch (err) {
+        alert('Para pegar, haz clic derecho y selecciona "Pegar" o pulsa Ctrl + V en la caja de texto.');
+      }
+    };
+
+    window.copiarFormatoEjemplo = function() {
+      const ejemplo = "📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬(𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n" +
+        "✨𝐅𝐞𝐜𝐡𝐚: 16.10.26\n" +
+        "✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Ramon de la Fuente Noguera \n" +
+        "✨ CI : 90071126520\n" +
+        "✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 52553992\n" +
+        "✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente :Calle 3ra 10511 interior / san luis y final. San Francisco de Paula\n" +
+        "✨ 𝐏𝐞𝐝𝐢𝐝𝐨: \n" +
+        "1 olla reina houselux\n" +
+        "1 Arrocera estelectric negra \n" +
+        "✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1,1\n" +
+        "✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:\n" +
+        "Olla reina 47 usd\n" +
+        "Arrocera 28 usd\n" +
+        "Total 75 usd\n" +
+        "✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:usd\n" +
+        "✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:Dayanis García Almanza \n" +
+        "✨ #De teléfono del Gestor:51349671\n" +
+        "✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:no";
+      
+      navigator.clipboard.writeText(ejemplo).then(function() {
+        alert('📋 ¡Formato modelo copiado al portapapeles!');
+      });
+    };
+
+    // --------------------------------------------------------
+    // TABLA DE ARTÍCULOS EN EDICIÓN DEL VALE
+    // --------------------------------------------------------
+    function renderizarTablaItemsEdicion() {
+      const tbody = document.getElementById('tabla-vale-items-tbody');
+      if (!tbody) return;
+
+      tbody.innerHTML = '';
+
+      let totalEquipos = 0;
+      let totalVenta = 0;
+      let totalComisionCUP = 0;
+      const selectMoneda = document.getElementById('vale-input-moneda');
+      const moneda = selectMoneda ? selectMoneda.value : 'USD';
+
+      for (let idx = 0; idx < itemsValeEnEdicion.length; idx++) {
+        const it = itemsValeEnEdicion[idx];
+        const cant = Number(it.cantidad) || 1;
+        const pVenta = Number(it.precioVenta) || 0;
+        const cUnit = Number(it.comisionUnitCUP) || 1500;
+        const subtotal = cant * pVenta;
+        const subCom = cant * cUnit;
+
+        totalEquipos += cant;
+        totalVenta += subtotal;
+        totalComisionCUP += subCom;
+
+        const subtotalStr = moneda === 'CUP' ? (subtotal.toLocaleString('es-ES') + ' CUP') : ('$' + subtotal.toFixed(2));
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = '<td class="px-3 py-2">' +
+            '<input type="text" value="' + (it.producto || '') + '" oninput="actualizarItemProp(' + idx + ', \'producto\', this.value)" ' +
+                   'placeholder="Nombre del equipo" class="w-full bg-slate-950 border border-slate-700 text-white rounded px-2 py-1 text-xs">' +
+          '</td>' +
+          '<td class="px-2 py-2 text-center">' +
+            '<select onchange="actualizarTipoEquipoItem(' + idx + ', this.value)" class="bg-slate-950 border border-slate-700 text-[11px] font-semibold text-indigo-300 rounded px-1.5 py-1">' +
+              '<option value="Pequeño" ' + (it.tipoEquipo === 'Pequeño' ? 'selected' : '') + '>Pequeño (1500)</option>' +
+              '<option value="Grande" ' + (it.tipoEquipo === 'Grande' ? 'selected' : '') + '>Grande (2500)</option>' +
+            '</select>' +
+          '</td>' +
+          '<td class="px-3 py-2">' +
+            '<input type="number" min="1" value="' + cant + '" oninput="actualizarItemProp(' + idx + ', \'cantidad\', this.value)" ' +
+                   'class="w-full bg-slate-950 border border-slate-700 text-center font-bold text-white rounded px-1.5 py-1 text-xs">' +
+          '</td>' +
+          '<td class="px-3 py-2">' +
+            '<input type="number" step="0.01" min="0" value="' + pVenta + '" oninput="actualizarItemProp(' + idx + ', \'precioVenta\', this.value)" ' +
+                   'class="w-full bg-slate-950 border border-slate-700 text-right font-bold text-emerald-400 rounded px-2 py-1 text-xs">' +
+          '</td>' +
+          '<td class="px-3 py-2 text-right font-bold text-white font-mono">' +
+            subtotalStr +
+          '</td>' +
+          '<td class="px-3 py-2">' +
+            '<input type="number" step="50" min="0" value="' + cUnit + '" oninput="actualizarItemProp(' + idx + ', \'comisionUnitCUP\', this.value)" ' +
+                   'class="w-full bg-slate-950 border border-purple-500/40 text-right font-bold text-purple-300 rounded px-2 py-1 text-xs">' +
+          '</td>' +
+          '<td class="px-2 py-2 text-center">' +
+            '<button type="button" onclick="eliminarFilaProducto(' + idx + ')" class="text-slate-500 hover:text-rose-400 p-1">' +
+              '<i data-lucide="trash-2" class="w-3.5 h-3.5"></i>' +
+            '</button>' +
+          '</td>';
+        tbody.appendChild(tr);
+      }
+
+      const elEq = document.getElementById('preview-vale-equipos');
+      if (elEq) elEq.textContent = totalEquipos;
+
+      const elTot = document.getElementById('preview-vale-total-venta');
+      if (elTot) elTot.textContent = moneda === 'CUP' ? (totalVenta.toLocaleString('es-ES') + ' CUP') : ('$ ' + totalVenta.toFixed(2) + ' USD');
+
+      const elCom = document.getElementById('preview-vale-comision');
+      if (elCom) elCom.textContent = totalComisionCUP.toLocaleString('es-ES') + ' CUP';
+
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    window.actualizarItemProp = function(idx, prop, val) {
+      if (!itemsValeEnEdicion[idx]) return;
+      if (prop === 'cantidad' || prop === 'precioVenta' || prop === 'comisionUnitCUP') {
+        itemsValeEnEdicion[idx][prop] = Number(val) || 0;
+      } else {
+        itemsValeEnEdicion[idx][prop] = val;
+      }
+      renderizarTablaItemsEdicion();
+    };
+
+    window.actualizarTipoEquipoItem = function(idx, tipo) {
+      if (!itemsValeEnEdicion[idx]) return;
+      itemsValeEnEdicion[idx].tipoEquipo = tipo;
+      const tarifa = tipo === 'Grande' ? (Number(appState.config?.comisionGrande) || 2500) : (Number(appState.config?.comisionPequeno) || 1500);
+      itemsValeEnEdicion[idx].comisionUnitCUP = tarifa;
+      renderizarTablaItemsEdicion();
+    };
+
+    window.agregarFilaProducto = function() {
+      const clasif = clasificarEquipo('');
+      itemsValeEnEdicion.push({
+        id: 'it-' + Math.random().toString(36).substr(2, 9),
+        producto: '',
+        tipoEquipo: clasif.categoria,
+        cantidad: 1,
+        precioVenta: 25,
+        comisionUnitCUP: clasif.comision
+      });
+      renderizarTablaItemsEdicion();
+    };
+
+    window.eliminarFilaProducto = function(idx) {
+      itemsValeEnEdicion.splice(idx, 1);
+      renderizarTablaItemsEdicion();
+    };
+
+    // --------------------------------------------------------
+    // GUARDAR VALE FINAL EN BASE DE DATOS
+    // --------------------------------------------------------
+    window.guardarValeFinal = function() {
+      const folio = document.getElementById('vale-input-folio').value.trim();
+      const fecha = document.getElementById('vale-input-fecha').value;
+      const moneda = document.getElementById('vale-input-moneda').value;
+      const semana = document.getElementById('vale-input-semana').value || getISOWeekString(fecha);
+
+      const gestorNombre = document.getElementById('vale-input-gestor').value.trim();
+      const gestorTel = document.getElementById('vale-input-gestor-tel').value.trim();
+      const clienteNombre = document.getElementById('vale-input-cliente').value.trim();
+      const clienteCI = document.getElementById('vale-input-cliente-ci')?.value.trim() || '';
+      const clienteTel = document.getElementById('vale-input-cliente-tel').value.trim();
+      const direccion = document.getElementById('vale-input-direccion').value.trim();
+      const rawTexto = document.getElementById('input-texto-vale-pegar').value;
+
+      if (!gestorNombre || !clienteNombre || itemsValeEnEdicion.length === 0) {
+        alert('Por favor completa el nombre del gestor, cliente y al menos un producto.');
+        return;
+      }
+
+      let gestorExistente = appState.gestores.find(function(g) {
+        return g.nombre.toLowerCase().trim() === gestorNombre.toLowerCase();
+      });
+
+      if (!gestorExistente) {
+        gestorExistente = {
+          id: 'G-' + Date.now(),
+          nombre: gestorNombre,
+          telefono: gestorTel,
+          telefonoSecundario: '',
+          zona: 'Mensajería / Redes',
+          foto: '',
+          activo: true
+        };
+        appState.gestores.push(gestorExistente);
+      } else if (gestorTel && !gestorExistente.telefono) {
+        gestorExistente.telefono = gestorTel;
+      }
+
+      let totalVenta = 0;
+      let granComisionCUP = 0;
+
+      for (let i = 0; i < itemsValeEnEdicion.length; i++) {
+        const it = itemsValeEnEdicion[i];
+        const c = Number(it.cantidad) || 1;
+        totalVenta += c * (Number(it.precioVenta) || 0);
+        granComisionCUP += c * (Number(it.comisionUnitCUP) || 1500);
+      }
+
+      const nuevoVale = {
+        id: 'V-' + Date.now() + '-' + Math.random().toString(36).substr(2, 5),
+        folio: folio || ('VAL-' + Date.now().toString().slice(-6)),
+        fecha: fecha,
+        semana: semana,
+        moneda: moneda,
+        gestorNombre: gestorExistente.nombre,
+        gestorTelefono: gestorExistente.telefono,
+        clienteNombre: clienteNombre,
+        clienteCI: clienteCI,
+        clienteTelefono: clienteTel,
+        direccion: direccion,
+        rawTextoWhatsApp: rawTexto,
+        items: JSON.parse(JSON.stringify(itemsValeEnEdicion)),
+        totalVenta: totalVenta,
+        granComisionCUP: granComisionCUP,
+        estadoComision: 'PENDIENTE',
+        createdAt: Date.now()
+      };
+
+      appState.vales.unshift(nuevoVale);
+      appState.semanaActiva = semana;
+
+      guardarEnCacheRobusto();
+      actualizarSelectorSemanas();
+      renderizarTodo();
+
+      cerrarModal('modal-registro-vale');
+      alert('✅ ¡Vale ' + nuevoVale.folio + ' guardado para ' + gestorExistente.nombre + '!');
+    };
+
+    // --------------------------------------------------------
+    // BORRAR HISTORIAL PARA EMPEZAR DE 0
+    // --------------------------------------------------------
+    window.vaciarHistorialVales = function() {
+      if (!confirm('¿Deseas reiniciar y vaciar todo el historial de vales para comenzar a registrar desde 0? (Tus gestores y configuraciones se mantendrán)')) return;
+      
+      appState.vales = [];
+      guardarEnCacheRobusto();
+      actualizarSelectorSemanas();
+      renderizarTodo();
+      alert('🧹 ¡Historial de vales reiniciado! Ahora puedes registrar tus vales desde 0.');
+    };
+
+    // --------------------------------------------------------
+    // CONFIGURACIÓN DE COMISIONES
+    // --------------------------------------------------------
+    window.abrirModalConfiguracion = function() {
+      const cfg = appState.config || { comisionPequeno: 1500, comisionGrande: 2500 };
+      document.getElementById('config-comision-pequeno').value = cfg.comisionPequeno;
+      document.getElementById('config-comision-grande').value = cfg.comisionGrande;
+      abrirModal('modal-configuracion');
+    };
+
+    window.guardarConfiguracionComisiones = function() {
+      const p = Number(document.getElementById('config-comision-pequeno').value) || 1500;
+      const g = Number(document.getElementById('config-comision-grande').value) || 2500;
+      
+      appState.config = appState.config || {};
+      appState.config.comisionPequeno = p;
+      appState.config.comisionGrande = g;
+
+      guardarEnCacheRobusto();
+      cerrarModal('modal-configuracion');
+      alert('✅ Tarifas guardadas:\n• Pequeños: ' + p + ' CUP\n• Grandes: ' + g + ' CUP');
+    };
+
+    // --------------------------------------------------------
+    // GESTIÓN DE MODALES
+    // --------------------------------------------------------
+    window.abrirModalRegistroVale = function() {
+      document.getElementById('form-vale-estructurado').reset();
+      document.getElementById('input-texto-vale-pegar').value = '';
+      
+      const hoy = new Date().toISOString().split('T')[0];
+      document.getElementById('vale-input-fecha').value = hoy;
+      document.getElementById('vale-input-semana').value = appState.semanaActiva || getISOWeekString(hoy);
+      document.getElementById('vale-input-folio').value = 'VAL-' + Math.floor(100000 + Math.random() * 900000);
+
+      itemsValeEnEdicion = [];
+      renderizarTablaItemsEdicion();
+      abrirModal('modal-registro-vale');
+    };
+
+    window.abrirModalNuevoGestor = function() {
+      document.getElementById('modal-gestor-titulo').textContent = 'Registrar Nuevo Gestor';
+      document.getElementById('form-gestor').reset();
+      document.getElementById('gestor-form-id').value = '';
+      document.getElementById('gestor-form-foto-preview').classList.add('hidden');
+      document.getElementById('gestor-form-foto-placeholder').classList.remove('hidden');
+      abrirModal('modal-gestor');
+    };
+
+    window.abrirModalEditarGestor = function(gestorId) {
+      const g = appState.gestores.find(function(x) { return x.id === gestorId; });
+      if (!g) return;
+
+      document.getElementById('modal-gestor-titulo').textContent = 'Editar Gestor: ' + g.nombre;
+      document.getElementById('gestor-form-id').value = g.id;
+      document.getElementById('gestor-form-nombre').value = g.nombre;
+      document.getElementById('gestor-form-tel').value = g.telefono || '';
+      document.getElementById('gestor-form-tel2').value = g.telefonoSecundario || '';
+      document.getElementById('gestor-form-zona').value = g.zona || '';
+
+      const img = document.getElementById('gestor-form-foto-preview');
+      const placeholder = document.getElementById('gestor-form-foto-placeholder');
+      if (g.foto) {
+        img.src = g.foto;
+        img.classList.remove('hidden');
+        placeholder.classList.add('hidden');
+      } else {
+        img.classList.add('hidden');
+        placeholder.classList.remove('hidden');
+      }
+
+      abrirModal('modal-gestor');
+    };
+
+    window.guardarGestorForm = function() {
+      const id = document.getElementById('gestor-form-id').value;
+      const nombre = document.getElementById('gestor-form-nombre').value.trim();
+      const tel = document.getElementById('gestor-form-tel').value.trim();
+      const tel2 = document.getElementById('gestor-form-tel2').value.trim();
+      const zona = document.getElementById('gestor-form-zona').value.trim();
+
+      const fotoInput = document.getElementById('gestor-form-foto-input');
+
+      const completarGuardado = function(fotoBase64) {
+        if (id) {
+          const g = appState.gestores.find(function(x) { return x.id === id; });
+          if (g) {
+            g.nombre = nombre;
+            g.telefono = tel;
+            g.telefonoSecundario = tel2;
+            g.zona = zona;
+            if (fotoBase64) g.foto = fotoBase64;
+          }
+        } else {
+          appState.gestores.push({
+            id: 'G-' + Date.now(),
+            nombre: nombre,
+            telefono: tel,
+            telefonoSecundario: tel2,
+            zona: zona || 'Gestor',
+            foto: fotoBase64 || '',
+            activo: true
+          });
+        }
+
+        guardarEnCacheRobusto();
+        renderizarTodo();
+        cerrarModal('modal-gestor');
+      };
+
+      if (fotoInput.files && fotoInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) { completarGuardado(e.target.result); };
+        reader.readAsDataURL(fotoInput.files[0]);
+      } else {
+        const existente = id ? appState.gestores.find(function(x) { return x.id === id; }) : null;
+        completarGuardado(existente ? existente.foto : '');
+      }
+    };
+
+    window.verDetalleVale = function(valeId) {
+      const v = appState.vales.find(function(x) { return x.id === valeId; });
+      if (!v) return;
+
+      const cont = document.getElementById('detalle-vale-contenido');
+      
+      let itemsListHtml = (v.items || []).map(function(it) {
+        const subtotal = (Number(it.cantidad) || 1) * (Number(it.precioVenta) || 0);
+        const subtotalStr = v.moneda === 'CUP' ? (subtotal.toLocaleString('es-ES') + ' CUP') : ('$' + subtotal.toFixed(2) + ' USD');
+        return '<div class="flex justify-between bg-slate-950 p-2 rounded border border-slate-800">' +
+          '<span class="text-white font-medium">• ' + it.cantidad + 'x ' + it.producto + ' (' + (it.tipoEquipo || 'Pequeño') + ')</span>' +
+          '<span class="font-mono font-bold ' + (v.moneda === 'CUP' ? 'text-amber-300' : 'text-emerald-400') + '">' + subtotalStr + '</span>' +
+        '</div>';
+      }).join('');
+
+      let totalVentaStr = v.moneda === 'CUP' ? (Number(v.totalVenta || 0).toLocaleString('es-ES') + ' CUP') : ('$' + Number(v.totalVenta || 0).toFixed(2) + ' USD');
+
+      cont.innerHTML = '<div class="space-y-3">' +
+        '<div class="flex items-center justify-between border-b border-slate-800 pb-2">' +
+          '<div>' +
+            '<span class="text-[10px] text-indigo-400 font-mono font-bold block">FOLIO: ' + v.folio + '</span>' +
+            '<span class="text-white font-bold text-sm">' + v.clienteNombre + '</span>' +
+            (v.clienteCI ? '<span class="text-slate-400 font-mono block text-[11px]">CI: ' + v.clienteCI + '</span>' : '') +
+          '</div>' +
+          '<div class="text-right">' +
+            '<span class="text-slate-400 text-[11px] block">' + v.fecha + ' (Semana ' + v.semana + ')</span>' +
+            '<span class="font-bold ' + (v.moneda === 'CUP' ? 'text-amber-300' : 'text-emerald-400') + ' text-sm">' + totalVentaStr + '</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="grid grid-cols-2 gap-2 text-slate-300">' +
+          '<div><strong>Gestor:</strong> ' + v.gestorNombre + ' (' + (v.gestorTelefono || 'Sin tel') + ')</div>' +
+          '<div><strong>Tel Cliente:</strong> ' + (v.clienteTelefono || 'Sin tel') + '</div>' +
+          '<div class="col-span-2"><strong>Dirección:</strong> ' + (v.direccion || 'No especificada') + '</div>' +
+          '<div><strong>Método de Pago:</strong> ' + v.moneda + '</div>' +
+          '<div><strong>Comisión Gestor:</strong> <span class="text-purple-300 font-bold">' + Number(v.granComisionCUP || 0).toLocaleString('es-ES') + ' CUP</span></div>' +
+        '</div>' +
+        '<div class="border-t border-slate-800 pt-2">' +
+          '<span class="text-[10px] font-bold text-slate-400 uppercase block mb-1">Equipos en el Vale:</span>' +
+          '<div class="space-y-1">' + itemsListHtml + '</div>' +
+        '</div>' +
+        (v.rawTextoWhatsApp ? '<div class="border-t border-slate-800 pt-2"><span class="text-[10px] font-bold text-slate-400 uppercase block mb-1">Texto Literal de WhatsApp (con Emojis):</span><pre class="bg-slate-950 p-2.5 rounded border border-slate-800 text-[10px] text-slate-300 font-mono whitespace-pre-wrap max-h-48 overflow-y-auto leading-relaxed">' + v.rawTextoWhatsApp + '</pre></div>' : '') +
+      '</div>';
+
+      const btnPago = document.getElementById('btn-toggle-pago-vale');
+      if (v.estadoComision === 'PAGADA') {
+        btnPago.textContent = 'Marcar Comisión como PENDIENTE';
+        btnPago.className = 'px-4 py-1.5 rounded-lg text-xs font-bold bg-amber-600/30 text-amber-300 border border-amber-500/40 hover:bg-amber-600/50';
+      } else {
+        btnPago.textContent = '✓ Marcar Comisión como PAGADA';
+        btnPago.className = 'px-4 py-1.5 rounded-lg text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white shadow-md';
+      }
+
+      btnPago.onclick = function() {
+        v.estadoComision = v.estadoComision === 'PAGADA' ? 'PENDIENTE' : 'PAGADA';
+        guardarEnCacheRobusto();
+        renderizarTodo();
+        cerrarModal('modal-detalle-vale');
+      };
+
+      abrirModal('modal-detalle-vale');
+    };
+
+    window.eliminarVale = function(valeId) {
+      if (!confirm('¿Estás seguro de que deseas eliminar este vale de la base de datos?')) return;
+      appState.vales = appState.vales.filter(function(v) { return v.id !== valeId; });
+      guardarEnCacheRobusto();
+      renderizarTodo();
+    };
+
+    window.liquidarSemanaGestor = function(gestorNombre) {
+      if (!confirm('¿Confirmar liquidación y pago de todas las comisiones de ' + gestorNombre + ' para la semana ' + appState.semanaActiva + '?')) return;
+      
+      for (let i = 0; i < appState.vales.length; i++) {
+        const v = appState.vales[i];
+        if (v.semana === appState.semanaActiva && v.gestorNombre && v.gestorNombre.toLowerCase().trim() === gestorNombre.toLowerCase().trim()) {
+          v.estadoComision = 'PAGADA';
+        }
+      }
+
+      guardarEnCacheRobusto();
+      renderizarTodo();
+      alert('🎉 ¡Liquidación completada para ' + gestorNombre + '!');
+    };
+
+    // --------------------------------------------------------
+    // EXPORTACIÓN A EXCEL (.XLSX)
+    // --------------------------------------------------------
+    window.exportarTodoAExcel = function() {
+      if (typeof XLSX === 'undefined') {
+        alert('Librería Excel cargando. Por favor intenta en 3 segundos.');
+        return;
+      }
+
+      const wb = XLSX.utils.book_new();
+
+      const resumenData = appState.gestores.map(function(g) {
+        const valesG = appState.vales.filter(function(v) {
+          return v.semana === appState.semanaActiva && 
+                 v.gestorNombre && v.gestorNombre.toLowerCase().trim() === g.nombre.toLowerCase().trim();
+        });
+        const equipos = valesG.reduce(function(acc, v) { return acc + (v.items || []).reduce(function(a, b) { return a + (Number(b.cantidad) || 1); }, 0); }, 0);
+        const factUSD = valesG.filter(function(v) { return v.moneda !== 'CUP'; }).reduce(function(acc, v) { return acc + (Number(v.totalVenta) || 0); }, 0);
+        const factCUP = valesG.filter(function(v) { return v.moneda === 'CUP'; }).reduce(function(acc, v) { return acc + (Number(v.totalVenta) || 0); }, 0);
+        const comCUP = valesG.reduce(function(acc, v) { return acc + (Number(v.granComisionCUP) || 0); }, 0);
+        const comPagada = valesG.filter(function(v) { return v.estadoComision === 'PAGADA'; }).reduce(function(acc, v) { return acc + (Number(v.granComisionCUP) || 0); }, 0);
+        const pendiente = comCUP - comPagada;
+
+        return {
+          'Gestor': g.nombre,
+          'Teléfono': g.telefono,
+          'Zona': g.zona,
+          'Semana': appState.semanaActiva,
+          'Vales Emitidos': valesG.length,
+          'Equipos Vendidos': equipos,
+          'Facturación (USD)': factUSD,
+          'Facturación (CUP)': factCUP,
+          'Gran Comisión (CUP)': comCUP,
+          'Comisión Pagada (CUP)': comPagada,
+          'Saldo Pendiente (CUP)': pendiente,
+          'Estado': pendiente > 0 ? 'PENDIENTE' : 'AL DÍA'
+        };
+      });
+
+      const wsResumen = XLSX.utils.json_to_sheet(resumenData);
+      XLSX.utils.book_append_sheet(wb, wsResumen, 'Gestores_Semana_Activa');
+
+      const valesData = appState.vales.map(function(v) {
+        return {
+          'Folio': v.folio,
+          'Fecha': v.fecha,
+          'Semana': v.semana,
+          'Gestor': v.gestorNombre,
+          'Cliente': v.clienteNombre,
+          'CI': v.clienteCI || '',
+          'Teléfono Cliente': v.clienteTelefono,
+          'Dirección Entrega': v.direccion,
+          'Método Pago': v.moneda,
+          'Artículos': (v.items || []).map(function(it) { return it.cantidad + 'x ' + it.producto + ' (' + (it.tipoEquipo || 'Pequeño') + ')'; }).join(', '),
+          'Total Equipos': (v.items || []).reduce(function(a, b) { return a + (Number(b.cantidad) || 1); }, 0),
+          'Total Venta': v.totalVenta + ' ' + v.moneda,
+          'Gran Comisión (CUP)': v.granComisionCUP,
+          'Estado Comisión': v.estadoComision
+        };
+      });
+
+      const wsVales = XLSX.utils.json_to_sheet(valesData);
+      XLSX.utils.book_append_sheet(wb, wsVales, 'Historial_Vales_Completo');
+
+      XLSX.writeFile(wb, 'Gestores_Control_Semanas_' + appState.semanaActiva + '.xlsx');
+    };
+
+    // --------------------------------------------------------
+    // AUTO-GUARDADO EN EL PROPIO ARCHIVO HTML (QUINE)
+    // --------------------------------------------------------
+    window.guardarHTMLAutoContenido = async function() {
+      try {
+        const fullState = {
+          timestamp: Date.now(),
+          gestores: appState.gestores,
+          vales: appState.vales,
+          semanaActiva: appState.semanaActiva,
+          config: appState.config
+        };
+
+        const stateJson = JSON.stringify(fullState);
+        const docHtml = document.documentElement.outerHTML;
+
+        const searchScriptRegex = /<script\s+id=["']self-embedded-database["'][^>]*>[\s\S]*?<\/script>/i;
+        const replacementScript = '<script id="self-embedded-database">window.__EMBEDDED_GESTORES_DB__ = ' + stateJson + ';<\/script>';
+
+        let updatedHtml = '';
+        if (searchScriptRegex.test(docHtml)) {
+          updatedHtml = '<!DOCTYPE html>\n' + docHtml.replace(searchScriptRegex, replacementScript);
+        } else {
+          updatedHtml = '<!DOCTYPE html>\n' + docHtml.replace('<head>', '<head>\n  ' + replacementScript);
+        }
+
+        if ('showSaveFilePicker' in window) {
+          try {
+            const handle = await window.showSaveFilePicker({
+              suggestedName: 'index.html',
+              types: [{
+                description: 'Archivo HTML Auto-Guardado',
+                accept: { 'text/html': ['.html'] }
+              }]
+            });
+            const writable = await handle.createWritable();
+            await writable.write(updatedHtml);
+            await writable.close();
+            alert('✅ ¡HTML guardado con éxito! Todos los gestores, vales y configuraciones quedaron en el archivo.');
+            return;
+          } catch (e) {
+            if (e.name === 'AbortError') return;
+          }
+        }
+
+        const blob = new Blob([updatedHtml], { type: 'text/html;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'index.html';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        alert('💾 ¡Copia actualizada generada! Guárdala en tu carpeta Gestores.');
+      } catch (err) {
+        alert('Error al guardar HTML: ' + err.message);
+      }
+    };
+
+    // Funciones de modales
+    window.abrirModal = function(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.remove('hidden');
+        el.classList.add('flex');
+        if (window.lucide) window.lucide.createIcons();
+      }
+    };
+
+    window.cerrarModal = function(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.add('hidden');
+        el.classList.remove('flex');
+      }
+    };
+
+    // Inicializar al cargar el DOM
+    document.addEventListener('DOMContentLoaded', inicializar);
+
+  })();
+  </script>
+</body>
+</html>
