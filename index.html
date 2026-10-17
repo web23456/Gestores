@@ -2159,6 +2159,24 @@
       }
 
       renderizarTablaItemsEdicion();
+
+      // Verificación anticipada al analizar el texto pegado
+      var checkPre = detectarValeIdentico({
+        folio: p.folio || '',
+        fecha: p.fechaISO || '',
+        gestorNombre: p.gestor || '',
+        clienteNombre: p.cliente || '',
+        clienteCI: p.ci || '',
+        clienteTelefono: p.telCliente || '',
+        direccion: p.direccion || '',
+        items: p.items || []
+      }, idValeEnEdicion);
+
+      if (checkPre) {
+        alert('⚠️ ¡ADVERTENCIA: ESTE VALE YA FUE REGISTRADO PREVIAMENTE!\n\n' +
+              'Coincide con el vale ' + (checkPre.valeExistente.folio || '') + ' (' + checkPre.valeExistente.gestorNombre + ' - ' + checkPre.valeExistente.clienteNombre + ').\n' +
+              'Si continúas e intentas guardarlo, el sistema lo desechará.');
+      }
     };
 
     window.pegarDesdePortapapeles = async function() {
@@ -2313,6 +2331,150 @@
     // --------------------------------------------------------
     // GUARDAR VALE FINAL EN BASE DE DATOS
     // --------------------------------------------------------
+    
+    // ========================================================
+    // ALGORITMO INTELIGENTE: DETECCIÓN DE VALES IDÉNTICOS / DUPLICADOS
+    // ========================================================
+    function normalizarCadenaVale(str) {
+      if (!str) return '';
+      return String(str)
+        .toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9]/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
+    function extraerNumerosVale(str) {
+      if (!str) return '';
+      return String(str).replace(/\D/g, '');
+    }
+
+    function calcularSimilitudJaccard(str1, str2) {
+      if (!str1 || !str2) return 0;
+      var set1 = new Set(str1.split(' ').filter(function(x) { return x.length > 2; }));
+      var set2 = new Set(str2.split(' ').filter(function(x) { return x.length > 2; }));
+      if (set1.size === 0 || set2.size === 0) return 0;
+
+      var interseccion = 0;
+      set1.forEach(function(elem) {
+        if (set2.has(elem)) interseccion++;
+      });
+      var union = set1.size + set2.size - interseccion;
+      return union === 0 ? 0 : (interseccion / union);
+    }
+
+    function detectarValeIdentico(candidato, idExcluir) {
+      if (!appState || !Array.isArray(appState.vales)) return null;
+
+      var candFolio = (candidato.folio || '').trim().toUpperCase();
+      var candGestor = normalizarCadenaVale(candidato.gestorNombre);
+      var candCliente = normalizarCadenaVale(candidato.clienteNombre);
+      var candTelCliente = extraerNumerosVale(candidato.clienteTelefono);
+      var candCI = extraerNumerosVale(candidato.clienteCI);
+      var candDireccion = normalizarCadenaVale(candidato.direccion);
+      var candTotal = Math.round(Number(candidato.totalVenta || 0) * 100);
+      var candItemsNombres = (candidato.items || []).map(function(it) {
+        return normalizarCadenaVale(it.producto);
+      }).sort().join(' | ');
+
+      for (var i = 0; i < appState.vales.length; i++) {
+        var v = appState.vales[i];
+        if (idExcluir && v.id === idExcluir) continue;
+
+        var vFolio = (v.folio || '').trim().toUpperCase();
+        var vGestor = normalizarCadenaVale(v.gestorNombre);
+        var vCliente = normalizarCadenaVale(v.clienteNombre);
+        var vTelCliente = extraerNumerosVale(v.clienteTelefono);
+        var vCI = extraerNumerosVale(v.clienteCI);
+        var vDireccion = normalizarCadenaVale(v.direccion);
+        var vTotal = Math.round(Number(v.totalVenta || 0) * 100);
+        var vItemsNombres = (v.items || []).map(function(it) {
+          return normalizarCadenaVale(it.producto);
+        }).sort().join(' | ');
+
+        // REGLA 1: Folio idéntico ya registrado
+        if (candFolio && vFolio && candFolio === vFolio) {
+          return {
+            coincidencia: 'FOLIO_IDENTICO',
+            porcentaje: 100,
+            motivo: 'El folio (' + v.folio + ') ya existe registrado en la semana ' + (v.semana || 'actual') + '.',
+            valeExistente: v
+          };
+        }
+
+        // Puntos de coincidencia
+        var puntos = 0;
+        var detalles = [];
+
+        // Mismo Gestor
+        if (candGestor && vGestor && (candGestor === vGestor || candGestor.includes(vGestor) || vGestor.includes(candGestor))) {
+          puntos += 20;
+          detalles.push('Mismo Gestor (' + v.gestorNombre + ')');
+        }
+
+        // Mismo Teléfono de Cliente
+        if (candTelCliente && vTelCliente && (candTelCliente === vTelCliente || candTelCliente.endsWith(vTelCliente) || vTelCliente.endsWith(candTelCliente))) {
+          puntos += 35;
+          detalles.push('Mismo Teléfono Cliente (' + v.clienteTelefono + ')');
+        }
+
+        // Mismo CI de Cliente
+        if (candCI && vCI && candCI === vCI) {
+          puntos += 35;
+          detalles.push('Mismo Carnet de Identidad (' + v.clienteCI + ')');
+        }
+
+        // Mismo Nombre de Cliente
+        if (candCliente && vCliente) {
+          var simCliente = calcularSimilitudJaccard(candCliente, vCliente);
+          if (candCliente === vCliente || simCliente >= 0.75) {
+            puntos += 25;
+            detalles.push('Nombre de Cliente idéntico o casi idéntico (' + v.clienteNombre + ')');
+          }
+        }
+
+        // Misma Dirección
+        if (candDireccion && vDireccion) {
+          var simDir = calcularSimilitudJaccard(candDireccion, vDireccion);
+          if (candDireccion === vDireccion || simDir >= 0.70) {
+            puntos += 20;
+            detalles.push('Dirección idéntica (' + v.direccion + ')');
+          }
+        }
+
+        // Mismo Total de Venta
+        if (candTotal > 0 && vTotal > 0 && candTotal === vTotal) {
+          puntos += 20;
+          detalles.push('Mismo Monto Total de Venta ($' + Number(v.totalVenta).toFixed(2) + ' ' + (v.moneda || 'USD') + ')');
+        }
+
+        // Mismos Artículos
+        if (candItemsNombres && vItemsNombres && candItemsNombres === vItemsNombres) {
+          puntos += 25;
+          detalles.push('Mismos productos vendidos (' + (v.items || []).map(function(it) { return it.producto; }).join(', ') + ')');
+        }
+
+        // Misma Fecha o Misma Semana
+        if (candidato.fecha && v.fecha && candidato.fecha === v.fecha) {
+          puntos += 10;
+          detalles.push('Misma fecha (' + v.fecha + ')');
+        }
+
+        // UMBRAL: 65 o más puntos = idéntico en casi todo
+        if (puntos >= 65) {
+          return {
+            coincidencia: 'CASI_IDENTICO',
+            porcentaje: Math.min(100, puntos),
+            motivo: detalles.join(' • '),
+            valeExistente: v
+          };
+        }
+      }
+
+      return null;
+    }
+
     window.guardarValeFinal = function() {
       const folio = document.getElementById('vale-input-folio').value.trim();
       const fecha = document.getElementById('vale-input-fecha').value;
@@ -2359,6 +2521,40 @@
         const c = Number(it.cantidad) || 1;
         totalVenta += c * (Number(it.precioVenta) || 0);
         granComisionCUP += c * (Number(it.comisionUnitCUP) || 1500);
+      }
+
+      // --------------------------------------------------------
+      // DETECCIÓN Y RECHAZO DE VALES IDÉNTICOS / DUPLICADOS
+      // --------------------------------------------------------
+      var valeCandidato = {
+        folio: folio,
+        fecha: fecha,
+        semana: semana,
+        gestorNombre: gestorNombre,
+        clienteNombre: clienteNombre,
+        clienteCI: clienteCI,
+        clienteTelefono: clienteTel,
+        direccion: direccion,
+        totalVenta: totalVenta,
+        items: itemsValeEnEdicion
+      };
+
+      var duplicado = detectarValeIdentico(valeCandidato, idValeEnEdicion);
+      if (duplicado) {
+        var vDup = duplicado.valeExistente;
+        var mensajeAlerta = '🚫 ¡ALERTA DE VALE IDÉNTICO / DUPLICADO DETECTADO! 🚫\n\n' +
+          'El algoritmo de seguridad ha detectado que este vale coincide en casi todo con otro vale ya registrado y ha sido DESECHADO.\n\n' +
+          '• Folio Existente: ' + (vDup.folio || 'N/A') + '\n' +
+          '• Fecha / Semana: ' + (vDup.fecha || 'N/A') + ' (' + (vDup.semana || 'N/A') + ')\n' +
+          '• Gestor: ' + (vDup.gestorNombre || 'N/A') + '\n' +
+          '• Cliente: ' + (vDup.clienteNombre || 'N/A') + ' (Tel: ' + (vDup.clienteTelefono || 'Sin teléfono') + ')\n' +
+          '• Total Venta: ' + (vDup.totalVenta || 0) + ' ' + (vDup.moneda || 'USD') + '\n\n' +
+          'Coincidencias encontradas (' + duplicado.porcentaje + '%):\n' +
+          '👉 ' + duplicado.motivo + '\n\n' +
+          '❌ El vale no se guardará para evitar registros duplicados.';
+
+        alert(mensajeAlerta);
+        return; // DESECHAR EL VALE
       }
 
       var valeTarget = null;
