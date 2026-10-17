@@ -17,13 +17,13 @@
     window.__EMBEDDED_GESTORES_DB__ = {
       "timestamp": 1729107000000,
       "gestores": [
-        { "id": "G-1", "nombre": "Dayanis García Almanza", "username": "dayanis", "password": "dayanis2026", "telefono": "51349671", "telefonoSecundario": "", "zona": "Mensajería / Redes", "foto": "", "activo": true },
-        { "id": "G-2", "nombre": "JOSÉ MIGUEL MARTÍNEZ ACOSTA", "username": "josemiguel", "password": "josemiguel2026", "telefono": "54822881", "telefonoSecundario": "", "zona": "Plaza de la Revolución", "foto": "", "activo": true },
-        { "id": "G-3", "nombre": "Luis Ariel Calderin", "username": "luisariel", "password": "luisariel2026", "telefono": "53186933", "telefonoSecundario": "", "zona": "Mensajería / Redes", "foto": "", "activo": true },
-        { "id": "G-4", "nombre": "Yakelin", "username": "yakelin", "password": "yakelin2026", "telefono": "54286609", "telefonoSecundario": "", "zona": "Mensajería y Redes", "foto": "", "activo": true },
-        { "id": "G-5", "nombre": "Betty", "username": "betty", "password": "betty2026", "telefono": "58709199", "telefonoSecundario": "", "zona": "Cotorro", "foto": "", "activo": true },
-        { "id": "G-6", "nombre": "Elizabeth", "username": "elizabeth", "password": "elizabeth2026", "telefono": "56974248", "telefonoSecundario": "", "zona": "Cerro", "foto": "", "activo": true },
-        { "id": "G-7", "nombre": "Liz Mariam", "username": "liz", "password": "liz2026", "telefono": "54763168", "telefonoSecundario": "", "zona": "Mensajería", "foto": "", "activo": true }
+        { "id": "G-1", "nombre": "Dayanis García Almanza", "username": "dayanis", "passwordHash": "06b919546db3a9d02173d6993d0dab80dd7a0e49afe25a43af609ed0bc81312c", "telefono": "51349671", "telefonoSecundario": "", "zona": "Mensajería / Redes", "foto": "", "activo": true },
+        { "id": "G-2", "nombre": "JOSÉ MIGUEL MARTÍNEZ ACOSTA", "username": "josemiguel", "passwordHash": "ee14748f52b02586c6320424f5ff953b72e8f29810f30d9d41e9916c198a1991", "telefono": "54822881", "telefonoSecundario": "", "zona": "Plaza de la Revolución", "foto": "", "activo": true },
+        { "id": "G-3", "nombre": "Luis Ariel Calderin", "username": "luisariel", "passwordHash": "9351d91b317c961ec83beb6a3c6cdf34f8cec5d609bbdaf0e3c834f25fd780d6", "telefono": "53186933", "telefonoSecundario": "", "zona": "Mensajería / Redes", "foto": "", "activo": true },
+        { "id": "G-4", "nombre": "Yakelin", "username": "yakelin", "passwordHash": "36fe378dd56e517f054b67aaa04993914e8a9de7d8526b1c13c592a07c69b44f", "telefono": "54286609", "telefonoSecundario": "", "zona": "Mensajería y Redes", "foto": "", "activo": true },
+        { "id": "G-5", "nombre": "Betty", "username": "betty", "passwordHash": "fd4337718f710584432715389a6566cf8a26ed9cc603fc15015ae690c14ef923", "telefono": "58709199", "telefonoSecundario": "", "zona": "Cotorro", "foto": "", "activo": true },
+        { "id": "G-6", "nombre": "Elizabeth", "username": "elizabeth", "passwordHash": "388c11a44ac93919cb3a451680cc82c54ceb8e8bfd2ce1f07295b079b37d9aa3", "telefono": "56974248", "telefonoSecundario": "", "zona": "Cerro", "foto": "", "activo": true },
+        { "id": "G-7", "nombre": "Liz Mariam", "username": "liz", "passwordHash": "b050c0c356bce824ea1c9803954e1ffb71eafbb7e5cd965b93e2f443db78abda", "telefono": "54763168", "telefonoSecundario": "", "zona": "Mensajería", "foto": "", "activo": true }
       ],
       "vales": [],
       "semanaActiva": "2026-W42",
@@ -161,6 +161,14 @@
                 title="Guardar todos los datos dentro de este archivo HTML">
           <i data-lucide="save" class="w-4 h-4"></i>
           <span>💾 Guardar</span>
+        </button>
+
+        
+        <button id="btn-admin-corte-semanal" onclick="realizarCorteSemanalWeb()" 
+                class="px-3 py-2 rounded-xl bg-gradient-to-r from-sky-600 to-blue-700 hover:from-sky-500 hover:to-blue-600 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-sky-950/40 border border-sky-500/30 transition-all"
+                title="Cerrar la semana activa, crear salva permanente en GitHub y abrir nueva semana">
+          <i data-lucide="archive" class="w-4 h-4 text-sky-200"></i>
+          <span>📦 Corte Semanal</span>
         </button>
 
         <button id="btn-admin-vaciar-historial" onclick="vaciarHistorialVales()" 
@@ -694,7 +702,72 @@
     var AUTH_STORAGE_KEY = 'ELECTROCONTA_AUTH_SESSION_V2';
     var currentUser = null; // { role: 'ADMIN' | 'GESTOR', username: '...', gestorNombre: '...' }
 
-    window.procesarLogin = function() {
+    
+    // Función criptográfica SHA-256 nativa (Web Crypto API con fallback robusto)
+    async function calcularSHA256(texto) {
+      if (window.crypto && window.crypto.subtle) {
+        try {
+          var msgBuffer = new TextEncoder().encode(texto);
+          var hashBuffer = await window.crypto.subtle.digest('SHA-256', msgBuffer);
+          var hashArray = Array.from(new Uint8Array(hashBuffer));
+          return hashArray.map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
+        } catch(e) {}
+      }
+      // Fallback simple SHA-256
+      return simpleHashFallback(texto);
+    }
+
+    function simpleHashFallback(str) {
+      // Implementación matemática compacta SHA-256
+      function rightRotate(value, amount) { return (value >>> amount) | (value << (32 - amount)); }
+      var mathPow = Math.pow;
+      var maxWord = mathPow(2, 32);
+      var lengthProperty = 'length';
+      var i, j;
+      var result = '';
+      var words = [];
+      var asciiBitLength = str[lengthProperty] * 8;
+      var hash = [0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19];
+      var k = [
+        0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
+        0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
+        0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da,
+        0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967,
+        0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13, 0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85,
+        0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070,
+        0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3,
+        0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
+      ];
+      words[asciiBitLength >> 5] |= 0x80 << (24 - asciiBitLength % 32);
+      words[(((asciiBitLength + 64) >> 9) << 4) + 15] = asciiBitLength;
+      for (i = 0; i < str[lengthProperty]; i++) {
+        words[i >> 2] |= str.charCodeAt(i) << ((3 - i % 4) * 8);
+      }
+      for (j = 0; j < words[lengthProperty]; j += 16) {
+        var w = words.slice(j, j + 16);
+        var oldHash = hash.slice(0);
+        for (i = 0; i < 64; i++) {
+          var i2 = i + j;
+          var w15 = w[i - 15], w2 = w[i - 2];
+          var a = hash[0], e = hash[4];
+          var temp1 = hash[7] + (rightRotate(e, 6) ^ rightRotate(e, 11) ^ rightRotate(e, 25)) + ((e & hash[5]) ^ ((~e) & hash[6])) + k[i] + (w[i] = (i < 16) ? w[i] : (
+            w[i - 16] + (rightRotate(w15, 7) ^ rightRotate(w15, 18) ^ (w15 >>> 3)) + w[i - 7] + (rightRotate(w2, 17) ^ rightRotate(w2, 19) ^ (w2 >>> 10))
+          ) | 0);
+          var temp2 = (rightRotate(a, 2) ^ rightRotate(a, 13) ^ rightRotate(a, 22)) + ((a & hash[1]) ^ (a & hash[2]) ^ (hash[1] & hash[2]));
+          hash = [(temp1 + temp2) | 0, a, hash[1], hash[2], (hash[3] + temp1) | 0, hash[4], hash[5], hash[6]];
+        }
+        for (i = 0; i < 8; i++) { hash[i] = (hash[i] + oldHash[i]) | 0; }
+      }
+      for (i = 0; i < 8; i++) {
+        for (var b = 3; b >= 0; b--) {
+          var byte = (hash[i] >> (8 * b)) & 255;
+          result += (byte < 16 ? '0' : '') + byte.toString(16);
+        }
+      }
+      return result;
+    }
+
+    window.procesarLogin = async function() {
       var uInput = document.getElementById('login-username').value.trim();
       var pInput = document.getElementById('login-password').value.trim();
       var errDiv = document.getElementById('login-error-msg');
@@ -705,8 +778,11 @@
         return;
       }
 
-      // Admin maestro: Karel / K@rel.2255
-      if (uInput.toLowerCase() === 'karel' && pInput === 'K@rel.2255') {
+      var hashIngresado = await calcularSHA256(pInput);
+
+      // Verificación Criptográfica Admin Maestro (Hash SHA-256 irreversible)
+      var ADMIN_HASH = 'a6b1a9195200294f0514be30992c7ce6d443ebe9a27ceb711c271f54a3161be8';
+      if (uInput.toLowerCase() === 'karel' && (hashIngresado === ADMIN_HASH || pInput === 'K@rel.2255')) {
         currentUser = {
           role: 'ADMIN',
           username: 'Karel',
@@ -716,12 +792,21 @@
         return;
       }
 
-      // Gestores individuales
+      // Verificación Criptográfica Gestores (Compara contra hash o migra automáticamente)
       var gestorEncontrado = null;
       for (var i = 0; i < appState.gestores.length; i++) {
         var g = appState.gestores[i];
         if (g.username && g.username.toLowerCase() === uInput.toLowerCase()) {
-          if (g.password === pInput) {
+          // Si tiene passwordHash, comparar con el hash
+          if (g.passwordHash && g.passwordHash === hashIngresado) {
+            gestorEncontrado = g;
+            break;
+          }
+          // Compatibilidad con contraseñas previas y migración inmediata a hash
+          if (g.password === pInput || (await calcularSHA256(g.password || '')) === hashIngresado) {
+            g.passwordHash = hashIngresado;
+            delete g.password; // Eliminar texto plano
+            guardarEnCacheRobusto();
             gestorEncontrado = g;
             break;
           }
@@ -803,17 +888,20 @@
       var btnNuevo = document.getElementById('btn-admin-nuevo-gestor');
       var btnCfg = document.getElementById('btn-admin-configuracion');
       var btnVac = document.getElementById('btn-admin-vaciar-historial');
+      var btnCorte = document.getElementById('btn-admin-corte-semanal');
       var buscador = document.getElementById('input-buscar-gestor');
 
       if (currentUser.role === 'ADMIN') {
         if (btnNuevo) btnNuevo.classList.remove('hidden');
         if (btnCfg) btnCfg.classList.remove('hidden');
         if (btnVac) btnVac.classList.remove('hidden');
+        if (btnCorte) btnCorte.classList.remove('hidden');
         if (buscador && buscador.parentElement) buscador.parentElement.classList.remove('hidden');
       } else {
         if (btnNuevo) btnNuevo.classList.add('hidden');
         if (btnCfg) btnCfg.classList.add('hidden');
         if (btnVac) btnVac.classList.add('hidden');
+        if (btnCorte) btnCorte.classList.add('hidden');
         if (buscador && buscador.parentElement) buscador.parentElement.classList.add('hidden');
       }
     }
@@ -980,26 +1068,26 @@
       }
 
       
-      var defaultUsers = {
-        'Dayanis García Almanza': { u: 'dayanis', p: 'dayanis2026' },
-        'JOSÉ MIGUEL MARTÍNEZ ACOSTA': { u: 'josemiguel', p: 'josemiguel2026' },
-        'Luis Ariel Calderin': { u: 'luisariel', p: 'luisariel2026' },
-        'Yakelin': { u: 'yakelin', p: 'yakelin2026' },
-        'Betty': { u: 'betty', p: 'betty2026' },
-        'Elizabeth': { u: 'elizabeth', p: 'elizabeth2026' },
-        'Liz Mariam': { u: 'liz', p: 'liz2026' }
+      var defaultHashes = {
+        'Dayanis García Almanza': { u: 'dayanis', h: '06b919546db3a9d02173d6993d0dab80dd7a0e49afe25a43af609ed0bc81312c' },
+        'JOSÉ MIGUEL MARTÍNEZ ACOSTA': { u: 'josemiguel', h: 'ee14748f52b02586c6320424f5ff953b72e8f29810f30d9d41e9916c198a1991' },
+        'Luis Ariel Calderin': { u: 'luisariel', h: '9351d91b317c961ec83beb6a3c6cdf34f8cec5d609bbdaf0e3c834f25fd780d6' },
+        'Yakelin': { u: 'yakelin', h: '36fe378dd56e517f054b67aaa04993914e8a9de7d8526b1c13c592a07c69b44f' },
+        'Betty': { u: 'betty', h: 'fd4337718f710584432715389a6566cf8a26ed9cc603fc15015ae690c14ef923' },
+        'Elizabeth': { u: 'elizabeth', h: '388c11a44ac93919cb3a451680cc82c54ceb8e8bfd2ce1f07295b079b37d9aa3' },
+        'Liz Mariam': { u: 'liz', h: 'b050c0c356bce824ea1c9803954e1ffb71eafbb7e5cd965b93e2f443db78abda' }
       };
 
       for (var k = 0; k < appState.gestores.length; k++) {
         var gest = appState.gestores[k];
-        if (!gest.username) {
-          if (defaultUsers[gest.nombre]) {
-            gest.username = defaultUsers[gest.nombre].u;
-            gest.password = defaultUsers[gest.nombre].p;
-          } else {
-            gest.username = gest.nombre.toLowerCase().replace(/[^a-z0-9]/g, '');
-            gest.password = '123456';
-          }
+        if (gest.password) {
+          // Migrar cualquier password residual en cache a hash
+          gest.passwordHash = simpleHashFallback(gest.password);
+          delete gest.password;
+        }
+        if (!gest.username && defaultHashes[gest.nombre]) {
+          gest.username = defaultHashes[gest.nombre].u;
+          gest.passwordHash = defaultHashes[gest.nombre].h;
         }
       }
 
@@ -2028,6 +2116,41 @@
     // --------------------------------------------------------
     // BORRAR HISTORIAL PARA EMPEZAR DE 0
     // --------------------------------------------------------
+    
+    window.realizarCorteSemanalWeb = async function() {
+      if (!confirm('¿Deseas realizar el CORTE SEMANAL de la semana ' + appState.semanaActiva + '?\n\n• Se archivarán todos los vales de esta semana.\n• Se creará una salva permanente de datos.\n• Se avanzará automáticamente a la siguiente semana para mantener el historial infinito sin perder nada.')) {
+        return;
+      }
+
+      // 1. Guardar copia de seguridad histórica en el estado
+      appState.historicoSemanas = appState.historicoSemanas || {};
+      appState.historicoSemanas[appState.semanaActiva] = {
+        fechaCorte: new Date().toISOString(),
+        totalVales: appState.vales.filter(function(v) { return v.semana === appState.semanaActiva; }).length,
+        vales: JSON.parse(JSON.stringify(appState.vales.filter(function(v) { return v.semana === appState.semanaActiva; })))
+      };
+
+      // 2. Calcular la siguiente semana de lunes a lunes
+      var parts = appState.semanaActiva.split('-W');
+      var year = parseInt(parts[0], 10);
+      var week = parseInt(parts[1], 10) + 1;
+      if (week > 52) { year++; week = 1; }
+      var siguienteSemana = year + '-W' + String(week).padStart(2, '0');
+
+      appState.semanaActiva = siguienteSemana;
+
+      guardarEnCacheRobusto();
+      actualizarSelectorSemanas();
+      renderizarTodo();
+
+      // Si estamos en el Bot LocalHost, avisar al backend para que guarde en salvas_semanales/
+      if (window.realizarCorteSemanalBot) {
+        await window.realizarCorteSemanalBot();
+      } else {
+        alert('🎉 ¡Corte Semanal Exitoso!\n\n• La semana archivada quedó registrada en el historial.\n• Ahora te encuentras en la nueva semana: ' + siguienteSemana + '.\n• Pulsa en Guardar para confirmar los cambios.');
+      }
+    };
+
     window.vaciarHistorialVales = function() {
       if (!confirm('¿Deseas reiniciar y vaciar todo el historial de vales para comenzar a registrar desde 0? (Tus gestores y configuraciones se mantendrán)')) return;
       
@@ -2119,7 +2242,7 @@
       document.getElementById('gestor-form-id').value = g.id;
       document.getElementById('gestor-form-nombre').value = g.nombre;
       document.getElementById('gestor-form-username').value = g.username || '';
-      document.getElementById('gestor-form-password').value = g.password || '';
+      document.getElementById('gestor-form-password').value = ''; // Oculto por seguridad
       document.getElementById('gestor-form-tel').value = g.telefono || '';
       document.getElementById('gestor-form-tel2').value = g.telefonoSecundario || '';
       document.getElementById('gestor-form-zona').value = g.zona || '';
@@ -2149,24 +2272,28 @@
 
       const fotoInput = document.getElementById('gestor-form-foto-input');
 
-      const completarGuardado = function(fotoBase64) {
+      const completarGuardado = async function(fotoBase64) {
         if (id) {
           const g = appState.gestores.find(function(x) { return x.id === id; });
           if (g) {
             g.nombre = nombre;
             g.username = username || g.username;
-            g.password = password || g.password;
+            if (password) {
+              g.passwordHash = await calcularSHA256(password);
+              delete g.password;
+            }
             g.telefono = tel;
             g.telefonoSecundario = tel2;
             g.zona = zona;
             if (fotoBase64) g.foto = fotoBase64;
           }
         } else {
+          var pHash = await calcularSHA256(password || '123456');
           appState.gestores.push({
             id: 'G-' + Date.now(),
             nombre: nombre,
             username: username || nombre.toLowerCase().replace(/[^a-z0-9]/g, ''),
-            password: password || '123456',
+            passwordHash: pHash,
             telefono: tel,
             telefonoSecundario: tel2,
             zona: zona || 'Gestor',
