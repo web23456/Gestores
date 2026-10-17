@@ -26,7 +26,7 @@
         { "id": "G-7", "nombre": "Liz Mariam", "username": "liz", "passwordHash": "b050c0c356bce824ea1c9803954e1ffb71eafbb7e5cd965b93e2f443db78abda", "telefono": "54763168", "telefonoSecundario": "", "zona": "Mensajería", "foto": "", "activo": true }
       ],
       "vales": [],
-      "semanaActiva": "2026-W42",
+      "semanaActiva": "2026-W41",
       "config": {
         "comisionPequeno": 1500,
         "comisionGrande": 2500,
@@ -193,7 +193,7 @@
   <!-- ======================================================== -->
   <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-5 space-y-6">
 
-    <!-- BARRA DE CONTROL DE SEMANA (LUNES A LUNES) -->
+    <!-- BARRA DE CONTROL DE SEMANA (MARTES A LUNES) -->
     <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 shadow-xl backdrop-blur flex flex-col md:flex-row md:items-center justify-between gap-4">
       <div class="flex items-center gap-3">
         <div class="w-9 h-9 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center border border-indigo-500/20">
@@ -202,7 +202,7 @@
         <div>
           <div class="flex items-center gap-2">
             <span class="text-xs uppercase font-bold text-indigo-400 tracking-wider">Período Semanal de Gestión:</span>
-            <span id="label-rango-semana-activa" class="text-xs text-slate-400 font-mono">Lunes a Lunes</span>
+            <span id="label-rango-semana-activa" class="text-xs text-slate-400 font-mono">Martes a Lunes</span>
           </div>
           <h2 id="titulo-semana-activa" class="text-lg font-black text-white">Semana Actual</h2>
         </div>
@@ -236,7 +236,7 @@
           <i data-lucide="receipt" class="w-4 h-4 text-indigo-400"></i>
         </div>
         <div id="kpi-total-vales" class="text-2xl font-black text-white font-mono">0</div>
-        <p class="text-[11px] text-slate-500 mt-1">Registrados de lunes a lunes</p>
+        <p class="text-[11px] text-slate-500 mt-1">Registrados de martes a lunes</p>
       </div>
 
       <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 shadow-md">
@@ -680,10 +680,15 @@
         <!-- Rellenado dinámico -->
       </div>
 
-      <div class="px-6 py-3 bg-slate-950 border-t border-slate-800 flex items-center justify-between">
-        <button id="btn-toggle-pago-vale" class="px-4 py-1.5 rounded-lg text-xs font-bold">
-          Marcar como Pagado
-        </button>
+      <div class="px-6 py-3 bg-slate-950 border-t border-slate-800 flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2">
+          <button id="btn-toggle-pago-vale" class="px-4 py-1.5 rounded-lg text-xs font-bold">
+            Marcar como Pagado
+          </button>
+          <button id="btn-editar-vale-modal" class="px-3.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold flex items-center gap-1 shadow">
+            <i data-lucide="edit" class="w-3.5 h-3.5"></i> Editar Vale
+          </button>
+        </div>
         <button onclick="cerrarModal('modal-detalle-vale')" class="px-4 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium">Cerrar</button>
       </div>
     </div>
@@ -970,46 +975,72 @@
     }
 
     // --------------------------------------------------------
-    // CÁLCULO DE SEMANAS (DE LUNES A LUNES)
+    // CÁLCULO DE SEMANAS DE GESTIÓN (DE MARTES A LUNES)
     // --------------------------------------------------------
+    function parseLocalDate(input) {
+      if (!input) return new Date();
+      if (input instanceof Date) return new Date(input.getFullYear(), input.getMonth(), input.getDate(), 12, 0, 0);
+      var parts = String(input).split('T')[0].split('-');
+      if (parts.length === 3) {
+        return new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10), 12, 0, 0);
+      }
+      return new Date(input);
+    }
+
     function getISOWeekString(dateInput) {
-      const d = dateInput ? new Date(dateInput) : new Date();
-      d.setHours(0, 0, 0, 0);
-      d.setDate(d.getDate() + 4 - (d.getDay() || 7));
-      const yearStart = new Date(d.getFullYear(), 0, 1);
-      const weekNo = Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
-      return d.getFullYear() + '-W' + String(weekNo).padStart(2, '0');
+      var d = parseLocalDate(dateInput);
+      var day = d.getDay(); // 0 domingo, 1 lunes, 2 martes, 3 miercoles...
+      // Distancia hacia atrás al inicio de ciclo (Martes):
+      // Martes (2) -> 0 dias atras
+      // Miercoles (3) -> 1 dia atras
+      // Jueves (4) -> 2 dias atras
+      // Viernes (5) -> 3 dias atras
+      // Sabado (6) -> 4 dias atras
+      // Domingo (0) -> 5 dias atras
+      // Lunes (1) -> 6 dias atras
+      var diffToTuesday = (day + 5) % 7;
+      var tuesday = new Date(d);
+      tuesday.setDate(d.getDate() - diffToTuesday);
+
+      var year = tuesday.getFullYear();
+      var dJan1 = new Date(year, 0, 1, 12, 0, 0);
+      var diffToFirstTuesday = (2 - dJan1.getDay() + 7) % 7;
+      var firstTuesday = new Date(year, 0, 1 + diffToFirstTuesday, 12, 0, 0);
+
+      var diffDays = Math.round((tuesday - firstTuesday) / 86400000);
+      var weekNo = Math.floor(diffDays / 7) + 1;
+
+      return year + '-W' + String(weekNo).padStart(2, '0');
     }
 
     function getWeekDateRange(weekStr) {
       if (!weekStr || !weekStr.includes('-W')) {
         weekStr = getISOWeekString(new Date());
       }
-      const parts = weekStr.split('-W');
-      const year = parseInt(parts[0], 10);
-      const week = parseInt(parts[1], 10);
+      var parts = weekStr.split('-W');
+      var year = parseInt(parts[0], 10);
+      var week = parseInt(parts[1], 10);
 
-      const simple = new Date(year, 0, 4);
-      const dayOfWeek = simple.getDay() || 7;
-      const mondayWeek1 = new Date(simple);
-      mondayWeek1.setDate(simple.getDate() - dayOfWeek + 1);
+      var dJan1 = new Date(year, 0, 1, 12, 0, 0);
+      var diffToFirstTuesday = (2 - dJan1.getDay() + 7) % 7;
+      var firstTuesday = new Date(year, 0, 1 + diffToFirstTuesday, 12, 0, 0);
 
-      const targetMonday = new Date(mondayWeek1);
-      targetMonday.setDate(mondayWeek1.getDate() + (week - 1) * 7);
+      var targetTuesday = new Date(firstTuesday);
+      targetTuesday.setDate(firstTuesday.getDate() + (week - 1) * 7);
 
-      const targetSunday = new Date(targetMonday);
-      targetSunday.setDate(targetMonday.getDate() + 6);
+      var targetMonday = new Date(targetTuesday);
+      targetMonday.setDate(targetTuesday.getDate() + 6);
 
-      const f = function(d) {
-        const dia = String(d.getDate()).padStart(2, '0');
-        const mes = String(d.getMonth() + 1).padStart(2, '0');
+      var f = function(d) {
+        var dia = String(d.getDate()).padStart(2, '0');
+        var mes = String(d.getMonth() + 1).padStart(2, '0');
         return dia + '/' + mes + '/' + d.getFullYear();
       };
 
       return {
+        martes: targetTuesday,
         lunes: targetMonday,
-        domingo: targetSunday,
-        label: 'Lun ' + f(targetMonday) + ' - Dom ' + f(targetSunday)
+        label: 'Mar ' + f(targetTuesday) + ' - Lun ' + f(targetMonday)
       };
     }
 
@@ -1379,6 +1410,7 @@
               '<td class="px-4 py-3 text-center">' +
                 '<div class="flex items-center justify-center gap-1.5">' +
                   '<button onclick="verDetalleVale(\'' + v.id + '\')" title="Ver Detalle" class="p-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300"><i data-lucide="eye" class="w-3.5 h-3.5"></i></button>' +
+                  '<button onclick="abrirModalEditarVale(\'' + v.id + '\')" title="Editar Vale" class="p-1 rounded-lg bg-indigo-950/60 hover:bg-indigo-900/80 text-indigo-300 border border-indigo-500/30"><i data-lucide="edit-2" class="w-3.5 h-3.5"></i></button>' +
                   '<button onclick="eliminarVale(\'' + v.id + '\')" title="Eliminar Vale" class="p-1 rounded-lg bg-slate-800 hover:bg-rose-900/50 text-rose-400"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button>' +
                 '</div>' +
               '</td>' +
@@ -1483,7 +1515,7 @@
     window.abrirModalResumenSemana = function() {
       const info = getWeekDateRange(appState.semanaActiva);
       document.getElementById('resumen-semana-modal-titulo').textContent = 'Resumen General — Semana ' + appState.semanaActiva;
-      document.getElementById('resumen-semana-modal-subtitulo').textContent = 'Período: ' + info.label + ' (Lunes a Lunes)';
+      document.getElementById('resumen-semana-modal-subtitulo').textContent = 'Período: ' + info.label + ' (Martes a Lunes)';
 
       const valesSemana = appState.vales.filter(function(v) { 
         if (v.semana !== appState.semanaActiva) return false;
@@ -2082,27 +2114,51 @@
         granComisionCUP += c * (Number(it.comisionUnitCUP) || 1500);
       }
 
-      const nuevoVale = {
-        id: 'V-' + Date.now() + '-' + Math.random().toString(36).substr(2, 5),
-        folio: folio || ('VAL-' + Date.now().toString().slice(-6)),
-        fecha: fecha,
-        semana: semana,
-        moneda: moneda,
-        gestorNombre: gestorExistente.nombre,
-        gestorTelefono: gestorExistente.telefono,
-        clienteNombre: clienteNombre,
-        clienteCI: clienteCI,
-        clienteTelefono: clienteTel,
-        direccion: direccion,
-        rawTextoWhatsApp: rawTexto,
-        items: JSON.parse(JSON.stringify(itemsValeEnEdicion)),
-        totalVenta: totalVenta,
-        granComisionCUP: granComisionCUP,
-        estadoComision: 'PENDIENTE',
-        createdAt: Date.now()
-      };
+      var valeTarget = null;
+      if (idValeEnEdicion) {
+        valeTarget = appState.vales.find(function(x) { return x.id === idValeEnEdicion; });
+      }
 
-      appState.vales.unshift(nuevoVale);
+      if (valeTarget) {
+        // ACTUALIZAR VALE EXISTENTE
+        valeTarget.folio = folio;
+        valeTarget.fecha = fecha;
+        valeTarget.semana = semana;
+        valeTarget.moneda = moneda;
+        valeTarget.gestorNombre = gestorExistente.nombre;
+        valeTarget.gestorTelefono = gestorExistente.telefono;
+        valeTarget.clienteNombre = clienteNombre;
+        valeTarget.clienteCI = clienteCI;
+        valeTarget.clienteTelefono = clienteTel;
+        valeTarget.direccion = direccion;
+        valeTarget.rawTextoWhatsApp = rawTexto;
+        valeTarget.items = JSON.parse(JSON.stringify(itemsValeEnEdicion));
+        valeTarget.totalVenta = totalVenta;
+        valeTarget.granComisionCUP = granComisionCUP;
+        valeTarget.updatedAt = Date.now();
+      } else {
+        // CREAR NUEVO VALE
+        var nuevoVale = {
+          id: 'V-' + Date.now() + '-' + Math.random().toString(36).substr(2, 5),
+          folio: folio || ('VAL-' + Date.now().toString().slice(-6)),
+          fecha: fecha,
+          semana: semana,
+          moneda: moneda,
+          gestorNombre: gestorExistente.nombre,
+          gestorTelefono: gestorExistente.telefono,
+          clienteNombre: clienteNombre,
+          clienteCI: clienteCI,
+          clienteTelefono: clienteTel,
+          direccion: direccion,
+          rawTextoWhatsApp: rawTexto,
+          items: JSON.parse(JSON.stringify(itemsValeEnEdicion)),
+          totalVenta: totalVenta,
+          granComisionCUP: granComisionCUP,
+          estadoComision: 'PENDIENTE',
+          createdAt: Date.now()
+        };
+        appState.vales.unshift(nuevoVale);
+      }
       appState.semanaActiva = semana;
 
       guardarEnCacheRobusto();
@@ -2187,8 +2243,53 @@
     // --------------------------------------------------------
     // GESTIÓN DE MODALES
     // --------------------------------------------------------
+    
+    // Variable para rastrear el ID del vale que se está editando
+    var idValeEnEdicion = null;
+
+    window.abrirModalEditarVale = function(valeId) {
+      var v = appState.vales.find(function(x) { return x.id === valeId; });
+      if (!v) return;
+
+      cerrarModal('modal-detalle-vale');
+
+      idValeEnEdicion = v.id;
+      document.getElementById('vale-input-folio').value = v.folio;
+      document.getElementById('vale-input-fecha').value = v.fecha;
+      document.getElementById('vale-input-semana').value = v.semana;
+      document.getElementById('vale-input-moneda').value = v.moneda || 'USD';
+
+      var inputG = document.getElementById('vale-input-gestor');
+      var inputGTel = document.getElementById('vale-input-gestor-tel');
+      if (inputG) {
+        inputG.value = v.gestorNombre;
+        inputG.readOnly = (currentUser && currentUser.role === 'GESTOR');
+      }
+      if (inputGTel) inputGTel.value = v.gestorTelefono || '';
+
+      document.getElementById('vale-input-cliente').value = v.clienteNombre;
+      if (document.getElementById('vale-input-cliente-ci')) {
+        document.getElementById('vale-input-cliente-ci').value = v.clienteCI || '';
+      }
+      document.getElementById('vale-input-cliente-tel').value = v.clienteTelefono || '';
+      document.getElementById('vale-input-direccion').value = v.direccion || '';
+      document.getElementById('input-texto-vale-pegar').value = v.rawTextoWhatsApp || '';
+
+      itemsValeEnEdicion = JSON.parse(JSON.stringify(v.items || []));
+      renderizarTablaItemsEdicion();
+
+      // Cambiar texto del botón guardar para indicar actualización
+      var submitBtn = document.querySelector('#form-vale-estructurado button[type="submit"]');
+      if (submitBtn) submitBtn.textContent = 'Actualizar Cambios del Vale';
+
+      abrirModal('modal-registro-vale');
+    };
+
     window.abrirModalRegistroVale = function() {
       document.getElementById('form-vale-estructurado').reset();
+      idValeEnEdicion = null;
+      var submitBtnReset = document.querySelector('#form-vale-estructurado button[type="submit"]');
+      if (submitBtnReset) submitBtnReset.textContent = 'Guardar Vale en Historial';
       document.getElementById('input-texto-vale-pegar').value = '';
       
       const hoy = new Date().toISOString().split('T')[0];
@@ -2361,6 +2462,19 @@
       '</div>';
 
       const btnPago = document.getElementById('btn-toggle-pago-vale');
+      const btnEditarModal = document.getElementById('btn-editar-vale-modal');
+      if (btnEditarModal) {
+        // Permitir editar al Admin o al propio Gestor dueño del vale
+        var puedeEditar = (currentUser && (currentUser.role === 'ADMIN' || v.gestorNombre.toLowerCase().trim() === currentUser.gestorNombre.toLowerCase().trim()));
+        if (puedeEditar) {
+          btnEditarModal.classList.remove('hidden');
+          btnEditarModal.onclick = function() {
+            window.abrirModalEditarVale(v.id);
+          };
+        } else {
+          btnEditarModal.classList.add('hidden');
+        }
+      }
       if (currentUser && currentUser.role === 'ADMIN') {
         btnPago.classList.remove('hidden');
         if (v.estadoComision === 'PAGADA') {
