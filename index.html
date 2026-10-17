@@ -803,15 +803,18 @@
       var btnNuevo = document.getElementById('btn-admin-nuevo-gestor');
       var btnCfg = document.getElementById('btn-admin-configuracion');
       var btnVac = document.getElementById('btn-admin-vaciar-historial');
+      var buscador = document.getElementById('input-buscar-gestor');
 
       if (currentUser.role === 'ADMIN') {
         if (btnNuevo) btnNuevo.classList.remove('hidden');
         if (btnCfg) btnCfg.classList.remove('hidden');
         if (btnVac) btnVac.classList.remove('hidden');
+        if (buscador && buscador.parentElement) buscador.parentElement.classList.remove('hidden');
       } else {
         if (btnNuevo) btnNuevo.classList.add('hidden');
         if (btnCfg) btnCfg.classList.add('hidden');
         if (btnVac) btnVac.classList.add('hidden');
+        if (buscador && buscador.parentElement) buscador.parentElement.classList.add('hidden');
       }
     }
 
@@ -1082,7 +1085,13 @@
     }
 
     function renderizarKPIs() {
-      const valesSemana = appState.vales.filter(function(v) { return v.semana === appState.semanaActiva; });
+      const valesSemana = appState.vales.filter(function(v) { 
+        if (v.semana !== appState.semanaActiva) return false;
+        if (currentUser && currentUser.role === 'GESTOR') {
+          return v.gestorNombre && v.gestorNombre.toLowerCase().trim() === currentUser.gestorNombre.toLowerCase().trim();
+        }
+        return true;
+      });
       
       let totalVales = valesSemana.length;
       let totalEquipos = 0;
@@ -1140,7 +1149,14 @@
       const filtro = (inputBusqueda ? inputBusqueda.value : '').toLowerCase().trim();
 
       let lista = appState.gestores;
-      if (filtro) {
+
+      // PRIVACIDAD ESTRICTA: Si es Gestor, SOLO SE VE A ÉL MISMO
+      if (currentUser && currentUser.role === 'GESTOR') {
+        lista = lista.filter(function(g) {
+          return g.nombre.toLowerCase().trim() === currentUser.gestorNombre.toLowerCase().trim() ||
+                 (g.username && g.username.toLowerCase().trim() === currentUser.username.toLowerCase().trim());
+        });
+      } else if (filtro) {
         lista = lista.filter(function(g) {
           return g.nombre.toLowerCase().includes(filtro) || 
                  (g.telefono && g.telefono.includes(filtro)) ||
@@ -1381,7 +1397,13 @@
       document.getElementById('resumen-semana-modal-titulo').textContent = 'Resumen General — Semana ' + appState.semanaActiva;
       document.getElementById('resumen-semana-modal-subtitulo').textContent = 'Período: ' + info.label + ' (Lunes a Lunes)';
 
-      const valesSemana = appState.vales.filter(function(v) { return v.semana === appState.semanaActiva; });
+      const valesSemana = appState.vales.filter(function(v) { 
+        if (v.semana !== appState.semanaActiva) return false;
+        if (currentUser && currentUser.role === 'GESTOR') {
+          return v.gestorNombre && v.gestorNombre.toLowerCase().trim() === currentUser.gestorNombre.toLowerCase().trim();
+        }
+        return true;
+      });
       
       let totEquipos = 0;
       let totVentasUSD = 0;
@@ -1404,11 +1426,19 @@
       const tbody = document.getElementById('resumen-modal-tabla-tbody');
       tbody.innerHTML = '';
 
-      if (appState.gestores.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="8" class="text-center p-4 text-slate-500">No hay gestores registrados.</td></tr>';
+      let gestoresResumen = appState.gestores;
+      if (currentUser && currentUser.role === 'GESTOR') {
+        gestoresResumen = gestoresResumen.filter(function(g) {
+          return g.nombre.toLowerCase().trim() === currentUser.gestorNombre.toLowerCase().trim() ||
+                 (g.username && g.username.toLowerCase().trim() === currentUser.username.toLowerCase().trim());
+        });
+      }
+
+      if (gestoresResumen.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="8" class="text-center p-4 text-slate-500">No hay registros para mostrar.</td></tr>';
       } else {
-        for (let j = 0; j < appState.gestores.length; j++) {
-          const g = appState.gestores[j];
+        for (let j = 0; j < gestoresResumen.length; j++) {
+          const g = gestoresResumen[j];
           const valesG = valesSemana.filter(function(v) {
             return v.gestorNombre && v.gestorNombre.toLowerCase().trim() === g.nombre.toLowerCase().trim();
           });
@@ -2043,6 +2073,28 @@
       document.getElementById('vale-input-semana').value = appState.semanaActiva || getISOWeekString(hoy);
       document.getElementById('vale-input-folio').value = 'VAL-' + Math.floor(100000 + Math.random() * 900000);
 
+      if (currentUser && currentUser.role === 'GESTOR') {
+        const inputG = document.getElementById('vale-input-gestor');
+        const inputGTel = document.getElementById('vale-input-gestor-tel');
+        if (inputG) {
+          inputG.value = currentUser.gestorNombre;
+          inputG.readOnly = true;
+          inputG.classList.add('opacity-75');
+        }
+        const miGestor = appState.gestores.find(function(g) {
+          return g.nombre.toLowerCase().trim() === currentUser.gestorNombre.toLowerCase().trim();
+        });
+        if (inputGTel && miGestor && miGestor.telefono) {
+          inputGTel.value = miGestor.telefono;
+        }
+      } else {
+        const inputG = document.getElementById('vale-input-gestor');
+        if (inputG) {
+          inputG.readOnly = false;
+          inputG.classList.remove('opacity-75');
+        }
+      }
+
       itemsValeEnEdicion = [];
       renderizarTablaItemsEdicion();
       abrirModal('modal-registro-vale');
@@ -2182,20 +2234,25 @@
       '</div>';
 
       const btnPago = document.getElementById('btn-toggle-pago-vale');
-      if (v.estadoComision === 'PAGADA') {
-        btnPago.textContent = 'Marcar Comisión como PENDIENTE';
-        btnPago.className = 'px-4 py-1.5 rounded-lg text-xs font-bold bg-amber-600/30 text-amber-300 border border-amber-500/40 hover:bg-amber-600/50';
-      } else {
-        btnPago.textContent = '✓ Marcar Comisión como PAGADA';
-        btnPago.className = 'px-4 py-1.5 rounded-lg text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white shadow-md';
-      }
+      if (currentUser && currentUser.role === 'ADMIN') {
+        btnPago.classList.remove('hidden');
+        if (v.estadoComision === 'PAGADA') {
+          btnPago.textContent = 'Marcar Comisión como PENDIENTE';
+          btnPago.className = 'px-4 py-1.5 rounded-lg text-xs font-bold bg-amber-600/30 text-amber-300 border border-amber-500/40 hover:bg-amber-600/50';
+        } else {
+          btnPago.textContent = '✓ Marcar Comisión como PAGADA';
+          btnPago.className = 'px-4 py-1.5 rounded-lg text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white shadow-md';
+        }
 
-      btnPago.onclick = function() {
-        v.estadoComision = v.estadoComision === 'PAGADA' ? 'PENDIENTE' : 'PAGADA';
-        guardarEnCacheRobusto();
-        renderizarTodo();
-        cerrarModal('modal-detalle-vale');
-      };
+        btnPago.onclick = function() {
+          v.estadoComision = v.estadoComision === 'PAGADA' ? 'PENDIENTE' : 'PAGADA';
+          guardarEnCacheRobusto();
+          renderizarTodo();
+          cerrarModal('modal-detalle-vale');
+        };
+      } else {
+        btnPago.classList.add('hidden');
+      }
 
       abrirModal('modal-detalle-vale');
     };
@@ -2233,7 +2290,15 @@
 
       const wb = XLSX.utils.book_new();
 
-      const resumenData = appState.gestores.map(function(g) {
+      let gestoresAExportar = appState.gestores;
+      if (currentUser && currentUser.role === 'GESTOR') {
+        gestoresAExportar = gestoresAExportar.filter(function(g) {
+          return g.nombre.toLowerCase().trim() === currentUser.gestorNombre.toLowerCase().trim() ||
+                 (g.username && g.username.toLowerCase().trim() === currentUser.username.toLowerCase().trim());
+        });
+      }
+
+      const resumenData = gestoresAExportar.map(function(g) {
         const valesG = appState.vales.filter(function(v) {
           return v.semana === appState.semanaActiva && 
                  v.gestorNombre && v.gestorNombre.toLowerCase().trim() === g.nombre.toLowerCase().trim();
@@ -2264,7 +2329,14 @@
       const wsResumen = XLSX.utils.json_to_sheet(resumenData);
       XLSX.utils.book_append_sheet(wb, wsResumen, 'Gestores_Semana_Activa');
 
-      const valesData = appState.vales.map(function(v) {
+      let valesAExportar = appState.vales;
+      if (currentUser && currentUser.role === 'GESTOR') {
+        valesAExportar = valesAExportar.filter(function(v) {
+          return v.gestorNombre && v.gestorNombre.toLowerCase().trim() === currentUser.gestorNombre.toLowerCase().trim();
+        });
+      }
+
+      const valesData = valesAExportar.map(function(v) {
         return {
           'Folio': v.folio,
           'Fecha': v.fecha,
