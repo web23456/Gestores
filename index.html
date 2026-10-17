@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>K y A . Primera Mano — Portal de Gestores & Vales de Venta</title>
   
+    <meta name="theme-color" content="#ffd700">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Gestores K y A">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="icon-192.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Awesome (Icono de gema dorada) -->
@@ -122,38 +129,38 @@
 
   <!-- PANTALLA DE LOGIN -->
   <div id="login-overlay" class="fixed inset-0 z-50 bg-black/98 backdrop-blur-lg flex items-center justify-center p-4">
-    <div class="bg-zinc-950 border border-amber-500/30 rounded-3xl w-full max-w-md p-8 shadow-2xl space-y-6 card-gold">
+    <div class="bg-zinc-950 border border-yellow-500/30 rounded-3xl w-full max-w-md p-8 shadow-2xl space-y-6 card-gold">
       <div class="text-center space-y-2">
-        <div class="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-tr from-amber-700 via-yellow-500 to-amber-600 flex items-center justify-center shadow-lg" style="box-shadow: 0 0 30px rgba(212,175,55,0.4);">
-          <i class="fa-solid fa-gem text-3xl text-black"></i>
+        <div class="w-20 h-20 mx-auto rounded-2xl p-1 bg-gradient-to-tr from-yellow-500 via-yellow-300 to-yellow-400 flex items-center justify-center shadow-xl border-2 border-yellow-400" style="box-shadow: 0 0 25px rgba(255,215,0,0.5);">
+          <img src="icon-192.png" alt="Logo K y A" class="w-full h-full object-contain rounded-xl drop-shadow-md">
         </div>
         <h2 class="text-xl font-black tracking-tight titulo-primera-mano">K y A . Primera Mano</h2>
-        <p class="text-xs text-amber-400/70">Portal de Gestores & Vales de Venta</p>
+        <p class="text-xs text-yellow-400/80">Portal de Gestores & Vales de Venta</p>
       </div>
 
       <form id="form-login" onsubmit="event.preventDefault(); procesarLogin();" class="space-y-4">
         <div>
-          <label class="block text-xs font-bold text-amber-400/80 uppercase tracking-wider mb-1">Usuario</label>
+          <label class="block text-xs font-bold text-yellow-400/90 uppercase tracking-wider mb-1">Usuario</label>
           <div class="relative">
-            <i data-lucide="user" class="w-4 h-4 absolute left-3 top-3 text-amber-500/50"></i>
+            <i data-lucide="user" class="w-4 h-4 absolute left-3 top-3 text-yellow-500/60"></i>
             <input type="text" id="login-username" required placeholder="Tu usuario o Karel" 
-                   class="w-full bg-black border border-amber-500/20 text-white rounded-xl pl-9 pr-3 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none focus:border-amber-500/50">
+                   class="w-full bg-black border border-yellow-500/20 text-white rounded-xl pl-9 pr-3 py-2.5 text-xs focus:ring-2 focus:ring-yellow-400 focus:outline-none focus:border-yellow-500/50">
           </div>
         </div>
 
         <div>
-          <label class="block text-xs font-bold text-amber-400/80 uppercase tracking-wider mb-1">Contraseña</label>
+          <label class="block text-xs font-bold text-yellow-400/90 uppercase tracking-wider mb-1">Contraseña</label>
           <div class="relative">
-            <i data-lucide="lock" class="w-4 h-4 absolute left-3 top-3 text-amber-500/50"></i>
+            <i data-lucide="lock" class="w-4 h-4 absolute left-3 top-3 text-yellow-500/60"></i>
             <input type="password" id="login-password" required placeholder="••••••••" 
-                   class="w-full bg-black border border-amber-500/20 text-white rounded-xl pl-9 pr-3 py-2.5 text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none focus:border-amber-500/50">
+                   class="w-full bg-black border border-yellow-500/20 text-white rounded-xl pl-9 pr-3 py-2.5 text-xs focus:ring-2 focus:ring-yellow-400 focus:outline-none focus:border-yellow-500/50">
           </div>
         </div>
 
         <div id="login-error-msg" class="hidden text-red-400 text-xs font-bold bg-red-950/40 border border-red-800/40 p-2.5 rounded-xl text-center"></div>
 
         <button type="submit" 
-                class="w-full py-3 btn-gold text-xs uppercase tracking-wider rounded-xl shadow-lg transition-all hover:shadow-amber-500/30">
+                class="w-full py-3 btn-gold text-xs uppercase tracking-wider rounded-xl shadow-lg transition-all hover:shadow-yellow-500/20">
           Iniciar Sesión
         </button>
       </form>
@@ -170,64 +177,64 @@
       
       <!-- Marca / Logo -->
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-700 via-yellow-500 to-amber-600 flex items-center justify-center shadow-md" style="box-shadow: 0 0 15px rgba(212,175,55,0.4);">
-          <i class="fa-solid fa-gem text-black text-lg"></i>
+        <div class="w-10 h-10 rounded-xl p-0.5 bg-gradient-to-tr from-yellow-500 via-yellow-300 to-yellow-400 flex items-center justify-center shadow-lg border border-yellow-400" style="box-shadow: 0 0 15px rgba(255,215,0,0.4);">
+          <img src="icon-192.png" alt="Logo K y A" class="w-full h-full object-contain rounded-lg">
         </div>
         <div>
           <h1 class="text-base font-extrabold tracking-tight leading-tight flex items-center gap-2 titulo-primera-mano">
             K y A . Primera Mano
-            <span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-400 border border-amber-500/30 font-mono badge-gold-glow">
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-yellow-500/15 text-yellow-400 border border-yellow-500/30 font-mono badge-gold-glow">
               Martes a Lunes
             </span>
           </h1>
-          <p class="text-xs text-amber-400/60">Portal de Gestores — Vales de WhatsApp, Comisiones & Liquidación Semanal</p>
+          <p class="text-xs text-yellow-300/70">Portal de Gestores — Vales de WhatsApp, Comisiones & Liquidación Semanal</p>
         </div>
       </div>
 
       <!-- Botones de Acción Global -->
       <div class="flex items-center flex-wrap gap-1.5 sm:gap-2">
 
-        <div id="badge-usuario-sesion" class="px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl bg-zinc-900 border border-amber-500/30 flex items-center gap-1.5 text-xs badge-gold-glow">
+        <div id="badge-usuario-sesion" class="px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl bg-zinc-900 border border-yellow-500/30 flex items-center gap-1.5 text-xs badge-gold-glow">
           <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
           <span id="label-usuario-sesion" class="font-bold text-white font-mono text-[11px] sm:text-xs">Karel</span>
-          <span id="label-rol-sesion" class="text-[9px] sm:text-[10px] px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-400 font-mono font-bold">ADMIN</span>
+          <span id="label-rol-sesion" class="text-[9px] sm:text-[10px] px-1.5 py-0.2 rounded bg-yellow-500/20 text-yellow-400 font-mono font-bold">ADMIN</span>
         </div>
 
         <button onclick="abrirModalRegistroVale()" 
-                class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-500 hover:to-yellow-500 text-black font-bold text-xs flex items-center gap-1.5 shadow-md shadow-amber-950/40 border border-amber-500/30 transition-all">
-          <i data-lucide="clipboard-paste" class="w-4 h-4 text-amber-900"></i>
+                class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-400 hover:to-yellow-500 text-black font-bold text-xs flex items-center gap-1.5 shadow-md shadow-yellow-950/30 border border-yellow-500/30 transition-all">
+          <i data-lucide="clipboard-paste" class="w-4 h-4 text-black"></i>
           <span>📝 Pegar Vale</span>
         </button>
 
         <button onclick="abrirModalResumenSemana()" 
-                class="px-3 py-2 rounded-xl bg-gradient-to-r from-amber-700 to-amber-600 hover:from-amber-600 hover:to-amber-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-amber-950/40 border border-amber-600/30 transition-all"
+                class="px-3 py-2 rounded-xl bg-gradient-to-r from-yellow-600 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-yellow-950/30 border border-yellow-500/30 transition-all"
                 title="Generar resumen de la semana">
-          <i data-lucide="bar-chart-3" class="w-4 h-4 text-amber-200"></i>
+          <i data-lucide="bar-chart-3" class="w-4 h-4 text-yellow-200"></i>
           <span>📊 Resumen Semanal</span>
         </button>
 
         <button id="btn-admin-nuevo-gestor" onclick="abrirModalNuevoGestor()" 
-                class="px-3 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-amber-300 font-semibold text-xs flex items-center gap-1.5 border border-amber-500/20 transition-all">
-          <i data-lucide="user-plus" class="w-4 h-4 text-amber-400"></i>
+                class="px-3 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-yellow-300 font-semibold text-xs flex items-center gap-1.5 border border-yellow-500/20 transition-all">
+          <i data-lucide="user-plus" class="w-4 h-4 text-yellow-400"></i>
           <span>+ Gestor</span>
         </button>
 
         <button id="btn-admin-configuracion" onclick="abrirModalConfiguracion()" 
-                class="px-3 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-amber-300 font-semibold text-xs flex items-center gap-1.5 border border-amber-500/20 transition-all"
+                class="px-3 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-yellow-300 font-semibold text-xs flex items-center gap-1.5 border border-yellow-500/20 transition-all"
                 title="Configuración de comisiones fijas">
-          <i data-lucide="settings" class="w-4 h-4 text-amber-400"></i>
+          <i data-lucide="settings" class="w-4 h-4 text-yellow-400"></i>
           <span>Comisiones</span>
         </button>
 
         <button onclick="exportarTodoAExcel()" 
-                class="px-3 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-amber-100 font-semibold text-xs flex items-center gap-1.5 border border-amber-500/15 transition-all"
+                class="px-3 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-yellow-100 font-semibold text-xs flex items-center gap-1.5 border border-yellow-500/15 transition-all"
                 title="Descargar Excel semanal">
-          <i data-lucide="file-spreadsheet" class="w-4 h-4 text-amber-400"></i>
+          <i data-lucide="file-spreadsheet" class="w-4 h-4 text-yellow-400"></i>
           <span>Excel</span>
         </button>
 
         <button onclick="guardarHTMLAutoContenido()" 
-                class="px-3.5 py-2 rounded-xl bg-amber-700 hover:bg-yellow-600 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-amber-950/30 border border-yellow-500/25 transition-all"
+                class="px-3.5 py-2 rounded-xl bg-yellow-600 hover:bg-yellow-600 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-yellow-950/20 border border-yellow-500/25 transition-all"
                 title="Guardar todos los datos dentro de este archivo HTML">
           <i data-lucide="save" class="w-4 h-4"></i>
           <span>💾 Guardar</span>
@@ -235,7 +242,7 @@
 
         
         <button id="btn-admin-corte-semanal" onclick="realizarCorteSemanalWeb()" 
-                class="px-3 py-2 rounded-xl bg-gradient-to-r from-sky-600 to-blue-700 hover:from-sky-500 hover:to-amber-700 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-sky-950/40 border border-sky-500/30 transition-all"
+                class="px-3 py-2 rounded-xl bg-gradient-to-r from-sky-600 to-blue-700 hover:from-sky-500 hover:to-yellow-600 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-sky-950/40 border border-sky-500/30 transition-all"
                 title="Cerrar la semana activa, crear salva permanente en GitHub y abrir nueva semana">
           <i data-lucide="archive" class="w-4 h-4 text-sky-200"></i>
           <span>📦 Corte Semanal</span>
@@ -248,7 +255,7 @@
         </button>
 
         <button onclick="cerrarSesion()" 
-                class="px-2.5 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-amber-300/70 border border-amber-500/15 text-xs font-bold transition-all"
+                class="px-2.5 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-yellow-300/80 border border-yellow-500/15 text-xs font-bold transition-all"
                 title="Cerrar Sesión">
           <i data-lucide="log-out" class="w-4 h-4 text-rose-400"></i>
         </button>
@@ -264,15 +271,15 @@
   <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-5 space-y-6">
 
     <!-- BARRA DE CONTROL DE SEMANA (MARTES A LUNES) -->
-    <div class="bg-zinc-950/90 border border-amber-500/20 rounded-2xl p-4 shadow-xl backdrop-blur flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div class="bg-zinc-950/90 border border-yellow-500/20 rounded-2xl p-4 shadow-xl backdrop-blur flex flex-col md:flex-row md:items-center justify-between gap-4">
       <div class="flex items-center gap-3">
-        <div class="w-9 h-9 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center border border-amber-500/20">
+        <div class="w-9 h-9 rounded-xl bg-yellow-500/10 text-yellow-400 flex items-center justify-center border border-yellow-500/20">
           <i data-lucide="calendar" class="w-5 h-5"></i>
         </div>
         <div>
           <div class="flex items-center gap-2">
-            <span class="text-xs uppercase font-bold text-amber-400 tracking-wider">Período Semanal de Gestión:</span>
-            <span id="label-rango-semana-activa" class="text-xs text-amber-400/60 font-mono">Martes a Lunes</span>
+            <span class="text-xs uppercase font-bold text-yellow-400 tracking-wider">Período Semanal de Gestión:</span>
+            <span id="label-rango-semana-activa" class="text-xs text-yellow-300/70 font-mono">Martes a Lunes</span>
           </div>
           <h2 id="titulo-semana-activa" class="text-lg font-black text-white">Semana Actual</h2>
         </div>
@@ -280,19 +287,19 @@
 
       <!-- Filtros de Navegación por Semanas -->
       <div class="flex items-center flex-wrap gap-2">
-        <button onclick="cambiarSemanaRelativa(-1)" class="p-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-amber-300/70 border border-amber-500/15 transition-colors" title="Semana Anterior">
+        <button onclick="cambiarSemanaRelativa(-1)" class="p-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-yellow-300/80 border border-yellow-500/15 transition-colors" title="Semana Anterior">
           <i data-lucide="chevron-left" class="w-4 h-4"></i>
         </button>
 
-        <select id="select-semanas" onchange="seleccionarSemana(this.value)" class="bg-black border border-amber-500/15 text-white font-semibold text-xs rounded-xl px-3 py-2 focus:ring-1 focus:ring-amber-500 focus:outline-none">
+        <select id="select-semanas" onchange="seleccionarSemana(this.value)" class="bg-black border border-yellow-500/15 text-white font-semibold text-xs rounded-xl px-3 py-2 focus:ring-1 focus:ring-yellow-400 focus:outline-none">
           <!-- Opciones dinámicas -->
         </select>
 
-        <button onclick="cambiarSemanaRelativa(1)" class="p-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-amber-300/70 border border-amber-500/15 transition-colors" title="Semana Siguiente">
+        <button onclick="cambiarSemanaRelativa(1)" class="p-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-yellow-300/80 border border-yellow-500/15 transition-colors" title="Semana Siguiente">
           <i data-lucide="chevron-right" class="w-4 h-4"></i>
         </button>
 
-        <button onclick="irASemanaActual()" class="px-3 py-2 rounded-xl bg-amber-950/40 hover:bg-amber-900/40 text-amber-300 border border-amber-800/40 text-xs font-bold transition-all">
+        <button onclick="irASemanaActual()" class="px-3 py-2 rounded-xl bg-yellow-950/20 hover:bg-yellow-950/20 text-yellow-300 border border-yellow-700/30 text-xs font-bold transition-all">
           Hoy
         </button>
       </div>
@@ -300,35 +307,35 @@
 
     <!-- TARJETAS DE MÉTRICAS GLOBALES DE LA SEMANA -->
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <div class="bg-zinc-950/90 border border-amber-500/20 rounded-2xl p-4 shadow-md">
-        <div class="flex items-center justify-between text-amber-400/60 mb-2">
+      <div class="bg-zinc-950/90 border border-yellow-500/20 rounded-2xl p-4 shadow-md">
+        <div class="flex items-center justify-between text-yellow-300/70 mb-2">
           <span class="text-xs font-medium">Vales Esta Semana</span>
-          <i data-lucide="receipt" class="w-4 h-4 text-amber-400"></i>
+          <i data-lucide="receipt" class="w-4 h-4 text-yellow-400"></i>
         </div>
         <div id="kpi-total-vales" class="text-2xl font-black text-white font-mono">0</div>
-        <p class="text-[11px] text-amber-500/40 mt-1">Registrados de martes a lunes</p>
+        <p class="text-[11px] text-yellow-500/50 mt-1">Registrados de martes a lunes</p>
       </div>
 
-      <div class="bg-zinc-950/90 border border-amber-500/20 rounded-2xl p-4 shadow-md">
-        <div class="flex items-center justify-between text-amber-400/60 mb-2">
+      <div class="bg-zinc-950/90 border border-yellow-500/20 rounded-2xl p-4 shadow-md">
+        <div class="flex items-center justify-between text-yellow-300/70 mb-2">
           <span class="text-xs font-medium">Equipos Vendidos</span>
-          <i data-lucide="package-check" class="w-4 h-4 text-amber-400"></i>
+          <i data-lucide="package-check" class="w-4 h-4 text-yellow-400"></i>
         </div>
-        <div id="kpi-total-equipos" class="text-2xl font-black text-amber-400 font-mono">0</div>
-        <p class="text-[11px] text-amber-500/40 mt-1">Total unidades entregadas</p>
+        <div id="kpi-total-equipos" class="text-2xl font-black text-yellow-400 font-mono">0</div>
+        <p class="text-[11px] text-yellow-500/50 mt-1">Total unidades entregadas</p>
       </div>
 
-      <div class="bg-zinc-950/90 border border-amber-500/20 rounded-2xl p-4 shadow-md">
-        <div class="flex items-center justify-between text-amber-400/60 mb-2">
+      <div class="bg-zinc-950/90 border border-yellow-500/20 rounded-2xl p-4 shadow-md">
+        <div class="flex items-center justify-between text-yellow-300/70 mb-2">
           <span class="text-xs font-medium">Ventas Totales</span>
           <i data-lucide="badge-dollar-sign" class="w-4 h-4 text-teal-400"></i>
         </div>
         <div id="kpi-total-ventas-usd" class="text-xl font-black text-teal-300 font-mono">$0.00 USD</div>
-        <div id="kpi-total-ventas-cup" class="text-xs font-bold text-amber-300 font-mono mt-0.5">0 CUP</div>
+        <div id="kpi-total-ventas-cup" class="text-xs font-bold text-yellow-300 font-mono mt-0.5">0 CUP</div>
       </div>
 
-      <div class="bg-zinc-950/90 border border-amber-500/20 rounded-2xl p-4 shadow-md">
-        <div class="flex items-center justify-between text-amber-400/60 mb-2">
+      <div class="bg-zinc-950/90 border border-yellow-500/20 rounded-2xl p-4 shadow-md">
+        <div class="flex items-center justify-between text-yellow-300/70 mb-2">
           <span class="text-xs font-medium">Total Comisiones (CUP)</span>
           <i data-lucide="wallet" class="w-4 h-4 text-yellow-400"></i>
         </div>
@@ -344,18 +351,18 @@
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
           <h3 class="text-base font-bold text-white flex items-center gap-2">
-            <i data-lucide="contact" class="w-5 h-5 text-amber-400"></i>
+            <i data-lucide="contact" class="w-5 h-5 text-yellow-400"></i>
             Gestores de Ventas Registrados
           </h3>
-          <p class="text-xs text-amber-400/60">Pulsa en "Ver Vales y Ventas" para abrir la tabla y consultar los vales enteros originales con sus emojis</p>
+          <p class="text-xs text-yellow-300/70">Pulsa en "Ver Vales y Ventas" para abrir la tabla y consultar los vales enteros originales con sus emojis</p>
         </div>
 
         <!-- Buscador de gestor -->
         <div class="relative w-full sm:w-64">
-          <i data-lucide="search" class="w-4 h-4 absolute left-3 top-2.5 text-amber-500/40"></i>
+          <i data-lucide="search" class="w-4 h-4 absolute left-3 top-2.5 text-yellow-500/50"></i>
           <input type="text" id="input-buscar-gestor" oninput="renderizarGestores()" 
                  placeholder="Buscar por gestor, teléfono o zona..." 
-                 class="w-full bg-zinc-950 border border-amber-500/20 text-white rounded-xl pl-9 pr-3 py-1.5 text-xs focus:ring-1 focus:ring-amber-500 focus:outline-none">
+                 class="w-full bg-zinc-950 border border-yellow-500/20 text-white rounded-xl pl-9 pr-3 py-1.5 text-xs focus:ring-1 focus:ring-yellow-400 focus:outline-none">
         </div>
       </div>
 
@@ -371,19 +378,19 @@
   <!-- MODAL: REGISTRAR VALE (PEGAR FACTURA WHATSAPP / TEXTO)   -->
   <!-- ======================================================== -->
   <div id="modal-registro-vale" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4 overflow-y-auto">
-    <div class="bg-zinc-950 border border-amber-500/15 rounded-2xl w-full max-w-3xl overflow-hidden shadow-2xl animate-in zoom-in-95 my-8">
+    <div class="bg-zinc-950 border border-yellow-500/15 rounded-2xl w-full max-w-3xl overflow-hidden shadow-2xl animate-in zoom-in-95 my-8">
       
-      <div class="px-6 py-4 border-b border-amber-500/20 flex items-center justify-between bg-gradient-to-r from-amber-950/40 to-zinc-950">
+      <div class="px-6 py-4 border-b border-yellow-500/20 flex items-center justify-between bg-gradient-to-r from-yellow-950/30 to-zinc-950">
         <div class="flex items-center gap-2.5">
-          <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center border border-amber-500/25">
+          <div class="w-8 h-8 rounded-lg bg-yellow-500/20 text-yellow-400 flex items-center justify-center border border-yellow-500/25">
             <i data-lucide="clipboard-paste" class="w-4 h-4"></i>
           </div>
           <div>
             <h3 class="font-bold text-white text-base">Registrar Vale de Venta</h3>
-            <p class="text-[11px] text-amber-400/60">Pega el mensaje recibido de WhatsApp (no se registra mensajería, soporte USD y CUP)</p>
+            <p class="text-[11px] text-yellow-300/70">Pega el mensaje recibido de WhatsApp (no se registra mensajería, soporte USD y CUP)</p>
           </div>
         </div>
-        <button onclick="cerrarModal('modal-registro-vale')" class="text-amber-400/60 hover:text-white">
+        <button onclick="cerrarModal('modal-registro-vale')" class="text-yellow-300/70 hover:text-white">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
@@ -391,19 +398,19 @@
       <div class="p-6 space-y-4">
         
         <!-- CAJA DE TEXTO PARA PEGAR VALE -->
-        <div class="p-4 bg-black border border-amber-500/25 rounded-xl space-y-3">
+        <div class="p-4 bg-black border border-yellow-500/25 rounded-xl space-y-3">
           <div class="flex items-center justify-between">
-            <label class="text-xs font-bold text-amber-300 flex items-center gap-1.5 uppercase tracking-wide">
-              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i>
+            <label class="text-xs font-bold text-yellow-300 flex items-center gap-1.5 uppercase tracking-wide">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-yellow-400"></i>
               Pegar Mensaje de WhatsApp:
             </label>
             <div class="flex items-center gap-2">
               <button type="button" onclick="pegarDesdePortapapeles()" 
-                      class="px-2.5 py-1 rounded-lg bg-amber-600/30 hover:bg-amber-600/50 text-amber-300 border border-emerald-500/40 text-xs font-bold flex items-center gap-1 transition-all">
+                      class="px-2.5 py-1 rounded-lg bg-yellow-500/20 hover:bg-yellow-500/40 text-yellow-300 border border-emerald-500/40 text-xs font-bold flex items-center gap-1 transition-all">
                 <i data-lucide="clipboard" class="w-3.5 h-3.5"></i> 📋 Pegar
               </button>
               <button type="button" onclick="copiarFormatoEjemplo()" 
-                      class="px-2.5 py-1 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-amber-300/70 border border-amber-500/15 text-xs font-medium flex items-center gap-1 transition-all">
+                      class="px-2.5 py-1 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-yellow-300/80 border border-yellow-500/15 text-xs font-medium flex items-center gap-1 transition-all">
                 <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar Ejemplo
               </button>
             </div>
@@ -411,15 +418,15 @@
 
           <textarea id="input-texto-vale-pegar" rows="5" 
                     placeholder="Pega aquí el mensaje tal cual viene de WhatsApp..." 
-                    class="w-full bg-zinc-950 border border-amber-500/15/80 text-white rounded-lg p-3 text-xs font-mono focus:ring-1 focus:ring-amber-500 focus:outline-none"></textarea>
+                    class="w-full bg-zinc-950 border border-yellow-500/20 text-white rounded-lg p-3 text-xs font-mono focus:ring-1 focus:ring-yellow-400 focus:outline-none"></textarea>
 
           <div class="flex justify-end gap-2">
-            <button type="button" onclick="document.getElementById('input-texto-vale-pegar').value=''" class="px-3 py-1.5 text-xs text-amber-400/60 hover:text-white">
+            <button type="button" onclick="document.getElementById('input-texto-vale-pegar').value=''" class="px-3 py-1.5 text-xs text-yellow-300/70 hover:text-white">
               Limpiar
             </button>
             <button type="button" onclick="procesarTextoVale()" 
-                    class="px-4 py-2 bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-500 hover:to-yellow-500 text-white text-xs font-bold rounded-lg shadow-md flex items-center gap-1.5 transition-all">
-              <i data-lucide="cpu" class="w-4 h-4 text-amber-300"></i>
+                    class="px-4 py-2 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-400 hover:to-yellow-500 text-white text-xs font-bold rounded-lg shadow-md flex items-center gap-1.5 transition-all">
+              <i data-lucide="cpu" class="w-4 h-4 text-yellow-300"></i>
               <span>Analizar y Cargar al Formulario ✨</span>
             </button>
           </div>
@@ -430,51 +437,51 @@
           
           <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
             <div>
-              <label class="block text-[11px] text-amber-300/70 mb-1">Folio del Vale *</label>
-              <input type="text" id="vale-input-folio" required class="w-full bg-black border border-amber-500/15 text-white rounded-lg px-2.5 py-1.5 text-xs font-mono font-bold">
+              <label class="block text-[11px] text-yellow-300/80 mb-1">Folio del Vale *</label>
+              <input type="text" id="vale-input-folio" required class="w-full bg-black border border-yellow-500/15 text-white rounded-lg px-2.5 py-1.5 text-xs font-mono font-bold">
             </div>
             <div>
-              <label class="block text-[11px] text-amber-300/70 mb-1">Fecha *</label>
-              <input type="date" id="vale-input-fecha" required class="w-full bg-black border border-amber-500/15 text-white rounded-lg px-2.5 py-1.5 text-xs">
+              <label class="block text-[11px] text-yellow-300/80 mb-1">Fecha *</label>
+              <input type="date" id="vale-input-fecha" required class="w-full bg-black border border-yellow-500/15 text-white rounded-lg px-2.5 py-1.5 text-xs">
             </div>
             <div>
-              <label class="block text-[11px] text-amber-300/70 mb-1">Método de Pago *</label>
-              <select id="vale-input-moneda" onchange="renderizarTablaItemsEdicion()" class="w-full bg-black border border-amber-500/15 text-amber-400 font-bold rounded-lg px-2.5 py-1.5 text-xs">
+              <label class="block text-[11px] text-yellow-300/80 mb-1">Método de Pago *</label>
+              <select id="vale-input-moneda" onchange="renderizarTablaItemsEdicion()" class="w-full bg-black border border-yellow-500/15 text-yellow-400 font-bold rounded-lg px-2.5 py-1.5 text-xs">
                 <option value="USD">USD (Dólares)</option>
                 <option value="CUP">CUP (Moneda Nacional)</option>
               </select>
             </div>
             <div>
-              <label class="block text-[11px] text-amber-300/70 mb-1">Semana Asignada</label>
-              <input type="text" id="vale-input-semana" readonly class="w-full bg-black/60 border border-amber-500/20 text-amber-300 font-mono rounded-lg px-2.5 py-1.5 text-xs">
+              <label class="block text-[11px] text-yellow-300/80 mb-1">Semana Asignada</label>
+              <input type="text" id="vale-input-semana" readonly class="w-full bg-black/60 border border-yellow-500/20 text-yellow-300 font-mono rounded-lg px-2.5 py-1.5 text-xs">
             </div>
           </div>
 
           <!-- Gestor y Cliente -->
-          <div class="p-3.5 bg-black/60 border border-amber-500/20 rounded-xl grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div class="p-3.5 bg-black/60 border border-yellow-500/20 rounded-xl grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
-              <label class="block text-[11px] font-bold text-amber-300 mb-1">Gestor de Venta *</label>
-              <input type="text" id="vale-input-gestor" required placeholder="Nombre del gestor" class="w-full bg-zinc-950 border border-amber-500/30 text-white font-bold rounded-lg px-2.5 py-1.5 text-xs">
+              <label class="block text-[11px] font-bold text-yellow-300 mb-1">Gestor de Venta *</label>
+              <input type="text" id="vale-input-gestor" required placeholder="Nombre del gestor" class="w-full bg-zinc-950 border border-yellow-500/30 text-white font-bold rounded-lg px-2.5 py-1.5 text-xs">
             </div>
             <div>
-              <label class="block text-[11px] text-amber-300/70 mb-1">Teléfono Gestor</label>
-              <input type="text" id="vale-input-gestor-tel" placeholder="Ej: 54822881" class="w-full bg-zinc-950 border border-amber-500/15 text-white rounded-lg px-2.5 py-1.5 text-xs">
+              <label class="block text-[11px] text-yellow-300/80 mb-1">Teléfono Gestor</label>
+              <input type="text" id="vale-input-gestor-tel" placeholder="Ej: 54822881" class="w-full bg-zinc-950 border border-yellow-500/15 text-white rounded-lg px-2.5 py-1.5 text-xs">
             </div>
             <div>
-              <label class="block text-[11px] text-amber-300/70 mb-1">Nombre del Cliente *</label>
-              <input type="text" id="vale-input-cliente" required placeholder="Nombre completo" class="w-full bg-zinc-950 border border-amber-500/15 text-white rounded-lg px-2.5 py-1.5 text-xs">
+              <label class="block text-[11px] text-yellow-300/80 mb-1">Nombre del Cliente *</label>
+              <input type="text" id="vale-input-cliente" required placeholder="Nombre completo" class="w-full bg-zinc-950 border border-yellow-500/15 text-white rounded-lg px-2.5 py-1.5 text-xs">
             </div>
             <div>
-              <label class="block text-[11px] text-amber-300/70 mb-1">CI / Identidad</label>
-              <input type="text" id="vale-input-cliente-ci" placeholder="Ej: 90071126520" class="w-full bg-zinc-950 border border-amber-500/15 text-white rounded-lg px-2.5 py-1.5 text-xs font-mono">
+              <label class="block text-[11px] text-yellow-300/80 mb-1">CI / Identidad</label>
+              <input type="text" id="vale-input-cliente-ci" placeholder="Ej: 90071126520" class="w-full bg-zinc-950 border border-yellow-500/15 text-white rounded-lg px-2.5 py-1.5 text-xs font-mono">
             </div>
             <div>
-              <label class="block text-[11px] text-amber-300/70 mb-1">Teléfono Cliente</label>
-              <input type="text" id="vale-input-cliente-tel" placeholder="Ej: 54526888" class="w-full bg-zinc-950 border border-amber-500/15 text-white rounded-lg px-2.5 py-1.5 text-xs">
+              <label class="block text-[11px] text-yellow-300/80 mb-1">Teléfono Cliente</label>
+              <input type="text" id="vale-input-cliente-tel" placeholder="Ej: 54526888" class="w-full bg-zinc-950 border border-yellow-500/15 text-white rounded-lg px-2.5 py-1.5 text-xs">
             </div>
             <div class="sm:col-span-3">
-              <label class="block text-[11px] text-amber-300/70 mb-1">Dirección de Entrega</label>
-              <input type="text" id="vale-input-direccion" placeholder="Calle, entrecalles, municipio..." class="w-full bg-zinc-950 border border-amber-500/15 text-white rounded-lg px-2.5 py-1.5 text-xs">
+              <label class="block text-[11px] text-yellow-300/80 mb-1">Dirección de Entrega</label>
+              <input type="text" id="vale-input-direccion" placeholder="Calle, entrecalles, municipio..." class="w-full bg-zinc-950 border border-yellow-500/15 text-white rounded-lg px-2.5 py-1.5 text-xs">
             </div>
           </div>
 
@@ -482,18 +489,18 @@
           <div class="space-y-2">
             <div class="flex items-center justify-between">
               <label class="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
-                <i data-lucide="boxes" class="w-4 h-4 text-amber-400"></i>
+                <i data-lucide="boxes" class="w-4 h-4 text-yellow-400"></i>
                 Desglose de Productos Vendidos & Comisiones:
               </label>
               <button type="button" onclick="agregarFilaProducto()" 
-                      class="px-2.5 py-1 bg-zinc-900 hover:bg-zinc-800 text-amber-300 text-xs font-bold rounded-lg border border-amber-500/15 flex items-center gap-1">
+                      class="px-2.5 py-1 bg-zinc-900 hover:bg-zinc-800 text-yellow-300 text-xs font-bold rounded-lg border border-yellow-500/15 flex items-center gap-1">
                 <i data-lucide="plus" class="w-3.5 h-3.5"></i> Añadir Producto
               </button>
             </div>
 
-            <div class="overflow-x-auto border border-amber-500/20 rounded-xl">
+            <div class="overflow-x-auto border border-yellow-500/20 rounded-xl">
               <table class="w-full text-left text-xs">
-                <thead class="bg-black text-amber-400/60 border-b border-amber-500/20 uppercase text-[10px]">
+                <thead class="bg-black text-yellow-300/70 border-b border-yellow-500/20 uppercase text-[10px]">
                   <tr>
                     <th class="px-3 py-2">Producto / Electrodoméstico</th>
                     <th class="px-2 py-2 w-28 text-center">Tipo Equipo</th>
@@ -504,7 +511,7 @@
                     <th class="px-2 py-2 w-8 text-center"></th>
                   </tr>
                 </thead>
-                <tbody id="tabla-vale-items-tbody" class="divide-y divide-amber-500/10 bg-zinc-950/40">
+                <tbody id="tabla-vale-items-tbody" class="divide-y divide-yellow-500/10 bg-zinc-950/40">
                   <!-- Filas dinámicas -->
                 </tbody>
               </table>
@@ -512,24 +519,24 @@
           </div>
 
           <!-- TOTALES -->
-          <div class="p-3.5 bg-gradient-to-r from-black via-amber-950/20 to-black border border-amber-500/25 rounded-xl grid grid-cols-3 gap-3 text-center">
+          <div class="p-3.5 bg-gradient-to-r from-black via-yellow-950/15 to-black border border-yellow-500/25 rounded-xl grid grid-cols-3 gap-3 text-center">
             <div>
-              <span class="text-[10px] text-amber-400/60 block uppercase">Total Equipos:</span>
+              <span class="text-[10px] text-yellow-300/70 block uppercase">Total Equipos:</span>
               <span id="preview-vale-equipos" class="text-base font-bold text-white font-mono">0</span>
             </div>
             <div>
-              <span class="text-[10px] text-amber-400/60 block uppercase">Total Venta:</span>
-              <span id="preview-vale-total-venta" class="text-base font-bold text-amber-400 font-mono">$ 0.00 USD</span>
+              <span class="text-[10px] text-yellow-300/70 block uppercase">Total Venta:</span>
+              <span id="preview-vale-total-venta" class="text-base font-bold text-yellow-400 font-mono">$ 0.00 USD</span>
             </div>
-            <div class="bg-amber-950/30 p-1.5 rounded-lg border border-yellow-500/25">
+            <div class="bg-yellow-950/20 p-1.5 rounded-lg border border-yellow-500/25">
               <span class="text-[10px] text-yellow-300 block uppercase font-bold">Comisión Gestor:</span>
               <span id="preview-vale-comision" class="text-base font-bold text-yellow-300 font-mono">0 CUP</span>
             </div>
           </div>
 
-          <div class="pt-3 border-t border-amber-500/20 flex justify-end gap-2.5">
-            <button type="button" onclick="cerrarModal('modal-registro-vale')" class="px-4 py-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-amber-300/70 text-xs font-medium">Cancelar</button>
-            <button type="submit" class="px-5 py-2 rounded-lg bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold shadow-md shadow-amber-950/30">Guardar Vale en Historial</button>
+          <div class="pt-3 border-t border-yellow-500/20 flex justify-end gap-2.5">
+            <button type="button" onclick="cerrarModal('modal-registro-vale')" class="px-4 py-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-yellow-300/80 text-xs font-medium">Cancelar</button>
+            <button type="submit" class="px-5 py-2 rounded-lg bg-yellow-500 hover:bg-yellow-400 text-white text-xs font-bold shadow-md shadow-yellow-950/20">Guardar Vale en Historial</button>
           </div>
 
         </form>
@@ -542,23 +549,23 @@
   <!-- MODAL: RESUMEN DE LA SEMANA (COMPLETO & EXPORTABLE)      -->
   <!-- ======================================================== -->
   <div id="modal-resumen-semana" class="fixed inset-0 bg-black/85 backdrop-blur-sm z-50 hidden items-center justify-center p-4 overflow-y-auto">
-    <div id="printable-modal" class="bg-zinc-950 border border-amber-500/15 rounded-2xl w-full max-w-4xl overflow-hidden shadow-2xl animate-in zoom-in-95 my-8">
+    <div id="printable-modal" class="bg-zinc-950 border border-yellow-500/15 rounded-2xl w-full max-w-4xl overflow-hidden shadow-2xl animate-in zoom-in-95 my-8">
       
-      <div class="px-6 py-4 border-b border-amber-500/20 flex items-center justify-between bg-gradient-to-r from-amber-950/40 to-zinc-950">
+      <div class="px-6 py-4 border-b border-yellow-500/20 flex items-center justify-between bg-gradient-to-r from-yellow-950/30 to-zinc-950">
         <div class="flex items-center gap-2.5">
           <div class="w-8 h-8 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center border border-blue-500/30">
             <i data-lucide="bar-chart-3" class="w-4 h-4"></i>
           </div>
           <div>
             <h3 id="resumen-semana-modal-titulo" class="font-bold text-white text-base">Resumen General de la Semana</h3>
-            <p id="resumen-semana-modal-subtitulo" class="text-[11px] text-amber-400/60">Balance consolidado de gestores, equipos y comisiones</p>
+            <p id="resumen-semana-modal-subtitulo" class="text-[11px] text-yellow-300/70">Balance consolidado de gestores, equipos y comisiones</p>
           </div>
         </div>
         <div class="flex items-center gap-2">
-          <button onclick="window.print()" class="no-print px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-amber-300/70 text-xs font-semibold flex items-center gap-1.5 border border-amber-500/15">
+          <button onclick="window.print()" class="no-print px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-yellow-300/80 text-xs font-semibold flex items-center gap-1.5 border border-yellow-500/15">
             <i data-lucide="printer" class="w-3.5 h-3.5"></i> Imprimir / PDF
           </button>
-          <button onclick="cerrarModal('modal-resumen-semana')" class="no-print text-amber-400/60 hover:text-white p-1">
+          <button onclick="cerrarModal('modal-resumen-semana')" class="no-print text-yellow-300/70 hover:text-white p-1">
             <i data-lucide="x" class="w-5 h-5"></i>
           </button>
         </div>
@@ -568,20 +575,20 @@
         
         <!-- Tarjetas resumen rápido -->
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
-          <div class="p-3 bg-black rounded-xl border border-amber-500/20">
-            <span class="text-[10px] text-amber-400/60 uppercase font-semibold block">Total Vales</span>
+          <div class="p-3 bg-black rounded-xl border border-yellow-500/20">
+            <span class="text-[10px] text-yellow-300/70 uppercase font-semibold block">Total Vales</span>
             <span id="resumen-modal-kpi-vales" class="text-xl font-black text-white font-mono">0</span>
           </div>
-          <div class="p-3 bg-black rounded-xl border border-amber-500/20">
-            <span class="text-[10px] text-amber-400/60 uppercase font-semibold block">Total Equipos</span>
-            <span id="resumen-modal-kpi-equipos" class="text-xl font-black text-amber-400 font-mono">0</span>
+          <div class="p-3 bg-black rounded-xl border border-yellow-500/20">
+            <span class="text-[10px] text-yellow-300/70 uppercase font-semibold block">Total Equipos</span>
+            <span id="resumen-modal-kpi-equipos" class="text-xl font-black text-yellow-400 font-mono">0</span>
           </div>
-          <div class="p-3 bg-black rounded-xl border border-amber-500/20">
-            <span class="text-[10px] text-amber-400/60 uppercase font-semibold block">Ventas USD / CUP</span>
+          <div class="p-3 bg-black rounded-xl border border-yellow-500/20">
+            <span class="text-[10px] text-yellow-300/70 uppercase font-semibold block">Ventas USD / CUP</span>
             <div id="resumen-modal-kpi-ventas" class="text-sm font-black text-teal-300 font-mono">$0 USD</div>
           </div>
-          <div class="p-3 bg-black rounded-xl border border-amber-500/20">
-            <span class="text-[10px] text-amber-400/60 uppercase font-semibold block">Total Comisiones</span>
+          <div class="p-3 bg-black rounded-xl border border-yellow-500/20">
+            <span class="text-[10px] text-yellow-300/70 uppercase font-semibold block">Total Comisiones</span>
             <span id="resumen-modal-kpi-comisiones" class="text-xl font-black text-yellow-300 font-mono">0 CUP</span>
           </div>
         </div>
@@ -589,12 +596,12 @@
         <!-- Tabla detallada consolidada por gestor -->
         <div>
           <h4 class="font-bold text-white text-xs uppercase tracking-wider mb-2 flex items-center gap-1.5">
-            <i data-lucide="users" class="w-4 h-4 text-amber-400"></i>
+            <i data-lucide="users" class="w-4 h-4 text-yellow-400"></i>
             Liquidación por Gestor de Ventas
           </h4>
-          <div class="overflow-x-auto border border-amber-500/20 rounded-xl">
+          <div class="overflow-x-auto border border-yellow-500/20 rounded-xl">
             <table class="w-full text-left text-xs border-collapse">
-              <thead class="bg-black text-amber-400/60 border-b border-amber-500/20 uppercase text-[10px]">
+              <thead class="bg-black text-yellow-300/70 border-b border-yellow-500/20 uppercase text-[10px]">
                 <tr>
                   <th class="px-4 py-2.5">Gestor</th>
                   <th class="px-4 py-2.5">Teléfono</th>
@@ -606,7 +613,7 @@
                   <th class="px-4 py-2.5 text-center">Estado</th>
                 </tr>
               </thead>
-              <tbody id="resumen-modal-tabla-tbody" class="divide-y divide-amber-500/10 bg-zinc-950/60">
+              <tbody id="resumen-modal-tabla-tbody" class="divide-y divide-yellow-500/10 bg-zinc-950/60">
                 <!-- Filas dinámicas -->
               </tbody>
             </table>
@@ -615,8 +622,8 @@
 
       </div>
 
-      <div class="no-print px-6 py-3 bg-black border-t border-amber-500/20 flex justify-end gap-2.5">
-        <button onclick="cerrarModal('modal-resumen-semana')" class="px-4 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-amber-300/70 text-xs font-medium">Cerrar</button>
+      <div class="no-print px-6 py-3 bg-black border-t border-yellow-500/20 flex justify-end gap-2.5">
+        <button onclick="cerrarModal('modal-resumen-semana')" class="px-4 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-yellow-300/80 text-xs font-medium">Cerrar</button>
       </div>
 
     </div>
@@ -626,10 +633,10 @@
   <!-- MODAL: REGISTRAR / EDITAR GESTOR                         -->
   <!-- ======================================================== -->
   <div id="modal-gestor" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
-    <div class="bg-zinc-950 border border-amber-500/15 rounded-2xl w-full max-w-md overflow-hidden shadow-2xl animate-in zoom-in-95">
-      <div class="px-6 py-4 border-b border-amber-500/20 flex items-center justify-between bg-zinc-900/50">
+    <div class="bg-zinc-950 border border-yellow-500/15 rounded-2xl w-full max-w-md overflow-hidden shadow-2xl animate-in zoom-in-95">
+      <div class="px-6 py-4 border-b border-yellow-500/20 flex items-center justify-between bg-zinc-900/50">
         <h3 id="modal-gestor-titulo" class="font-bold text-white text-base">Registrar Nuevo Gestor</h3>
-        <button onclick="cerrarModal('modal-gestor')" class="text-amber-400/60 hover:text-white">
+        <button onclick="cerrarModal('modal-gestor')" class="text-yellow-300/70 hover:text-white">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
@@ -639,56 +646,56 @@
 
         <!-- Foto del Gestor -->
         <div>
-          <label class="block text-xs text-amber-300/70 mb-1.5 font-medium">Foto del Gestor</label>
+          <label class="block text-xs text-yellow-300/80 mb-1.5 font-medium">Foto del Gestor</label>
           <div class="flex items-center gap-3">
-            <div class="w-14 h-14 rounded-2xl bg-black border border-amber-500/15 flex items-center justify-center overflow-hidden shrink-0">
+            <div class="w-14 h-14 rounded-2xl bg-black border border-yellow-500/15 flex items-center justify-center overflow-hidden shrink-0">
               <img id="gestor-form-foto-preview" src="" alt="Foto" class="w-full h-full object-cover hidden">
-              <div id="gestor-form-foto-placeholder" class="text-amber-500/40 flex flex-col items-center">
+              <div id="gestor-form-foto-placeholder" class="text-yellow-500/50 flex flex-col items-center">
                 <i data-lucide="camera" class="w-5 h-5"></i>
               </div>
             </div>
             <div class="flex-1">
-              <input type="file" id="gestor-form-foto-input" accept="image/*" class="w-full text-xs text-amber-400/60 file:mr-2.5 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-amber-600 file:text-white hover:file:bg-amber-500 cursor-pointer">
-              <span class="block text-[11px] text-amber-500/40 mt-0.5">JPG o PNG (se guarda en el HTML)</span>
+              <input type="file" id="gestor-form-foto-input" accept="image/*" class="w-full text-xs text-yellow-300/70 file:mr-2.5 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-yellow-500 file:text-white hover:file:bg-yellow-400 cursor-pointer">
+              <span class="block text-[11px] text-yellow-500/50 mt-0.5">JPG o PNG (se guarda en el HTML)</span>
             </div>
           </div>
         </div>
 
         <div>
-          <label class="block text-xs text-amber-300/70 mb-1">Nombre Completo *</label>
-          <input type="text" id="gestor-form-nombre" required placeholder="Ej: JOSÉ MIGUEL MARTÍNEZ ACOSTA" class="w-full bg-black border border-amber-500/15 text-white rounded-lg px-3 py-2 text-xs">
+          <label class="block text-xs text-yellow-300/80 mb-1">Nombre Completo *</label>
+          <input type="text" id="gestor-form-nombre" required placeholder="Ej: JOSÉ MIGUEL MARTÍNEZ ACOSTA" class="w-full bg-black border border-yellow-500/15 text-white rounded-lg px-3 py-2 text-xs">
         </div>
 
-        <div class="grid grid-cols-2 gap-3 p-3 bg-amber-950/15 border border-amber-500/25 rounded-xl">
+        <div class="grid grid-cols-2 gap-3 p-3 bg-yellow-950/10 border border-yellow-500/25 rounded-xl">
           <div>
-            <label class="block text-[11px] font-bold text-amber-300 mb-1">Usuario de Acceso *</label>
-            <input type="text" id="gestor-form-username" required placeholder="Ej: josemiguel" class="w-full bg-black border border-amber-500/15 text-white font-mono rounded-lg px-3 py-2 text-xs">
+            <label class="block text-[11px] font-bold text-yellow-300 mb-1">Usuario de Acceso *</label>
+            <input type="text" id="gestor-form-username" required placeholder="Ej: josemiguel" class="w-full bg-black border border-yellow-500/15 text-white font-mono rounded-lg px-3 py-2 text-xs">
           </div>
           <div>
-            <label class="block text-[11px] font-bold text-amber-300 mb-1">Contraseña de Acceso *</label>
-            <input type="text" id="gestor-form-password" required placeholder="••••••••" class="w-full bg-black border border-amber-500/15 text-white font-mono rounded-lg px-3 py-2 text-xs">
+            <label class="block text-[11px] font-bold text-yellow-300 mb-1">Contraseña de Acceso *</label>
+            <input type="text" id="gestor-form-password" required placeholder="••••••••" class="w-full bg-black border border-yellow-500/15 text-white font-mono rounded-lg px-3 py-2 text-xs">
           </div>
         </div>
 
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <label class="block text-xs text-amber-300/70 mb-1">Teléfono Principal *</label>
-            <input type="text" id="gestor-form-tel" required placeholder="Ej: 54822881" class="w-full bg-black border border-amber-500/15 text-white rounded-lg px-3 py-2 text-xs">
+            <label class="block text-xs text-yellow-300/80 mb-1">Teléfono Principal *</label>
+            <input type="text" id="gestor-form-tel" required placeholder="Ej: 54822881" class="w-full bg-black border border-yellow-500/15 text-white rounded-lg px-3 py-2 text-xs">
           </div>
           <div>
-            <label class="block text-xs text-amber-300/70 mb-1">Teléfono Secundario</label>
-            <input type="text" id="gestor-form-tel2" placeholder="+53 5..." class="w-full bg-black border border-amber-500/15 text-white rounded-lg px-3 py-2 text-xs">
+            <label class="block text-xs text-yellow-300/80 mb-1">Teléfono Secundario</label>
+            <input type="text" id="gestor-form-tel2" placeholder="+53 5..." class="w-full bg-black border border-yellow-500/15 text-white rounded-lg px-3 py-2 text-xs">
           </div>
         </div>
 
         <div>
-          <label class="block text-xs text-amber-300/70 mb-1">Zona / Canal</label>
-          <input type="text" id="gestor-form-zona" placeholder="Ej: Mensajería, Plaza de la Revolución..." class="w-full bg-black border border-amber-500/15 text-white rounded-lg px-3 py-2 text-xs">
+          <label class="block text-xs text-yellow-300/80 mb-1">Zona / Canal</label>
+          <input type="text" id="gestor-form-zona" placeholder="Ej: Mensajería, Plaza de la Revolución..." class="w-full bg-black border border-yellow-500/15 text-white rounded-lg px-3 py-2 text-xs">
         </div>
 
-        <div class="pt-3 border-t border-amber-500/20 flex justify-end gap-2.5">
-          <button type="button" onclick="cerrarModal('modal-gestor')" class="px-4 py-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-amber-300/70 text-xs font-medium">Cancelar</button>
-          <button type="submit" class="px-5 py-2 rounded-lg bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold shadow-md">Guardar Gestor</button>
+        <div class="pt-3 border-t border-yellow-500/20 flex justify-end gap-2.5">
+          <button type="button" onclick="cerrarModal('modal-gestor')" class="px-4 py-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-yellow-300/80 text-xs font-medium">Cancelar</button>
+          <button type="submit" class="px-5 py-2 rounded-lg bg-yellow-500 hover:bg-yellow-400 text-white text-xs font-bold shadow-md">Guardar Gestor</button>
         </div>
       </form>
     </div>
@@ -698,37 +705,37 @@
   <!-- MODAL: CONFIGURACIÓN DE COMISIONES                       -->
   <!-- ======================================================== -->
   <div id="modal-configuracion" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
-    <div class="bg-zinc-950 border border-amber-500/15 rounded-2xl w-full max-w-md overflow-hidden shadow-2xl animate-in zoom-in-95">
-      <div class="px-6 py-4 border-b border-amber-500/20 flex items-center justify-between bg-zinc-900/50">
+    <div class="bg-zinc-950 border border-yellow-500/15 rounded-2xl w-full max-w-md overflow-hidden shadow-2xl animate-in zoom-in-95">
+      <div class="px-6 py-4 border-b border-yellow-500/20 flex items-center justify-between bg-zinc-900/50">
         <h3 class="font-bold text-white text-base flex items-center gap-2">
-          <i data-lucide="settings" class="w-5 h-5 text-amber-400"></i>
+          <i data-lucide="settings" class="w-5 h-5 text-yellow-400"></i>
           Configuración de Comisiones Fijas
         </h3>
-        <button onclick="cerrarModal('modal-configuracion')" class="text-amber-400/60 hover:text-white">
+        <button onclick="cerrarModal('modal-configuracion')" class="text-yellow-300/70 hover:text-white">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
 
       <form class="p-6 space-y-4" onsubmit="event.preventDefault(); guardarConfiguracionComisiones();">
-        <p class="text-xs text-amber-400/60">Define los valores en CUP que el sistema asignará por defecto según el tipo de equipo:</p>
+        <p class="text-xs text-yellow-300/70">Define los valores en CUP que el sistema asignará por defecto según el tipo de equipo:</p>
         
         <div class="space-y-3">
-          <div class="p-3 bg-black rounded-xl border border-amber-500/20">
-            <label class="block text-xs font-bold text-amber-400 mb-1">Comisión Equipo Pequeño (CUP)</label>
-            <input type="number" id="config-comision-pequeno" step="50" min="0" required class="w-full bg-zinc-950 border border-amber-500/15 text-white font-mono font-bold rounded-lg px-3 py-2 text-sm">
-            <span class="block text-[11px] text-amber-500/40 mt-1">Ollas reina, arroceras, batidoras, ventiladores, cocinas infrarrojas...</span>
+          <div class="p-3 bg-black rounded-xl border border-yellow-500/20">
+            <label class="block text-xs font-bold text-yellow-400 mb-1">Comisión Equipo Pequeño (CUP)</label>
+            <input type="number" id="config-comision-pequeno" step="50" min="0" required class="w-full bg-zinc-950 border border-yellow-500/15 text-white font-mono font-bold rounded-lg px-3 py-2 text-sm">
+            <span class="block text-[11px] text-yellow-500/50 mt-1">Ollas reina, arroceras, batidoras, ventiladores, cocinas infrarrojas...</span>
           </div>
 
-          <div class="p-3 bg-black rounded-xl border border-amber-500/20">
+          <div class="p-3 bg-black rounded-xl border border-yellow-500/20">
             <label class="block text-xs font-bold text-yellow-400 mb-1">Comisión Equipo Grande (CUP)</label>
-            <input type="number" id="config-comision-grande" step="50" min="0" required class="w-full bg-zinc-950 border border-amber-500/15 text-white font-mono font-bold rounded-lg px-3 py-2 text-sm">
-            <span class="block text-[11px] text-amber-500/40 mt-1">Neveras, congeladores, splits de aire, plantas eléctricas, lavadoras...</span>
+            <input type="number" id="config-comision-grande" step="50" min="0" required class="w-full bg-zinc-950 border border-yellow-500/15 text-white font-mono font-bold rounded-lg px-3 py-2 text-sm">
+            <span class="block text-[11px] text-yellow-500/50 mt-1">Neveras, congeladores, splits de aire, plantas eléctricas, lavadoras...</span>
           </div>
         </div>
 
-        <div class="pt-3 border-t border-amber-500/20 flex justify-end gap-2.5">
-          <button type="button" onclick="cerrarModal('modal-configuracion')" class="px-4 py-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-amber-300/70 text-xs font-medium">Cerrar</button>
-          <button type="submit" class="px-5 py-2 rounded-lg bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold shadow-md">Guardar Tarifas</button>
+        <div class="pt-3 border-t border-yellow-500/20 flex justify-end gap-2.5">
+          <button type="button" onclick="cerrarModal('modal-configuracion')" class="px-4 py-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-yellow-300/80 text-xs font-medium">Cerrar</button>
+          <button type="submit" class="px-5 py-2 rounded-lg bg-yellow-500 hover:bg-yellow-400 text-white text-xs font-bold shadow-md">Guardar Tarifas</button>
         </div>
       </form>
     </div>
@@ -738,10 +745,10 @@
   <!-- MODAL: DETALLE Y LIQUIDACIÓN DEL VALE                    -->
   <!-- ======================================================== -->
   <div id="modal-detalle-vale" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
-    <div class="bg-zinc-950 border border-amber-500/15 rounded-2xl w-full max-w-xl overflow-hidden shadow-2xl animate-in zoom-in-95">
-      <div class="px-6 py-4 border-b border-amber-500/20 flex items-center justify-between bg-zinc-900/50">
+    <div class="bg-zinc-950 border border-yellow-500/15 rounded-2xl w-full max-w-xl overflow-hidden shadow-2xl animate-in zoom-in-95">
+      <div class="px-6 py-4 border-b border-yellow-500/20 flex items-center justify-between bg-zinc-900/50">
         <h3 id="detalle-vale-titulo" class="font-bold text-white text-base">Detalle del Vale</h3>
-        <button onclick="cerrarModal('modal-detalle-vale')" class="text-amber-400/60 hover:text-white">
+        <button onclick="cerrarModal('modal-detalle-vale')" class="text-yellow-300/70 hover:text-white">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
@@ -750,16 +757,16 @@
         <!-- Rellenado dinámico -->
       </div>
 
-      <div class="px-6 py-3 bg-black border-t border-amber-500/20 flex items-center justify-between gap-2">
+      <div class="px-6 py-3 bg-black border-t border-yellow-500/20 flex items-center justify-between gap-2">
         <div class="flex items-center gap-2">
           <button id="btn-toggle-pago-vale" class="px-4 py-1.5 rounded-lg text-xs font-bold">
             Marcar como Pagado
           </button>
-          <button id="btn-editar-vale-modal" class="px-3.5 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold flex items-center gap-1 shadow">
+          <button id="btn-editar-vale-modal" class="px-3.5 py-1.5 rounded-lg bg-yellow-500 hover:bg-yellow-400 text-white text-xs font-bold flex items-center gap-1 shadow">
             <i data-lucide="edit" class="w-3.5 h-3.5"></i> Editar Vale
           </button>
         </div>
-        <button onclick="cerrarModal('modal-detalle-vale')" class="px-4 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-amber-300/70 text-xs font-medium">Cerrar</button>
+        <button onclick="cerrarModal('modal-detalle-vale')" class="px-4 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-yellow-300/80 text-xs font-medium">Cerrar</button>
       </div>
     </div>
   </div>
@@ -957,7 +964,7 @@
         labelRol.textContent = currentUser.role;
         labelRol.className = currentUser.role === 'ADMIN' 
           ? 'text-[10px] px-1.5 py-0.2 rounded bg-yellow-500/20 text-yellow-300 font-mono font-bold' 
-          : 'text-[10px] px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 font-mono font-bold';
+          : 'text-[10px] px-1.5 py-0.2 rounded bg-yellow-500/20 text-yellow-300 font-mono font-bold';
       }
 
       var btnNuevo = document.getElementById('btn-admin-nuevo-gestor');
@@ -1354,10 +1361,10 @@
       }
 
       if (lista.length === 0) {
-        contenedor.innerHTML = '<div class="bg-zinc-950 border border-amber-500/20 rounded-2xl p-8 text-center text-amber-400/60">' +
+        contenedor.innerHTML = '<div class="bg-zinc-950 border border-yellow-500/20 rounded-2xl p-8 text-center text-yellow-300/70">' +
           '<i data-lucide="user-x" class="w-10 h-10 mx-auto text-zinc-600 mb-2"></i>' +
-          '<p class="font-semibold text-amber-300/70">No hay gestores en la lista.</p>' +
-          '<p class="text-xs text-amber-500/40 mt-1">Pulsa en "+ Gestor" o pega un vale para registrar ventas.</p>' +
+          '<p class="font-semibold text-yellow-300/80">No hay gestores en la lista.</p>' +
+          '<p class="text-xs text-yellow-500/50 mt-1">Pulsa en "+ Gestor" o pega un vale para registrar ventas.</p>' +
         '</div>';
         if (window.lucide) window.lucide.createIcons();
         return;
@@ -1394,63 +1401,64 @@
         }
 
         const card = document.createElement('div');
-        card.className = 'bg-zinc-950/90 border border-amber-500/20 hover:border-amber-500/15/80 rounded-2xl overflow-hidden shadow-lg transition-all';
+        card.className = 'bg-zinc-950/90 border border-yellow-500/20 hover:border-yellow-500/20 rounded-2xl overflow-hidden shadow-lg transition-all';
         
         let avatarHtml = g.foto 
           ? '<img src="' + g.foto + '" alt="' + g.nombre + '" class="w-full h-full object-cover">'
-          : '<span class="text-xl font-black text-amber-400">' + g.nombre.charAt(0).toUpperCase() + '</span>';
+          : '<span class="text-xl font-black text-yellow-400">' + g.nombre.charAt(0).toUpperCase() + '</span>';
 
         let ventasDisplay = '$' + ventasUSDSemana.toFixed(2);
         if (ventasCUPSemana > 0) {
-          ventasDisplay += '<span class="text-[10px] font-semibold text-amber-300 font-mono block">' + ventasCUPSemana.toLocaleString('es-ES') + ' CUP</span>';
+          ventasDisplay += '<span class="text-[10px] font-semibold text-yellow-300 font-mono block">' + ventasCUPSemana.toLocaleString('es-ES') + ' CUP</span>';
         }
 
         let cardHeader = '<div class="p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-zinc-950">' +
           '<div class="flex items-center gap-3.5">' +
-            '<div class="w-14 h-14 rounded-2xl bg-amber-950/60 border border-amber-500/25 flex items-center justify-center text-white overflow-hidden shrink-0 shadow-md">' +
+            '<div class="w-14 h-14 rounded-2xl bg-yellow-950/30 border border-yellow-500/25 flex items-center justify-center text-white overflow-hidden shrink-0 shadow-md">' +
               avatarHtml +
             '</div>' +
             '<div>' +
               '<div class="flex items-center gap-2">' +
                 '<h4 class="text-base font-bold text-white tracking-tight">' + g.nombre + '</h4>' +
-                '<span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/25">' +
+                '<span class="text-[10px] px-2 py-0.5 rounded-full bg-yellow-500/10 text-yellow-300 border border-yellow-500/25">' +
                   (g.zona || 'Gestor') +
                 '</span>' +
               '</div>' +
-              '<div class="flex items-center flex-wrap gap-x-3 gap-y-1 text-xs text-amber-400/60 mt-1">' +
-                '<a href="https://wa.me/' + (g.telefono || '').replace(/\D/g, '') + '" target="_blank" class="hover:text-amber-400 flex items-center gap-1 font-mono">' +
-                  '<i data-lucide="phone" class="w-3.5 h-3.5 text-amber-400"></i> ' + (g.telefono || 'Sin teléfono') +
+              '<div class="flex items-center flex-wrap gap-x-3 gap-y-1 text-xs text-yellow-300/70 mt-1">' +
+                '<a href="https://wa.me/' + (g.telefono || '').replace(/\D/g, '') + '" target="_blank" class="hover:text-yellow-400 flex items-center gap-1 font-mono">' +
+                  '<i data-lucide="phone" class="w-3.5 h-3.5 text-yellow-400"></i> ' + (g.telefono || 'Sin teléfono') +
                 '</a>' +
-                (g.telefonoSecundario ? '<span class="text-zinc-600">•</span><span class="font-mono text-amber-400/60">' + g.telefonoSecundario + '</span>' : '') +
+                (g.telefonoSecundario ? '<span class="text-zinc-600">•</span><span class="font-mono text-yellow-300/70">' + g.telefonoSecundario + '</span>' : '') +
               '</div>' +
             '</div>' +
           '</div>' +
-          '<div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 bg-black/70 p-3 rounded-xl border border-amber-500/20 text-center">' +
-            '<div><span class="text-[10px] text-amber-400/60 uppercase block font-semibold">Vales Semana</span><span class="text-sm font-black text-white font-mono">' + valesSemanaGestor.length + '</span></div>' +
-            '<div><span class="text-[10px] text-amber-400/60 uppercase block font-semibold">Equipos</span><span class="text-sm font-black text-amber-400 font-mono">' + equiposSemana + '</span></div>' +
-            '<div><span class="text-[10px] text-amber-400/60 uppercase block font-semibold">Ventas</span><span class="text-sm font-bold text-teal-400 font-mono block">' + ventasDisplay + '</span></div>' +
+          '<div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 bg-black/70 p-3 rounded-xl border border-yellow-500/20 text-center">' +
+            '<div><span class="text-[10px] text-yellow-300/70 uppercase block font-semibold">Vales Semana</span><span class="text-sm font-black text-white font-mono">' + valesSemanaGestor.length + '</span></div>' +
+            '<div><span class="text-[10px] text-yellow-300/70 uppercase block font-semibold">Equipos</span><span class="text-sm font-black text-yellow-400 font-mono">' + equiposSemana + '</span></div>' +
+            '<div><span class="text-[10px] text-yellow-300/70 uppercase block font-semibold">Ventas</span><span class="text-sm font-bold text-teal-400 font-mono block">' + ventasDisplay + '</span></div>' +
             '<div><span class="text-[10px] text-yellow-300 uppercase block font-bold">Comisión Semana</span><span class="text-sm font-black text-yellow-300 font-mono">' + comisionTotalSemanaCUP.toLocaleString('es-ES') + ' CUP</span></div>' +
           '</div>' +
-          '<div class="flex items-center gap-2">' +
-            '<button onclick="toggleSubmenuVentas(\'' + g.id + '\')" class="px-3.5 py-2 rounded-xl bg-amber-600/20 hover:bg-amber-600/40 text-amber-300 border border-amber-500/30 text-xs font-bold flex items-center gap-1.5 transition-all">' +
+          '<div class="flex items-center gap-2 flex-wrap">' +
+            '<button onclick="enviarResumenWhatsAppGestor(\'' + g.id + '\')" title="Enviar resumen semanal de comisiones por WhatsApp" class="px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-emerald-950/40 border border-emerald-400/40 transition-all cursor-pointer">' +
+              '<i class="fa-brands fa-whatsapp text-sm text-white"></i>' +
+              '<span>WhatsApp Resumen</span>' +
+            '</button>' +
+            '<button onclick="toggleSubmenuVentas(\'' + g.id + '\')" class="px-3.5 py-2 rounded-xl bg-yellow-500/15 hover:bg-yellow-500/30 text-yellow-300 border border-yellow-500/30 text-xs font-bold flex items-center gap-1.5 transition-all">' +
               '<i data-lucide="receipt" class="w-4 h-4"></i>' +
-              '<span>Ver Vales y Ventas (' + valesSemanaGestor.length + ')</span>' +
+              '<span>Ver Vales (' + valesSemanaGestor.length + ')</span>' +
               '<i id="chevron-' + g.id + '" data-lucide="chevron-down" class="w-3.5 h-3.5 transition-transform"></i>' +
             '</button>' +
-            '<button onclick="abrirModalEditarGestor(\'' + g.id + '\')" title="Editar Gestor" class="p-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-amber-300/70 border border-amber-500/15">' +
-              '<i data-lucide="edit-3" class="w-4 h-4"></i>' +
-            '</button>' +
-          '</div>' +
-        '</div>';
+            (currentUser && currentUser.role === 'ADMIN' ? '<button onclick="abrirModalEditarGestor(\'' + g.id + '\')" title="Editar Gestor" class="p-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-yellow-300/80 border border-yellow-500/15"><i data-lucide="edit-3" class="w-4 h-4"></i></button>' : '') +
+          '</div>';
 
         // Submenu
         let liquidarBtn = comisionPendienteSemanaCUP > 0
-          ? '<button onclick="liquidarSemanaGestor(\'' + g.nombre + '\')" class="px-3.5 py-1.5 rounded-xl bg-yellow-600 hover:bg-yellow-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-amber-950/30 transition-all"><i data-lucide="check-circle" class="w-4 h-4"></i><span>Liquidar ' + comisionPendienteSemanaCUP.toLocaleString('es-ES') + ' CUP Pendientes</span></button>'
-          : '<span class="text-xs text-amber-400 font-bold bg-emerald-950/40 border border-amber-500/25 px-3 py-1 rounded-xl">✓ Comisiones al Día</span>';
+          ? '<button onclick="liquidarSemanaGestor(\'' + g.nombre + '\')" class="px-3.5 py-1.5 rounded-xl bg-yellow-600 hover:bg-yellow-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-yellow-950/20 transition-all"><i data-lucide="check-circle" class="w-4 h-4"></i><span>Liquidar ' + comisionPendienteSemanaCUP.toLocaleString('es-ES') + ' CUP Pendientes</span></button>'
+          : '<span class="text-xs text-yellow-400 font-bold bg-emerald-950/40 border border-yellow-500/25 px-3 py-1 rounded-xl">✓ Comisiones al Día</span>';
 
         let submenuContent = '';
         if (valesSemanaGestor.length === 0) {
-          submenuContent = '<div class="p-6 text-center text-amber-500/40 text-xs bg-zinc-950/40 rounded-xl border border-amber-500/20/80">No hay vales registrados para este gestor en esta semana. Pega un vale para comenzar.</div>';
+          submenuContent = '<div class="p-6 text-center text-yellow-500/50 text-xs bg-zinc-950/40 rounded-xl border border-yellow-500/20">No hay vales registrados para este gestor en esta semana. Pega un vale para comenzar.</div>';
         } else {
           // Tabla estructurada
           let rowsHtml = '';
@@ -1458,38 +1466,38 @@
             const v = valesSemanaGestor[k];
             let itemsHtml = (v.items || []).map(function(it) {
               const precioStr = v.moneda === 'CUP' ? (it.precioVenta + ' CUP') : ('$' + it.precioVenta + ' USD');
-              return '<div class="flex items-center justify-between gap-2 text-[11px]"><span class="text-amber-100 font-medium">• ' + it.producto + '</span><span class="text-amber-400/60 font-mono text-[10px]">' + it.cantidad + 'x ' + precioStr + ' (' + (it.tipoEquipo || 'Pequeño') + ': ' + (Number(it.comisionUnitCUP) || 1500) + ' CUP)</span></div>';
+              return '<div class="flex items-center justify-between gap-2 text-[11px]"><span class="text-yellow-100 font-medium">• ' + it.producto + '</span><span class="text-yellow-300/70 font-mono text-[10px]">' + it.cantidad + 'x ' + precioStr + ' (' + (it.tipoEquipo || 'Pequeño') + ': ' + (Number(it.comisionUnitCUP) || 1500) + ' CUP)</span></div>';
             }).join('');
 
             const cantTot = (v.items || []).reduce(function(acc, it) { return acc + (Number(it.cantidad) || 1); }, 0);
             const totalVentaStr = v.moneda === 'CUP' ? (Number(v.totalVenta || 0).toLocaleString('es-ES') + ' CUP') : ('$' + Number(v.totalVenta || 0).toFixed(2) + ' USD');
 
             rowsHtml += '<tr class="hover:bg-zinc-950/60 transition-colors">' +
-              '<td class="px-4 py-3 font-mono font-bold text-amber-300"><div>' + v.folio + '</div><span class="text-[10px] text-amber-500/40 font-normal">' + v.fecha + '</span></td>' +
-              '<td class="px-4 py-3"><div class="font-bold text-white">' + v.clienteNombre + '</div>' + (v.clienteTelefono ? '<div class="text-[10px] text-amber-400/60 font-mono">' + v.clienteTelefono + '</div>' : '') + '</td>' +
-              '<td class="px-4 py-3 text-amber-300/70 text-[11px] max-w-xs truncate" title="' + (v.direccion || '') + '">' + (v.direccion || 'Sin dirección') + '</td>' +
+              '<td class="px-4 py-3 font-mono font-bold text-yellow-300"><div>' + v.folio + '</div><span class="text-[10px] text-yellow-500/50 font-normal">' + v.fecha + '</span></td>' +
+              '<td class="px-4 py-3"><div class="font-bold text-white">' + v.clienteNombre + '</div>' + (v.clienteTelefono ? '<div class="text-[10px] text-yellow-300/70 font-mono">' + v.clienteTelefono + '</div>' : '') + '</td>' +
+              '<td class="px-4 py-3 text-yellow-300/80 text-[11px] max-w-xs truncate" title="' + (v.direccion || '') + '">' + (v.direccion || 'Sin dirección') + '</td>' +
               '<td class="px-4 py-3"><div class="space-y-1">' + itemsHtml + '</div></td>' +
               '<td class="px-4 py-3 text-center font-bold text-white font-mono">' + cantTot + '</td>' +
-              '<td class="px-4 py-3 text-right font-black ' + (v.moneda === 'CUP' ? 'text-amber-300' : 'text-amber-400') + ' font-mono">' + totalVentaStr + '</td>' +
+              '<td class="px-4 py-3 text-right font-black ' + (v.moneda === 'CUP' ? 'text-yellow-300' : 'text-yellow-400') + ' font-mono">' + totalVentaStr + '</td>' +
               '<td class="px-4 py-3 text-right font-black text-yellow-300 font-mono">' + Number(v.granComisionCUP || 0).toLocaleString('es-ES') + ' CUP</td>' +
               '<td class="px-4 py-3 text-center">' +
                 (v.estadoComision === 'PAGADA' 
-                  ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/25">Pagada</span>'
+                  ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-yellow-500/20 text-yellow-300 border border-yellow-500/25">Pagada</span>'
                   : '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30">Pendiente</span>') +
               '</td>' +
               '<td class="px-4 py-3 text-center">' +
                 '<div class="flex items-center justify-center gap-1.5">' +
-                  '<button onclick="verDetalleVale(\'' + v.id + '\')" title="Ver Detalle" class="p-1 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-amber-300/70"><i data-lucide="eye" class="w-3.5 h-3.5"></i></button>' +
-                  '<button onclick="abrirModalEditarVale(\'' + v.id + '\')" title="Editar Vale" class="p-1 rounded-lg bg-amber-950/40 hover:bg-amber-900/80 text-amber-300 border border-amber-500/25"><i data-lucide="edit-2" class="w-3.5 h-3.5"></i></button>' +
+                  '<button onclick="verDetalleVale(\'' + v.id + '\')" title="Ver Detalle" class="p-1 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-yellow-300/80"><i data-lucide="eye" class="w-3.5 h-3.5"></i></button>' +
+                  '<button onclick="abrirModalEditarVale(\'' + v.id + '\')" title="Editar Vale" class="p-1 rounded-lg bg-yellow-950/20 hover:bg-yellow-950/40 text-yellow-300 border border-yellow-500/25"><i data-lucide="edit-2" class="w-3.5 h-3.5"></i></button>' +
                   '<button onclick="eliminarVale(\'' + v.id + '\')" title="Eliminar Vale" class="p-1 rounded-lg bg-zinc-900 hover:bg-rose-900/50 text-rose-400"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button>' +
                 '</div>' +
               '</td>' +
             '</tr>';
           }
 
-          let tableHtml = '<div class="overflow-x-auto border border-amber-500/20 rounded-xl">' +
+          let tableHtml = '<div class="overflow-x-auto border border-yellow-500/20 rounded-xl">' +
             '<table class="w-full text-left text-xs border-collapse">' +
-              '<thead class="bg-zinc-950 text-amber-400/60 border-b border-amber-500/20 uppercase text-[10px]">' +
+              '<thead class="bg-zinc-950 text-yellow-300/70 border-b border-yellow-500/20 uppercase text-[10px]">' +
                 '<tr>' +
                   '<th class="px-4 py-2.5">Folio / Fecha</th>' +
                   '<th class="px-4 py-2.5">Cliente</th>' +
@@ -1502,7 +1510,7 @@
                   '<th class="px-4 py-2.5 text-center">Acción</th>' +
                 '</tr>' +
               '</thead>' +
-              '<tbody class="divide-y divide-amber-500/10/60 bg-black">' + rowsHtml + '</tbody>' +
+              '<tbody class="divide-y divide-yellow-500/10 bg-black">' + rowsHtml + '</tbody>' +
             '</table>' +
           '</div>';
 
@@ -1510,29 +1518,29 @@
           let valesOriginalesCards = '';
           for (let m = 0; m < valesSemanaGestor.length; m++) {
             const valOrig = valesSemanaGestor[m];
-            valesOriginalesCards += '<div class="bg-zinc-950/90 border border-amber-500/20 rounded-xl p-3.5 relative space-y-2">' +
-              '<div class="flex items-center justify-between border-b border-amber-500/20/80 pb-1.5">' +
-                '<span class="font-mono text-[10px] font-bold text-amber-400">' + valOrig.folio + ' • ' + valOrig.fecha + '</span>' +
+            valesOriginalesCards += '<div class="bg-zinc-950/90 border border-yellow-500/20 rounded-xl p-3.5 relative space-y-2">' +
+              '<div class="flex items-center justify-between border-b border-yellow-500/20 pb-1.5">' +
+                '<span class="font-mono text-[10px] font-bold text-yellow-400">' + valOrig.folio + ' • ' + valOrig.fecha + '</span>' +
                 '<div class="flex items-center gap-1.5">' +
-                  '<button onclick="copiarValePorId(\'' + valOrig.id + '\')" title="Copiar este vale" class="px-2 py-0.5 rounded bg-zinc-900 hover:bg-zinc-800 text-[10px] text-amber-300/70 flex items-center gap-1 font-sans">' +
+                  '<button onclick="copiarValePorId(\'' + valOrig.id + '\')" title="Copiar este vale" class="px-2 py-0.5 rounded bg-zinc-900 hover:bg-zinc-800 text-[10px] text-yellow-300/80 flex items-center gap-1 font-sans">' +
                     '<i data-lucide="copy" class="w-3 h-3"></i> Copiar' +
                   '</button>' +
-                  '<span class="px-2 py-0.5 rounded text-[10px] font-bold ' + (valOrig.estadoComision === 'PAGADA' ? 'bg-amber-500/20 text-amber-300 border border-amber-500/25' : 'bg-rose-500/20 text-rose-300 border border-rose-500/30') + '">' +
+                  '<span class="px-2 py-0.5 rounded text-[10px] font-bold ' + (valOrig.estadoComision === 'PAGADA' ? 'bg-yellow-500/20 text-yellow-300 border border-yellow-500/25' : 'bg-rose-500/20 text-rose-300 border border-rose-500/30') + '">' +
                     valOrig.estadoComision +
                   '</span>' +
                 '</div>' +
               '</div>' +
-              '<pre class="text-[11px] text-amber-300/70 font-mono whitespace-pre-wrap leading-relaxed max-h-56 overflow-y-auto bg-black p-2.5 rounded-lg border border-amber-500/20/60">' + (valOrig.rawTextoWhatsApp || 'Sin texto original guardado') + '</pre>' +
+              '<pre class="text-[11px] text-yellow-300/80 font-mono whitespace-pre-wrap leading-relaxed max-h-56 overflow-y-auto bg-black p-2.5 rounded-lg border border-yellow-500/20">' + (valOrig.rawTextoWhatsApp || 'Sin texto original guardado') + '</pre>' +
             '</div>';
           }
 
           let valesCompletosSection = '<div class="space-y-3 pt-2">' +
             '<div class="flex items-center justify-between">' +
-              '<h6 class="text-[11px] font-bold text-amber-300 uppercase tracking-wider flex items-center gap-1.5">' +
-                '<i data-lucide="file-text" class="w-3.5 h-3.5 text-amber-400"></i>' +
+              '<h6 class="text-[11px] font-bold text-yellow-300 uppercase tracking-wider flex items-center gap-1.5">' +
+                '<i data-lucide="file-text" class="w-3.5 h-3.5 text-yellow-400"></i>' +
                 'Vales Completos Originales de WhatsApp (con Emojis y Formato):' +
               '</h6>' +
-              '<span class="text-[10px] text-amber-500/40 font-mono">' + valesSemanaGestor.length + ' vales listados</span>' +
+              '<span class="text-[10px] text-yellow-500/50 font-mono">' + valesSemanaGestor.length + ' vales listados</span>' +
             '</div>' +
             '<div class="grid grid-cols-1 md:grid-cols-2 gap-3">' + valesOriginalesCards + '</div>' +
           '</div>';
@@ -1540,14 +1548,14 @@
           submenuContent = tableHtml + valesCompletosSection;
         }
 
-        let submenu = '<div id="submenu-ventas-' + g.id + '" class="hidden border-t border-amber-500/20 bg-black/90 p-5 space-y-5">' +
+        let submenu = '<div id="submenu-ventas-' + g.id + '" class="hidden border-t border-yellow-500/20 bg-black/90 p-5 space-y-5">' +
           '<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">' +
             '<div>' +
               '<h5 class="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-2">' +
-                '<i data-lucide="receipt-text" class="w-4 h-4 text-amber-400"></i>' +
+                '<i data-lucide="receipt-text" class="w-4 h-4 text-yellow-400"></i>' +
                 'Vales de Venta de ' + g.nombre + ' (Semana: ' + getWeekDateRange(appState.semanaActiva).label + ')' +
               '</h5>' +
-              '<p class="text-[11px] text-amber-400/60">Puedes consultar la tabla estructurada o ver los vales enteros tal como llegaron por WhatsApp con sus emojis.</p>' +
+              '<p class="text-[11px] text-yellow-300/70">Puedes consultar la tabla estructurada o ver los vales enteros tal como llegaron por WhatsApp con sus emojis.</p>' +
             '</div>' +
             liquidarBtn +
           '</div>' +
@@ -1610,7 +1618,7 @@
 
       document.getElementById('resumen-modal-kpi-vales').textContent = valesSemana.length;
       document.getElementById('resumen-modal-kpi-equipos').textContent = totEquipos;
-      document.getElementById('resumen-modal-kpi-ventas').innerHTML = '$' + totVentasUSD.toFixed(2) + ' USD<br><span class="text-[11px] text-amber-300">' + totVentasCUP.toLocaleString('es-ES') + ' CUP</span>';
+      document.getElementById('resumen-modal-kpi-ventas').innerHTML = '$' + totVentasUSD.toFixed(2) + ' USD<br><span class="text-[11px] text-yellow-300">' + totVentasCUP.toLocaleString('es-ES') + ' CUP</span>';
       document.getElementById('resumen-modal-kpi-comisiones').textContent = totComisionesCUP.toLocaleString('es-ES') + ' CUP';
 
       const tbody = document.getElementById('resumen-modal-tabla-tbody');
@@ -1625,7 +1633,7 @@
       }
 
       if (gestoresResumen.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="8" class="text-center p-4 text-amber-500/40">No hay registros para mostrar.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="8" class="text-center p-4 text-yellow-500/50">No hay registros para mostrar.</td></tr>';
       } else {
         for (let j = 0; j < gestoresResumen.length; j++) {
           const g = gestoresResumen[j];
@@ -1642,14 +1650,14 @@
           const tr = document.createElement('tr');
           tr.className = 'hover:bg-zinc-950/80';
           tr.innerHTML = '<td class="px-4 py-2.5 font-bold text-white">' + g.nombre + '</td>' +
-            '<td class="px-4 py-2.5 font-mono text-amber-400/60">' + (g.telefono || 'Sin tel') + '</td>' +
+            '<td class="px-4 py-2.5 font-mono text-yellow-300/70">' + (g.telefono || 'Sin tel') + '</td>' +
             '<td class="px-4 py-2.5 text-center font-bold text-white">' + valesG.length + '</td>' +
-            '<td class="px-4 py-2.5 text-center font-bold text-amber-400">' + eq + '</td>' +
-            '<td class="px-4 py-2.5 text-right font-mono text-amber-400">$' + usd.toFixed(2) + '</td>' +
-            '<td class="px-4 py-2.5 text-right font-mono text-amber-300">' + cup.toLocaleString('es-ES') + '</td>' +
+            '<td class="px-4 py-2.5 text-center font-bold text-yellow-400">' + eq + '</td>' +
+            '<td class="px-4 py-2.5 text-right font-mono text-yellow-400">$' + usd.toFixed(2) + '</td>' +
+            '<td class="px-4 py-2.5 text-right font-mono text-yellow-300">' + cup.toLocaleString('es-ES') + '</td>' +
             '<td class="px-4 py-2.5 text-right font-mono font-black text-yellow-300">' + com.toLocaleString('es-ES') + ' CUP</td>' +
             '<td class="px-4 py-2.5 text-center">' +
-              (valesG.length === 0 ? '<span class="text-amber-500/40 font-mono text-[10px]">Sin ventas</span>' : (pendiente === 0 ? '<span class="text-amber-400 font-bold text-[10px]">PAGADA</span>' : '<span class="text-rose-400 font-bold text-[10px]">PENDIENTE (' + pendiente.toLocaleString('es-ES') + ' CUP)</span>')) +
+              (valesG.length === 0 ? '<span class="text-yellow-500/50 font-mono text-[10px]">Sin ventas</span>' : (pendiente === 0 ? '<span class="text-yellow-400 font-bold text-[10px]">PAGADA</span>' : '<span class="text-rose-400 font-bold text-[10px]">PENDIENTE (' + pendiente.toLocaleString('es-ES') + ' CUP)</span>')) +
             '</td>';
           tbody.appendChild(tr);
         }
@@ -2054,21 +2062,21 @@
         const tr = document.createElement('tr');
         tr.innerHTML = '<td class="px-3 py-2">' +
             '<input type="text" value="' + (it.producto || '') + '" oninput="actualizarItemProp(' + idx + ', \'producto\', this.value)" ' +
-                   'placeholder="Nombre del equipo" class="w-full bg-black border border-amber-500/15 text-white rounded px-2 py-1 text-xs">' +
+                   'placeholder="Nombre del equipo" class="w-full bg-black border border-yellow-500/15 text-white rounded px-2 py-1 text-xs">' +
           '</td>' +
           '<td class="px-2 py-2 text-center">' +
-            '<select onchange="actualizarTipoEquipoItem(' + idx + ', this.value)" class="bg-black border border-amber-500/15 text-[11px] font-semibold text-amber-300 rounded px-1.5 py-1">' +
+            '<select onchange="actualizarTipoEquipoItem(' + idx + ', this.value)" class="bg-black border border-yellow-500/15 text-[11px] font-semibold text-yellow-300 rounded px-1.5 py-1">' +
               '<option value="Pequeño" ' + (it.tipoEquipo === 'Pequeño' ? 'selected' : '') + '>Pequeño (1500)</option>' +
               '<option value="Grande" ' + (it.tipoEquipo === 'Grande' ? 'selected' : '') + '>Grande (2500)</option>' +
             '</select>' +
           '</td>' +
           '<td class="px-3 py-2">' +
             '<input type="number" min="1" value="' + cant + '" oninput="actualizarItemProp(' + idx + ', \'cantidad\', this.value)" ' +
-                   'class="w-full bg-black border border-amber-500/15 text-center font-bold text-white rounded px-1.5 py-1 text-xs">' +
+                   'class="w-full bg-black border border-yellow-500/15 text-center font-bold text-white rounded px-1.5 py-1 text-xs">' +
           '</td>' +
           '<td class="px-3 py-2">' +
             '<input type="number" step="0.01" min="0" value="' + pVenta + '" oninput="actualizarItemProp(' + idx + ', \'precioVenta\', this.value)" ' +
-                   'class="w-full bg-black border border-amber-500/15 text-right font-bold text-amber-400 rounded px-2 py-1 text-xs">' +
+                   'class="w-full bg-black border border-yellow-500/15 text-right font-bold text-yellow-400 rounded px-2 py-1 text-xs">' +
           '</td>' +
           '<td class="px-3 py-2 text-right font-bold text-white font-mono">' +
             subtotalStr +
@@ -2078,7 +2086,7 @@
                    'class="w-full bg-black border border-yellow-500/30 text-right font-bold text-yellow-300 rounded px-2 py-1 text-xs">' +
           '</td>' +
           '<td class="px-2 py-2 text-center">' +
-            '<button type="button" onclick="eliminarFilaProducto(' + idx + ')" class="text-amber-500/40 hover:text-rose-400 p-1">' +
+            '<button type="button" onclick="eliminarFilaProducto(' + idx + ')" class="text-yellow-500/50 hover:text-rose-400 p-1">' +
               '<i data-lucide="trash-2" class="w-3.5 h-3.5"></i>' +
             '</button>' +
           '</td>';
@@ -2497,38 +2505,38 @@
       let itemsListHtml = (v.items || []).map(function(it) {
         const subtotal = (Number(it.cantidad) || 1) * (Number(it.precioVenta) || 0);
         const subtotalStr = v.moneda === 'CUP' ? (subtotal.toLocaleString('es-ES') + ' CUP') : ('$' + subtotal.toFixed(2) + ' USD');
-        return '<div class="flex justify-between bg-black p-2 rounded border border-amber-500/20">' +
+        return '<div class="flex justify-between bg-black p-2 rounded border border-yellow-500/20">' +
           '<span class="text-white font-medium">• ' + it.cantidad + 'x ' + it.producto + ' (' + (it.tipoEquipo || 'Pequeño') + ')</span>' +
-          '<span class="font-mono font-bold ' + (v.moneda === 'CUP' ? 'text-amber-300' : 'text-amber-400') + '">' + subtotalStr + '</span>' +
+          '<span class="font-mono font-bold ' + (v.moneda === 'CUP' ? 'text-yellow-300' : 'text-yellow-400') + '">' + subtotalStr + '</span>' +
         '</div>';
       }).join('');
 
       let totalVentaStr = v.moneda === 'CUP' ? (Number(v.totalVenta || 0).toLocaleString('es-ES') + ' CUP') : ('$' + Number(v.totalVenta || 0).toFixed(2) + ' USD');
 
       cont.innerHTML = '<div class="space-y-3">' +
-        '<div class="flex items-center justify-between border-b border-amber-500/20 pb-2">' +
+        '<div class="flex items-center justify-between border-b border-yellow-500/20 pb-2">' +
           '<div>' +
-            '<span class="text-[10px] text-amber-400 font-mono font-bold block">FOLIO: ' + v.folio + '</span>' +
+            '<span class="text-[10px] text-yellow-400 font-mono font-bold block">FOLIO: ' + v.folio + '</span>' +
             '<span class="text-white font-bold text-sm">' + v.clienteNombre + '</span>' +
-            (v.clienteCI ? '<span class="text-amber-400/60 font-mono block text-[11px]">CI: ' + v.clienteCI + '</span>' : '') +
+            (v.clienteCI ? '<span class="text-yellow-300/70 font-mono block text-[11px]">CI: ' + v.clienteCI + '</span>' : '') +
           '</div>' +
           '<div class="text-right">' +
-            '<span class="text-amber-400/60 text-[11px] block">' + v.fecha + ' (Semana ' + v.semana + ')</span>' +
-            '<span class="font-bold ' + (v.moneda === 'CUP' ? 'text-amber-300' : 'text-amber-400') + ' text-sm">' + totalVentaStr + '</span>' +
+            '<span class="text-yellow-300/70 text-[11px] block">' + v.fecha + ' (Semana ' + v.semana + ')</span>' +
+            '<span class="font-bold ' + (v.moneda === 'CUP' ? 'text-yellow-300' : 'text-yellow-400') + ' text-sm">' + totalVentaStr + '</span>' +
           '</div>' +
         '</div>' +
-        '<div class="grid grid-cols-2 gap-2 text-amber-300/70">' +
+        '<div class="grid grid-cols-2 gap-2 text-yellow-300/80">' +
           '<div><strong>Gestor:</strong> ' + v.gestorNombre + ' (' + (v.gestorTelefono || 'Sin tel') + ')</div>' +
           '<div><strong>Tel Cliente:</strong> ' + (v.clienteTelefono || 'Sin tel') + '</div>' +
           '<div class="col-span-2"><strong>Dirección:</strong> ' + (v.direccion || 'No especificada') + '</div>' +
           '<div><strong>Método de Pago:</strong> ' + v.moneda + '</div>' +
           '<div><strong>Comisión Gestor:</strong> <span class="text-yellow-300 font-bold">' + Number(v.granComisionCUP || 0).toLocaleString('es-ES') + ' CUP</span></div>' +
         '</div>' +
-        '<div class="border-t border-amber-500/20 pt-2">' +
-          '<span class="text-[10px] font-bold text-amber-400/60 uppercase block mb-1">Equipos en el Vale:</span>' +
+        '<div class="border-t border-yellow-500/20 pt-2">' +
+          '<span class="text-[10px] font-bold text-yellow-300/70 uppercase block mb-1">Equipos en el Vale:</span>' +
           '<div class="space-y-1">' + itemsListHtml + '</div>' +
         '</div>' +
-        (v.rawTextoWhatsApp ? '<div class="border-t border-amber-500/20 pt-2"><span class="text-[10px] font-bold text-amber-400/60 uppercase block mb-1">Texto Literal de WhatsApp (con Emojis):</span><pre class="bg-black p-2.5 rounded border border-amber-500/20 text-[10px] text-amber-300/70 font-mono whitespace-pre-wrap max-h-48 overflow-y-auto leading-relaxed">' + v.rawTextoWhatsApp + '</pre></div>' : '') +
+        (v.rawTextoWhatsApp ? '<div class="border-t border-yellow-500/20 pt-2"><span class="text-[10px] font-bold text-yellow-300/70 uppercase block mb-1">Texto Literal de WhatsApp (con Emojis):</span><pre class="bg-black p-2.5 rounded border border-yellow-500/20 text-[10px] text-yellow-300/80 font-mono whitespace-pre-wrap max-h-48 overflow-y-auto leading-relaxed">' + v.rawTextoWhatsApp + '</pre></div>' : '') +
       '</div>';
 
       const btnPago = document.getElementById('btn-toggle-pago-vale');
@@ -2549,10 +2557,10 @@
         btnPago.classList.remove('hidden');
         if (v.estadoComision === 'PAGADA') {
           btnPago.textContent = 'Marcar Comisión como PENDIENTE';
-          btnPago.className = 'px-4 py-1.5 rounded-lg text-xs font-bold bg-amber-600/30 text-amber-300 border border-amber-500/40 hover:bg-amber-600/50';
+          btnPago.className = 'px-4 py-1.5 rounded-lg text-xs font-bold bg-yellow-500/20 text-yellow-300 border border-yellow-500/40 hover:bg-yellow-500/40';
         } else {
           btnPago.textContent = '✓ Marcar Comisión como PAGADA';
-          btnPago.className = 'px-4 py-1.5 rounded-lg text-xs font-bold bg-amber-600 hover:bg-amber-500 text-white shadow-md';
+          btnPago.className = 'px-4 py-1.5 rounded-lg text-xs font-bold bg-yellow-500 hover:bg-yellow-400 text-white shadow-md';
         }
 
         btnPago.onclick = function() {
@@ -2573,6 +2581,72 @@
       appState.vales = appState.vales.filter(function(v) { return v.id !== valeId; });
       guardarEnCacheRobusto();
       renderizarTodo();
+    };
+
+    
+    // Función oficial: Enviar Resumen Semanal de Gestor por WhatsApp
+    window.enviarResumenWhatsAppGestor = function(gestorId) {
+      var gestor = appState.gestores.find(function(g) { return g.id === gestorId; });
+      if (!gestor) {
+        alert('Gestor no encontrado.');
+        return;
+      }
+
+      var numLimpio = (gestor.telefono || '').replace(/\D/g, '');
+      if (!numLimpio) {
+        alert('El gestor ' + gestor.nombre + ' no tiene número de teléfono registrado.');
+        return;
+      }
+
+      var valesSemana = appState.vales.filter(function(v) {
+        return v.semana === appState.semanaActiva && v.gestorNombre && v.gestorNombre.toLowerCase().trim() === gestor.nombre.toLowerCase().trim();
+      });
+
+      var totalVales = valesSemana.length;
+      var totalEquipos = 0;
+      var gananciaComisionCUP = 0;
+      var ventasUSD = 0;
+      var ventasCUP = 0;
+
+      valesSemana.forEach(function(v) {
+        gananciaComisionCUP += (Number(v.granComisionCUP) || 0);
+        if (v.moneda === 'CUP') {
+          ventasCUP += (Number(v.totalVenta) || 0);
+        } else {
+          ventasUSD += (Number(v.totalVenta) || 0);
+        }
+        (v.items || []).forEach(function(it) {
+          totalEquipos += (Number(it.cantidad) || 1);
+        });
+      });
+
+      var rangoInfo = getWeekDateRange(appState.semanaActiva);
+      var rangoTexto = rangoInfo ? rangoInfo.label : appState.semanaActiva;
+
+      var msg = '👑 *K y A . PRIMERA MANO* 👑\n' +
+                '📊 *RESUMEN SEMANAL DE GESTOR*\n' +
+                '━━━━━━━━━━━━━━━━━━━━\n' +
+                '👤 *Gestor:* ' + gestor.nombre + '\n' +
+                '📍 *Zona:* ' + (gestor.zona || 'Ventas') + '\n' +
+                '📅 *Ciclo Semanal:* ' + rangoTexto + ' (' + appState.semanaActiva + ')\n' +
+                '━━━━━━━━━━━━━━━━━━━━\n' +
+                '📦 *Cantidad de Vales:* ' + totalVales + '\n' +
+                '⚡ *Equipos Vendidos:* ' + totalEquipos + ' artículo(s)\n';
+
+      if (ventasUSD > 0) {
+        msg += '💵 *Volumen Ventas USD:* $' + ventasUSD.toFixed(2) + ' USD\n';
+      }
+      if (ventasCUP > 0) {
+        msg += '💴 *Volumen Ventas CUP:* ' + ventasCUP.toLocaleString('es-ES') + ' CUP\n';
+      }
+
+      msg += '💰 *GANANCIA COMISIÓN:* ' + gananciaComisionCUP.toLocaleString('es-ES') + ' CUP\n' +
+             '━━━━━━━━━━━━━━━━━━━━\n' +
+             '✨ *¡Excelente trabajo esta semana!*\n' +
+             '_K y A . Primera Mano — Tu Tienda de Confianza_';
+
+      var url = 'https://api.whatsapp.com/send?phone=' + (numLimpio.startsWith('53') ? numLimpio : ('53' + numLimpio)) + '&text=' + encodeURIComponent(msg);
+      window.open(url, '_blank');
     };
 
     window.liquidarSemanaGestor = function(gestorNombre) {
@@ -2752,6 +2826,18 @@
     };
 
     // Inicializar al cargar el DOM
+    
+    // Registro de PWA Service Worker (Instalable como APK Web)
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('./sw.js').then(function(reg) {
+          console.log('PWA ServiceWorker registrado exitosamente: ', reg.scope);
+        }).catch(function(err) {
+          console.log('Error registrando ServiceWorker: ', err);
+        });
+      });
+    }
+  
     document.addEventListener('DOMContentLoaded', inicializar);
 
   })();
