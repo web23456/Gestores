@@ -17,13 +17,13 @@
     window.__EMBEDDED_GESTORES_DB__ = {
       "timestamp": 1729107000000,
       "gestores": [
-        { "id": "G-1", "nombre": "Dayanis García Almanza", "telefono": "51349671", "telefonoSecundario": "", "zona": "Mensajería / Redes", "foto": "", "activo": true },
-        { "id": "G-2", "nombre": "JOSÉ MIGUEL MARTÍNEZ ACOSTA", "telefono": "54822881", "telefonoSecundario": "", "zona": "Plaza de la Revolución", "foto": "", "activo": true },
-        { "id": "G-3", "nombre": "Luis Ariel Calderin", "telefono": "53186933", "telefonoSecundario": "", "zona": "Mensajería / Redes", "foto": "", "activo": true },
-        { "id": "G-4", "nombre": "Yakelin", "telefono": "54286609", "telefonoSecundario": "", "zona": "Mensajería y Redes", "foto": "", "activo": true },
-        { "id": "G-5", "nombre": "Betty", "telefono": "58709199", "telefonoSecundario": "", "zona": "Cotorro", "foto": "", "activo": true },
-        { "id": "G-6", "nombre": "Elizabeth", "telefono": "56974248", "telefonoSecundario": "", "zona": "Cerro", "foto": "", "activo": true },
-        { "id": "G-7", "nombre": "Liz Mariam", "telefono": "54763168", "telefonoSecundario": "", "zona": "Mensajería", "foto": "", "activo": true }
+        { "id": "G-1", "nombre": "Dayanis García Almanza", "username": "dayanis", "password": "dayanis2026", "telefono": "51349671", "telefonoSecundario": "", "zona": "Mensajería / Redes", "foto": "", "activo": true },
+        { "id": "G-2", "nombre": "JOSÉ MIGUEL MARTÍNEZ ACOSTA", "username": "josemiguel", "password": "josemiguel2026", "telefono": "54822881", "telefonoSecundario": "", "zona": "Plaza de la Revolución", "foto": "", "activo": true },
+        { "id": "G-3", "nombre": "Luis Ariel Calderin", "username": "luisariel", "password": "luisariel2026", "telefono": "53186933", "telefonoSecundario": "", "zona": "Mensajería / Redes", "foto": "", "activo": true },
+        { "id": "G-4", "nombre": "Yakelin", "username": "yakelin", "password": "yakelin2026", "telefono": "54286609", "telefonoSecundario": "", "zona": "Mensajería y Redes", "foto": "", "activo": true },
+        { "id": "G-5", "nombre": "Betty", "username": "betty", "password": "betty2026", "telefono": "58709199", "telefonoSecundario": "", "zona": "Cotorro", "foto": "", "activo": true },
+        { "id": "G-6", "nombre": "Elizabeth", "username": "elizabeth", "password": "elizabeth2026", "telefono": "56974248", "telefonoSecundario": "", "zona": "Cerro", "foto": "", "activo": true },
+        { "id": "G-7", "nombre": "Liz Mariam", "username": "liz", "password": "liz2026", "telefono": "54763168", "telefonoSecundario": "", "zona": "Mensajería", "foto": "", "activo": true }
       ],
       "vales": [],
       "semanaActiva": "2026-W42",
@@ -88,12 +88,7 @@
         </button>
       </form>
 
-      <div class="p-3 bg-slate-950/80 rounded-2xl border border-slate-800/80 text-[11px] text-slate-400 space-y-1">
-        <p class="font-bold text-indigo-400">Credenciales de acceso:</p>
-        <p>• <strong>Administrador:</strong> Karel / K@rel.2255 (Control total de todos los gestores)</p>
-        <p>• <strong>Gestores:</strong> Inician sesión con su usuario y sólo ven sus propios vales.</p>
       </div>
-    </div>
   </div>
 
 
@@ -101,7 +96,7 @@
   <!-- BARRA DE NAVEGACIÓN Y CABECERA                           -->
   <!-- ======================================================== -->
   <header class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 shadow-lg">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 min-h-16 py-2.5 flex flex-col md:flex-row md:items-center justify-between gap-3">
       
       <!-- Marca / Logo -->
       <div class="flex items-center gap-3">
@@ -120,12 +115,12 @@
       </div>
 
       <!-- Botones de Acción Global -->
-      <div class="flex items-center flex-wrap gap-2">
+      <div class="flex items-center flex-wrap gap-1.5 sm:gap-2">
 
-        <div id="badge-usuario-sesion" class="px-3 py-1.5 rounded-xl bg-slate-800 border border-slate-700 flex items-center gap-2 text-xs">
+        <div id="badge-usuario-sesion" class="px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl bg-slate-800 border border-slate-700 flex items-center gap-1.5 text-xs">
           <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
-          <span id="label-usuario-sesion" class="font-bold text-white font-mono">Karel</span>
-          <span id="label-rol-sesion" class="text-[10px] px-1.5 py-0.2 rounded bg-indigo-500/20 text-indigo-300 font-mono font-bold">ADMIN</span>
+          <span id="label-usuario-sesion" class="font-bold text-white font-mono text-[11px] sm:text-xs">Karel</span>
+          <span id="label-rol-sesion" class="text-[9px] sm:text-[10px] px-1.5 py-0.2 rounded bg-indigo-500/20 text-indigo-300 font-mono font-bold">ADMIN</span>
         </div>
 
         <button onclick="abrirModalRegistroVale()" 
@@ -586,6 +581,17 @@
           <input type="text" id="gestor-form-nombre" required placeholder="Ej: JOSÉ MIGUEL MARTÍNEZ ACOSTA" class="w-full bg-slate-950 border border-slate-700 text-white rounded-lg px-3 py-2 text-xs">
         </div>
 
+        <div class="grid grid-cols-2 gap-3 p-3 bg-indigo-950/20 border border-indigo-500/30 rounded-xl">
+          <div>
+            <label class="block text-[11px] font-bold text-indigo-300 mb-1">Usuario de Acceso *</label>
+            <input type="text" id="gestor-form-username" required placeholder="Ej: josemiguel" class="w-full bg-slate-950 border border-slate-700 text-white font-mono rounded-lg px-3 py-2 text-xs">
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-indigo-300 mb-1">Contraseña de Acceso *</label>
+            <input type="text" id="gestor-form-password" required placeholder="••••••••" class="w-full bg-slate-950 border border-slate-700 text-white font-mono rounded-lg px-3 py-2 text-xs">
+          </div>
+        </div>
+
         <div class="grid grid-cols-2 gap-3">
           <div>
             <label class="block text-xs text-slate-300 mb-1">Teléfono Principal *</label>
@@ -814,8 +820,9 @@
     // SISTEMA DE CACHE ROBUSTO & MULTI-CAPA
     // --------------------------------------------------------
     const CACHE_KEYS = {
-      PRIMARY: 'ELECTROCONTA_GESTORES_CACHE_PRIMARY_V4',
-      BACKUP: 'ELECTROCONTA_GESTORES_CACHE_BACKUP_V4'
+      PRIMARY: 'ELECTROCONTA_GESTORES_CACHE_PRIMARY_V5',
+      BACKUP: 'ELECTROCONTA_GESTORES_CACHE_BACKUP_V5',
+      SESSION: 'ELECTROCONTA_GESTORES_SESSION_CACHE_V5'
     };
 
     let appState = {
@@ -834,8 +841,12 @@
     function guardarEnCacheRobusto() {
       try {
         const payload = JSON.stringify(appState);
+        // Capa 1: LocalStorage Primario
         localStorage.setItem(CACHE_KEYS.PRIMARY, payload);
+        // Capa 2: LocalStorage Backup Redundante
         localStorage.setItem(CACHE_KEYS.BACKUP, payload);
+        // Capa 3: SessionStorage para persistencia de pestaña activa
+        sessionStorage.setItem(CACHE_KEYS.SESSION, payload);
       } catch (err) {
         console.warn('Advertencia al escribir en caché:', err);
       }
@@ -843,15 +854,23 @@
 
     function cargarDesdeCacheRobusto() {
       try {
+        // Capa 1: LocalStorage Primario
         const primary = localStorage.getItem(CACHE_KEYS.PRIMARY);
         if (primary) {
           const parsed = JSON.parse(primary);
           if (parsed && Array.isArray(parsed.gestores)) return parsed;
         }
+        // Capa 2: LocalStorage Backup
         const backup = localStorage.getItem(CACHE_KEYS.BACKUP);
         if (backup) {
           const parsedBackup = JSON.parse(backup);
           if (parsedBackup && Array.isArray(parsedBackup.gestores)) return parsedBackup;
+        }
+        // Capa 3: SessionStorage
+        const sess = sessionStorage.getItem(CACHE_KEYS.SESSION);
+        if (sess) {
+          const parsedSess = JSON.parse(sess);
+          if (parsedSess && Array.isArray(parsedSess.gestores)) return parsedSess;
         }
       } catch (e) {
         console.warn('Error leyendo de caché:', e);
@@ -970,9 +989,14 @@
 
       for (var k = 0; k < appState.gestores.length; k++) {
         var gest = appState.gestores[k];
-        if (!gest.username && defaultUsers[gest.nombre]) {
-          gest.username = defaultUsers[gest.nombre].u;
-          gest.password = defaultUsers[gest.nombre].p;
+        if (!gest.username) {
+          if (defaultUsers[gest.nombre]) {
+            gest.username = defaultUsers[gest.nombre].u;
+            gest.password = defaultUsers[gest.nombre].p;
+          } else {
+            gest.username = gest.nombre.toLowerCase().replace(/[^a-z0-9]/g, '');
+            gest.password = '123456';
+          }
         }
       }
 
@@ -1499,7 +1523,22 @@
       const fechaRaw = getFieldValue([/^fecha\s*:\s*(.*)/i]);
       const cliente = getFieldValue([/^nombre\s+del\s+cliente\s*:\s*(.*)/i, /^cliente\s*:\s*(.*)/i]);
       const ci = getFieldValue([/^ci\s*:\s*(.*)/i]);
-      const telCliente = getFieldValue([/^telefono\s+del\s+cliente\s*:\s*(.*)/i, /^tel\w*\s+cliente\s*:\s*(.*)/i]);
+      let telCliente = getFieldValue([
+        /^telefono\s+del\s+cliente\s*:\s*(.*)/i, 
+        /^tel\w*\s+cliente\s*:\s*(.*)/i,
+        /^#\s*de\s+telefono\s+del\s+cliente\s*:\s*(.*)/i,
+        /^celular\s+del\s+cliente\s*:\s*(.*)/i,
+        /^celular\s*:\s*(.*)/i,
+        /^whatsapp\s*:\s*(.*)/i
+      ]);
+      if (!telCliente) {
+        for (let i = 0; i < cleanLines.length; i++) {
+          if (/^(?:telefono|tel|cel|celular|movil|whatsapp)/i.test(cleanLines[i]) && !/gestor/i.test(cleanLines[i])) {
+            const mNum = origLines[i].match(/(?:\+?53\s*)?[5-9]\d{7}/);
+            if (mNum) { telCliente = mNum[0]; break; }
+          }
+        }
+      }
       let direccion = getFieldValue([/^direccion\s+del\s+cliente\s*:\s*(.*)/i, /^direccion\s*:\s*(.*)/i]);
       
       if (!direccion) {
@@ -1514,7 +1553,21 @@
       }
 
       const gestor = getFieldValue([/^nombre\s+del\s+gestor\s*:\s*(.*)/i, /^gestor\s*:\s*(.*)/i]);
-      const telGestor = getFieldValue([/^telefono\s+del\s+gestor\s*:\s*(.*)/i, /^#de\s+telefono\s+del\s+gestor\s*:\s*(.*)/i]);
+      let telGestor = getFieldValue([
+        /^telefono\s+del\s+gestor\s*:\s*(.*)/i, 
+        /^#de\s+telefono\s+del\s+gestor\s*:\s*(.*)/i,
+        /^#\s*de\s+telefono\s+del\s+gestor\s*:\s*(.*)/i,
+        /^tel\w*\s+gestor\s*:\s*(.*)/i,
+        /^celular\s+del\s+gestor\s*:\s*(.*)/i
+      ]);
+      if (!telGestor) {
+        for (let i = 0; i < cleanLines.length; i++) {
+          if (/gestor/i.test(cleanLines[i]) && /(?:telefono|tel|cel|#)/i.test(cleanLines[i])) {
+            const mNumG = origLines[i].match(/(?:\+?53\s*)?[5-9]\d{7}/);
+            if (mNumG) { telGestor = mNumG[0]; break; }
+          }
+        }
+      }
       const metodoPago = getFieldValue([/^metodo\s+de\s+pago\s*:\s*(.*)/i, /^pago\s*:\s*(.*)/i]);
 
       const pedLines = [];
@@ -1999,6 +2052,8 @@
       document.getElementById('modal-gestor-titulo').textContent = 'Registrar Nuevo Gestor';
       document.getElementById('form-gestor').reset();
       document.getElementById('gestor-form-id').value = '';
+      document.getElementById('gestor-form-username').value = '';
+      document.getElementById('gestor-form-password').value = '';
       document.getElementById('gestor-form-foto-preview').classList.add('hidden');
       document.getElementById('gestor-form-foto-placeholder').classList.remove('hidden');
       abrirModal('modal-gestor');
@@ -2011,6 +2066,8 @@
       document.getElementById('modal-gestor-titulo').textContent = 'Editar Gestor: ' + g.nombre;
       document.getElementById('gestor-form-id').value = g.id;
       document.getElementById('gestor-form-nombre').value = g.nombre;
+      document.getElementById('gestor-form-username').value = g.username || '';
+      document.getElementById('gestor-form-password').value = g.password || '';
       document.getElementById('gestor-form-tel').value = g.telefono || '';
       document.getElementById('gestor-form-tel2').value = g.telefonoSecundario || '';
       document.getElementById('gestor-form-zona').value = g.zona || '';
@@ -2032,6 +2089,8 @@
     window.guardarGestorForm = function() {
       const id = document.getElementById('gestor-form-id').value;
       const nombre = document.getElementById('gestor-form-nombre').value.trim();
+      const username = (document.getElementById('gestor-form-username').value || '').trim().toLowerCase();
+      const password = (document.getElementById('gestor-form-password').value || '').trim();
       const tel = document.getElementById('gestor-form-tel').value.trim();
       const tel2 = document.getElementById('gestor-form-tel2').value.trim();
       const zona = document.getElementById('gestor-form-zona').value.trim();
@@ -2043,6 +2102,8 @@
           const g = appState.gestores.find(function(x) { return x.id === id; });
           if (g) {
             g.nombre = nombre;
+            g.username = username || g.username;
+            g.password = password || g.password;
             g.telefono = tel;
             g.telefonoSecundario = tel2;
             g.zona = zona;
@@ -2052,6 +2113,8 @@
           appState.gestores.push({
             id: 'G-' + Date.now(),
             nombre: nombre,
+            username: username || nombre.toLowerCase().replace(/[^a-z0-9]/g, ''),
+            password: password || '123456',
             telefono: tel,
             telefonoSecundario: tel2,
             zona: zona || 'Gestor',
