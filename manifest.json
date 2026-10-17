@@ -1,14 +1,20 @@
 {
-  "name": "K y A . Primera Mano — Portal de Gestores",
-  "short_name": "Gestores K y A",
-  "description": "Portal oficial de gestores, vales de venta y comisiones de K y A . Primera Mano",
+  "name": "K y A . Primera Mano — Gestores",
+  "short_name": "K&A Gestores",
+  "description": "Portal oficial para gestores de venta de K y A . Primera Mano",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#000000",
-  "theme_color": "#ffd700",
+  "theme_color": "#000000",
   "icons": [
+    {
+      "src": "./logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
     {
       "src": "./icon-192.png",
       "sizes": "192x192",
