@@ -1182,6 +1182,7 @@
 
     function guardarEnCacheRobusto() {
       try {
+        window.appState = appState;
         const payload = JSON.stringify(appState);
         // Capa 1: LocalStorage Primario
         localStorage.setItem(CACHE_KEYS.PRIMARY, payload);
@@ -1372,6 +1373,7 @@
       actualizarSelectorSemanas();
       verificarSesionPrevia();
       renderizarTodo();
+      window.appState = appState;
     }
 
     // --------------------------------------------------------
@@ -2381,6 +2383,9 @@
       for (var i = 0; i < appState.vales.length; i++) {
         var v = appState.vales[i];
         if (idExcluir && v.id === idExcluir) continue;
+
+        // REGLA: Coincidencia de vales solo aplica al MISMO DÍA (fechas distintas se aceptan)
+        if (candidato.fecha && v.fecha && candidato.fecha !== v.fecha) continue;
 
         var vFolio = (v.folio || '').trim().toUpperCase();
         var vGestor = normalizarCadenaVale(v.gestorNombre);
