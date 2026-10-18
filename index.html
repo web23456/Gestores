@@ -454,6 +454,13 @@
           <span>📝 Pegar Vale</span>
         </button>
 
+        <button onclick="abrirModalPrecargaLote()" 
+                class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-300 hover:to-yellow-400 text-black font-extrabold text-xs flex items-center gap-1.5 shadow-md shadow-yellow-950/30 border border-yellow-400/50 transition-all"
+                title="Pegar varios vales de WhatsApp a la vez y registrarlos juntos">
+          <i data-lucide="zap" class="w-4 h-4 text-black"></i>
+          <span>⚡ Precargar Vale General</span>
+        </button>
+
         <button onclick="abrirModalResumenSemana()" 
                 class="px-3 py-2 rounded-xl bg-gradient-to-r from-yellow-600 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-yellow-950/30 border border-yellow-500/30 transition-all"
                 title="Generar resumen de la semana">
@@ -621,6 +628,124 @@
     </div>
 
   </main>
+
+  <!-- ======================================================== -->
+  <!-- MODAL: PRECARGAR VALE GENERAL (PROCESAR EN LOTE / WHATSAPP)-->
+  <!-- ======================================================== -->
+  <div id="modal-precarga-lote" class="fixed inset-0 bg-black/85 backdrop-blur-sm z-50 hidden items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-zinc-950 border border-yellow-500/20 rounded-2xl w-full max-w-4xl overflow-hidden shadow-2xl animate-in zoom-in-95 my-8">
+      
+      <div class="px-6 py-4 border-b border-yellow-500/20 flex items-center justify-between bg-gradient-to-r from-amber-950/40 via-yellow-950/20 to-zinc-950">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-400 to-yellow-600 text-black flex items-center justify-center font-black shadow-md shadow-yellow-950/40">
+            <i data-lucide="zap" class="w-5 h-5 text-black"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-white text-base flex items-center gap-2">
+              Precargar Vale General
+              <span class="text-[10px] px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-300 border border-yellow-500/30 font-mono font-bold">Lote Inteligente</span>
+            </h3>
+            <p class="text-[11px] text-yellow-300/70">Pega un historial o lote completo de WhatsApp con múltiples facturas/vales para procesarlos todos a la vez</p>
+          </div>
+        </div>
+        <button onclick="cerrarModal('modal-precarga-lote')" class="text-yellow-300/70 hover:text-white p-1">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="p-6 space-y-4 text-xs">
+        <!-- ÁREA DE PEGAR -->
+        <div class="p-4 bg-black border border-yellow-500/25 rounded-xl space-y-3">
+          <div class="flex items-center justify-between">
+            <label class="text-xs font-bold text-yellow-300 flex items-center gap-1.5 uppercase tracking-wide">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-yellow-400"></i>
+              Pegar Exportación o Chat con Múltiples Vales:
+            </label>
+            <div class="flex items-center gap-2">
+              <button type="button" onclick="pegarEnLoteDesdePortapapeles()" 
+                      class="px-2.5 py-1 rounded-lg bg-yellow-500/20 hover:bg-yellow-500/40 text-yellow-300 border border-yellow-500/40 text-xs font-bold flex items-center gap-1 transition-all">
+                <i data-lucide="clipboard" class="w-3.5 h-3.5"></i> Pegar Portapapeles
+              </button>
+              <button type="button" onclick="document.getElementById('input-precarga-lote-texto').value=''" 
+                      class="px-2.5 py-1 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-yellow-300/80 text-xs font-medium">
+                Limpiar
+              </button>
+            </div>
+          </div>
+
+          <textarea id="input-precarga-lote-texto" rows="7" 
+                    placeholder="Pega aquí el bloque de texto con 1, 5, 20 o más vales pegados juntos directamente de WhatsApp...&#10;&#10;El algoritmo inteligente detectará automáticamente cada factura individual ('📝Factura a llenar...'), los encabezados de WhatsApp, extraerá fechas, gestores (registrándolos si no existen), clientes, productos, y filtrará los duplicados." 
+                    class="w-full bg-zinc-950 border border-yellow-500/20 text-white rounded-lg p-3 text-xs font-mono focus:ring-1 focus:ring-yellow-400 focus:outline-none"></textarea>
+
+          <div class="flex items-center justify-between flex-wrap gap-2 pt-1">
+            <span class="text-[11px] text-yellow-500/70">
+              💡 No importa si incluye marcas de hora de WhatsApp tipo <code>[10/10 12:33 p. m.] Mi Amor:</code>. El parser las aísla perfectamente.
+            </span>
+            <button type="button" onclick="analizarLoteVales()" 
+                    class="px-4 py-2 bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-300 hover:to-yellow-400 text-black text-xs font-black rounded-lg shadow-md flex items-center gap-1.5 transition-all">
+              <i data-lucide="cpu" class="w-4 h-4 text-black"></i>
+              <span>Analizar Vales en el Texto ⚡</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- CONTENEDOR DE RESULTADOS Y PREVISUALIZACIÓN -->
+        <div id="precarga-lote-resultados" class="hidden space-y-4">
+          <!-- RESUMEN -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+            <div class="p-3 bg-black rounded-xl border border-yellow-500/20">
+              <span class="text-[10px] text-yellow-300/70 uppercase font-semibold block">Vales Encontrados</span>
+              <span id="lote-kpi-total" class="text-xl font-black text-white font-mono">0</span>
+            </div>
+            <div class="p-3 bg-black rounded-xl border border-emerald-500/30">
+              <span class="text-[10px] text-emerald-400 uppercase font-semibold block">Listos Para Registrar</span>
+              <span id="lote-kpi-validos" class="text-xl font-black text-emerald-300 font-mono">0</span>
+            </div>
+            <div class="p-3 bg-black rounded-xl border border-rose-500/30">
+              <span class="text-[10px] text-rose-400 uppercase font-semibold block">Duplicados Descartados</span>
+              <span id="lote-kpi-duplicados" class="text-xl font-black text-rose-400 font-mono">0</span>
+            </div>
+            <div class="p-3 bg-black rounded-xl border border-yellow-500/20">
+              <span class="text-[10px] text-yellow-300 uppercase font-semibold block">Gestores Nuevos</span>
+              <span id="lote-kpi-nuevos-gestores" class="text-xl font-black text-yellow-300 font-mono">0</span>
+            </div>
+          </div>
+
+          <!-- TABLA PREVIA DE VALES DETECTADOS -->
+          <div class="overflow-x-auto border border-yellow-500/20 rounded-xl max-h-64 overflow-y-auto">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead class="bg-black text-yellow-300/70 border-b border-yellow-500/20 uppercase text-[10px] sticky top-0">
+                <tr>
+                  <th class="px-3 py-2">#</th>
+                  <th class="px-3 py-2">Fecha / Sem</th>
+                  <th class="px-3 py-2">Gestor</th>
+                  <th class="px-3 py-2">Cliente</th>
+                  <th class="px-3 py-2">Pedido / Equipos</th>
+                  <th class="px-3 py-2 text-right">Total</th>
+                  <th class="px-3 py-2 text-right">Comisión</th>
+                  <th class="px-3 py-2 text-center">Estado</th>
+                </tr>
+              </thead>
+              <tbody id="tabla-lote-previa-tbody" class="divide-y divide-yellow-500/10 bg-zinc-950/70">
+                <!-- Se llena dinámicamente -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="px-6 py-3 bg-black border-t border-yellow-500/20 flex items-center justify-between gap-3">
+        <button type="button" onclick="cerrarModal('modal-precarga-lote')" class="px-4 py-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-yellow-300/80 text-xs font-medium">Cerrar</button>
+        <button id="btn-confirmar-guardar-lote" type="button" onclick="confirmarRegistroLoteVales()" disabled
+                class="px-5 py-2 rounded-lg bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-400 hover:to-green-500 disabled:opacity-40 disabled:cursor-not-allowed text-black text-xs font-black shadow-md flex items-center gap-1.5 transition-all">
+          <i data-lucide="check-check" class="w-4 h-4 text-black"></i>
+          <span id="btn-guardar-lote-texto">Registrar Todos los Vales</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
 
   <!-- ======================================================== -->
   <!-- MODAL: REGISTRAR VALE (PEGAR FACTURA WHATSAPP / TEXTO)   -->
@@ -1430,6 +1555,29 @@ function guardarEnCacheRobusto() {
       } else if (cached) {
         appState = cached;
       }
+
+      // 2. Intentar cargar database.json autónomo (salvas separadas del código HTML)
+      try {
+        fetch('./database.json?t=' + Date.now()).then(function(res) {
+          if (res.ok) return res.json();
+          throw new Error('database.json no disponible');
+        }).then(function(dbRemoto) {
+          if (dbRemoto && Array.isArray(dbRemoto.vales) && dbRemoto.vales.length > 0) {
+            var dbRemotoTs = Number(dbRemoto.timestamp) || 0;
+            var actualTs = Number(appState.timestamp) || 0;
+            if (dbRemotoTs >= actualTs || appState.vales.length === 0) {
+              appState = dbRemoto;
+              window.appState = appState;
+              guardarEnCacheRobusto();
+              actualizarSelectorSemanas();
+              renderizarTodo();
+              console.log('📦 Base de datos sincronizada desde database.json independiente!');
+            }
+          }
+        }).catch(function(e) {
+          // Normal si no existe o se carga offline
+        });
+      } catch(e) {}
 
       if (!appState.config) {
         appState.config = {
@@ -2334,6 +2482,329 @@ function guardarEnCacheRobusto() {
       navigator.clipboard.writeText(ejemplo).then(function() {
         alert('📋 ¡Formato modelo copiado al portapapeles!');
       });
+    };
+
+    // --------------------------------------------------------
+    // PRECARGAR VALE GENERAL: PARSER INTELIGENTE EN LOTE
+    // --------------------------------------------------------
+    function separarValesMultiples(textoCompleto) {
+      if (!textoCompleto) return [];
+      var lineas = textoCompleto.split(/\r?\n/);
+      var bloques = [];
+      var bloqueActual = [];
+
+      function esInicioDeVale(linea) {
+        if (!linea) return false;
+        var lNorm = normalizarMathUnicode(linea).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+        if (/factura\s+a\s+llenar/i.test(lNorm)) return true;
+        if (lNorm.includes('factura') && lNorm.includes('gestor')) return true;
+        if (lNorm.includes('mensajeria') && (lNorm.includes('factura') || lNorm.includes('vale'))) return true;
+        return false;
+      }
+
+      function tieneEncabezadoWhatsApp(linea) {
+        if (!linea) return false;
+        var t = linea.trim();
+        return /^\[\d{1,2}\/\d{1,2}(?:\/\d{2,4})?,\s*\d{1,2}:\d{2}(?::\d{2})?(?:\s*[ap]\.?\s*m\.?)?\]/i.test(t) ||
+               /^\[\d{1,2}\/\d{1,2}\s+\d{1,2}:\d{2}\s+[ap]\.?\s*m\.?\]/i.test(t) ||
+               /^\d{1,2}\/\d{1,2}\/\d{2,4},\s*\d{1,2}:\d{2}\s*-\s*/i.test(t);
+      }
+
+      for (var i = 0; i < lineas.length; i++) {
+        var l = lineas[i];
+        var esInicio = esInicioDeVale(l);
+        var esWhatsAppHeader = tieneEncabezadoWhatsApp(l);
+
+        if (esInicio || (esWhatsAppHeader && i + 1 < lineas.length && esInicioDeVale(lineas[i+1]))) {
+          if (bloqueActual.length > 0) {
+            var textoBloque = bloqueActual.join('\n').trim();
+            if (textoBloque) bloques.push(textoBloque);
+            bloqueActual = [];
+          }
+        }
+        bloqueActual.push(l);
+      }
+
+      if (bloqueActual.length > 0) {
+        var finalBloque = bloqueActual.join('\n').trim();
+        if (finalBloque) bloques.push(finalBloque);
+      }
+
+      return bloques;
+    }
+
+    var loteValesEnEspera = []; // Vales parseados listos para registrar
+
+    window.abrirModalPrecargaLote = function() {
+      var ta = document.getElementById('input-precarga-lote-texto');
+      if (ta) ta.value = '';
+      var res = document.getElementById('precarga-lote-resultados');
+      if (res) res.classList.add('hidden');
+      var btn = document.getElementById('btn-confirmar-guardar-lote');
+      if (btn) btn.disabled = true;
+      loteValesEnEspera = [];
+      abrirModal('modal-precarga-lote');
+    };
+
+    window.pegarEnLoteDesdePortapapeles = async function() {
+      try {
+        var texto = await navigator.clipboard.readText();
+        var ta = document.getElementById('input-precarga-lote-texto');
+        if (ta && texto) {
+          ta.value = texto;
+          window.analizarLoteVales();
+        }
+      } catch (err) {
+        alert('Para pegar el lote, haz clic en la caja de texto y pulsa Ctrl + V.');
+      }
+    };
+
+    window.analizarLoteVales = function() {
+      var ta = document.getElementById('input-precarga-lote-texto');
+      if (!ta || !ta.value.trim()) {
+        alert('Por favor pega el texto de WhatsApp que contiene los vales.');
+        return;
+      }
+
+      var bloques = separarValesMultiples(ta.value);
+      if (bloques.length === 0) {
+        alert('No se detectó ninguna factura en el texto proporcionado.\nAsegúrate de que contenga el encabezado "📝 Factura a llenar por los gestores".');
+        return;
+      }
+
+      var candidatos = [];
+      var duplicados = 0;
+      var gestoresNuevosSet = new Set();
+
+      for (var bIdx = 0; bIdx < bloques.length; bIdx++) {
+        var rawBloque = bloques[bIdx];
+        var p = parsearFacturaTexto(rawBloque);
+
+        var gestorNombre = p.gestor || 'Gestor Sin Nombre';
+        var gestorTel = p.telGestor || '';
+        var clienteNombre = p.cliente || 'Cliente Sin Nombre';
+        var clienteTel = p.telCliente || '';
+        var clienteCI = p.ci || '';
+        var direccion = p.direccion || '';
+        var fechaISO = p.fechaISO || new Date().toISOString().split('T')[0];
+        var semana = getISOWeekString(fechaISO);
+        var moneda = p.moneda || 'USD';
+
+        var items = (p.items && p.items.length > 0) ? p.items : [{
+          id: 'it-' + Math.random().toString(36).substr(2, 9),
+          producto: 'Olla Reina Houslux',
+          tipoEquipo: 'Pequeño',
+          cantidad: 1,
+          precioVenta: 47,
+          comisionUnitCUP: 1500,
+          comisionTotalCUP: 1500
+        }];
+
+        var totalVenta = 0;
+        var granComisionCUP = 0;
+        for (var itIdx = 0; itIdx < items.length; itIdx++) {
+          var it = items[itIdx];
+          var c = Number(it.cantidad) || 1;
+          totalVenta += c * (Number(it.precioVenta) || 0);
+          granComisionCUP += c * (Number(it.comisionUnitCUP) || 1500);
+        }
+
+        var folioGen = 'VAL-' + Math.floor(100000 + Math.random() * 900000);
+
+        var candidato = {
+          indice: bIdx + 1,
+          folio: folioGen,
+          fecha: fechaISO,
+          semana: semana,
+          moneda: moneda,
+          gestorNombre: gestorNombre,
+          gestorTelefono: gestorTel,
+          clienteNombre: clienteNombre,
+          clienteCI: clienteCI,
+          clienteTelefono: clienteTel,
+          direccion: direccion,
+          rawTextoWhatsApp: rawBloque,
+          items: items,
+          totalVenta: totalVenta,
+          granComisionCUP: granComisionCUP,
+          estadoComision: 'PENDIENTE',
+          esDuplicado: false,
+          motivoDup: ''
+        };
+
+        // 1. Verificar si coincide con la base de datos existente
+        var checkDup = detectarValeIdentico(candidato, null);
+        if (checkDup) {
+          candidato.esDuplicado = true;
+          candidato.motivoDup = 'Ya registrado en sistema (Folio: ' + (checkDup.valeExistente.folio || 'N/A') + ')';
+        }
+
+        // 2. Verificar si coincide con algún otro vale del MISMO lote
+        if (!candidato.esDuplicado) {
+          for (var prevIdx = 0; prevIdx < candidatos.length; prevIdx++) {
+            var yaC = candidatos[prevIdx];
+            if (yaC.esDuplicado) continue;
+            // Solo aplica si son de la misma fecha
+            if (candidato.fecha === yaC.fecha) {
+              var mGest = normalizarCadenaVale(candidato.gestorNombre) === normalizarCadenaVale(yaC.gestorNombre);
+              var mTel = extraerNumerosVale(candidato.clienteTelefono) && (extraerNumerosVale(candidato.clienteTelefono) === extraerNumerosVale(yaC.clienteTelefono));
+              var mCI = extraerNumerosVale(candidato.clienteCI) && (extraerNumerosVale(candidato.clienteCI) === extraerNumerosVale(yaC.clienteCI));
+              var mCli = normalizarCadenaVale(candidato.clienteNombre) === normalizarCadenaVale(yaC.clienteNombre);
+              if ((mTel && mCli) || (mCI && mCli) || (mGest && mCli && mTel)) {
+                candidato.esDuplicado = true;
+                candidato.motivoDup = 'Duplicado dentro del mismo lote (Vale #' + yaC.indice + ')';
+                break;
+              }
+            }
+          }
+        }
+
+        if (candidato.esDuplicado) {
+          duplicados++;
+        } else {
+          // Detectar si el gestor es nuevo
+          var gestExiste = appState.gestores.some(function(g) {
+            return g.nombre.toLowerCase().trim() === gestorNombre.toLowerCase().trim();
+          });
+          if (!gestExiste && gestorNombre !== 'Gestor Sin Nombre') {
+            gestoresNuevosSet.add(gestorNombre);
+          }
+        }
+
+        candidatos.push(candidato);
+      }
+
+      loteValesEnEspera = candidatos;
+
+      // Actualizar UI del Modal
+      var validos = candidatos.filter(function(c) { return !c.esDuplicado; }).length;
+      document.getElementById('lote-kpi-total').textContent = candidatos.length;
+      document.getElementById('lote-kpi-validos').textContent = validos;
+      document.getElementById('lote-kpi-duplicados').textContent = duplicados;
+      document.getElementById('lote-kpi-nuevos-gestores').textContent = gestoresNuevosSet.size;
+
+      var tbody = document.getElementById('tabla-lote-previa-tbody');
+      tbody.innerHTML = '';
+
+      candidatos.forEach(function(c) {
+        var itemsResumen = c.items.map(function(it) {
+          return it.cantidad + 'x ' + it.producto;
+        }).join(', ');
+
+        var totalStr = c.moneda === 'CUP' ? (c.totalVenta.toLocaleString('es-ES') + ' CUP') : ('$' + c.totalVenta.toFixed(2) + ' USD');
+        var comStr = c.granComisionCUP.toLocaleString('es-ES') + ' CUP';
+
+        var estadoBadge = c.esDuplicado
+          ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-950/60 text-rose-300 border border-rose-800/40" title="' + c.motivoDup + '">🚫 Descartado</span>'
+          : '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-950/60 text-emerald-300 border border-emerald-800/40">✓ Listo</span>';
+
+        var tr = document.createElement('tr');
+        tr.className = c.esDuplicado ? 'opacity-50 line-through bg-rose-950/10' : 'hover:bg-zinc-900/50';
+        tr.innerHTML = '<td class="px-3 py-2 font-mono text-yellow-400 font-bold">' + c.indice + '</td>' +
+          '<td class="px-3 py-2 text-white font-mono">' + c.fecha + '<br><span class="text-[10px] text-yellow-500/70">' + c.semana + '</span></td>' +
+          '<td class="px-3 py-2 text-yellow-300 font-bold">' + c.gestorNombre + '<br><span class="text-[10px] text-zinc-400 font-mono">' + (c.gestorTelefono || 'Sin tel') + '</span></td>' +
+          '<td class="px-3 py-2 text-white">' + c.clienteNombre + '<br><span class="text-[10px] text-zinc-400 font-mono">' + (c.clienteTelefono || 'Sin tel') + '</span></td>' +
+          '<td class="px-3 py-2 text-zinc-300 text-[11px] max-w-xs truncate" title="' + itemsResumen + '">' + itemsResumen + '</td>' +
+          '<td class="px-3 py-2 text-right font-black font-mono ' + (c.moneda === 'CUP' ? 'text-yellow-300' : 'text-yellow-400') + '">' + totalStr + '</td>' +
+          '<td class="px-3 py-2 text-right font-black font-mono text-yellow-300">' + comStr + '</td>' +
+          '<td class="px-3 py-2 text-center">' + estadoBadge + '</td>';
+        tbody.appendChild(tr);
+      });
+
+      document.getElementById('precarga-lote-resultados').classList.remove('hidden');
+
+      var btnGuardar = document.getElementById('btn-confirmar-guardar-lote');
+      var btnTexto = document.getElementById('btn-guardar-lote-texto');
+      if (validos > 0) {
+        btnGuardar.disabled = false;
+        btnTexto.textContent = 'Registrar ' + validos + ' Vale' + (validos > 1 ? 's' : '') + ' en el Sistema';
+      } else {
+        btnGuardar.disabled = true;
+        btnTexto.textContent = 'Sin Vales Nuevos Para Registrar';
+      }
+    };
+
+    window.confirmarRegistroLoteVales = async function() {
+      var validos = loteValesEnEspera.filter(function(c) { return !c.esDuplicado; });
+      if (validos.length === 0) {
+        alert('No hay vales nuevos válidos para registrar.');
+        return;
+      }
+
+      var confirmMsg = '⚡ ¿Confirmas registrar ' + validos.length + ' vales en el sistema?\n\n' +
+        '• Se registrarán automáticamente los nuevos gestores.\n' +
+        '• Se asignarán a sus semanas correspondientes.\n' +
+        '• Se sincronizarán en GitHub y localmente.';
+
+      if (!confirm(confirmMsg)) return;
+
+      var gestoresNuevosCount = 0;
+      var semanasAfectadasSet = new Set();
+
+      validos.forEach(function(c) {
+        // Auto-registrar gestor si no existe
+        var gExistente = appState.gestores.find(function(g) {
+          return g.nombre.toLowerCase().trim() === c.gestorNombre.toLowerCase().trim();
+        });
+
+        if (!gExistente) {
+          gExistente = {
+            id: 'G-' + Date.now() + '-' + Math.random().toString(36).substr(2, 4),
+            nombre: c.gestorNombre,
+            username: c.gestorNombre.toLowerCase().replace(/[^a-z0-9]/g, ''),
+            passwordHash: simpleHashFallback('123456'),
+            telefono: c.gestorTelefono || '',
+            telefonoSecundario: '',
+            zona: 'Mensajería / Redes',
+            foto: '',
+            activo: true
+          };
+          appState.gestores.push(gExistente);
+          gestoresNuevosCount++;
+        } else if (c.gestorTelefono && !gExistente.telefono) {
+          gExistente.telefono = c.gestorTelefono;
+        }
+
+        // Crear objeto de vale definitivo
+        var nuevoVale = {
+          id: 'V-' + Date.now() + '-' + Math.random().toString(36).substr(2, 6),
+          folio: c.folio,
+          fecha: c.fecha,
+          semana: c.semana,
+          moneda: c.moneda,
+          gestorNombre: gExistente.nombre,
+          gestorTelefono: gExistente.telefono,
+          clienteNombre: c.clienteNombre,
+          clienteCI: c.clienteCI,
+          clienteTelefono: c.clienteTelefono,
+          direccion: c.direccion,
+          rawTextoWhatsApp: c.rawTextoWhatsApp,
+          items: c.items,
+          totalVenta: c.totalVenta,
+          granComisionCUP: c.granComisionCUP,
+          estadoComision: 'PENDIENTE',
+          createdAt: Date.now()
+        };
+
+        appState.vales.unshift(nuevoVale);
+        semanasAfectadasSet.add(c.semana);
+      });
+
+      // Si la semana activa no tiene vales pero la más reciente del lote sí, cambiarla
+      var semanasArr = Array.from(semanasAfectadasSet).sort();
+      if (semanasArr.length > 0) {
+        appState.semanaActiva = semanasArr[semanasArr.length - 1];
+      }
+
+      guardarEnCacheRobusto();
+      actualizarSelectorSemanas();
+      renderizarTodo();
+      cerrarModal('modal-precarga-lote');
+
+      alert('🎉 ¡LOTE REGISTRADO EXITOSAMENTE!\n\n' +
+            '✅ ' + validos.length + ' vales registrados.\n' +
+            '👤 ' + gestoresNuevosCount + ' gestores nuevos dados de alta automáticamente.\n' +
+            '📅 Semanas actualizadas: ' + semanasArr.join(', '));
     };
 
     // --------------------------------------------------------
