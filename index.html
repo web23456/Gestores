@@ -746,8 +746,14 @@
               <input type="text" id="vale-input-cliente" required placeholder="Nombre completo" class="w-full bg-zinc-950 border border-yellow-500/15 text-white rounded-lg px-2.5 py-1.5 text-xs">
             </div>
             <div>
-              <label class="block text-[11px] text-yellow-300/80 mb-1">CI / Identidad</label>
-              <input type="text" id="vale-input-cliente-ci" placeholder="Ej: 90071126520" class="w-full bg-zinc-950 border border-yellow-500/15 text-white rounded-lg px-2.5 py-1.5 text-xs font-mono">
+              <div class="flex items-center justify-between mb-1">
+                <label id="label-tipo-documento" class="text-[11px] text-yellow-300/80">Carnet o Pasaporte</label>
+                <div class="flex items-center gap-1">
+                  <button type="button" onclick="cambiarTipoDocVale('CI')" id="btn-tipo-ci" class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-yellow-500 text-black transition-all">CI</button>
+                  <button type="button" onclick="cambiarTipoDocVale('PASAPORTE')" id="btn-tipo-pasaporte" class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-zinc-800 text-yellow-300/70 hover:text-white transition-all">Pasaporte</button>
+                </div>
+              </div>
+              <input type="text" id="vale-input-cliente-ci" placeholder="Ej: 90071126520 o G123456" class="w-full bg-zinc-950 border border-yellow-500/15 text-white rounded-lg px-2.5 py-1.5 text-xs font-mono">
             </div>
             <div>
               <label class="block text-[11px] text-yellow-300/80 mb-1">Teléfono Cliente</label>
@@ -1811,7 +1817,9 @@ function guardarEnCacheRobusto() {
 
             rowsHtml += '<tr class="hover:bg-zinc-950/60 transition-colors">' +
               '<td class="px-4 py-3 font-mono font-bold text-yellow-300"><div>' + v.folio + '</div><span class="text-[10px] text-yellow-500/50 font-normal">' + v.fecha + '</span></td>' +
-              '<td class="px-4 py-3"><div class="font-bold text-white">' + v.clienteNombre + '</div>' + (v.clienteTelefono ? '<div class="text-[10px] text-yellow-300/70 font-mono">' + v.clienteTelefono + '</div>' : '') + '</td>' +
+              '<td class="px-4 py-3"><div class="font-bold text-white">' + v.clienteNombre + '</div>' + 
+                (v.clienteCI ? '<div class="text-[10px] text-yellow-300/80 font-mono">' + (/[a-zA-Z]/.test(v.clienteCI) ? 'Pas: ' : 'CI: ') + v.clienteCI + '</div>' : '') +
+                (v.clienteTelefono ? '<div class="text-[10px] text-zinc-400 font-mono">' + v.clienteTelefono + '</div>' : '') + '</td>' +
               '<td class="px-4 py-3 text-yellow-300/80 text-[11px] max-w-xs truncate" title="' + (v.direccion || '') + '">' + (v.direccion || 'Sin dirección') + '</td>' +
               '<td class="px-4 py-3"><div class="space-y-1">' + itemsHtml + '</div></td>' +
               '<td class="px-4 py-3 text-center font-bold text-white font-mono">' + cantTot + '</td>' +
@@ -2090,7 +2098,15 @@ function guardarEnCacheRobusto() {
 
       const fechaRaw = getFieldValue([/^fecha\s*:\s*(.*)/i]);
       const cliente = getFieldValue([/^nombre\s+del\s+cliente\s*:\s*(.*)/i, /^cliente\s*:\s*(.*)/i]);
-      const ci = getFieldValue([/^ci\s*:\s*(.*)/i]);
+      const ci = getFieldValue([
+        /^ci\s*:\s*(.*)/i,
+        /^c\.?i\.?\s*:\s*(.*)/i,
+        /^carnet\s*(?:de\s+identidad)?\s*:\s*(.*)/i,
+        /^pasaporte\s*:\s*(.*)/i,
+        /^documento\s*(?:de\s+identidad)?\s*:\s*(.*)/i,
+        /^id\s*:\s*(.*)/i,
+        /^dni\s*:\s*(.*)/i
+      ]);
       let telCliente = getFieldValue([
         /^telefono\s+del\s+cliente\s*:\s*(.*)/i, 
         /^tel\w*\s+cliente\s*:\s*(.*)/i,
@@ -2303,7 +2319,14 @@ function guardarEnCacheRobusto() {
       if (p.gestor) document.getElementById('vale-input-gestor').value = p.gestor;
       if (p.telGestor) document.getElementById('vale-input-gestor-tel').value = p.telGestor;
       if (p.cliente) document.getElementById('vale-input-cliente').value = p.cliente;
-      if (p.ci) document.getElementById('vale-input-cliente-ci').value = p.ci;
+      if (p.ci) {
+        document.getElementById('vale-input-cliente-ci').value = p.ci;
+        if (/pasaporte/i.test(ta.value) || /[a-zA-Z]/.test(p.ci)) {
+          cambiarTipoDocVale('PASAPORTE');
+        } else {
+          cambiarTipoDocVale('CI');
+        }
+      }
       if (p.telCliente) document.getElementById('vale-input-cliente-tel').value = p.telCliente;
       if (p.direccion) document.getElementById('vale-input-direccion').value = p.direccion;
 
@@ -2386,6 +2409,36 @@ function guardarEnCacheRobusto() {
       navigator.clipboard.writeText(ejemplo).then(function() {
         alert('📋 ¡Formato modelo copiado al portapapeles!');
       });
+    };
+
+    // Control de tipo de documento (Carnet de Identidad vs Pasaporte)
+    window.tipoDocValeActual = 'CI';
+    window.cambiarTipoDocVale = function(tipo) {
+      window.tipoDocValeActual = tipo;
+      var btnCi = document.getElementById('btn-tipo-ci');
+      var btnPas = document.getElementById('btn-tipo-pasaporte');
+      var lbl = document.getElementById('label-tipo-documento');
+      var input = document.getElementById('vale-input-cliente-ci');
+
+      if (tipo === 'PASAPORTE') {
+        if (btnPas) {
+          btnPas.className = 'px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-500 text-black shadow-sm transition-all';
+        }
+        if (btnCi) {
+          btnCi.className = 'px-1.5 py-0.5 rounded text-[10px] font-bold bg-zinc-800 text-yellow-300/70 hover:text-white transition-all';
+        }
+        if (lbl) lbl.textContent = 'Número de Pasaporte';
+        if (input) input.placeholder = 'Ej: G123456 o A9876543';
+      } else {
+        if (btnCi) {
+          btnCi.className = 'px-1.5 py-0.5 rounded text-[10px] font-bold bg-yellow-500 text-black shadow-sm transition-all';
+        }
+        if (btnPas) {
+          btnPas.className = 'px-1.5 py-0.5 rounded text-[10px] font-bold bg-zinc-800 text-yellow-300/70 hover:text-white transition-all';
+        }
+        if (lbl) lbl.textContent = 'Carnet de Identidad (CI)';
+        if (input) input.placeholder = 'Ej: 90071126520';
+      }
     };
 
     // --------------------------------------------------------
@@ -2612,7 +2665,9 @@ function guardarEnCacheRobusto() {
         tr.innerHTML = '<td class="px-3 py-2 font-mono text-yellow-400 font-bold">' + c.indice + '</td>' +
           '<td class="px-3 py-2 text-white font-mono">' + c.fecha + '<br><span class="text-[10px] text-yellow-500/70">' + c.semana + '</span></td>' +
           '<td class="px-3 py-2 text-yellow-300 font-bold">' + c.gestorNombre + '<br><span class="text-[10px] text-zinc-400 font-mono">' + (c.gestorTelefono || 'Sin tel') + '</span></td>' +
-          '<td class="px-3 py-2 text-white">' + c.clienteNombre + '<br><span class="text-[10px] text-zinc-400 font-mono">' + (c.clienteTelefono || 'Sin tel') + '</span></td>' +
+          '<td class="px-3 py-2 text-white">' + c.clienteNombre + 
+            (c.clienteCI ? '<br><span class="text-[10px] text-yellow-300/80 font-mono">' + (/[a-zA-Z]/.test(c.clienteCI) ? 'Pas: ' : 'CI: ') + c.clienteCI + '</span>' : '') +
+            '<br><span class="text-[10px] text-zinc-400 font-mono">' + (c.clienteTelefono || 'Sin tel') + '</span></td>' +
           '<td class="px-3 py-2 text-zinc-300 text-[11px] max-w-xs truncate" title="' + itemsResumen + '">' + itemsResumen + '</td>' +
           '<td class="px-3 py-2 text-right font-black font-mono ' + (c.moneda === 'CUP' ? 'text-yellow-300' : 'text-yellow-400') + '">' + totalStr + '</td>' +
           '<td class="px-3 py-2 text-right font-black font-mono text-yellow-300">' + comStr + '</td>' +
@@ -3324,6 +3379,11 @@ function guardarEnCacheRobusto() {
       document.getElementById('vale-input-cliente').value = v.clienteNombre;
       if (document.getElementById('vale-input-cliente-ci')) {
         document.getElementById('vale-input-cliente-ci').value = v.clienteCI || '';
+        if (/[a-zA-Z]/.test(v.clienteCI || '')) {
+          cambiarTipoDocVale('PASAPORTE');
+        } else {
+          cambiarTipoDocVale('CI');
+        }
       }
       document.getElementById('vale-input-cliente-tel').value = v.clienteTelefono || '';
       document.getElementById('vale-input-direccion').value = v.direccion || '';
@@ -3341,6 +3401,7 @@ function guardarEnCacheRobusto() {
 
     window.abrirModalRegistroVale = function() {
       document.getElementById('form-vale-estructurado').reset();
+      cambiarTipoDocVale('CI');
       idValeEnEdicion = null;
       var submitBtnReset = document.querySelector('#form-vale-estructurado button[type="submit"]');
       if (submitBtnReset) submitBtnReset.textContent = 'Guardar Vale en Historial';
@@ -3494,7 +3555,7 @@ function guardarEnCacheRobusto() {
           '<div>' +
             '<span class="text-[10px] text-yellow-400 font-mono font-bold block">FOLIO: ' + v.folio + '</span>' +
             '<span class="text-white font-bold text-sm">' + v.clienteNombre + '</span>' +
-            (v.clienteCI ? '<span class="text-yellow-300/70 font-mono block text-[11px]">CI: ' + v.clienteCI + '</span>' : '') +
+            (v.clienteCI ? '<span class="text-yellow-300/70 font-mono block text-[11px]">' + (/[a-zA-Z]/.test(v.clienteCI) ? 'Pasaporte: ' : 'CI: ') + v.clienteCI + '</span>' : '') +
           '</div>' +
           '<div class="text-right">' +
             '<span class="text-yellow-300/70 text-[11px] block">' + v.fecha + ' (Semana ' + v.semana + ')</span>' +
