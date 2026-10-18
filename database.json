@@ -1,5 +1,5 @@
 {
-  "timestamp": 1729107000000,
+  "timestamp": 1792301447337,
   "gestores": [
     {
       "id": "G-1",
@@ -88,17 +88,6 @@
       "activo": true,
       "username": "adalis",
       "passwordHash": "bb256e4588786cc8fac1d474575af1ba66f6cb30879640349a1cb33afdd0e0d7"
-    },
-    {
-      "id": "G-1792300537745-pnfu",
-      "nombre": "Dayanis García Almanza de",
-      "username": "dayanisgarcaalmanzade",
-      "passwordHash": "0cbba1357815e3c38bd370451e27aaaf127e19290ca6a0a550de830b3ff2ab49",
-      "telefono": "51349671",
-      "telefonoSecundario": "",
-      "zona": "Mensajería / Redes",
-      "foto": "",
-      "activo": true
     }
   ],
   "vales": [
@@ -108,7 +97,7 @@
       "fecha": "2026-10-17",
       "semana": "2026-W41",
       "moneda": "USD",
-      "gestorNombre": "Dayanis García Almanza de",
+      "gestorNombre": "Dayanis García Almanza",
       "gestorTelefono": "51349671",
       "clienteNombre": "deyanira Perea Alonso",
       "clienteCI": "91030229978",
