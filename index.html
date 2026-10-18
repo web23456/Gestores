@@ -746,14 +746,8 @@
               <input type="text" id="vale-input-cliente" required placeholder="Nombre completo" class="w-full bg-zinc-950 border border-yellow-500/15 text-white rounded-lg px-2.5 py-1.5 text-xs">
             </div>
             <div>
-              <div class="flex items-center justify-between mb-1">
-                <label id="label-tipo-documento" class="text-[11px] text-yellow-300/80">Carnet o Pasaporte</label>
-                <div class="flex items-center gap-1">
-                  <button type="button" onclick="cambiarTipoDocVale('CI')" id="btn-tipo-ci" class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-yellow-500 text-black transition-all">CI</button>
-                  <button type="button" onclick="cambiarTipoDocVale('PASAPORTE')" id="btn-tipo-pasaporte" class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-zinc-800 text-yellow-300/70 hover:text-white transition-all">Pasaporte</button>
-                </div>
-              </div>
-              <input type="text" id="vale-input-cliente-ci" placeholder="Ej: 90071126520 o G123456" class="w-full bg-zinc-950 border border-yellow-500/15 text-white rounded-lg px-2.5 py-1.5 text-xs font-mono">
+              <label class="block text-[11px] text-yellow-300/80 mb-1">CI / Identidad</label>
+              <input type="text" id="vale-input-cliente-ci" placeholder="Ej: 90071126520" class="w-full bg-zinc-950 border border-yellow-500/15 text-white rounded-lg px-2.5 py-1.5 text-xs font-mono">
             </div>
             <div>
               <label class="block text-[11px] text-yellow-300/80 mb-1">Teléfono Cliente</label>
@@ -968,9 +962,15 @@
           </div>
         </div>
 
-        <div>
-          <label class="block text-xs text-yellow-300/80 mb-1">Zona / Canal</label>
-          <input type="text" id="gestor-form-zona" placeholder="Ej: Mensajería, Plaza de la Revolución..." class="w-full bg-black border border-yellow-500/15 text-white rounded-lg px-3 py-2 text-xs">
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs text-yellow-300/80 mb-1">Carnet o Pasaporte</label>
+            <input type="text" id="gestor-form-documento" placeholder="Ej: 90071126520 o P123456" class="w-full bg-black border border-yellow-500/15 text-white font-mono rounded-lg px-3 py-2 text-xs">
+          </div>
+          <div>
+            <label class="block text-xs text-yellow-300/80 mb-1">Zona / Canal</label>
+            <input type="text" id="gestor-form-zona" placeholder="Ej: Mensajería, Plaza..." class="w-full bg-black border border-yellow-500/15 text-white rounded-lg px-3 py-2 text-xs">
+          </div>
         </div>
 
         <div class="pt-3 border-t border-yellow-500/20 flex justify-end gap-2.5">
@@ -1772,6 +1772,7 @@ function guardarEnCacheRobusto() {
                   '<i data-lucide="phone" class="w-3.5 h-3.5 text-yellow-400"></i> ' + (g.telefono || 'Sin teléfono') +
                 '</a>' +
                 (g.telefonoSecundario ? '<span class="text-zinc-600">•</span><span class="font-mono text-yellow-300/70">' + g.telefonoSecundario + '</span>' : '') +
+                ((g.documentoIdentidad || g.ci) ? '<span class="text-zinc-600">•</span><span class="font-mono text-yellow-300/80 bg-yellow-500/10 px-1.5 py-0.5 rounded border border-yellow-500/20 text-[11px]"><i class="fa-solid fa-id-card text-yellow-400 mr-1"></i>' + (g.documentoIdentidad || g.ci) + '</span>' : '') +
               '</div>' +
             '</div>' +
           '</div>' +
@@ -3445,6 +3446,7 @@ function guardarEnCacheRobusto() {
       document.getElementById('gestor-form-id').value = '';
       document.getElementById('gestor-form-username').value = '';
       document.getElementById('gestor-form-password').value = '';
+      document.getElementById('gestor-form-documento').value = '';
       document.getElementById('gestor-form-foto-preview').classList.add('hidden');
       document.getElementById('gestor-form-foto-placeholder').classList.remove('hidden');
       abrirModal('modal-gestor');
@@ -3461,6 +3463,7 @@ function guardarEnCacheRobusto() {
       document.getElementById('gestor-form-password').value = ''; // Oculto por seguridad
       document.getElementById('gestor-form-tel').value = g.telefono || '';
       document.getElementById('gestor-form-tel2').value = g.telefonoSecundario || '';
+      document.getElementById('gestor-form-documento').value = g.documentoIdentidad || g.ci || '';
       document.getElementById('gestor-form-zona').value = g.zona || '';
 
       const img = document.getElementById('gestor-form-foto-preview');
@@ -3484,6 +3487,7 @@ function guardarEnCacheRobusto() {
       const password = (document.getElementById('gestor-form-password').value || '').trim();
       const tel = document.getElementById('gestor-form-tel').value.trim();
       const tel2 = document.getElementById('gestor-form-tel2').value.trim();
+      const documento = (document.getElementById('gestor-form-documento').value || '').trim();
       const zona = document.getElementById('gestor-form-zona').value.trim();
 
       const fotoInput = document.getElementById('gestor-form-foto-input');
@@ -3500,6 +3504,7 @@ function guardarEnCacheRobusto() {
             }
             g.telefono = tel;
             g.telefonoSecundario = tel2;
+            g.documentoIdentidad = documento;
             g.zona = zona;
             if (fotoBase64) g.foto = fotoBase64;
           }
@@ -3512,6 +3517,7 @@ function guardarEnCacheRobusto() {
             passwordHash: pHash,
             telefono: tel,
             telefonoSecundario: tel2,
+            documentoIdentidad: documento,
             zona: zona || 'Gestor',
             foto: fotoBase64 || '',
             activo: true
