@@ -1180,10 +1180,39 @@
 
     let itemsValeEnEdicion = [];
 
-    function guardarEnCacheRobusto() {
+    
+    // Sincronización automática silenciosa con el Bot LocalHost si está activo
+    let _timerSyncBot = null;
+    function notificarCambioAlBot() {
+      if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') return;
+      clearTimeout(_timerSyncBot);
+      _timerSyncBot = setTimeout(async function() {
+        try {
+          var ind = document.getElementById('sync-status-indicator');
+          if (ind) { ind.textContent = 'Sincronizando...'; ind.style.color = '#ffd700'; }
+          var res = await fetch('/api/sync-to-github', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              database: appState,
+              commitMessage: 'feat: sincronización automática desde LocalHost (K y A . Primera Mano)'
+            })
+          });
+          var data = await res.json();
+          if (data && data.success) {
+            if (ind) { ind.textContent = '✓ En GitHub (' + new Date().toLocaleTimeString() + ')'; ind.style.color = '#d4af37'; }
+            console.log('✅ Bot sincronizó automáticamente los cambios en GitHub y local.');
+          }
+        } catch(e) {
+          console.warn('Nota: Bot no disponible para auto-sync:', e.message);
+        }
+      }, 1500);
+    }
+function guardarEnCacheRobusto() {
       try {
         window.appState = appState;
         const payload = JSON.stringify(appState);
+        notificarCambioAlBot();
         // Capa 1: LocalStorage Primario
         localStorage.setItem(CACHE_KEYS.PRIMARY, payload);
         // Capa 2: LocalStorage Backup Redundante
@@ -3120,6 +3149,9 @@
     // AUTO-GUARDADO EN EL PROPIO ARCHIVO HTML (QUINE)
     // --------------------------------------------------------
     window.guardarHTMLAutoContenido = async function() {
+      if (window.guardarCambiosEnGitHubDesdeLocal && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+        return await window.guardarCambiosEnGitHubDesdeLocal();
+      }
       try {
         const fullState = {
           timestamp: Date.now(),
