@@ -15,13 +15,14 @@
     {
       "id": "G-2",
       "nombre": "JOSÉ MIGUEL MARTÍNEZ ACOSTA",
-      "username": "josemiguel",
-      "passwordHash": "ee14748f52b02586c6320424f5ff953b72e8f29810f30d9d41e9916c198a1991",
+      "username": "josé miguel martinez acosta",
+      "passwordHash": "2dd5df8464c7af46bf16347a05576915e8abb6ddb8ad561a4328d97a83f3391f",
       "telefono": "54822881",
       "telefonoSecundario": "",
       "zona": "Plaza de la Revolución",
       "foto": "",
-      "activo": true
+      "activo": true,
+      "documentoIdentidad": ""
     },
     {
       "id": "G-3",
