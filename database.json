@@ -4,14 +4,13 @@
     {
       "id": "G-1",
       "nombre": "Dayanis García Almanza",
-      "username": "dayanis garcía almanza",
-      "passwordHash": "0d64b30ad5a46812c4773a846d1b3f3ecea631aef6372aad78fe600e6807e73e",
+      "username": "dayanis",
+      "passwordHash": "06b919546db3a9d02173d6993d0dab80dd7a0e49afe25a43af609ed0bc81312c",
       "telefono": "51349671",
       "telefonoSecundario": "",
-      "zona": "Pedro Betancourt",
+      "zona": "Mensajería / Redes",
       "foto": "",
-      "activo": true,
-      "documentoIdentidad": "09060767817"
+      "activo": true
     },
     {
       "id": "G-2",
@@ -70,15 +69,14 @@
     },
     {
       "id": "G-7",
-      "nombre": "Liz Marian Baró Falcón",
-      "username": "liz marian baró falcón",
-      "passwordHash": "4a55d6d55a39e28bd87821d62d43cb34d7e8a1a079046a36f6f9045a329f9c57",
+      "nombre": "Liz Mariam",
+      "username": "liz",
+      "passwordHash": "b050c0c356bce824ea1c9803954e1ffb71eafbb7e5cd965b93e2f443db78abda",
       "telefono": "54763168",
       "telefonoSecundario": "",
-      "zona": "Pedro Betancourt",
+      "zona": "Mensajería",
       "foto": "",
-      "activo": true,
-      "documentoIdentidad": "09101262136"
+      "activo": true
     },
     {
       "id": "G-1792294625637",
