@@ -1415,14 +1415,20 @@ function guardarEnCacheRobusto() {
     // INICIALIZACIÓN
     // --------------------------------------------------------
     function inicializar() {
-      // 1. Cargar desde la base de datos embebida
+      // 1. Cargar datos vivos desde la base de datos embebida (GitHub)
+      const cached = cargarDesdeCacheRobusto();
       if (window.__EMBEDDED_GESTORES_DB__ && typeof window.__EMBEDDED_GESTORES_DB__ === 'object') {
-        appState = window.__EMBEDDED_GESTORES_DB__;
-      } else {
-        const cached = cargarDesdeCacheRobusto();
-        if (cached) {
+        const emb = window.__EMBEDDED_GESTORES_DB__;
+        const embTs = Number(emb.timestamp) || 0;
+        const cacheTs = cached ? (Number(cached.timestamp) || 0) : 0;
+        // Si la base embebida es igual o más reciente que la caché, o si estamos en LocalHost / fresh, usar embebida
+        if (embTs >= cacheTs || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.search.includes('fresh')) {
+          appState = emb;
+        } else {
           appState = cached;
         }
+      } else if (cached) {
+        appState = cached;
       }
 
       if (!appState.config) {
@@ -3124,6 +3130,7 @@ function guardarEnCacheRobusto() {
       msg += '💰 *GANANCIA COMISIÓN:* ' + gananciaComisionCUP.toLocaleString('es-ES') + ' CUP\n' +
              '━━━━━━━━━━━━━━━━━━━━\n' +
              '✨ *¡Excelente trabajo esta semana!*\n' +
+             '🌐 *Ver tus vales y detalles:* https://web23456.github.io/Gestores/\n' +
              '_K y A . Primera Mano — Tu Tienda de Confianza_';
 
       var url = 'https://api.whatsapp.com/send?phone=' + (numLimpio.startsWith('53') ? numLimpio : ('53' + numLimpio)) + '&text=' + encodeURIComponent(msg);
