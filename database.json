@@ -4,13 +4,14 @@
     {
       "id": "G-1",
       "nombre": "Dayanis García Almanza",
-      "username": "dayanis",
-      "passwordHash": "06b919546db3a9d02173d6993d0dab80dd7a0e49afe25a43af609ed0bc81312c",
+      "username": "dayanis garcía almanza",
+      "passwordHash": "0d64b30ad5a46812c4773a846d1b3f3ecea631aef6372aad78fe600e6807e73e",
       "telefono": "51349671",
       "telefonoSecundario": "",
-      "zona": "Mensajería / Redes",
+      "zona": "Pedro Betancourt",
       "foto": "",
-      "activo": true
+      "activo": true,
+      "documentoIdentidad": "09060767817"
     },
     {
       "id": "G-2",
