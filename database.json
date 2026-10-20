@@ -48,14 +48,13 @@
     {
       "id": "G-5",
       "nombre": "Betty",
-      "username": "betty barreto",
-      "passwordHash": "c787763289705e2ba40144108a5953d12c5fe97ad1e9a6b0e46431aa0b1e3e13",
+      "username": "betty",
+      "passwordHash": "fd4337718f710584432715389a6566cf8a26ed9cc603fc15015ae690c14ef923",
       "telefono": "58709199",
       "telefonoSecundario": "",
-      "zona": "La Palma , Arroyo Naranjo",
+      "zona": "Cotorro",
       "foto": "",
-      "activo": true,
-      "documentoIdentidad": "78042100519"
+      "activo": true
     },
     {
       "id": "G-6",
