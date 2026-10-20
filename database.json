@@ -47,14 +47,15 @@
     },
     {
       "id": "G-5",
-      "nombre": "Betty",
-      "username": "betty",
-      "passwordHash": "fd4337718f710584432715389a6566cf8a26ed9cc603fc15015ae690c14ef923",
+      "nombre": "Betty Barreto",
+      "username": "betty barreto",
+      "passwordHash": "c787763289705e2ba40144108a5953d12c5fe97ad1e9a6b0e46431aa0b1e3e13",
       "telefono": "58709199",
-      "telefonoSecundario": "",
-      "zona": "Cotorro",
+      "telefonoSecundario": "58709199",
+      "zona": "Arroyo Naranjo",
       "foto": "",
-      "activo": true
+      "activo": true,
+      "documentoIdentidad": "78042100519"
     },
     {
       "id": "G-6",
