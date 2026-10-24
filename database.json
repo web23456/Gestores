@@ -1,5 +1,5 @@
 {
-  "timestamp": 1792301447337,
+  "timestamp": 1792873681730,
   "gestores": [
     {
       "id": "G-1",
@@ -47,15 +47,14 @@
     },
     {
       "id": "G-5",
-      "nombre": "Betty Barreto",
-      "username": "betty barreto",
-      "passwordHash": "c787763289705e2ba40144108a5953d12c5fe97ad1e9a6b0e46431aa0b1e3e13",
+      "nombre": "Betty",
+      "username": "betty",
+      "passwordHash": "fd4337718f710584432715389a6566cf8a26ed9cc603fc15015ae690c14ef923",
       "telefono": "58709199",
-      "telefonoSecundario": "58709199",
-      "zona": "Arroyo Naranjo",
+      "telefonoSecundario": "",
+      "zona": "Cotorro",
       "foto": "",
-      "activo": true,
-      "documentoIdentidad": "78042100519"
+      "activo": true
     },
     {
       "id": "G-6",
@@ -195,28 +194,38 @@
       "rawTextoWhatsApp": "[17/10 11:29 a. m.] +53 5 4763168: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬(𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: 17/10/26\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Sarahi petrucheli García \n✨ CI : \n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: +53 5 3718128\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente : edif D62 apto 7 zona 7 alamar por el primer intermitente  avenida de los cocos\n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: Un combo de infrarroja batidora y cafetera negra \n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:82 usd\n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:usd \n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: 3000\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 100 usd y 3000 cup\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: 18 usd\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:Liz Mariam \n ✨ #De teléfono del Gestor: #54763168\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:no",
       "items": [
         {
-          "id": "it-1olpau65",
-          "producto": "Un combo de infrarroja batidora",
+          "id": "it-liz-cocina",
+          "producto": "Cocina infrarroja",
           "cantidad": 1,
           "tipoEquipo": "Pequeño",
-          "precioVenta": 82,
+          "precioVenta": 27.33,
           "comisionUnitCUP": 1500,
           "comisionTotalCUP": 1500
         },
         {
-          "id": "it-sf8sr9id",
-          "producto": "cafetera negra",
+          "id": "it-liz-batidora",
+          "producto": "Batidora",
           "cantidad": 1,
           "tipoEquipo": "Pequeño",
-          "precioVenta": 82,
+          "precioVenta": 27.33,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        },
+        {
+          "id": "it-liz-cafetera",
+          "producto": "Cafetera negra",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 27.34,
           "comisionUnitCUP": 1500,
           "comisionTotalCUP": 1500
         }
       ],
-      "totalVenta": 164,
-      "granComisionCUP": 3000,
+      "totalVenta": 82,
+      "granComisionCUP": 4500,
       "estadoComision": "PENDIENTE",
-      "createdAt": 1792300537745
+      "createdAt": 1792300537745,
+      "updatedAt": 1792873681730
     },
     {
       "id": "V-1792300537745-gq59ot",
