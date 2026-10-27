@@ -1,7 +1,7 @@
 // Service Worker v2 para K y A . Primera Mano - Portal de Gestores
 // Soporte 100% Offline y Detección Automática de Actualizaciones en la Web
 
-const CACHE_NAME = 'gestores-k-y-a-v2';
+const CACHE_NAME = 'gestores-cache-v1793089951998';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
