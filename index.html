@@ -5073,7 +5073,7 @@
 
           <!-- Preview de la foto del carnet -->
           <div id="hoja-carnet-preview-container" class="hidden relative rounded-xl border border-yellow-500/30 overflow-hidden bg-black max-h-48 flex items-center justify-center p-2">
-            <img id="hoja-carnet-preview-img" src="" alt="Carnet Gestor" class="max-h-44 object-contain rounded-lg shadow-md">
+            <img id="hoja-carnet-preview-img" src="" alt="Carnet Gestor" class="max-h-44 object-contain rounded-lg shadow-md cursor-zoom-in hover:opacity-95" onclick="abrirVisorImagenCompleta(this.src)" title="Toca para ampliar carnet">
           </div>
         </div>
 
@@ -5161,8 +5161,12 @@
           <p class="text-[11px] text-zinc-400">Descárgala o cópiala para adjuntarla como constancia en la semana pagada.</p>
         </div>
 
-        <div class="bg-black rounded-2xl border-2 border-yellow-500/30 p-2 shadow-2xl flex items-center justify-center overflow-hidden">
-          <img id="img-vale-liquidacion-preview" src="" alt="Vale de Liquidación" class="w-full h-auto max-h-[60vh] object-contain rounded-xl shadow-lg">
+        <div class="group relative bg-black rounded-2xl border-2 border-yellow-500/30 p-2 shadow-2xl flex flex-col items-center justify-center overflow-hidden cursor-zoom-in" onclick="abrirVisorImagenCompleta(document.getElementById('img-vale-liquidacion-preview').src)" title="Toca para ver en pantalla completa">
+          <img id="img-vale-liquidacion-preview" src="" alt="Vale de Liquidación" class="w-full h-auto max-h-[58vh] object-contain rounded-xl shadow-lg group-hover:scale-[1.01] transition-transform">
+          <div class="mt-2 px-3 py-1 rounded-full bg-yellow-500/20 border border-yellow-500/40 text-yellow-300 text-[10px] font-bold flex items-center gap-1 shadow-sm">
+            <i data-lucide="maximize-2" class="w-3 h-3 text-yellow-400"></i>
+            <span>Toca el vale para verlo en pantalla completa</span>
+          </div>
         </div>
       </div>
 
@@ -5237,8 +5241,12 @@
               Quitar constancia
             </button>
           </div>
-          <div class="rounded-xl border border-yellow-500/30 overflow-hidden bg-black max-h-64 flex items-center justify-center p-2">
-            <img id="img-constancia-guardada" src="" alt="Constancia de Pago" class="max-h-60 object-contain rounded-lg">
+          <div class="group relative rounded-xl border border-yellow-500/30 overflow-hidden bg-black max-h-64 flex flex-col items-center justify-center p-2 cursor-zoom-in" onclick="abrirVisorImagenCompleta(document.getElementById('img-constancia-guardada').src)" title="Toca para ver en pantalla completa">
+            <img id="img-constancia-guardada" src="" alt="Constancia de Pago" class="max-h-56 object-contain rounded-lg group-hover:scale-[1.02] transition-transform">
+            <div class="mt-1 px-3 py-1 rounded-full bg-yellow-500/20 border border-yellow-500/40 text-yellow-300 text-[10px] font-bold flex items-center gap-1 shadow-sm">
+              <i data-lucide="maximize-2" class="w-3 h-3 text-yellow-400"></i>
+              <span>Toca la imagen para ver en pantalla completa</span>
+            </div>
           </div>
         </div>
       </div>
@@ -5253,6 +5261,20 @@
       </div>
     </div>
   </div>
+
+  <!-- ======================================================== -->
+  <!-- MODAL: VISOR DE IMAGEN EN PANTALLA COMPLETA              -->
+  <!-- ======================================================== -->
+  <div id="modal-visor-imagen-completa" class="fixed inset-0 bg-black/95 backdrop-blur-md z-[100] hidden items-center justify-center p-2 sm:p-4 select-none cursor-zoom-out" onclick="cerrarVisorImagenCompleta()">
+    <button type="button" onclick="cerrarVisorImagenCompleta()" class="absolute top-4 right-4 z-[110] p-3 rounded-full bg-zinc-900/90 hover:bg-zinc-800 text-yellow-300 border border-yellow-500/40 shadow-2xl transition-all cursor-pointer flex items-center gap-1.5 text-xs font-bold">
+      <i data-lucide="x" class="w-5 h-5"></i>
+      <span class="hidden sm:inline">Cerrar</span>
+    </button>
+    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-[110] px-4 py-1.5 rounded-full bg-zinc-950/80 border border-yellow-500/30 text-yellow-300 text-[11px] font-medium pointer-events-none shadow-lg">
+      Toca cualquier lugar o presiona Esc para cerrar
+    </div>
+    <div class="relative max-w-[96vw] max-h-[92vh] flex items-center justify-center overflow-auto" onclick="event.stopPropagation()">
+      <img id="img-visor-pantalla-completa" src="" alt="Vista en pantalla completa" class="max-w-[95vw] max-h-[90vh] object-contain rounded-xl shadow-2xl border border-yellow-500/20 cursor-default transition-all">
     </div>
   </div>
 
@@ -8873,6 +8895,34 @@ function guardarEnCacheRobusto() {
     // CONSTANCIA DE PAGO: PEGAR / SUBIR / GUARDAR IMAGEN
     // --------------------------------------------------------
     var imagenConstanciaTemporal = null;
+
+    window.abrirVisorImagenCompleta = function(src) {
+      if (!src) return;
+      var modal = document.getElementById('modal-visor-imagen-completa');
+      var img = document.getElementById('img-visor-pantalla-completa');
+      if (modal && img) {
+        img.src = src;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        if (window.lucide) window.lucide.createIcons();
+      }
+    };
+
+    window.cerrarVisorImagenCompleta = function() {
+      var modal = document.getElementById('modal-visor-imagen-completa');
+      var img = document.getElementById('img-visor-pantalla-completa');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+      if (img) img.src = '';
+    };
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        window.cerrarVisorImagenCompleta();
+      }
+    });
 
     window.abrirModalConstanciaPago = function(gestorNombre) {
       if (!appState.constanciasPago) appState.constanciasPago = {};
