@@ -5960,7 +5960,7 @@ function guardarEnCacheRobusto() {
       const elEquipos = document.getElementById('kpi-total-equipos');
       if (elEquipos) elEquipos.textContent = totalEquipos;
 
-      if (elVentasUSD) elVentasUSD.textContent = '$' + totalVentasUSD.toFixed(2) + ' USD';
+      const elVentasUSD = document.getElementById('kpi-total-ventas-usd');
       if (elVentasUSD) elVentasUSD.textContent = '$' + totalVentasUSD.toFixed(2) + ' USD';
 
       const elComisiones = document.getElementById('kpi-total-comisiones-cup');
@@ -9200,11 +9200,20 @@ function guardarEnCacheRobusto() {
 
     // Verificación instantánea si se ejecuta dentro de la APK / PWA instalada
     function estaEnModoInstalado() {
-      return (window.matchMedia('(display-mode: standalone)').matches) ||
-             (window.matchMedia('(display-mode: fullscreen)').matches) ||
-             (window.matchMedia('(display-mode: minimal-ui)').matches) ||
-             (window.navigator.standalone === true) ||
-             (document.referrer.includes('android-app://'));
+      try {
+        if (window.matchMedia && (
+          window.matchMedia('(display-mode: standalone)').matches ||
+          window.matchMedia('(display-mode: fullscreen)').matches ||
+          window.matchMedia('(display-mode: minimal-ui)').matches
+        )) {
+          return true;
+        }
+        if (window.navigator && window.navigator.standalone === true) return true;
+        if (document && document.referrer && typeof document.referrer === 'string' && document.referrer.includes('android-app://')) {
+          return true;
+        }
+      } catch (e) {}
+      return false;
     }
 
     function ocultarOpcionesInstalacionSiYaInstalada() {
@@ -9376,7 +9385,11 @@ function guardarEnCacheRobusto() {
       console.log('📡 Modo sin conexión (offline) activo.');
     });
 
-    document.addEventListener('DOMContentLoaded', inicializar);
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', inicializar);
+    } else {
+      inicializar();
+    }
 
   })();
   </script>
