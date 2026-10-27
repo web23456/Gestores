@@ -1,5 +1,5 @@
 {
-  "timestamp": 1792873681730,
+  "timestamp": 1793074056895,
   "gestores": [
     {
       "id": "G-1",
@@ -351,12 +351,12 @@
           "producto": "fogòn inflarojo",
           "cantidad": 1,
           "tipoEquipo": "Pequeño",
-          "precioVenta": 0,
+          "precioVenta": 30,
           "comisionUnitCUP": 1500,
           "comisionTotalCUP": 1500
         }
       ],
-      "totalVenta": 0,
+      "totalVenta": 30,
       "granComisionCUP": 1500,
       "estadoComision": "PENDIENTE",
       "createdAt": 1792300537745
@@ -445,21 +445,21 @@
           "producto": "ventilador de pedestal",
           "cantidad": 1,
           "tipoEquipo": "Pequeño",
-          "precioVenta": 85,
+          "precioVenta": 25,
           "comisionUnitCUP": 1500,
           "comisionTotalCUP": 1500
         },
         {
           "id": "it-ds3aknmx",
-          "producto": "de pared",
+          "producto": "ventilador de pared",
           "cantidad": 2,
           "tipoEquipo": "Pequeño",
-          "precioVenta": 85,
+          "precioVenta": 30,
           "comisionUnitCUP": 1500,
           "comisionTotalCUP": 3000
         }
       ],
-      "totalVenta": 255,
+      "totalVenta": 85,
       "granComisionCUP": 4500,
       "estadoComision": "PENDIENTE",
       "createdAt": 1792300537745
@@ -642,17 +642,26 @@
       "rawTextoWhatsApp": "📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬(𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: 15/10\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:yordan \n✨ CI : \n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 53859673\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente :centro del cotorro botica 90\n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: batidora +arrocera\n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 2\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨: 25 + 28 =53\n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨: usd. + cup\n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: 3000\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 50 usd + 5430 cup\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: no\n\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:Betty\n ✨ #De teléfono del Gestor:58709199\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:",
       "items": [
         {
-          "id": "it-cgru57z0",
-          "producto": "batidora +arrocera",
+          "id": "it-betty-batidora",
+          "producto": "batidora",
           "cantidad": 1,
           "tipoEquipo": "Pequeño",
           "precioVenta": 25,
           "comisionUnitCUP": 1500,
           "comisionTotalCUP": 1500
+        },
+        {
+          "id": "it-betty-arrocera",
+          "producto": "arrocera",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 28,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
         }
       ],
-      "totalVenta": 25,
-      "granComisionCUP": 1500,
+      "totalVenta": 53,
+      "granComisionCUP": 3000,
       "estadoComision": "PENDIENTE",
       "createdAt": 1792295408707
     },
@@ -809,16 +818,16 @@
           "producto": "olla reina",
           "cantidad": 1,
           "tipoEquipo": "Pequeño",
-          "precioVenta": 100,
+          "precioVenta": 33.33,
           "comisionUnitCUP": 1500,
           "comisionTotalCUP": 1500
         },
         {
           "id": "it-1n0dmgfy",
-          "producto": "1olla arrocera",
+          "producto": "olla arrocera",
           "cantidad": 1,
           "tipoEquipo": "Pequeño",
-          "precioVenta": 100,
+          "precioVenta": 33.33,
           "comisionUnitCUP": 1500,
           "comisionTotalCUP": 1500
         },
@@ -827,12 +836,12 @@
           "producto": "batidora",
           "cantidad": 1,
           "tipoEquipo": "Pequeño",
-          "precioVenta": 100,
+          "precioVenta": 33.34,
           "comisionUnitCUP": 1500,
           "comisionTotalCUP": 1500
         }
       ],
-      "totalVenta": 300,
+      "totalVenta": 100,
       "granComisionCUP": 4500,
       "estadoComision": "PENDIENTE",
       "createdAt": 1792295049169
