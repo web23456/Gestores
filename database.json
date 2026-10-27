@@ -1224,7 +1224,7 @@
           "producto": "cocinas de petróleo",
           "cantidad": 2,
           "tipoEquipo": "Pequeño",
-          "precioVenta": 7.5,
+          "precioVenta": 15,
           "comisionUnitCUP": 1500,
           "comisionTotalCUP": 3000
         },
@@ -1238,11 +1238,11 @@
           "comisionTotalCUP": 1500
         }
       ],
-      "totalVenta": 52,
+      "totalVenta": 67,
       "granComisionCUP": 4500,
       "estadoComision": "PENDIENTE",
       "createdAt": 1793076690445,
-      "updatedAt": 1793114831081
+      "updatedAt": 1793115896037
     },
     {
       "id": "V-1793076690445-u1hf9e",
