@@ -25,7 +25,7 @@
   <!-- AUTO-GUARDADO: Base de datos embebida en el propio archivo -->
   <script id="self-embedded-database">
     window.__EMBEDDED_GESTORES_DB__ = {
-  "timestamp": 1793078657032,
+  "timestamp": 1793080078557,
   "gestores": [
     {
       "id": "G-1",
@@ -1187,8 +1187,8 @@
     {
       "id": "V-1793076690445-n83mpx",
       "folio": "VAL-831478",
-      "fecha": "2029-10-25",
-      "semana": "2029-W43",
+      "fecha": "2026-10-25",
+      "semana": "2026-W42",
       "moneda": "USD",
       "gestorNombre": "Liz Mariam",
       "gestorTelefono": "54763168",
@@ -2725,8 +2725,8 @@
     {
       "id": "V-1793076690441-71872j",
       "folio": "VAL-121096",
-      "fecha": "2029-10-18",
-      "semana": "2029-W42",
+      "fecha": "2026-10-18",
+      "semana": "2026-W41",
       "moneda": "USD",
       "gestorNombre": "Liz Mariam",
       "gestorTelefono": "54763168",
@@ -3824,7 +3824,8 @@
       "planta electrica",
       "motor"
     ]
-  }
+  },
+  "compensaciones": {}
 };
   </script>
 
@@ -4294,36 +4295,44 @@
     </div>
 
     <!-- BARRA DE CONTROL DE SEMANA (MARTES A LUNES) -->
-    <div class="bg-zinc-950/90 border border-yellow-500/20 rounded-2xl p-4 shadow-xl backdrop-blur flex flex-col md:flex-row md:items-center justify-between gap-4">
-      <div class="flex items-center gap-3">
-        <div class="w-9 h-9 rounded-xl bg-yellow-500/10 text-yellow-400 flex items-center justify-center border border-yellow-500/20">
-          <i data-lucide="calendar" class="w-5 h-5"></i>
+    <div class="bg-gradient-to-r from-zinc-950 via-zinc-900 to-black border-2 border-yellow-500/30 rounded-2xl p-4 sm:p-5 shadow-2xl backdrop-blur flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div class="flex items-center gap-3.5">
+        <div class="w-11 h-11 rounded-2xl bg-yellow-500/15 text-yellow-400 flex items-center justify-center border border-yellow-500/30 shadow-inner shrink-0">
+          <i data-lucide="calendar" class="w-6 h-6"></i>
         </div>
         <div>
-          <div class="flex items-center gap-2">
-            <span class="text-xs uppercase font-bold text-yellow-400 tracking-wider">Período Semanal de Gestión:</span>
-            <span id="label-rango-semana-activa" class="text-xs text-yellow-300/70 font-mono">Martes a Lunes</span>
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="text-[11px] uppercase font-extrabold text-yellow-400 tracking-wider bg-yellow-950/40 border border-yellow-500/30 px-2 py-0.5 rounded-md">Ciclo Martes a Lunes</span>
+            <span id="label-rango-semana-activa" class="text-xs text-yellow-200/90 font-medium">Cargando ciclo...</span>
           </div>
-          <h2 id="titulo-semana-activa" class="text-lg font-black text-white">Semana Actual</h2>
+          <h2 id="titulo-semana-activa" class="text-xl sm:text-2xl font-black text-white tracking-tight mt-0.5">Semana Actual</h2>
         </div>
       </div>
 
       <!-- Filtros de Navegación por Semanas -->
-      <div class="flex items-center flex-wrap gap-2">
-        <button onclick="cambiarSemanaRelativa(-1)" class="p-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-yellow-300/80 border border-yellow-500/15 transition-colors" title="Semana Anterior">
+      <div class="flex items-center flex-wrap gap-2 sm:gap-2.5">
+        <button onclick="cambiarSemanaRelativa(-1)" class="px-3 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-yellow-300 border border-yellow-500/25 transition-all flex items-center gap-1 text-xs font-semibold cursor-pointer shadow" title="Semana Anterior">
           <i data-lucide="chevron-left" class="w-4 h-4"></i>
+          <span class="hidden sm:inline">Anterior</span>
         </button>
 
-        <select id="select-semanas" onchange="seleccionarSemana(this.value)" class="bg-black border border-yellow-500/15 text-white font-semibold text-xs rounded-xl px-3 py-2 focus:ring-1 focus:ring-yellow-400 focus:outline-none">
-          <!-- Opciones dinámicas -->
-        </select>
+        <div class="relative">
+          <select id="select-semanas" onchange="seleccionarSemana(this.value)" class="bg-black border-2 border-yellow-500/40 text-yellow-300 font-bold text-xs sm:text-sm rounded-xl px-4 py-2 pr-8 focus:ring-2 focus:ring-yellow-400 focus:outline-none shadow-lg cursor-pointer appearance-none">
+            <!-- Opciones dinámicas -->
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2.5 text-yellow-400">
+            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+          </div>
+        </div>
 
-        <button onclick="cambiarSemanaRelativa(1)" class="p-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-yellow-300/80 border border-yellow-500/15 transition-colors" title="Semana Siguiente">
+        <button onclick="cambiarSemanaRelativa(1)" class="px-3 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-yellow-300 border border-yellow-500/25 transition-all flex items-center gap-1 text-xs font-semibold cursor-pointer shadow" title="Semana Siguiente">
+          <span class="hidden sm:inline">Siguiente</span>
           <i data-lucide="chevron-right" class="w-4 h-4"></i>
         </button>
 
-        <button onclick="irASemanaActual()" class="px-3 py-2 rounded-xl bg-yellow-950/20 hover:bg-yellow-950/20 text-yellow-300 border border-yellow-700/30 text-xs font-bold transition-all">
-          Hoy
+        <button onclick="irASemanaActual()" class="px-3.5 py-2 rounded-xl bg-yellow-500 hover:bg-yellow-400 text-black border border-yellow-400 text-xs font-black transition-all flex items-center gap-1.5 shadow-md shadow-yellow-950/40 cursor-pointer">
+          <i data-lucide="calendar-check" class="w-3.5 h-3.5"></i>
+          <span>Semana Actual</span>
         </button>
       </div>
     </div>
@@ -4889,6 +4898,108 @@
   </div>
 
   <!-- ======================================================== -->
+  <!-- MODAL: MARCAR SEMANA DE PAGO / LIQUIDACIÓN CON COMPENSACIÓN -->
+  <!-- ======================================================== -->
+  <div id="modal-liquidar-semana" class="fixed inset-0 bg-black/85 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+    <div class="bg-zinc-950 border border-yellow-500/25 rounded-2xl w-full max-w-lg overflow-hidden shadow-2xl animate-in zoom-in-95">
+      <div class="px-6 py-4 border-b border-yellow-500/20 flex items-center justify-between bg-zinc-900/60">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-yellow-500/20 text-yellow-400 flex items-center justify-center border border-yellow-500/30">
+            <i data-lucide="badge-dollar-sign" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-white text-base">Marcar Semana de Pago</h3>
+            <p id="liquidar-modal-subtitulo" class="text-[11px] text-yellow-300/70">Liquidar semana completa y ajustar compensaciones</p>
+          </div>
+        </div>
+        <button onclick="cerrarModal('modal-liquidar-semana')" class="text-yellow-300/70 hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="p-6 space-y-4 text-xs">
+        <input type="hidden" id="liquidar-input-gestor-nombre">
+        <input type="hidden" id="liquidar-input-semana">
+
+        <!-- Tarjeta de Resumen de Comisiones -->
+        <div class="bg-black/70 border border-yellow-500/20 rounded-xl p-4 space-y-2.5">
+          <div class="flex items-center justify-between pb-2 border-b border-yellow-500/10">
+            <span class="text-yellow-300/70 font-medium">Gestor / Comercial:</span>
+            <span id="liquidar-label-gestor" class="font-bold text-white text-sm"></span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-yellow-300/70">Período Semanal:</span>
+            <span id="liquidar-label-semana" class="font-mono text-yellow-300 font-semibold"></span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-yellow-300/70">Vales en la semana:</span>
+            <span id="liquidar-label-vales-count" class="font-mono text-white font-bold"></span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-yellow-300/70">Equipos entregados:</span>
+            <span id="liquidar-label-equipos-count" class="font-mono text-yellow-400 font-bold"></span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-yellow-300/70">Comisión Total Generada:</span>
+            <span id="liquidar-label-comision-total" class="font-mono text-white font-bold"></span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-yellow-300/70">Comisión ya pagada:</span>
+            <span id="liquidar-label-comision-pagada" class="font-mono text-emerald-400 font-bold"></span>
+          </div>
+          <div class="flex items-center justify-between pt-1 border-t border-yellow-500/10">
+            <span class="text-yellow-300 font-semibold">Comisión Pendiente de Vales:</span>
+            <span id="liquidar-label-comision-pendiente" class="font-mono text-yellow-400 font-black text-sm"></span>
+          </div>
+        </div>
+
+        <!-- Casilla en blanco: Compensación de Error -->
+        <div class="bg-yellow-950/20 border border-yellow-500/30 rounded-xl p-4 space-y-2">
+          <div class="flex items-center justify-between">
+            <label for="liquidar-input-compensacion" class="font-bold text-yellow-300 text-xs flex items-center gap-1.5">
+              <i data-lucide="scale" class="w-4 h-4 text-yellow-400"></i>
+              Compensación de Error (+ / - CUP)
+            </label>
+            <span class="text-[10px] text-yellow-400/70 font-mono">En blanco = 0</span>
+          </div>
+          <p class="text-[11px] text-yellow-200/70 leading-relaxed">
+            Si hubo algún error, reclamación, ajuste de equipo o vale mal contado, escribe aquí la cifra exacta para sumar (+) o descontar (-) en CUP:
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+            <div>
+              <input type="number" id="liquidar-input-compensacion" oninput="recalcularTotalLiquidacionModal()" placeholder="Ej: 1500 ó -1500" class="w-full bg-black border border-yellow-500/40 rounded-xl px-3 py-2 text-white font-mono font-bold text-sm focus:border-yellow-400 focus:outline-none placeholder-zinc-600">
+            </div>
+            <div>
+              <input type="text" id="liquidar-input-motivo" placeholder="Motivo (opcional, ej: Ajuste 1 batidora)" class="w-full bg-black border border-yellow-500/25 rounded-xl px-3 py-2 text-white text-xs focus:border-yellow-400 focus:outline-none placeholder-zinc-600">
+            </div>
+          </div>
+        </div>
+
+        <!-- Gran Total a Pagar Liquidación -->
+        <div class="bg-gradient-to-r from-yellow-950/40 via-yellow-900/30 to-black border-2 border-yellow-500/50 rounded-xl p-4 flex items-center justify-between">
+          <div>
+            <span class="text-[10px] uppercase tracking-wider text-yellow-300/80 font-bold block">Gran Total a Liquidar / Pagar:</span>
+            <span id="liquidar-label-desglose" class="text-[11px] text-yellow-200/60 font-mono">Pendiente + Compensación</span>
+          </div>
+          <div id="liquidar-label-gran-total" class="text-xl font-black text-yellow-400 font-mono">
+            0 CUP
+          </div>
+        </div>
+      </div>
+
+      <div class="px-6 py-3 bg-black border-t border-yellow-500/20 flex items-center justify-end gap-2.5">
+        <button type="button" onclick="cerrarModal('modal-liquidar-semana')" class="px-4 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-yellow-300/80 text-xs font-semibold">
+          Cancelar
+        </button>
+        <button type="button" onclick="confirmarLiquidacionSemanaConCompensacion()" class="px-5 py-2 rounded-xl bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-400 hover:to-amber-500 text-white font-bold text-xs shadow-lg shadow-yellow-950/50 flex items-center gap-1.5 transition-all cursor-pointer">
+          <i data-lucide="check-check" class="w-4 h-4"></i>
+          <span>Confirmar y Marcar Semana Pagada</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
   <!-- MODAL: DETALLE Y LIQUIDACIÓN DEL VALE                    -->
   <!-- ======================================================== -->
   <div id="modal-detalle-vale" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
@@ -5291,9 +5402,22 @@ function guardarEnCacheRobusto() {
         return dia + '/' + mes + '/' + d.getFullYear();
       };
 
+      var mesesCortos = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+      var d1 = targetTuesday.getDate();
+      var m1 = mesesCortos[targetTuesday.getMonth()];
+      var y1 = targetTuesday.getFullYear();
+      var d2 = targetMonday.getDate();
+      var m2 = mesesCortos[targetMonday.getMonth()];
+      var y2 = targetMonday.getFullYear();
+
+      var rangoLegible = (m1 === m2 && y1 === y2)
+        ? (d1 + ' al ' + d2 + ' de ' + m1 + ' ' + y1)
+        : (d1 + ' ' + m1 + ' - ' + d2 + ' ' + m2 + ' ' + y2);
+
       return {
         martes: targetTuesday,
         lunes: targetMonday,
+        rangoLegible: rangoLegible,
         label: 'Mar ' + f(targetTuesday) + ' - Lun ' + f(targetMonday)
       };
     }
@@ -5419,17 +5543,23 @@ function guardarEnCacheRobusto() {
       const select = document.getElementById('select-semanas');
       if (!select) return;
 
+      const semanaActual = getISOWeekString(new Date());
       const semanasSet = new Set();
-      semanasSet.add('2026-W41');
-      semanasSet.add('2026-W42');
-      semanasSet.add(getISOWeekString(new Date()));
+      semanasSet.add(semanaActual);
       if (appState.semanaActiva) semanasSet.add(appState.semanaActiva);
 
       for (let i = 0; i < appState.vales.length; i++) {
-        if (appState.vales[i].semana) semanasSet.add(appState.vales[i].semana);
+        const sw = appState.vales[i].semana;
+        if (sw) {
+          // Filtrar semanas futuras no alcanzadas
+          if (sw <= semanaActual) {
+            semanasSet.add(sw);
+          }
+        }
       }
 
-      const listaSemanas = Array.from(semanasSet).sort();
+      // Orden descendente (semana más reciente primero)
+      const listaSemanas = Array.from(semanasSet).sort().reverse();
 
       select.innerHTML = '';
       for (let j = 0; j < listaSemanas.length; j++) {
@@ -5437,20 +5567,41 @@ function guardarEnCacheRobusto() {
         const info = getWeekDateRange(s);
         const opt = document.createElement('option');
         opt.value = s;
-        opt.textContent = 'Semana ' + s + ' (' + info.label + ')';
+        const esActual = (s === semanaActual);
+        opt.textContent = (esActual ? '⭐ ' : '') + 'Semana ' + s.split('-W')[1] + ' · ' + (info.rangoLegible || info.label) + (esActual ? ' (Actual)' : '');
         if (s === appState.semanaActiva) opt.selected = true;
         select.appendChild(opt);
       }
 
       const infoActiva = getWeekDateRange(appState.semanaActiva);
       const lblRango = document.getElementById('label-rango-semana-activa');
-      if (lblRango) lblRango.textContent = infoActiva.label;
+      if (lblRango) lblRango.textContent = infoActiva.rangoLegible || infoActiva.label;
 
       const tit = document.getElementById('titulo-semana-activa');
-      if (tit) tit.textContent = 'Semana ' + appState.semanaActiva;
+      if (tit) {
+        const esAct = (appState.semanaActiva === semanaActual);
+        tit.textContent = 'Semana ' + appState.semanaActiva.split('-W')[1] + (esAct ? ' (En Curso)' : '');
+      }
+
+      // Bloquear botón "Semana Siguiente" si ya estamos en la semana actual para no navegar a semanas futuras
+      const btnNext = document.querySelector('button[title="Semana Siguiente"]');
+      if (btnNext) {
+        if (appState.semanaActiva >= semanaActual) {
+          btnNext.disabled = true;
+          btnNext.classList.add('opacity-40', 'cursor-not-allowed');
+        } else {
+          btnNext.disabled = false;
+          btnNext.classList.remove('opacity-40', 'cursor-not-allowed');
+        }
+      }
     }
 
     window.seleccionarSemana = function(semana) {
+      const semanaActual = getISOWeekString(new Date());
+      if (semana > semanaActual) {
+        alert('⚠️ No se pueden seleccionar semanas futuras que aún no han llegado.');
+        semana = semanaActual;
+      }
       appState.semanaActiva = semana;
       guardarEnCacheRobusto();
       actualizarSelectorSemanas();
@@ -5458,6 +5609,7 @@ function guardarEnCacheRobusto() {
     };
 
     window.cambiarSemanaRelativa = function(delta) {
+      const semanaActual = getISOWeekString(new Date());
       const parts = appState.semanaActiva.split('-W');
       let year = parseInt(parts[0], 10);
       let week = parseInt(parts[1], 10) + delta;
@@ -5471,6 +5623,10 @@ function guardarEnCacheRobusto() {
       }
 
       const nuevaSemana = year + '-W' + String(week).padStart(2, '0');
+      if (delta > 0 && nuevaSemana > semanaActual) {
+        alert('⚠️ No puedes avanzar a semanas futuras.');
+        return;
+      }
       window.seleccionarSemana(nuevaSemana);
     };
 
@@ -5622,6 +5778,36 @@ function guardarEnCacheRobusto() {
           ventasDisplay += '<span class="text-[10px] font-semibold text-yellow-300 font-mono block">' + ventasCUPSemana.toLocaleString('es-ES') + ' CUP</span>';
         }
 
+        // Compensación de error si existe
+        if (!appState.compensaciones) appState.compensaciones = {};
+        const compKey = g.nombre.toLowerCase().trim() + '__' + appState.semanaActiva;
+        const compInfo = appState.compensaciones[compKey] || null;
+
+        let compHtml = '';
+        if (compInfo && Number(compInfo.montoCUP) !== 0) {
+          const compSign = Number(compInfo.montoCUP) > 0 ? '+' : '';
+          compHtml = '<div class="text-[10px] text-amber-300 bg-amber-950/40 border border-amber-500/30 px-2 py-0.5 rounded font-mono mt-1" title="' + (compInfo.motivo || 'Compensación') + '">' +
+            '⚖️ Compensación: ' + compSign + Number(compInfo.montoCUP).toLocaleString('es-ES') + ' CUP' +
+          '</div>';
+        }
+
+        let comisionDisplayHtml = '<div><span class="text-[10px] text-yellow-300 uppercase block font-bold">Comisión Semana</span><span class="text-sm font-black text-yellow-300 font-mono">' + comisionTotalSemanaCUP.toLocaleString('es-ES') + ' CUP</span>' + compHtml + '</div>';
+
+        let btnMarcarPago = '';
+        if (currentUser && currentUser.role === 'ADMIN') {
+          if (comisionPendienteSemanaCUP > 0) {
+            btnMarcarPago = '<button onclick="abrirModalMarcarSemanaPago(\'' + g.nombre + '\')" class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-400 hover:to-amber-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-yellow-950/40 border border-yellow-400/40 transition-all cursor-pointer">' +
+              '<i data-lucide="badge-dollar-sign" class="w-4 h-4"></i>' +
+              '<span>Marcar Semana de Pago</span>' +
+            '</button>';
+          } else if (valesSemanaGestor.length > 0) {
+            btnMarcarPago = '<button onclick="abrirModalMarcarSemanaPago(\'' + g.nombre + '\')" class="px-3 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-yellow-300 border border-yellow-500/30 font-bold text-xs flex items-center gap-1.5 transition-all cursor-pointer" title="Ver o ajustar compensación de la semana">' +
+              '<i data-lucide="check-check" class="w-4 h-4 text-emerald-400"></i>' +
+              '<span>Semana Pagada (Ajustar)</span>' +
+            '</button>';
+          }
+        }
+
         let cardHeader = '<div class="p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-zinc-950">' +
           '<div class="flex items-center gap-3.5">' +
             '<div class="w-14 h-14 rounded-2xl bg-yellow-950/30 border border-yellow-500/25 flex items-center justify-center text-white overflow-hidden shrink-0 shadow-md">' +
@@ -5647,9 +5833,10 @@ function guardarEnCacheRobusto() {
             '<div><span class="text-[10px] text-yellow-300/70 uppercase block font-semibold">Vales Semana</span><span class="text-sm font-black text-white font-mono">' + valesSemanaGestor.length + '</span></div>' +
             '<div><span class="text-[10px] text-yellow-300/70 uppercase block font-semibold">Equipos</span><span class="text-sm font-black text-yellow-400 font-mono">' + equiposSemana + '</span></div>' +
             '<div><span class="text-[10px] text-yellow-300/70 uppercase block font-semibold">Ventas</span><span class="text-sm font-bold text-teal-400 font-mono block">' + ventasDisplay + '</span></div>' +
-            '<div><span class="text-[10px] text-yellow-300 uppercase block font-bold">Comisión Semana</span><span class="text-sm font-black text-yellow-300 font-mono">' + comisionTotalSemanaCUP.toLocaleString('es-ES') + ' CUP</span></div>' +
+            comisionDisplayHtml +
           '</div>' +
           '<div class="gestor-actions-bar flex items-center gap-2 flex-wrap">' +
+            btnMarcarPago +
             '<button onclick="enviarResumenWhatsAppGestor(\'' + g.id + '\')" title="Enviar resumen semanal de comisiones por WhatsApp" class="px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-emerald-950/40 border border-emerald-400/40 transition-all cursor-pointer">' +
               '<i class="fa-brands fa-whatsapp text-sm text-white"></i>' +
               '<span>WhatsApp Resumen</span>' +
@@ -5664,8 +5851,8 @@ function guardarEnCacheRobusto() {
 
         // Submenu
         let liquidarBtn = comisionPendienteSemanaCUP > 0
-          ? '<button onclick="liquidarSemanaGestor(\'' + g.nombre + '\')" class="px-3.5 py-1.5 rounded-xl bg-yellow-600 hover:bg-yellow-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-yellow-950/20 transition-all"><i data-lucide="check-circle" class="w-4 h-4"></i><span>Liquidar ' + comisionPendienteSemanaCUP.toLocaleString('es-ES') + ' CUP Pendientes</span></button>'
-          : '<span class="text-xs text-yellow-400 font-bold bg-emerald-950/40 border border-yellow-500/25 px-3 py-1 rounded-xl">✓ Comisiones al Día</span>';
+          ? '<button onclick="abrirModalMarcarSemanaPago(\'' + g.nombre + '\')" class="px-3.5 py-1.5 rounded-xl bg-yellow-600 hover:bg-yellow-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-yellow-950/20 transition-all cursor-pointer"><i data-lucide="badge-dollar-sign" class="w-4 h-4"></i><span>Marcar Semana de Pago (' + comisionPendienteSemanaCUP.toLocaleString('es-ES') + ' CUP)</span></button>'
+          : '<button onclick="abrirModalMarcarSemanaPago(\'' + g.nombre + '\')" class="px-3.5 py-1.5 rounded-xl bg-emerald-950/60 border border-emerald-500/40 hover:bg-emerald-950/90 text-emerald-300 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer"><i data-lucide="check-check" class="w-4 h-4"></i><span>✓ Semana Pagada (Ajustar Compensación)</span></button>';
 
         let submenuContent = '';
         if (valesSemanaGestor.length === 0) {
@@ -5917,8 +6104,12 @@ function guardarEnCacheRobusto() {
         day = parseInt(m1[1], 10);
         month = parseInt(m1[2], 10);
         if (m1[3]) {
-          year = parseInt(m1[3], 10);
-          if (year < 100) year += 2000;
+          let yr = parseInt(m1[3], 10);
+          if (yr < 100) yr += 2000;
+          // Si el año es mayor al año corriente (ej. 2029 por confusión de día o errata), forzar año actual
+          const maxAnio = new Date().getFullYear();
+          if (yr > maxAnio) yr = maxAnio;
+          year = yr;
         }
       } else {
         const m2 = clean.match(/(\d{1,2})\s+(?:de\s+)?(octubre|oct|noviembre|nov|diciembre|dic|enero|ene|febrero|feb|marzo|mar|abril|abr|mayo|may|junio|jun|julio|jul|agosto|ago|septiembre|sep)/i);
@@ -7711,8 +7902,20 @@ function guardarEnCacheRobusto() {
         msg += '💴 *Volumen Ventas CUP:* ' + ventasCUP.toLocaleString('es-ES') + ' CUP\n';
       }
 
-      msg += '💰 *GANANCIA COMISIÓN:* ' + gananciaComisionCUP.toLocaleString('es-ES') + ' CUP\n' +
-             '━━━━━━━━━━━━━━━━━━━━\n' +
+      msg += '💰 *GANANCIA COMISIÓN:* ' + gananciaComisionCUP.toLocaleString('es-ES') + ' CUP\n';
+
+      // Incluir compensación de error si existe
+      if (!appState.compensaciones) appState.compensaciones = {};
+      var compK = gestor.nombre.toLowerCase().trim() + '__' + appState.semanaActiva;
+      var compReg = appState.compensaciones[compK];
+      if (compReg && Number(compReg.montoCUP) !== 0) {
+        var cSign = Number(compReg.montoCUP) > 0 ? '+' : '';
+        msg += '⚖️ *Compensación / Ajuste:* ' + cSign + Number(compReg.montoCUP).toLocaleString('es-ES') + ' CUP (' + (compReg.motivo || 'Ajuste') + ')\n';
+        var totalFinalLiquidado = gananciaComisionCUP + Number(compReg.montoCUP);
+        msg += '💳 *TOTAL FINAL LIQUIDADO:* ' + totalFinalLiquidado.toLocaleString('es-ES') + ' CUP\n';
+      }
+
+      msg += '━━━━━━━━━━━━━━━━━━━━\n' +
              '✨ *¡Excelente trabajo esta semana!*\n' +
              '🌐 *Ver tus vales y detalles:* https://web23456.github.io/Gestores/\n' +
              '_K y A . Primera Mano — Tu Tienda de Confianza_';
@@ -7721,19 +7924,147 @@ function guardarEnCacheRobusto() {
       window.open(url, '_blank');
     };
 
-    window.liquidarSemanaGestor = function(gestorNombre) {
-      if (!confirm('¿Confirmar liquidación y pago de todas las comisiones de ' + gestorNombre + ' para la semana ' + appState.semanaActiva + '?')) return;
-      
-      for (let i = 0; i < appState.vales.length; i++) {
-        const v = appState.vales[i];
-        if (v.semana === appState.semanaActiva && v.gestorNombre && v.gestorNombre.toLowerCase().trim() === gestorNombre.toLowerCase().trim()) {
-          v.estadoComision = 'PAGADA';
+    // --------------------------------------------------------
+    // MARCAR SEMANA DE PAGO CON COMPENSACIÓN DE ERROR
+    // --------------------------------------------------------
+    window.abrirModalMarcarSemanaPago = function(gestorNombre) {
+      if (!appState.compensaciones) appState.compensaciones = {};
+      const semana = appState.semanaActiva;
+      const compKey = gestorNombre.toLowerCase().trim() + '__' + semana;
+      const compExistente = appState.compensaciones[compKey] || null;
+
+      const valesG = appState.vales.filter(function(v) {
+        return v.semana === semana && v.gestorNombre && v.gestorNombre.toLowerCase().trim() === gestorNombre.toLowerCase().trim();
+      });
+
+      let totalVales = valesG.length;
+      let totalEquipos = 0;
+      let comisionTotal = 0;
+      let comisionPagada = 0;
+
+      for (let i = 0; i < valesG.length; i++) {
+        const v = valesG[i];
+        totalEquipos += (v.items || []).reduce(function(a, it) { return a + (Number(it.cantidad) || 1); }, 0);
+        const com = Number(v.granComisionCUP) || 0;
+        comisionTotal += com;
+        if (v.estadoComision === 'PAGADA') {
+          comisionPagada += com;
         }
       }
 
+      const comisionPendiente = comisionTotal - comisionPagada;
+
+      document.getElementById('liquidar-input-gestor-nombre').value = gestorNombre;
+      document.getElementById('liquidar-input-semana').value = semana;
+
+      const infoSemana = getWeekDateRange(semana);
+      document.getElementById('liquidar-label-gestor').textContent = gestorNombre;
+      document.getElementById('liquidar-label-semana').textContent = 'Semana ' + semana.split('-W')[1] + ' (' + (infoSemana.rangoLegible || infoSemana.label) + ')';
+      document.getElementById('liquidar-label-vales-count').textContent = totalVales + ' vale(s)';
+      document.getElementById('liquidar-label-equipos-count').textContent = totalEquipos + ' unidad(es)';
+      document.getElementById('liquidar-label-comision-total').textContent = comisionTotal.toLocaleString('es-ES') + ' CUP';
+      document.getElementById('liquidar-label-comision-pagada').textContent = comisionPagada.toLocaleString('es-ES') + ' CUP';
+      document.getElementById('liquidar-label-comision-pendiente').textContent = comisionPendiente.toLocaleString('es-ES') + ' CUP';
+
+      const inputComp = document.getElementById('liquidar-input-compensacion');
+      const inputMotivo = document.getElementById('liquidar-input-motivo');
+
+      if (compExistente) {
+        inputComp.value = compExistente.montoCUP || '';
+        inputMotivo.value = compExistente.motivo || '';
+      } else {
+        inputComp.value = '';
+        inputMotivo.value = '';
+      }
+
+      recalcularTotalLiquidacionModal();
+      abrirModal('modal-liquidar-semana');
+    };
+
+    window.recalcularTotalLiquidacionModal = function() {
+      const gestorNombre = document.getElementById('liquidar-input-gestor-nombre').value;
+      const semana = document.getElementById('liquidar-input-semana').value || appState.semanaActiva;
+
+      const valesG = appState.vales.filter(function(v) {
+        return v.semana === semana && v.gestorNombre && v.gestorNombre.toLowerCase().trim() === gestorNombre.toLowerCase().trim();
+      });
+
+      let comisionPendiente = 0;
+      for (let i = 0; i < valesG.length; i++) {
+        if (valesG[i].estadoComision !== 'PAGADA') {
+          comisionPendiente += Number(valesG[i].granComisionCUP) || 0;
+        }
+      }
+
+      const inputVal = document.getElementById('liquidar-input-compensacion').value.trim();
+      const compensacion = inputVal === '' ? 0 : (Number(inputVal) || 0);
+
+      const granTotal = comisionPendiente + compensacion;
+
+      const lblGranTotal = document.getElementById('liquidar-label-gran-total');
+      const lblDesglose = document.getElementById('liquidar-label-desglose');
+
+      if (lblGranTotal) {
+        lblGranTotal.textContent = granTotal.toLocaleString('es-ES') + ' CUP';
+      }
+      if (lblDesglose) {
+        if (compensacion !== 0) {
+          const sign = compensacion > 0 ? ('+ ' + compensacion.toLocaleString('es-ES')) : ('- ' + Math.abs(compensacion).toLocaleString('es-ES'));
+          lblDesglose.textContent = comisionPendiente.toLocaleString('es-ES') + ' CUP (Vales) ' + sign + ' CUP (Compensación)';
+        } else {
+          lblDesglose.textContent = 'Vales pendientes: ' + comisionPendiente.toLocaleString('es-ES') + ' CUP (Sin compensación)';
+        }
+      }
+    };
+
+    window.confirmarLiquidacionSemanaConCompensacion = function() {
+      const gestorNombre = document.getElementById('liquidar-input-gestor-nombre').value;
+      const semana = document.getElementById('liquidar-input-semana').value || appState.semanaActiva;
+      const inputComp = document.getElementById('liquidar-input-compensacion').value.trim();
+      const motivo = document.getElementById('liquidar-input-motivo').value.trim();
+      const compensacionMonto = inputComp === '' ? 0 : (Number(inputComp) || 0);
+
+      if (!gestorNombre) return;
+
+      // 1. Marcar todos los vales de la semana como PAGADA
+      let valesMarcados = 0;
+      for (let i = 0; i < appState.vales.length; i++) {
+        const v = appState.vales[i];
+        if (v.semana === semana && v.gestorNombre && v.gestorNombre.toLowerCase().trim() === gestorNombre.toLowerCase().trim()) {
+          v.estadoComision = 'PAGADA';
+          valesMarcados++;
+        }
+      }
+
+      // 2. Guardar compensación de error (si hay monto o motivo)
+      if (!appState.compensaciones) appState.compensaciones = {};
+      const compKey = gestorNombre.toLowerCase().trim() + '__' + semana;
+
+      if (compensacionMonto !== 0 || motivo !== '') {
+        appState.compensaciones[compKey] = {
+          gestorNombre: gestorNombre,
+          semana: semana,
+          montoCUP: compensacionMonto,
+          motivo: motivo || 'Ajuste / Compensación manual',
+          fechaRegistro: new Date().toISOString()
+        };
+      } else {
+        delete appState.compensaciones[compKey];
+      }
+
+      cerrarModal('modal-liquidar-semana');
       guardarEnCacheRobusto();
       renderizarTodo();
-      alert('🎉 ¡Liquidación completada para ' + gestorNombre + '!');
+
+      let mensajeExito = '🎉 ¡Semana ' + semana.split('-W')[1] + ' marcada como PAGADA para ' + gestorNombre + '!\n(' + valesMarcados + ' vales liquidados)';
+      if (compensacionMonto !== 0) {
+        mensajeExito += '\nCompensación de error registrada: ' + (compensacionMonto > 0 ? '+' : '') + compensacionMonto.toLocaleString('es-ES') + ' CUP (' + (motivo || 'Ajuste') + ')';
+      }
+      alert(mensajeExito);
+    };
+
+    window.liquidarSemanaGestor = function(gestorNombre) {
+      window.abrirModalMarcarSemanaPago(gestorNombre);
     };
 
     // --------------------------------------------------------
