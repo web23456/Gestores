@@ -1,5 +1,5 @@
 {
-  "timestamp": 1793078657032,
+  "timestamp": 1793080078557,
   "gestores": [
     {
       "id": "G-1",
@@ -1161,8 +1161,8 @@
     {
       "id": "V-1793076690445-n83mpx",
       "folio": "VAL-831478",
-      "fecha": "2029-10-25",
-      "semana": "2029-W43",
+      "fecha": "2026-10-25",
+      "semana": "2026-W42",
       "moneda": "USD",
       "gestorNombre": "Liz Mariam",
       "gestorTelefono": "54763168",
@@ -2699,8 +2699,8 @@
     {
       "id": "V-1793076690441-71872j",
       "folio": "VAL-121096",
-      "fecha": "2029-10-18",
-      "semana": "2029-W42",
+      "fecha": "2026-10-18",
+      "semana": "2026-W41",
       "moneda": "USD",
       "gestorNombre": "Liz Mariam",
       "gestorTelefono": "54763168",
@@ -3798,5 +3798,6 @@
       "planta electrica",
       "motor"
     ]
-  }
+  },
+  "compensaciones": {}
 }
