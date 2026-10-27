@@ -1,5 +1,5 @@
 {
-  "timestamp": 1793088151819,
+  "timestamp": 1793126863181,
   "gestores": [
     {
       "id": "G-1",
@@ -2801,7 +2801,7 @@
           "producto": "reina",
           "cantidad": 1,
           "tipoEquipo": "Pequeño",
-          "precioVenta": 28,
+          "precioVenta": 47,
           "comisionUnitCUP": 1500,
           "comisionTotalCUP": 1500
         },
@@ -2815,7 +2815,7 @@
           "comisionTotalCUP": 1500
         }
       ],
-      "totalVenta": 86,
+      "totalVenta": 105,
       "granComisionCUP": 4500,
       "estadoComision": "PENDIENTE",
       "createdAt": 1793076690441
@@ -2868,7 +2868,7 @@
           "producto": "reina",
           "cantidad": 1,
           "tipoEquipo": "Pequeño",
-          "precioVenta": 15.67,
+          "precioVenta": 47,
           "comisionUnitCUP": 1500,
           "comisionTotalCUP": 1500
         },
@@ -2877,7 +2877,7 @@
           "producto": "infrarrojo",
           "cantidad": 1,
           "tipoEquipo": "Pequeño",
-          "precioVenta": 15.67,
+          "precioVenta": 30,
           "comisionUnitCUP": 1500,
           "comisionTotalCUP": 1500
         },
@@ -2886,12 +2886,12 @@
           "producto": "arrocera",
           "cantidad": 1,
           "tipoEquipo": "Pequeño",
-          "precioVenta": 15.67,
+          "precioVenta": 28,
           "comisionUnitCUP": 1500,
           "comisionTotalCUP": 1500
         }
       ],
-      "totalVenta": 47.01,
+      "totalVenta": 105,
       "granComisionCUP": 4500,
       "estadoComision": "PENDIENTE",
       "createdAt": 1793076690441
