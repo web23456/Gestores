@@ -25,7 +25,7 @@
   <!-- AUTO-GUARDADO: Base de datos embebida en el propio archivo -->
   <script id="self-embedded-database">
     window.__EMBEDDED_GESTORES_DB__ = {
-  "timestamp": 1793082685545,
+  "timestamp": 1793083587622,
   "gestores": [
     {
       "id": "G-1",
@@ -5007,9 +5007,9 @@
     <div class="bg-zinc-950 border-2 border-yellow-500/40 rounded-3xl w-full max-w-2xl overflow-hidden shadow-2xl animate-in zoom-in-95 my-auto">
       
       <!-- Cabecera -->
-      <div class="px-6 py-4 border-b border-yellow-500/25 flex items-center justify-between bg-gradient-to-r from-zinc-950 via-zinc-900 to-black">
+      <div class="px-6 py-4 border-b border-yellow-500/25 flex items-center justify-between bg-gradient-to-r from-zinc-950 via-zinc-900 to-black sticky top-0 z-10">
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-2xl bg-yellow-500/15 text-yellow-400 flex items-center justify-center border border-yellow-500/30">
+          <div class="w-10 h-10 rounded-2xl bg-yellow-500/15 text-yellow-400 flex items-center justify-center border border-yellow-500/30 shrink-0">
             <i data-lucide="file-check-2" class="w-5 h-5"></i>
           </div>
           <div>
@@ -5017,9 +5017,15 @@
             <p class="text-[11px] text-yellow-300/70">Requisito obligatorio: Adjuntar foto de carnet y firma digital</p>
           </div>
         </div>
-        <button onclick="cerrarModal('modal-hoja-firma-semana')" class="text-yellow-300/70 hover:text-white p-1">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="procesarFirmaYGenerarValeLiquidacion()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-300 hover:to-amber-400 text-black font-black text-xs shadow-lg flex items-center gap-1.5 transition-all cursor-pointer">
+            <i data-lucide="download" class="w-3.5 h-3.5 text-black"></i>
+            <span>Guardar y Descargar</span>
+          </button>
+          <button onclick="cerrarModal('modal-hoja-firma-semana')" class="text-yellow-300/70 hover:text-white p-1">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
       </div>
 
       <!-- Cuerpo / Hoja en Blanco -->
@@ -5111,14 +5117,14 @@
       </div>
 
       <!-- Pie del Modal -->
-      <div class="px-6 py-4 bg-black border-t border-yellow-500/25 flex flex-col sm:flex-row items-center justify-between gap-3">
-        <button type="button" onclick="volverAPasoCompensacion()" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-yellow-300/80 text-xs font-semibold flex items-center justify-center gap-1.5">
+      <div class="px-6 py-4 bg-black border-t-2 border-yellow-500/30 flex flex-col sm:flex-row items-center justify-between gap-3 sticky bottom-0 z-10 bg-black/95">
+        <button type="button" onclick="volverAPasoCompensacion()" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-yellow-300/80 text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer">
           <i data-lucide="arrow-left" class="w-4 h-4"></i>
           <span>Volver al Desglose</span>
         </button>
 
-        <button type="button" id="btn-guardar-firma-carnet-vale" onclick="procesarFirmaYGenerarValeLiquidacion()" class="w-full sm:w-auto px-8 py-3 rounded-2xl bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-500 hover:from-yellow-300 hover:to-amber-400 text-black font-black text-sm shadow-2xl shadow-yellow-500/30 flex items-center justify-center gap-2.5 transition-all cursor-pointer transform hover:scale-[1.02] active:scale-[0.98]">
-          <i data-lucide="save" class="w-5 h-5 text-black"></i>
+        <button type="button" id="btn-guardar-firma-carnet-vale" onclick="procesarFirmaYGenerarValeLiquidacion()" class="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500 hover:from-yellow-300 hover:to-amber-300 text-black font-black text-sm shadow-2xl shadow-yellow-500/40 flex items-center justify-center gap-2.5 transition-all cursor-pointer transform hover:scale-[1.02] active:scale-[0.98] border-2 border-yellow-200">
+          <i data-lucide="download" class="w-5 h-5 text-black"></i>
           <span>Guardar y Descargar Vale</span>
         </button>
       </div>
