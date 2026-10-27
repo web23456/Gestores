@@ -1233,15 +1233,16 @@
           "producto": "un ventilador f6",
           "cantidad": 1,
           "tipoEquipo": "Pequeño",
-          "precioVenta": 7.5,
+          "precioVenta": 37,
           "comisionUnitCUP": 1500,
           "comisionTotalCUP": 1500
         }
       ],
-      "totalVenta": 22.5,
+      "totalVenta": 52,
       "granComisionCUP": 4500,
       "estadoComision": "PENDIENTE",
-      "createdAt": 1793076690445
+      "createdAt": 1793076690445,
+      "updatedAt": 1793114831081
     },
     {
       "id": "V-1793076690445-u1hf9e",
