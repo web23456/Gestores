@@ -5263,6 +5263,66 @@
     </div>
   </div>
 
+    <!-- ======================================================== -->
+  <!-- MODAL: SEÑALAR Y DESCONTAR AL GESTOR POR VALE ESPECÍFICO   -->
+  <!-- ======================================================== -->
+  <div id="modal-descuento-vale" class="fixed inset-0 bg-black/85 backdrop-blur-sm z-50 hidden items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-zinc-950 border border-rose-500/30 rounded-2xl w-full max-w-md overflow-hidden shadow-2xl animate-in zoom-in-95 my-8">
+      <div class="px-6 py-4 border-b border-rose-500/20 flex items-center justify-between bg-gradient-to-r from-rose-950/40 to-zinc-950">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center border border-rose-500/30">
+            <i data-lucide="badge-percent" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-white text-base">Descontar al Gestor por Vale</h3>
+            <p id="descuento-vale-subtitulo" class="text-[11px] text-rose-300/70">Ajuste directo en la comisión del vale</p>
+          </div>
+        </div>
+        <button onclick="cerrarModal('modal-descuento-vale')" class="text-rose-300/70 hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="p-6 space-y-4 text-xs">
+        <input type="hidden" id="descuento-vale-id">
+
+        <div class="p-3 bg-black/70 rounded-xl border border-yellow-500/20 space-y-1 text-[11px]">
+          <div class="flex justify-between"><span class="text-yellow-300/70">Folio:</span> <span id="descuento-vale-folio" class="font-mono font-bold text-yellow-300"></span></div>
+          <div class="flex justify-between"><span class="text-yellow-300/70">Gestor:</span> <span id="descuento-vale-gestor" class="font-bold text-white"></span></div>
+          <div class="flex justify-between"><span class="text-yellow-300/70">Comisión Base del Vale:</span> <span id="descuento-vale-comision-base" class="font-mono font-bold text-yellow-400"></span></div>
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-bold text-rose-300 mb-1">Monto a Descontar en CUP *</label>
+          <div class="relative">
+            <span class="absolute left-3 top-2.5 text-rose-400 font-bold">-</span>
+            <input type="number" id="descuento-vale-monto" min="0" step="50" placeholder="Ej: 500" class="w-full bg-black border border-rose-500/40 text-white font-mono font-bold rounded-xl pl-7 pr-3 py-2 text-sm focus:border-rose-400 focus:outline-none">
+          </div>
+          <p class="text-[10px] text-rose-300/70 mt-1">Este monto se le restará a la comisión del gestor generada por este vale.</p>
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-bold text-yellow-300/80 mb-1">Motivo o Justificación del Descuento</label>
+          <input type="text" id="descuento-vale-motivo" placeholder="Ej: Error en dirección, demora injustificada, penalización..." class="w-full bg-black border border-yellow-500/25 text-white rounded-xl px-3 py-2 text-xs focus:border-yellow-400 focus:outline-none">
+        </div>
+      </div>
+
+      <div class="px-6 py-3 bg-black border-t border-yellow-500/20 flex items-center justify-between">
+        <button type="button" onclick="quitarDescuentoVale()" id="btn-quitar-descuento-vale" class="px-3 py-1.5 rounded-lg text-rose-400 hover:bg-rose-950/40 text-xs font-semibold hidden">
+          Quitar Descuento
+        </button>
+        <div class="flex items-center gap-2 ml-auto">
+          <button type="button" onclick="cerrarModal('modal-descuento-vale')" class="px-4 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-yellow-300/80 text-xs font-semibold">
+            Cancelar
+          </button>
+          <button type="button" onclick="guardarDescuentoValeModal()" class="px-5 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-extrabold text-xs shadow-md transition-all cursor-pointer">
+            Aplicar Descuento
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ======================================================== -->
   <!-- MODAL: VISOR DE IMAGEN EN PANTALLA COMPLETA              -->
   <!-- ======================================================== -->
@@ -6153,54 +6213,95 @@ function guardarEnCacheRobusto() {
           for (let k = 0; k < valesSemanaGestor.length; k++) {
             const v = valesSemanaGestor[k];
             let itemsHtml = (v.items || []).map(function(it) {
-              const precioStr = '$' + Number(it.precioVenta || 0).toFixed(2) + ' USD';
-              return '<div class="flex items-center justify-between gap-2 text-[11px]"><span class="text-yellow-100 font-medium">• ' + it.producto + '</span><span class="text-yellow-300/70 font-mono text-[10px]">' + it.cantidad + 'x ' + precioStr + ' (' + (it.tipoEquipo || 'Pequeño') + ': ' + (Number(it.comisionUnitCUP) || 1500) + ' CUP)</span></div>';
+              const pUnit = Number(it.precioVenta || 0);
+              const cantNum = Number(it.cantidad || 1);
+              const subtotalItem = cantNum * pUnit;
+              const precioStr = '$' + pUnit.toFixed(2) + ' c/u → $' + subtotalItem.toFixed(2) + ' USD';
+              return '<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-[11px] bg-zinc-950/70 px-2 py-1 rounded border border-yellow-500/10">' +
+                '<span class="text-white font-medium">• ' + cantNum + 'x ' + it.producto + '</span>' +
+                '<span class="text-yellow-400 font-mono text-[10px] font-bold shrink-0">' + precioStr + ' (' + (it.tipoEquipo || 'Pequeño') + ')</span>' +
+              '</div>';
             }).join('');
 
             const cantTot = (v.items || []).reduce(function(acc, it) { return acc + (Number(it.cantidad) || 1); }, 0);
             const totalVentaStr = '$' + Number(v.totalVenta || 0).toFixed(2) + ' USD';
 
-            rowsHtml += '<tr class="hover:bg-zinc-950/60 transition-colors">' +
-              '<td class="px-4 py-3 font-mono font-bold text-yellow-300"><div>' + v.folio + '</div><span class="text-[10px] text-yellow-500/50 font-normal">' + v.fecha + '</span></td>' +
-              '<td class="px-4 py-3"><div class="font-bold text-white">' + v.clienteNombre + '</div>' + 
-                (v.clienteCI ? '<div class="text-[10px] text-yellow-300/80 font-mono">' + (/[a-zA-Z]/.test(v.clienteCI) ? 'Pas: ' : 'CI: ') + v.clienteCI + '</div>' : '') +
-                (v.clienteTelefono ? '<div class="text-[10px] text-zinc-400 font-mono">' + v.clienteTelefono + '</div>' : '') + '</td>' +
-              '<td class="px-4 py-3 text-yellow-300/80 text-[11px] max-w-xs truncate" title="' + (v.direccion || '') + '">' + (v.direccion || 'Sin dirección') + '</td>' +
-              '<td class="px-4 py-3"><div class="space-y-1">' + itemsHtml + '</div></td>' +
-              '<td class="px-4 py-3 text-center font-bold text-white font-mono">' + cantTot + '</td>' +
-              '<td class="px-4 py-3 text-right font-black ' + (v.moneda === 'CUP' ? 'text-yellow-300' : 'text-yellow-400') + ' font-mono">' + totalVentaStr + '</td>' +
-              '<td class="px-4 py-3 text-right font-black text-yellow-300 font-mono">' + Number(v.granComisionCUP || 0).toLocaleString('es-ES') + ' CUP</td>' +
-              '<td class="px-4 py-3 text-center">' +
-                (v.estadoComision === 'PAGADA' 
-                  ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-yellow-500/20 text-yellow-300 border border-yellow-500/25">Pagada</span>'
-                  : '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30">Pendiente</span>') +
+            let notasTag = v.notas ? '<div class="mt-1 text-[10px] text-amber-300 bg-amber-950/40 border border-amber-500/30 px-2 py-0.5 rounded flex items-center gap-1 font-sans" title="' + v.notas + '"><i data-lucide="sticky-note" class="w-3 h-3 text-yellow-400 shrink-0"></i><span class="truncate max-w-[200px]">' + v.notas + '</span></div>' : '';
+
+            let descuentoBadge = '';
+            if (v.descuentoGestor && Number(v.descuentoGestor.monto) > 0) {
+              descuentoBadge = '<div class="mt-1 text-[10px] text-rose-300 bg-rose-950/50 border border-rose-500/40 px-2 py-0.5 rounded font-mono font-bold flex items-center gap-1" title="' + (v.descuentoGestor.motivo || 'Descuento') + '">' +
+                '<i data-lucide="alert-triangle" class="w-3 h-3 text-rose-400 shrink-0"></i>' +
+                '<span>Desc: -' + Number(v.descuentoGestor.monto).toLocaleString('es-ES') + ' ' + (v.descuentoGestor.moneda || 'CUP') + '</span>' +
+              '</div>';
+            }
+
+            rowsHtml += '<tr class="hover:bg-zinc-900/60 transition-colors align-top">' +
+              // Columna 1: Folio y Fecha
+              '<td class="px-3 py-3 font-mono text-yellow-300">' +
+                '<div class="font-bold text-xs text-yellow-400">' + v.folio + '</div>' +
+                '<span class="text-[10px] text-yellow-500/60 block">' + v.fecha + '</span>' +
+                notasTag +
               '</td>' +
-              '<td class="px-4 py-3 text-center">' +
-                '<div class="flex items-center justify-center gap-1.5">' +
-                  '<button onclick="verDetalleVale(\'' + v.id + '\')" title="Ver Detalle" class="p-1 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-yellow-300/80"><i data-lucide="eye" class="w-3.5 h-3.5"></i></button>' +
-                  '<button onclick="abrirModalEditarVale(\'' + v.id + '\')" title="Editar Vale" class="p-1 rounded-lg bg-yellow-950/20 hover:bg-yellow-950/40 text-yellow-300 border border-yellow-500/25"><i data-lucide="edit-2" class="w-3.5 h-3.5"></i></button>' +
-                  '<button onclick="eliminarVale(\'' + v.id + '\')" title="Eliminar Vale" class="p-1 rounded-lg bg-zinc-900 hover:bg-rose-900/50 text-rose-400"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button>' +
+              // Columna 2: Cliente & Tel
+              '<td class="px-3 py-3">' +
+                '<div class="font-bold text-white text-xs leading-snug">' + v.clienteNombre + '</div>' + 
+                (v.clienteCI ? '<div class="text-[10px] text-yellow-300/80 font-mono mt-0.5">' + (/[a-zA-Z]/.test(v.clienteCI) ? 'Pas: ' : 'CI: ') + v.clienteCI + '</div>' : '') +
+                (v.clienteTelefono ? '<div class="text-[10px] text-zinc-400 font-mono mt-0.5">' + v.clienteTelefono + '</div>' : '') +
+              '</td>' +
+              // Columna 3: Dirección de Entrega
+              '<td class="px-3 py-3 text-yellow-300/80 text-[11px] leading-relaxed">' +
+                (v.direccion ? '<span class="line-clamp-2" title="' + v.direccion + '">' + v.direccion + '</span>' : '<span class="text-zinc-600">Sin dirección</span>') +
+              '</td>' +
+              // Columna 4: Desglose de Productos Vendidos (Unitarios y Subtotal)
+              '<td class="px-3 py-3">' +
+                '<div class="space-y-1">' + itemsHtml + '</div>' +
+              '</td>' +
+              // Columna 5: Cantidad Total
+              '<td class="px-2 py-3 text-center font-bold text-white font-mono text-xs">' + cantTot + '</td>' +
+              // Columna 6: Total Venta (USD)
+              '<td class="px-3 py-3 text-right font-black text-yellow-400 font-mono text-xs whitespace-nowrap">' +
+                totalVentaStr +
+              '</td>' +
+              // Columna 7: Comisión Gestor (CUP)
+              '<td class="px-3 py-3 text-right font-black text-yellow-300 font-mono text-xs whitespace-nowrap">' +
+                Number(v.granComisionCUP || 0).toLocaleString('es-ES') + ' CUP' +
+                descuentoBadge +
+              '</td>' +
+              // Columna 8: Estado de Pago
+              '<td class="px-2 py-3 text-center">' +
+                (v.estadoComision === 'PAGADA' 
+                  ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-yellow-500/20 text-yellow-300 border border-yellow-500/30 whitespace-nowrap">Pagada</span>'
+                  : '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30 whitespace-nowrap">Pendiente</span>') +
+              '</td>' +
+              // Columna 9: Acciones (Detalle, Editar / Notas, Descontar, Borrar)
+              '<td class="px-3 py-3 text-center">' +
+                '<div class="flex items-center justify-center gap-1.5 flex-wrap">' +
+                  '<button onclick="verDetalleVale(\'' + v.id + '\')" title="Ver Detalle Completo" class="p-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-yellow-300/80 border border-yellow-500/10 cursor-pointer"><i data-lucide="eye" class="w-3.5 h-3.5"></i></button>' +
+                  '<button onclick="abrirModalEditarVale(\'' + v.id + '\')" title="Editar Vale y Notas" class="p-1.5 rounded-lg bg-yellow-950/30 hover:bg-yellow-950/60 text-yellow-300 border border-yellow-500/30 cursor-pointer"><i data-lucide="edit-3" class="w-3.5 h-3.5 text-yellow-400"></i></button>' +
+                  (currentUser && currentUser.role === 'ADMIN' ? '<button onclick="abrirModalDescuentoVale(\'' + v.id + '\')" title="Señalar y descontar al gestor por este vale" class="p-1.5 rounded-lg bg-rose-950/40 hover:bg-rose-900/60 text-rose-300 border border-rose-500/40 cursor-pointer"><i data-lucide="badge-percent" class="w-3.5 h-3.5 text-rose-400"></i></button>' : '') +
+                  '<button onclick="eliminarVale(\'' + v.id + '\')" title="Eliminar Vale" class="p-1.5 rounded-lg bg-zinc-900 hover:bg-rose-900/50 text-rose-400 border border-rose-500/20 cursor-pointer"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button>' +
                 '</div>' +
               '</td>' +
             '</tr>';
           }
 
-          let tableHtml = '<div class="overflow-x-auto border border-yellow-500/20 rounded-xl">' +
-            '<table class="w-full text-left text-xs border-collapse">' +
-              '<thead class="bg-zinc-950 text-yellow-300/70 border-b border-yellow-500/20 uppercase text-[10px]">' +
+          let tableHtml = '<div class="overflow-x-auto border border-yellow-500/25 rounded-2xl shadow-xl bg-black/80">' +
+            '<table class="w-full text-left text-xs border-collapse tabla-vales-desktop">' +
+              '<thead class="bg-zinc-950 text-yellow-300/80 border-b border-yellow-500/20 uppercase text-[10px] tracking-wider">' +
                 '<tr>' +
-                  '<th class="px-4 py-2.5">Folio / Fecha</th>' +
-                  '<th class="px-4 py-2.5">Cliente</th>' +
-                  '<th class="px-4 py-2.5">Dirección</th>' +
-                  '<th class="px-4 py-2.5">Productos Vendidos</th>' +
-                  '<th class="px-4 py-2.5 text-center">Cant</th>' +
-                  '<th class="px-4 py-2.5 text-right">Total Venta</th>' +
-                  '<th class="px-4 py-2.5 text-right">Comisión (CUP)</th>' +
-                  '<th class="px-4 py-2.5 text-center">Estado</th>' +
-                  '<th class="px-4 py-2.5 text-center">Acción</th>' +
+                  '<th class="px-3 py-3 w-32">Folio / Fecha</th>' +
+                  '<th class="px-3 py-3 w-40">Cliente</th>' +
+                  '<th class="px-3 py-3 w-48">Dirección</th>' +
+                  '<th class="px-3 py-3">Productos Vendidos (Unit. → Total)</th>' +
+                  '<th class="px-2 py-3 w-16 text-center">Cant</th>' +
+                  '<th class="px-3 py-3 w-28 text-right">Venta (USD)</th>' +
+                  '<th class="px-3 py-3 w-36 text-right">Comisión Gestor</th>' +
+                  '<th class="px-2 py-3 w-24 text-center">Estado</th>' +
+                  '<th class="px-3 py-3 w-36 text-center">Acciones</th>' +
                 '</tr>' +
               '</thead>' +
-              '<tbody class="divide-y divide-yellow-500/10 bg-black">' + rowsHtml + '</tbody>' +
+              '<tbody class="divide-y divide-yellow-500/10 bg-black/60">' + rowsHtml + '</tbody>' +
             '</table>' +
           '</div>';
 
@@ -6706,6 +6807,17 @@ function guardarEnCacheRobusto() {
         linesToProcess = segmentarEquiposInteligente(pedLines[0]);
       }
 
+      // EXTRACCIÓN RESPETIVA DE CANTIDADES DESDE EL CAMPO CANTIDAD
+      const cantidadFieldVal = getFieldValue([/^cantidad\s*:\s*(.*)/i]);
+      let cantidadesRespectivas = [];
+      if (cantidadFieldVal) {
+        let partsC = cantidadFieldVal.split(/[,\+\/yY\s]+/i).map(s => s.trim()).filter(Boolean);
+        for (let p of partsC) {
+          let m = p.match(/\d+/);
+          if (m) cantidadesRespectivas.push(parseInt(m[0], 10));
+        }
+      }
+
       const items = [];
       const totalEquiposDetectados = linesToProcess.length;
       const esCombo = /combo/i.test(raw);
@@ -6720,6 +6832,9 @@ function guardarEnCacheRobusto() {
         if (mQty) {
           cant = parseInt(mQty[1], 10);
           cleanProd = mQty[2].trim();
+        } else if (cantidadesRespectivas.length > lIdx) {
+          // Asignación respectiva por posición
+          cant = cantidadesRespectivas[lIdx] || 1;
         }
 
         const clasif = clasificarEquipo(cleanProd);
@@ -6739,7 +6854,8 @@ function guardarEnCacheRobusto() {
                 (prodLower.includes('infraroj') && (plLow.includes('infraroj') || plLow.includes('cocina') || plLow.includes('fogon') || plLow.includes('inflaro'))) ||
                 (prodLower.includes('pedestal') && plLow.includes('pedestal')) ||
                 (prodLower.includes('pared') && plLow.includes('pared')) ||
-                (prodLower.includes('ciclon') && plLow.includes('ciclon'))) {
+                (prodLower.includes('ciclon') && plLow.includes('ciclon')) ||
+                (prodLower.includes('alarma') && plLow.includes('alarma'))) {
               const m = precioLines[prIdx].match(/(\d+(?:\.\d+)?)/);
               if (m) {
                 precio = parseFloat(m[1]);
@@ -8897,6 +9013,91 @@ function guardarEnCacheRobusto() {
         window.cerrarVisorImagenCompleta();
       }
     });
+
+    // --------------------------------------------------------
+    // GESTIÓN DE DESCUENTOS ESPECÍFICOS POR VALE
+    // --------------------------------------------------------
+    window.abrirModalDescuentoVale = function(valeId) {
+      var v = appState.vales.find(function(x) { return x.id === valeId; });
+      if (!v) return;
+
+      document.getElementById('descuento-vale-id').value = v.id;
+      document.getElementById('descuento-vale-folio').textContent = v.folio;
+      document.getElementById('descuento-vale-gestor').textContent = v.gestorNombre;
+      
+      var comBase = (v.items || []).reduce(function(acc, it) {
+        return acc + ((Number(it.cantidad) || 1) * (Number(it.comisionUnitCUP) || 1500));
+      }, 0);
+      document.getElementById('descuento-vale-comision-base').textContent = comBase.toLocaleString('es-ES') + ' CUP';
+
+      var inputMonto = document.getElementById('descuento-vale-monto');
+      var inputMotivo = document.getElementById('descuento-vale-motivo');
+      var btnQuitar = document.getElementById('btn-quitar-descuento-vale');
+
+      if (v.descuentoGestor && Number(v.descuentoGestor.monto) > 0) {
+        inputMonto.value = v.descuentoGestor.monto;
+        inputMotivo.value = v.descuentoGestor.motivo || '';
+        btnQuitar.classList.remove('hidden');
+      } else {
+        inputMonto.value = '';
+        inputMotivo.value = '';
+        btnQuitar.classList.add('hidden');
+      }
+
+      abrirModal('modal-descuento-vale');
+    };
+
+    window.guardarDescuentoValeModal = function() {
+      var valeId = document.getElementById('descuento-vale-id').value;
+      var v = appState.vales.find(function(x) { return x.id === valeId; });
+      if (!v) return;
+
+      var monto = parseFloat(document.getElementById('descuento-vale-monto').value) || 0;
+      var motivo = document.getElementById('descuento-vale-motivo').value.trim();
+
+      var comBase = (v.items || []).reduce(function(acc, it) {
+        return acc + ((Number(it.cantidad) || 1) * (Number(it.comisionUnitCUP) || 1500));
+      }, 0);
+
+      if (monto > 0) {
+        v.descuentoGestor = {
+          monto: monto,
+          motivo: motivo || 'Descuento por incidencia en vale',
+          moneda: 'CUP',
+          fecha: new Date().toISOString()
+        };
+        // Restar el descuento a la gran comisión del vale
+        v.granComisionCUP = Math.max(0, comBase - monto);
+      } else {
+        delete v.descuentoGestor;
+        v.granComisionCUP = comBase;
+      }
+
+      guardarEnCacheRobusto();
+      renderizarTodo();
+      cerrarModal('modal-descuento-vale');
+      alert('✅ Descuento de ' + monto.toLocaleString('es-ES') + ' CUP aplicado correctamente al vale ' + v.folio + '.');
+    };
+
+    window.quitarDescuentoVale = function() {
+      var valeId = document.getElementById('descuento-vale-id').value;
+      var v = appState.vales.find(function(x) { return x.id === valeId; });
+      if (!v) return;
+
+      if (!confirm('¿Deseas anular el descuento aplicado a este vale?')) return;
+
+      var comBase = (v.items || []).reduce(function(acc, it) {
+        return acc + ((Number(it.cantidad) || 1) * (Number(it.comisionUnitCUP) || 1500));
+      }, 0);
+
+      delete v.descuentoGestor;
+      v.granComisionCUP = comBase;
+
+      guardarEnCacheRobusto();
+      renderizarTodo();
+      cerrarModal('modal-descuento-vale');
+      alert('✓ Descuento removido. Comisión del vale restablecida a ' + comBase.toLocaleString('es-ES') + ' CUP.');
+    };
 
     window.abrirModalConstanciaPago = function(gestorNombre) {
       if (!appState.constanciasPago) appState.constanciasPago = {};
