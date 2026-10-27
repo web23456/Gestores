@@ -437,6 +437,61 @@
   <!-- ======================================================== -->
   <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-5 space-y-6">
 
+    <!-- CARTEL DESTACADO: INSTALAR COMO APLICACIÓN -->
+    <div id="cartel-instalar-app" class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-amber-950/60 via-yellow-950/40 to-black border-2 border-yellow-500/50 p-4 sm:p-5 shadow-2xl backdrop-blur-md transition-all">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div class="flex items-center gap-3.5">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-400 to-yellow-600 flex items-center justify-center text-black font-extrabold shadow-lg shadow-yellow-500/30 shrink-0">
+            <i data-lucide="download" class="w-6 h-6 stroke-[2.5]"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h2 class="text-white font-extrabold text-sm sm:text-base tracking-wide">Instalar como Aplicación</h2>
+              <span class="px-2 py-0.5 rounded-full text-[9px] font-mono font-bold bg-yellow-400/20 text-yellow-300 border border-yellow-400/30">100% OFFLINE</span>
+            </div>
+            <p class="text-yellow-300/80 text-xs mt-0.5 max-w-xl leading-relaxed">
+              Instala la aplicación en tu teléfono o PC para acceder sin conexión a internet, abrirla desde tu pantalla de inicio y recibir actualizaciones automáticas.
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2.5 w-full sm:w-auto justify-end shrink-0">
+          <button id="btn-instalar-banner" onclick="ejecutarInstalacionPWA()"
+                  class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-400 via-yellow-400 to-yellow-500 hover:from-amber-300 hover:to-yellow-400 text-black font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-xl shadow-yellow-950/50 border border-yellow-300 transition-all cursor-pointer">
+            <i data-lucide="download" class="w-4 h-4 stroke-[2.5]"></i>
+            <span>Instalar Aplicación</span>
+          </button>
+          <button onclick="descartarCartelInstalacion()" title="Ocultar cartel"
+                  class="p-2 rounded-xl bg-black/60 hover:bg-zinc-900 text-yellow-400/60 hover:text-yellow-300 border border-yellow-500/20 transition-all">
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARTEL: ACTUALIZACIÓN DISPONIBLE EN LA WEB -->
+    <div id="cartel-actualizacion-disponible" class="hidden relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-950/80 via-indigo-950/60 to-black border-2 border-cyan-400/60 p-4 shadow-2xl backdrop-blur-md animate-pulse">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-300 flex items-center justify-center border border-cyan-400/40 shrink-0">
+            <i data-lucide="refresh-cw" class="w-5 h-5 animate-spin"></i>
+          </div>
+          <div>
+            <h3 class="text-white font-extrabold text-xs sm:text-sm">¡Nueva versión disponible en la web!</h3>
+            <p class="text-cyan-200/80 text-[11px] mt-0.5">Se han detectado cambios o nuevos datos en el servidor.</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
+          <button onclick="aplicarActualizacionWeb()"
+                  class="flex-1 sm:flex-initial px-4 py-2 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-black font-extrabold text-xs flex items-center justify-center gap-1.5 shadow-lg shadow-cyan-950/50 transition-all cursor-pointer">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Actualizar Ahora
+          </button>
+          <button onclick="document.getElementById('cartel-actualizacion-disponible').classList.add('hidden')" class="p-2 text-cyan-300/60 hover:text-white">
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
     <!-- BARRA DE CONTROL DE SEMANA (MARTES A LUNES) -->
     <div class="bg-zinc-950/90 border border-yellow-500/20 rounded-2xl p-4 shadow-xl backdrop-blur flex flex-col md:flex-row md:items-center justify-between gap-4">
       <div class="flex items-center gap-3">
@@ -4026,17 +4081,157 @@ function guardarEnCacheRobusto() {
 
     // Inicializar al cargar el DOM
     
-    // Registro de PWA Service Worker (Instalable como APK Web)
+    // ========================================================
+    // GESTIÓN ROBUSTA DE PWA, INSTALACIÓN Y ACTUALIZACIONES VIVAS
+    // ========================================================
+    var deferredPromptPWA = null;
+    var nuevoServiceWorkerEsperando = null;
+
+    // Escucha del evento nativo beforeinstallprompt
+    window.addEventListener('beforeinstallprompt', function(e) {
+      e.preventDefault();
+      deferredPromptPWA = e;
+      var btnHeader = document.getElementById('btn-instalar-app-pwa');
+      if (btnHeader) {
+        btnHeader.classList.remove('hidden');
+        btnHeader.classList.add('flex');
+      }
+      var cartel = document.getElementById('cartel-instalar-app');
+      if (cartel && !sessionStorage.getItem('cartel_instalacion_descartado')) {
+        cartel.classList.remove('hidden');
+      }
+      if (window.lucide) window.lucide.createIcons();
+    });
+
+    // Detectar si la app ya fue instalada
+    window.addEventListener('appinstalled', function() {
+      deferredPromptPWA = null;
+      var btnHeader = document.getElementById('btn-instalar-app-pwa');
+      if (btnHeader) btnHeader.classList.add('hidden');
+      var cartel = document.getElementById('cartel-instalar-app');
+      if (cartel) cartel.classList.add('hidden');
+      console.log('🎉 PWA instalada exitosamente en el sistema operativo!');
+    });
+
+    // Función principal para ejecutar la instalación desde el cartel o cabecera
+    window.ejecutarInstalacionPWA = async function() {
+      if (deferredPromptPWA) {
+        deferredPromptPWA.prompt();
+        var choice = await deferredPromptPWA.userChoice;
+        if (choice.outcome === 'accepted') {
+          console.log('Usuario aceptó instalar la app');
+          deferredPromptPWA = null;
+          var cartel = document.getElementById('cartel-instalar-app');
+          if (cartel) cartel.classList.add('hidden');
+        }
+      } else {
+        // Fallback para navegadores que no lanzan beforeinstallprompt (ej: Safari iOS, Chrome desktop instalado, etc)
+        var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        var isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+
+        if (isStandalone) {
+          alert('✅ La aplicación ya está instalada y funcionando en este dispositivo.');
+        } else if (isIOS) {
+          alert('📲 Para instalar en iPhone o iPad:\n\n1. Toca el botón Compartir (icono de caja con flecha arriba en Safari)\n2. Desliza hacia abajo y selecciona "Agregar al inicio" (Add to Home Screen)\n3. ¡Listo! Ya tendrás el acceso directo 100% funcional sin conexión.');
+        } else {
+          alert('📲 Para instalar en tu navegador:\n\n1. Haz clic en los tres puntos ⋮ del menú superior de tu navegador (o icono de instalar en la barra de direcciones)\n2. Selecciona "Instalar K y A Gestores" o "Agregar a la pantalla principal"\n3. ¡Listo!');
+        }
+      }
+    };
+
+    window.descartarCartelInstalacion = function() {
+      var cartel = document.getElementById('cartel-instalar-app');
+      if (cartel) cartel.classList.add('hidden');
+      sessionStorage.setItem('cartel_instalacion_descartado', 'true');
+    };
+
+    // Aplicar la nueva versión detectada por el Service Worker o la red
+    window.aplicarActualizacionWeb = function() {
+      if (nuevoServiceWorkerEsperando) {
+        nuevoServiceWorkerEsperando.postMessage({ action: 'skipWaiting' });
+      }
+      // Limpiar cachés y recargar con parámetro fresco
+      if ('caches' in window) {
+        caches.keys().then(function(names) {
+          return Promise.all(names.map(function(n) { return caches.delete(n); }));
+        }).then(function() {
+          window.location.reload(true);
+        });
+      } else {
+        window.location.reload(true);
+      }
+    };
+
+    // Registro de Service Worker con escucha activa de actualizaciones en la web
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
         navigator.serviceWorker.register('./sw.js').then(function(reg) {
           console.log('PWA ServiceWorker registrado exitosamente: ', reg.scope);
+
+          // Si ya hay un worker esperando al cargar
+          if (reg.waiting) {
+            nuevoServiceWorkerEsperando = reg.waiting;
+            mostrarCartelActualizacion();
+          }
+
+          // Escuchar si se encuentra una nueva actualización
+          reg.addEventListener('updatefound', function() {
+            var newWorker = reg.installing;
+            if (newWorker) {
+              newWorker.addEventListener('statechange', function() {
+                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                  nuevoServiceWorkerEsperando = newWorker;
+                  mostrarCartelActualizacion();
+                }
+              });
+            }
+          });
+
+          // Chequeo periódico de actualizaciones cada 60 segundos
+          setInterval(function() {
+            reg.update().catch(function() {});
+          }, 60000);
+
         }).catch(function(err) {
           console.log('Error registrando ServiceWorker: ', err);
         });
+
+        // Si el Service Worker activo toma el control, recargar la página para aplicar cambios
+        var refreshing = false;
+        navigator.serviceWorker.addEventListener('controllerchange', function() {
+          if (!refreshing) {
+            refreshing = true;
+            window.location.reload();
+          }
+        });
       });
     }
-  
+
+    function mostrarCartelActualizacion() {
+      var c = document.getElementById('cartel-actualizacion-disponible');
+      if (c) {
+        c.classList.remove('hidden');
+        if (window.lucide) window.lucide.createIcons();
+      }
+    }
+
+    // Monitor de conexión Online / Offline
+    window.addEventListener('online', function() {
+      console.log('🌐 Conexión restablecida.');
+      // Comprobar si hay cambios en la base de datos remota al volver a estar online
+      try {
+        fetch('./database.json?t=' + Date.now()).then(function(r) { return r.json(); }).then(function(dbRemoto) {
+          if (dbRemoto && Number(dbRemoto.timestamp) > Number(appState.timestamp || 0)) {
+            mostrarCartelActualizacion();
+          }
+        }).catch(function() {});
+      } catch(e) {}
+    });
+
+    window.addEventListener('offline', function() {
+      console.log('📡 Modo sin conexión (offline) activo.');
+    });
+
     document.addEventListener('DOMContentLoaded', inicializar);
 
   })();
