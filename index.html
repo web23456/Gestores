@@ -25,7 +25,7 @@
   <!-- AUTO-GUARDADO: Base de datos embebida en el propio archivo -->
   <script id="self-embedded-database">
     window.__EMBEDDED_GESTORES_DB__ = {
-  "timestamp": 1793080078557,
+  "timestamp": 1793081856744,
   "gestores": [
     {
       "id": "G-1",
@@ -3825,7 +3825,8 @@
       "motor"
     ]
   },
-  "compensaciones": {}
+  "compensaciones": {},
+  "constanciasPago": {}
 };
   </script>
 
@@ -4987,15 +4988,265 @@
         </div>
       </div>
 
-      <div class="px-6 py-3 bg-black border-t border-yellow-500/20 flex items-center justify-end gap-2.5">
+      <div class="px-6 py-3 bg-black border-t border-yellow-500/20 flex items-center justify-between gap-2.5">
         <button type="button" onclick="cerrarModal('modal-liquidar-semana')" class="px-4 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-yellow-300/80 text-xs font-semibold">
           Cancelar
         </button>
-        <button type="button" onclick="confirmarLiquidacionSemanaConCompensacion()" class="px-5 py-2 rounded-xl bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-400 hover:to-amber-500 text-white font-bold text-xs shadow-lg shadow-yellow-950/50 flex items-center gap-1.5 transition-all cursor-pointer">
+        <button type="button" onclick="avanzarAFirmaYCarnetLiquidacion()" class="px-5 py-2 rounded-xl bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-400 hover:to-amber-500 text-white font-bold text-xs shadow-lg shadow-yellow-950/50 flex items-center gap-1.5 transition-all cursor-pointer">
+          <i data-lucide="file-signature" class="w-4 h-4"></i>
+          <span>Continuar: Carnet y Firma Digital ➔</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODAL: HOJA EN BLANCO / CONSTANCIA DIGITAL DE PAGO       -->
+  <!-- ======================================================== -->
+  <div id="modal-hoja-firma-semana" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden items-center justify-center p-2 sm:p-4 overflow-y-auto">
+    <div class="bg-zinc-950 border-2 border-yellow-500/40 rounded-3xl w-full max-w-2xl overflow-hidden shadow-2xl animate-in zoom-in-95 my-auto">
+      
+      <!-- Cabecera -->
+      <div class="px-6 py-4 border-b border-yellow-500/25 flex items-center justify-between bg-gradient-to-r from-zinc-950 via-zinc-900 to-black">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-yellow-500/15 text-yellow-400 flex items-center justify-center border border-yellow-500/30">
+            <i data-lucide="file-check-2" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-black text-white text-base">Hoja Oficial de Liquidación y Firma</h3>
+            <p class="text-[11px] text-yellow-300/70">Requisito obligatorio: Adjuntar foto de carnet y firma digital</p>
+          </div>
+        </div>
+        <button onclick="cerrarModal('modal-hoja-firma-semana')" class="text-yellow-300/70 hover:text-white p-1">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Cuerpo / Hoja en Blanco -->
+      <div class="p-5 sm:p-6 space-y-5 text-xs bg-zinc-950/95 max-h-[78vh] overflow-y-auto">
+        
+        <!-- Recuadro informativo del pago a liquidar -->
+        <div class="bg-black/90 border border-yellow-500/30 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-inner">
+          <div class="space-y-1">
+            <div class="text-[10px] text-yellow-300/70 uppercase tracking-wider font-semibold">Liquidación de Comisiones:</div>
+            <div id="hoja-firma-gestor-nombre" class="font-extrabold text-white text-base tracking-tight"></div>
+            <div id="hoja-firma-semana-rango" class="text-xs text-yellow-200/90 font-mono"></div>
+          </div>
+          <div class="sm:text-right bg-yellow-950/40 border border-yellow-500/30 p-3 rounded-xl">
+            <div class="text-[10px] text-yellow-300/80 uppercase font-bold">Monto Total a Cobrar:</div>
+            <div id="hoja-firma-monto-total" class="text-xl sm:text-2xl font-black text-yellow-400 font-mono">0 CUP</div>
+            <div id="hoja-firma-compensacion-tag" class="text-[10px] text-amber-300 font-mono mt-0.5"></div>
+          </div>
+        </div>
+
+        <!-- 1. FOTO DE CARNET (OBLIGATORIO) -->
+        <div class="bg-zinc-900/60 border border-yellow-500/25 rounded-2xl p-4 space-y-3">
+          <div class="flex items-center justify-between">
+            <label class="font-extrabold text-white text-xs sm:text-sm flex items-center gap-2">
+              <i data-lucide="id-card" class="w-4 h-4 text-yellow-400"></i>
+              <span>1. Foto del Carnet de Identidad <span class="text-rose-400">*</span></span>
+            </label>
+            <span id="hoja-carnet-status" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30">
+              Pendiente
+            </span>
+          </div>
+          <p class="text-[11px] text-yellow-200/70 leading-relaxed">
+            Adjunta o toma una foto nítida de tu carnet de identidad o documento que acredite la recepción conforme de la comisión.
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-center gap-3">
+            <label class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-300 border border-yellow-500/40 text-xs font-bold flex items-center justify-center gap-2 cursor-pointer transition-all">
+              <i data-lucide="upload" class="w-4 h-4"></i>
+              <span>Seleccionar o Tomar Foto</span>
+              <input type="file" id="hoja-input-carnet-file" accept="image/*" class="hidden" onchange="cargarFotoCarnetGestor(event)">
+            </label>
+            <button type="button" id="btn-eliminar-foto-carnet" onclick="eliminarFotoCarnetGestor()" class="hidden px-3 py-2 rounded-xl bg-rose-950/40 border border-rose-500/30 text-rose-300 hover:text-white text-xs font-semibold">
+              Quitar Foto
+            </button>
+          </div>
+
+          <!-- Preview de la foto del carnet -->
+          <div id="hoja-carnet-preview-container" class="hidden relative rounded-xl border border-yellow-500/30 overflow-hidden bg-black max-h-48 flex items-center justify-center p-2">
+            <img id="hoja-carnet-preview-img" src="" alt="Carnet Gestor" class="max-h-44 object-contain rounded-lg shadow-md">
+          </div>
+        </div>
+
+        <!-- 2. FIRMA DIGITAL (OBLIGATORIO) -->
+        <div class="bg-zinc-900/60 border border-yellow-500/25 rounded-2xl p-4 space-y-3">
+          <div class="flex items-center justify-between">
+            <label class="font-extrabold text-white text-xs sm:text-sm flex items-center gap-2">
+              <i data-lucide="pen-tool" class="w-4 h-4 text-yellow-400"></i>
+              <span>2. Firma Digital del Gestor <span class="text-rose-400">*</span></span>
+            </label>
+            <div class="flex items-center gap-2">
+              <span id="hoja-firma-status" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30">
+                Pendiente
+              </span>
+              <button type="button" onclick="limpiarCanvasFirma()" class="px-2.5 py-1 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-yellow-300 text-[11px] font-semibold flex items-center gap-1 transition-colors">
+                <i data-lucide="rotate-ccw" class="w-3 h-3"></i> Borrar Firma
+              </button>
+            </div>
+          </div>
+          <p class="text-[11px] text-yellow-200/70 leading-relaxed">
+            Firma directamente con tu dedo o ratón en el siguiente lienzo blanco. Esta firma digital certifica que recibiste tu pago satisfactoriamente:
+          </p>
+
+          <!-- Lienzo de firma estilo hoja blanca formal -->
+          <div class="relative bg-white rounded-xl border-2 border-yellow-500/40 shadow-inner overflow-hidden cursor-crosshair">
+            <canvas id="canvas-firma-gestor" width="600" height="180" class="w-full h-36 sm:h-44 block touch-none bg-white"></canvas>
+            <div class="pointer-events-none absolute bottom-2 left-4 text-[10px] text-zinc-400 font-mono select-none">
+              Línea de conformidad · Gestor / Comercial
+            </div>
+          </div>
+        </div>
+
+        <!-- Declaración de Conformidad Legal -->
+        <div class="p-3 bg-black/60 rounded-xl border border-yellow-500/20 text-[11px] text-yellow-300/80 leading-normal flex items-start gap-2">
+          <i data-lucide="shield-check" class="w-4 h-4 text-yellow-400 shrink-0 mt-0.5"></i>
+          <span>
+            Certifico haber revisado los vales, compensaciones y el monto liquidado correspondiente a este ciclo semanal, dando fe de su cobro en su totalidad.
+          </span>
+        </div>
+
+      </div>
+
+      <!-- Pie del Modal -->
+      <div class="px-6 py-4 bg-black border-t border-yellow-500/25 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <button type="button" onclick="volverAPasoCompensacion()" class="w-full sm:w-auto px-4 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-yellow-300/80 text-xs font-semibold flex items-center justify-center gap-1.5">
+          <i data-lucide="arrow-left" class="w-4 h-4"></i>
+          <span>Volver al Desglose</span>
+        </button>
+
+        <button type="button" onclick="procesarFirmaYGenerarValeLiquidacion()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 hover:from-yellow-400 hover:to-amber-500 text-black font-black text-xs sm:text-sm shadow-xl shadow-yellow-950/60 flex items-center justify-center gap-2 transition-all cursor-pointer">
           <i data-lucide="check-check" class="w-4 h-4"></i>
           <span>Confirmar y Marcar Semana Pagada</span>
         </button>
       </div>
+
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODAL: VALE OFICIAL DE LIQUIDACIÓN GENERADO (DESCARGABLE) -->
+  <!-- ======================================================== -->
+  <div id="modal-vale-liquidacion-generado" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden items-center justify-center p-2 sm:p-4 overflow-y-auto">
+    <div class="bg-zinc-950 border-2 border-yellow-500/40 rounded-3xl w-full max-w-xl overflow-hidden shadow-2xl animate-in zoom-in-95 my-auto">
+      
+      <!-- Cabecera -->
+      <div class="px-6 py-4 border-b border-yellow-500/25 flex items-center justify-between bg-zinc-900/60">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center border border-emerald-500/30">
+            <i data-lucide="receipt-text" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-extrabold text-white text-base">Vale de Liquidación Generado</h3>
+            <p class="text-[11px] text-emerald-400/90">Constancia digital certificada con carnet y firma</p>
+          </div>
+        </div>
+        <button onclick="cerrarModal('modal-vale-liquidacion-generado')" class="text-yellow-300/70 hover:text-white p-1">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Previsualización de la imagen del Vale -->
+      <div class="p-5 space-y-4 text-xs bg-zinc-950/95 max-h-[75vh] overflow-y-auto">
+        <div class="text-center space-y-1">
+          <p class="text-xs text-yellow-200/80">Tu constancia digital ha sido generada con tecnología de alta resolución.</p>
+          <p class="text-[11px] text-zinc-400">Descárgala o cópiala para adjuntarla como constancia en la semana pagada.</p>
+        </div>
+
+        <div class="bg-black rounded-2xl border-2 border-yellow-500/30 p-2 shadow-2xl flex items-center justify-center overflow-hidden">
+          <img id="img-vale-liquidacion-preview" src="" alt="Vale de Liquidación" class="w-full h-auto max-h-[60vh] object-contain rounded-xl shadow-lg">
+        </div>
+      </div>
+
+      <!-- Botones de Acción: Descargar / Cerrar -->
+      <div class="px-6 py-4 bg-black border-t border-yellow-500/25 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <button type="button" onclick="cerrarModal('modal-vale-liquidacion-generado')" class="w-full sm:w-auto px-4 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-yellow-300/80 text-xs font-semibold">
+          Cerrar
+        </button>
+        <div class="flex items-center gap-2 w-full sm:w-auto">
+          <button type="button" onclick="copiarImagenValeLiquidacion()" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-yellow-300 border border-yellow-500/30 text-xs font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer">
+            <i data-lucide="copy" class="w-4 h-4"></i>
+            <span>Copiar Imagen</span>
+          </button>
+          <a id="btn-descargar-vale-liquidacion" href="#" download="Vale_Liquidacion.png" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-extrabold text-xs shadow-lg shadow-emerald-950/50 flex items-center justify-center gap-2 transition-all cursor-pointer">
+            <i data-lucide="download" class="w-4 h-4"></i>
+            <span>Descargar Vale (.PNG)</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODAL: CONSTANCIA DEL PAGO (PEGAR / SUBIR IMAGEN)        -->
+  <!-- ======================================================== -->
+  <div id="modal-constancia-pago" class="fixed inset-0 bg-black/85 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+    <div class="bg-zinc-950 border border-yellow-500/25 rounded-2xl w-full max-w-lg overflow-hidden shadow-2xl animate-in zoom-in-95">
+      <div class="px-6 py-4 border-b border-yellow-500/20 flex items-center justify-between bg-zinc-900/60">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-yellow-500/20 text-yellow-400 flex items-center justify-center border border-yellow-500/30">
+            <i data-lucide="shield-check" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-white text-base">Constancia del Pago Semanal</h3>
+            <p id="constancia-modal-subtitulo" class="text-[11px] text-yellow-300/70">Comprobante y vale descargado</p>
+          </div>
+        </div>
+        <button onclick="cerrarModal('modal-constancia-pago')" class="text-yellow-300/70 hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="p-6 space-y-4 text-xs">
+        <input type="hidden" id="constancia-input-gestor-nombre">
+        <input type="hidden" id="constancia-input-semana">
+
+        <p class="text-[11px] text-yellow-200/80 leading-relaxed">
+          Aquí puedes <strong class="text-yellow-300">pegar con Ctrl + V</strong> o subir la imagen del vale descargado o comprobante bancario para que sirva de constancia oficial registrada en el sistema.
+        </p>
+
+        <!-- Zona para pegar o subir -->
+        <div id="dropzone-constancia-pago" tabindex="0" onpaste="pegarConstanciaDesdePortapapeles(event)" class="border-2 border-dashed border-yellow-500/40 hover:border-yellow-400 rounded-2xl p-6 text-center bg-black/60 focus:bg-yellow-950/20 focus:outline-none transition-all cursor-pointer">
+          <i data-lucide="image-plus" class="w-8 h-8 mx-auto text-yellow-400 mb-2"></i>
+          <p class="text-xs font-bold text-white">Haz clic aquí y presiona <kbd class="px-2 py-0.5 rounded bg-zinc-800 border border-yellow-500/30 text-yellow-300 font-mono">Ctrl + V</kbd> para pegar la imagen</p>
+          <p class="text-[11px] text-yellow-400/60 mt-1">O sube el archivo desde tu dispositivo</p>
+          
+          <label class="mt-3 inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-300 border border-yellow-500/40 text-xs font-bold cursor-pointer transition-all">
+            <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+            <span>Subir imagen</span>
+            <input type="file" id="input-archivo-constancia" accept="image/*" class="hidden" onchange="cargarArchivoConstancia(event)">
+          </label>
+        </div>
+
+        <!-- Previsualización de la constancia guardada -->
+        <div id="constancia-preview-container" class="hidden space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold text-emerald-400 flex items-center gap-1">
+              <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Constancia cargada correctamente
+            </span>
+            <button type="button" onclick="eliminarConstanciaActual()" class="text-[11px] text-rose-400 hover:text-rose-300 font-semibold">
+              Quitar constancia
+            </button>
+          </div>
+          <div class="rounded-xl border border-yellow-500/30 overflow-hidden bg-black max-h-64 flex items-center justify-center p-2">
+            <img id="img-constancia-guardada" src="" alt="Constancia de Pago" class="max-h-60 object-contain rounded-lg">
+          </div>
+        </div>
+      </div>
+
+      <div class="px-6 py-3 bg-black border-t border-yellow-500/20 flex items-center justify-end gap-2.5">
+        <button type="button" onclick="cerrarModal('modal-constancia-pago')" class="px-4 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-yellow-300/80 text-xs font-semibold">
+          Cerrar
+        </button>
+        <button type="button" onclick="guardarConstanciaPagoModal()" class="px-5 py-2 rounded-xl bg-yellow-500 hover:bg-yellow-400 text-black font-extrabold text-xs shadow-md transition-all cursor-pointer">
+          Guardar Constancia
+        </button>
+      </div>
+    </div>
+  </div>
     </div>
   </div>
 
@@ -5791,7 +6042,20 @@ function guardarEnCacheRobusto() {
           '</div>';
         }
 
-        let comisionDisplayHtml = '<div><span class="text-[10px] text-yellow-300 uppercase block font-bold">Comisión Semana</span><span class="text-sm font-black text-yellow-300 font-mono">' + comisionTotalSemanaCUP.toLocaleString('es-ES') + ' CUP</span>' + compHtml + '</div>';
+        // Constancia de pago si existe
+        if (!appState.constanciasPago) appState.constanciasPago = {};
+        const constanciaKey = g.nombre.toLowerCase().trim() + '__' + appState.semanaActiva;
+        const constanciaInfo = appState.constanciasPago[constanciaKey] || null;
+
+        let constanciaHtml = '';
+        if (constanciaInfo && constanciaInfo.imagenBase64) {
+          constanciaHtml = '<button onclick="abrirModalConstanciaPago(\'' + g.nombre + '\')" class="text-[10px] text-emerald-300 bg-emerald-950/60 border border-emerald-500/40 hover:bg-emerald-900/60 px-2.5 py-1 rounded-lg font-mono flex items-center gap-1 transition-all mt-1 cursor-pointer" title="Ver o cambiar constancia de pago">' +
+            '<i data-lucide="image" class="w-3.5 h-3.5 text-emerald-400"></i>' +
+            '<span>Constancia Adjunta</span>' +
+          '</button>';
+        }
+
+        let comisionDisplayHtml = '<div><span class="text-[10px] text-yellow-300 uppercase block font-bold">Comisión Semana</span><span class="text-sm font-black text-yellow-300 font-mono">' + comisionTotalSemanaCUP.toLocaleString('es-ES') + ' CUP</span>' + compHtml + constanciaHtml + '</div>';
 
         let btnMarcarPago = '';
         if (currentUser && currentUser.role === 'ADMIN') {
@@ -5801,10 +6065,15 @@ function guardarEnCacheRobusto() {
               '<span>Marcar Semana de Pago</span>' +
             '</button>';
           } else if (valesSemanaGestor.length > 0) {
-            btnMarcarPago = '<button onclick="abrirModalMarcarSemanaPago(\'' + g.nombre + '\')" class="px-3 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-yellow-300 border border-yellow-500/30 font-bold text-xs flex items-center gap-1.5 transition-all cursor-pointer" title="Ver o ajustar compensación de la semana">' +
-              '<i data-lucide="check-check" class="w-4 h-4 text-emerald-400"></i>' +
-              '<span>Semana Pagada (Ajustar)</span>' +
-            '</button>';
+            btnMarcarPago = '<div class="flex items-center gap-1.5">' +
+              '<button onclick="abrirModalConstanciaPago(\'' + g.nombre + '\')" class="px-3 py-2 rounded-xl ' + (constanciaInfo ? 'bg-emerald-950/70 border-emerald-500/50 text-emerald-300' : 'bg-yellow-950/40 border-yellow-500/40 text-yellow-300 hover:bg-yellow-900/50') + ' border font-bold text-xs flex items-center gap-1.5 transition-all cursor-pointer" title="Pegar o ver constancia del pago">' +
+                '<i data-lucide="receipt-text" class="w-4 h-4 text-emerald-400"></i>' +
+                '<span>' + (constanciaInfo ? 'Ver Constancia' : 'Pegar Constancia') + '</span>' +
+              '</button>' +
+              '<button onclick="abrirModalMarcarSemanaPago(\'' + g.nombre + '\')" class="p-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-yellow-300 border border-yellow-500/30 text-xs transition-all cursor-pointer" title="Ajustar comisiones o compensación">' +
+                '<i data-lucide="sliders-horizontal" class="w-4 h-4"></i>' +
+              '</button>' +
+            '</div>';
           }
         }
 
@@ -5852,7 +6121,10 @@ function guardarEnCacheRobusto() {
         // Submenu
         let liquidarBtn = comisionPendienteSemanaCUP > 0
           ? '<button onclick="abrirModalMarcarSemanaPago(\'' + g.nombre + '\')" class="px-3.5 py-1.5 rounded-xl bg-yellow-600 hover:bg-yellow-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-yellow-950/20 transition-all cursor-pointer"><i data-lucide="badge-dollar-sign" class="w-4 h-4"></i><span>Marcar Semana de Pago (' + comisionPendienteSemanaCUP.toLocaleString('es-ES') + ' CUP)</span></button>'
-          : '<button onclick="abrirModalMarcarSemanaPago(\'' + g.nombre + '\')" class="px-3.5 py-1.5 rounded-xl bg-emerald-950/60 border border-emerald-500/40 hover:bg-emerald-950/90 text-emerald-300 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer"><i data-lucide="check-check" class="w-4 h-4"></i><span>✓ Semana Pagada (Ajustar Compensación)</span></button>';
+          : '<div class="flex items-center gap-2">' +
+              '<button onclick="abrirModalConstanciaPago(\'' + g.nombre + '\')" class="px-3 py-1.5 rounded-xl bg-emerald-950/70 border border-emerald-500/50 hover:bg-emerald-900/70 text-emerald-300 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer"><i data-lucide="image" class="w-4 h-4"></i><span>' + (constanciaInfo ? 'Ver Constancia de Pago' : 'Pegar Constancia de Pago') + '</span></button>' +
+              '<button onclick="abrirModalMarcarSemanaPago(\'' + g.nombre + '\')" class="px-3 py-1.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-yellow-500/30 text-yellow-300 text-xs font-medium flex items-center gap-1 transition-all cursor-pointer"><i data-lucide="sliders-horizontal" class="w-3.5 h-3.5"></i><span>Ajustar</span></button>' +
+            '</div>';
 
         let submenuContent = '';
         if (valesSemanaGestor.length === 0) {
@@ -8017,16 +8289,268 @@ function guardarEnCacheRobusto() {
       }
     };
 
-    window.confirmarLiquidacionSemanaConCompensacion = function() {
+    // --------------------------------------------------------
+    // FLUJO PROFESIONAL: HOJA DE FIRMA, CARNET Y VALE DIGITAL
+    // --------------------------------------------------------
+    var liquidacionEnProceso = null;
+    var fotoCarnetBase64 = null;
+    var firmaDigitalBase64 = null;
+    var canvasFirmaInstancia = null;
+    var dibujoFirmaActivo = false;
+    var puntosFirmaCount = 0;
+
+    window.avanzarAFirmaYCarnetLiquidacion = function() {
       const gestorNombre = document.getElementById('liquidar-input-gestor-nombre').value;
       const semana = document.getElementById('liquidar-input-semana').value || appState.semanaActiva;
       const inputComp = document.getElementById('liquidar-input-compensacion').value.trim();
       const motivo = document.getElementById('liquidar-input-motivo').value.trim();
       const compensacionMonto = inputComp === '' ? 0 : (Number(inputComp) || 0);
 
-      if (!gestorNombre) return;
+      const valesG = appState.vales.filter(function(v) {
+        return v.semana === semana && v.gestorNombre && v.gestorNombre.toLowerCase().trim() === gestorNombre.toLowerCase().trim();
+      });
 
-      // 1. Marcar todos los vales de la semana como PAGADA
+      let comisionPendiente = 0;
+      let comisionTotal = 0;
+      let totalEquipos = 0;
+      for (let i = 0; i < valesG.length; i++) {
+        const c = Number(valesG[i].granComisionCUP) || 0;
+        comisionTotal += c;
+        if (valesG[i].estadoComision !== 'PAGADA') comisionPendiente += c;
+        totalEquipos += (valesG[i].items || []).reduce(function(a, it) { return a + (Number(it.cantidad) || 1); }, 0);
+      }
+
+      const granTotal = comisionPendiente + compensacionMonto;
+
+      liquidacionEnProceso = {
+        gestorNombre: gestorNombre,
+        semana: semana,
+        valesCount: valesG.length,
+        totalEquipos: totalEquipos,
+        comisionTotal: comisionTotal,
+        comisionPendiente: comisionPendiente,
+        compensacionMonto: compensacionMonto,
+        compensacionMotivo: motivo,
+        granTotal: granTotal
+      };
+
+      // Preparar modal de hoja en blanco
+      document.getElementById('hoja-firma-gestor-nombre').textContent = gestorNombre;
+      const infoSemana = getWeekDateRange(semana);
+      document.getElementById('hoja-firma-semana-rango').textContent = 'Semana ' + semana.split('-W')[1] + ' · ' + (infoSemana.rangoLegible || infoSemana.label);
+      document.getElementById('hoja-firma-monto-total').textContent = granTotal.toLocaleString('es-ES') + ' CUP';
+      
+      const compTag = document.getElementById('hoja-firma-compensacion-tag');
+      if (compensacionMonto !== 0) {
+        const cSign = compensacionMonto > 0 ? '+' : '';
+        compTag.textContent = 'Incluye compensación: ' + cSign + compensacionMonto.toLocaleString('es-ES') + ' CUP (' + (motivo || 'Ajuste') + ')';
+      } else {
+        compTag.textContent = 'Sin compensaciones pendientes';
+      }
+
+      // Reiniciar fotos y firmas
+      fotoCarnetBase64 = null;
+      firmaDigitalBase64 = null;
+      puntosFirmaCount = 0;
+      document.getElementById('hoja-carnet-status').textContent = 'Pendiente';
+      document.getElementById('hoja-carnet-status').className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30';
+      document.getElementById('hoja-firma-status').textContent = 'Pendiente';
+      document.getElementById('hoja-firma-status').className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30';
+      
+      const prevImg = document.getElementById('hoja-carnet-preview-img');
+      const prevCont = document.getElementById('hoja-carnet-preview-container');
+      const btnDelFoto = document.getElementById('btn-eliminar-foto-carnet');
+      prevImg.src = '';
+      prevCont.classList.add('hidden');
+      btnDelFoto.classList.add('hidden');
+      document.getElementById('hoja-input-carnet-file').value = '';
+
+      cerrarModal('modal-liquidar-semana');
+      abrirModal('modal-hoja-firma-semana');
+
+      // Inicializar Canvas de firma
+      setTimeout(inicializarCanvasFirma, 100);
+    };
+
+    window.volverAPasoCompensacion = function() {
+      cerrarModal('modal-hoja-firma-semana');
+      if (liquidacionEnProceso && liquidacionEnProceso.gestorNombre) {
+        window.abrirModalMarcarSemanaPago(liquidacionEnProceso.gestorNombre);
+      }
+    };
+
+    function inicializarCanvasFirma() {
+      const canvas = document.getElementById('canvas-firma-gestor');
+      if (!canvas) return;
+      canvasFirmaInstancia = canvas;
+      const ctx = canvas.getContext('2d');
+      ctx.lineWidth = 2.5;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.strokeStyle = '#1e3a8a'; // Tinta azul firma oficial
+
+      // Limpiar fondo blanco
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      function getPos(e) {
+        const rect = canvas.getBoundingClientRect();
+        const scaleX = canvas.width / rect.width;
+        const scaleY = canvas.height / rect.height;
+        if (e.touches && e.touches.length > 0) {
+          return {
+            x: (e.touches[0].clientX - rect.left) * scaleX,
+            y: (e.touches[0].clientY - rect.top) * scaleY
+          };
+        }
+        return {
+          x: (e.clientX - rect.left) * scaleX,
+          y: (e.clientY - rect.top) * scaleY
+        };
+      }
+
+      function startDraw(e) {
+        e.preventDefault();
+        dibujoFirmaActivo = true;
+        const pos = getPos(e);
+        ctx.beginPath();
+        ctx.moveTo(pos.x, pos.y);
+        puntosFirmaCount++;
+      }
+
+      function draw(e) {
+        if (!dibujoFirmaActivo) return;
+        e.preventDefault();
+        const pos = getPos(e);
+        ctx.lineTo(pos.x, pos.y);
+        ctx.stroke();
+        puntosFirmaCount++;
+        if (puntosFirmaCount > 15) {
+          const st = document.getElementById('hoja-firma-status');
+          if (st) {
+            st.textContent = 'Firmado ✓';
+            st.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
+          }
+        }
+      }
+
+      function endDraw(e) {
+        if (dibujoFirmaActivo) {
+          dibujoFirmaActivo = false;
+        }
+      }
+
+      // Remover listeners previos para evitar duplicados
+      canvas.onmousedown = startDraw;
+      canvas.onmousemove = draw;
+      canvas.onmouseup = endDraw;
+      canvas.onmouseleave = endDraw;
+
+      canvas.ontouchstart = startDraw;
+      canvas.ontouchmove = draw;
+      canvas.ontouchend = endDraw;
+    }
+
+    window.limpiarCanvasFirma = function() {
+      if (!canvasFirmaInstancia) return;
+      const ctx = canvasFirmaInstancia.getContext('2d');
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, canvasFirmaInstancia.width, canvasFirmaInstancia.height);
+      puntosFirmaCount = 0;
+      firmaDigitalBase64 = null;
+      const st = document.getElementById('hoja-firma-status');
+      if (st) {
+        st.textContent = 'Pendiente';
+        st.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30';
+      }
+    };
+
+    window.cargarFotoCarnetGestor = function(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        // Redimensionar para optimizar base64
+        const img = new Image();
+        img.onload = function() {
+          const maxDim = 800;
+          let w = img.width;
+          let h = img.height;
+          if (w > maxDim || h > maxDim) {
+            if (w > h) {
+              h = Math.round((h * maxDim) / w);
+              w = maxDim;
+            } else {
+              w = Math.round((w * maxDim) / h);
+              h = maxDim;
+            }
+          }
+          const c = document.createElement('canvas');
+          c.width = w;
+          c.height = h;
+          const ctx = c.getContext('2d');
+          ctx.drawImage(img, 0, 0, w, h);
+          fotoCarnetBase64 = c.toDataURL('image/jpeg', 0.85);
+
+          const prevImg = document.getElementById('hoja-carnet-preview-img');
+          const prevCont = document.getElementById('hoja-carnet-preview-container');
+          const btnDelFoto = document.getElementById('btn-eliminar-foto-carnet');
+          prevImg.src = fotoCarnetBase64;
+          prevCont.classList.remove('hidden');
+          btnDelFoto.classList.remove('hidden');
+
+          const st = document.getElementById('hoja-carnet-status');
+          if (st) {
+            st.textContent = 'Adjuntado ✓';
+            st.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
+          }
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    };
+
+    window.eliminarFotoCarnetGestor = function() {
+      fotoCarnetBase64 = null;
+      document.getElementById('hoja-carnet-preview-img').src = '';
+      document.getElementById('hoja-carnet-preview-container').classList.add('hidden');
+      document.getElementById('btn-eliminar-foto-carnet').classList.add('hidden');
+      document.getElementById('hoja-input-carnet-file').value = '';
+
+      const st = document.getElementById('hoja-carnet-status');
+      if (st) {
+        st.textContent = 'Pendiente';
+        st.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30';
+      }
+    };
+
+    // Procesar y Generar Vale de Liquidación en Canvas de Alta Resolución
+    window.procesarFirmaYGenerarValeLiquidacion = function() {
+      if (!liquidacionEnProceso) {
+        alert('No hay información de liquidación en proceso.');
+        return;
+      }
+
+      // Validaciones obligatorias
+      if (!fotoCarnetBase64) {
+        alert('⚠️ ATENCIÓN: Es obligatorio adjuntar la foto del carnet de identidad del gestor.');
+        return;
+      }
+
+      if (puntosFirmaCount < 15) {
+        alert('⚠️ ATENCIÓN: Es obligatorio que el gestor firme digitalmente en el recuadro blanco.');
+        return;
+      }
+
+      firmaDigitalBase64 = canvasFirmaInstancia.toDataURL('image/png');
+
+      const infoSemana = getWeekDateRange(liquidacionEnProceso.semana);
+      const gestorNombre = liquidacionEnProceso.gestorNombre;
+      const semana = liquidacionEnProceso.semana;
+      const granTotal = liquidacionEnProceso.granTotal;
+
+      // 1. Guardar en Base de Datos: Marcar vales como PAGADA
       let valesMarcados = 0;
       for (let i = 0; i < appState.vales.length; i++) {
         const v = appState.vales[i];
@@ -8036,31 +8560,398 @@ function guardarEnCacheRobusto() {
         }
       }
 
-      // 2. Guardar compensación de error (si hay monto o motivo)
+      // 2. Guardar compensación si existe
       if (!appState.compensaciones) appState.compensaciones = {};
       const compKey = gestorNombre.toLowerCase().trim() + '__' + semana;
-
-      if (compensacionMonto !== 0 || motivo !== '') {
+      if (liquidacionEnProceso.compensacionMonto !== 0 || liquidacionEnProceso.compensacionMotivo !== '') {
         appState.compensaciones[compKey] = {
           gestorNombre: gestorNombre,
           semana: semana,
-          montoCUP: compensacionMonto,
-          motivo: motivo || 'Ajuste / Compensación manual',
+          montoCUP: liquidacionEnProceso.compensacionMonto,
+          motivo: liquidacionEnProceso.compensacionMotivo || 'Ajuste manual',
           fechaRegistro: new Date().toISOString()
         };
-      } else {
-        delete appState.compensaciones[compKey];
       }
 
-      cerrarModal('modal-liquidar-semana');
+      // 3. Renderizar imagen del Vale Oficial en Canvas de Alta Calidad (800x1100 px)
+      generarImagenValeLiquidacionOficial(liquidacionEnProceso, fotoCarnetBase64, firmaDigitalBase64, function(valeImgDataUrl) {
+        
+        // Guardar constancia automáticamente
+        if (!appState.constanciasPago) appState.constanciasPago = {};
+        const constKey = gestorNombre.toLowerCase().trim() + '__' + semana;
+        appState.constanciasPago[constKey] = {
+          gestorNombre: gestorNombre,
+          semana: semana,
+          imagenBase64: valeImgDataUrl,
+          montoPagado: granTotal,
+          fechaPago: new Date().toISOString()
+        };
+
+        guardarEnCacheRobusto();
+        renderizarTodo();
+
+        // Mostrar Vale en Modal descargable
+        document.getElementById('img-vale-liquidacion-preview').src = valeImgDataUrl;
+        const btnDescarga = document.getElementById('btn-descargar-vale-liquidacion');
+        btnDescarga.href = valeImgDataUrl;
+        btnDescarga.download = 'Vale_Liquidacion_' + gestorNombre.replace(/\s+/g, '_') + '_' + semana + '.png';
+
+        cerrarModal('modal-hoja-firma-semana');
+        abrirModal('modal-vale-liquidacion-generado');
+      });
+    };
+
+    function generarImagenValeLiquidacionOficial(data, fotoCarnetUrl, firmaUrl, callback) {
+      const W = 800;
+      const H = 1120;
+      const canvas = document.createElement('canvas');
+      canvas.width = W;
+      canvas.height = H;
+      const ctx = canvas.getContext('2d');
+
+      // Fondo blanco profesional con marco formal
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, W, H);
+
+      // Marco dorado doble
+      ctx.strokeStyle = '#d97706';
+      ctx.lineWidth = 6;
+      ctx.strokeRect(18, 18, W - 36, H - 36);
+      ctx.strokeStyle = '#1e293b';
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(26, 26, W - 52, H - 52);
+
+      // Encabezado
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(28, 28, W - 56, 110);
+
+      ctx.fillStyle = '#f59e0b';
+      ctx.font = 'bold 26px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('K y A . PRIMERA MANO', W / 2, 65);
+
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 16px sans-serif';
+      ctx.fillText('VALE OFICIAL DE LIQUIDACIÓN Y PAGO DE COMISIONES', W / 2, 94);
+
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '12px monospace';
+      ctx.fillText('DOCUMENTO DE CONFORMIDAD Y CONSTANCIA LEGAL DE ENTREGA', W / 2, 116);
+
+      // Folio y Fecha
+      const folioGen = 'LIQ-' + Math.floor(100000 + Math.random() * 900000);
+      const hoyStr = new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+
+      ctx.textAlign = 'left';
+      ctx.fillStyle = '#64748b';
+      ctx.font = '11px sans-serif';
+      ctx.fillText('FOLIO OFICIAL: ' + folioGen, 50, 165);
+      ctx.textAlign = 'right';
+      ctx.fillText('EMISIÓN: ' + hoyStr, W - 50, 165);
+
+      // Separador
+      ctx.strokeStyle = '#e2e8f0';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(50, 175);
+      ctx.lineTo(W - 50, 175);
+      ctx.stroke();
+
+      // Cuadro de Datos del Gestor
+      ctx.fillStyle = '#f8fafc';
+      ctx.fillRect(50, 190, W - 100, 115);
+      ctx.strokeStyle = '#cbd5e1';
+      ctx.strokeRect(50, 190, W - 100, 115);
+
+      ctx.textAlign = 'left';
+      ctx.fillStyle = '#0f172a';
+      ctx.font = 'bold 15px sans-serif';
+      ctx.fillText('BENEFICIARIO (GESTOR / COMERCIAL):', 65, 215);
+      ctx.font = 'extrabold 18px sans-serif';
+      ctx.fillStyle = '#b45309';
+      ctx.fillText(data.gestorNombre.toUpperCase(), 65, 242);
+
+      const infoSemana = getWeekDateRange(data.semana);
+      ctx.fillStyle = '#334155';
+      ctx.font = '13px sans-serif';
+      ctx.fillText('Período de Liquidación: Semana ' + data.semana.split('-W')[1] + ' (' + (infoSemana.rangoLegible || infoSemana.label) + ')', 65, 270);
+      ctx.fillText('Total Vales Liquidados: ' + data.valesCount + ' vales   |   Equipos Entregados: ' + data.totalEquipos + ' unidades', 65, 292);
+
+      // Tabla de Desglose Económico
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(50, 325, W - 100, 32);
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 12px sans-serif';
+      ctx.fillText('CONCEPTO ECONÓMICO', 65, 346);
+      ctx.textAlign = 'right';
+      ctx.fillText('MONTO (CUP)', W - 65, 346);
+
+      let curY = 385;
+      function filaConcepto(titulo, valor, negrita) {
+        ctx.textAlign = 'left';
+        ctx.fillStyle = '#1e293b';
+        ctx.font = negrita ? 'bold 13px sans-serif' : '13px sans-serif';
+        ctx.fillText(titulo, 65, curY);
+
+        ctx.textAlign = 'right';
+        ctx.font = 'bold 13px monospace';
+        ctx.fillText(valor, W - 65, curY);
+
+        ctx.strokeStyle = '#f1f5f9';
+        ctx.beginPath();
+        ctx.moveTo(50, curY + 8);
+        ctx.lineTo(W - 50, curY + 8);
+        ctx.stroke();
+
+        curY += 32;
+      }
+
+      filaConcepto('Comisiones generadas por vales entregados:', Number(data.comisionTotal || 0).toLocaleString('es-ES') + ' CUP', false);
+      
+      if (data.compensacionMonto !== 0) {
+        const cSign = data.compensacionMonto > 0 ? '+' : '';
+        filaConcepto('Compensación / Ajuste (' + (data.compensacionMotivo || 'Ajuste') + '):', cSign + Number(data.compensacionMonto).toLocaleString('es-ES') + ' CUP', true);
+      } else {
+        filaConcepto('Compensaciones o ajustes de error:', '0 CUP', false);
+      }
+
+      // Caja de Gran Total
+      ctx.fillStyle = '#fef3c7';
+      ctx.fillRect(50, curY, W - 100, 48);
+      ctx.strokeStyle = '#f59e0b';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(50, curY, W - 100, 48);
+
+      ctx.textAlign = 'left';
+      ctx.fillStyle = '#78350f';
+      ctx.font = 'extrabold 15px sans-serif';
+      ctx.fillText('TOTAL NETO PAGADO AL GESTOR:', 65, curY + 30);
+
+      ctx.textAlign = 'right';
+      ctx.fillStyle = '#b45309';
+      ctx.font = 'black 22px monospace';
+      ctx.fillText(Number(data.granTotal).toLocaleString('es-ES') + ' CUP', W - 65, curY + 32);
+
+      curY += 75;
+
+      // Sección Documental: Foto de Carnet y Firma Digital
+      ctx.textAlign = 'left';
+      ctx.fillStyle = '#0f172a';
+      ctx.font = 'bold 14px sans-serif';
+      ctx.fillText('EVIDENCIA DOCUMENTAL OBLIGATORIA (CARNET Y FIRMA DIGITAL):', 50, curY);
+
+      curY += 15;
+
+      // Cargar imágenes en el Canvas
+      const imgCarnet = new Image();
+      const imgFirma = new Image();
+
+      imgCarnet.onload = function() {
+        // Dibujar carnet en recuadro izquierdo
+        const cBoxX = 50;
+        const cBoxY = curY;
+        const cBoxW = 330;
+        const cBoxH = 190;
+
+        ctx.fillStyle = '#f8fafc';
+        ctx.fillRect(cBoxX, cBoxY, cBoxW, cBoxH);
+        ctx.strokeStyle = '#cbd5e1';
+        ctx.lineWidth = 1;
+        ctx.strokeRect(cBoxX, cBoxY, cBoxW, cBoxH);
+
+        // Aspect ratio fit
+        const r = Math.min((cBoxW - 10) / imgCarnet.width, (cBoxH - 30) / imgCarnet.height);
+        const dw = imgCarnet.width * r;
+        const dh = imgCarnet.height * r;
+        const dx = cBoxX + (cBoxW - dw) / 2;
+        const dy = cBoxY + 5 + ((cBoxH - 25) - dh) / 2;
+        ctx.drawImage(imgCarnet, dx, dy, dw, dh);
+
+        ctx.fillStyle = '#475569';
+        ctx.font = 'bold 10px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('CARNET DE IDENTIDAD ADJUNTO', cBoxX + cBoxW / 2, cBoxY + cBoxH - 8);
+
+        // Cargar firma
+        imgFirma.onload = function() {
+          const fBoxX = 420;
+          const fBoxY = curY;
+          const fBoxW = 330;
+          const fBoxH = 190;
+
+          ctx.fillStyle = '#ffffff';
+          ctx.fillRect(fBoxX, fBoxY, fBoxW, fBoxH);
+          ctx.strokeStyle = '#cbd5e1';
+          ctx.lineWidth = 1;
+          ctx.strokeRect(fBoxX, fBoxY, fBoxW, fBoxH);
+
+          // Dibujar firma
+          const fr = Math.min((fBoxW - 10) / imgFirma.width, (fBoxH - 35) / imgFirma.height);
+          const fdw = imgFirma.width * fr;
+          const fdh = imgFirma.height * fr;
+          const fdx = fBoxX + (fBoxW - fdw) / 2;
+          const fdy = fBoxY + 5 + ((fBoxH - 25) - fdh) / 2;
+          ctx.drawImage(imgFirma, fdx, fdy, fdw, fdh);
+
+          // Línea de firma
+          ctx.strokeStyle = '#94a3b8';
+          ctx.beginPath();
+          ctx.moveTo(fBoxX + 20, fBoxY + fBoxH - 25);
+          ctx.lineTo(fBoxX + fBoxW - 20, fBoxY + fBoxH - 25);
+          ctx.stroke();
+
+          ctx.fillStyle = '#0f172a';
+          ctx.font = 'bold 11px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText('FIRMA DIGITAL DE CONFORMIDAD', fBoxX + fBoxW / 2, fBoxY + fBoxH - 10);
+
+          // Pie de Página Legal y Sello de Seguridad
+          const pieY = H - 65;
+          ctx.strokeStyle = '#cbd5e1';
+          ctx.beginPath();
+          ctx.moveTo(50, pieY);
+          ctx.lineTo(W - 50, pieY);
+          ctx.stroke();
+
+          ctx.textAlign = 'center';
+          ctx.fillStyle = '#10b981';
+          ctx.font = 'bold 13px sans-serif';
+          ctx.fillText('✓ SEMANA PAGADA Y CERTIFICADA POR K Y A . PRIMERA MANO', W / 2, pieY + 22);
+
+          ctx.fillStyle = '#64748b';
+          ctx.font = '10px sans-serif';
+          ctx.fillText('Este vale digital constituye constancia irrebatible de pago y recepción de comisiones correspondientes al período indicado.', W / 2, pieY + 38);
+
+          callback(canvas.toDataURL('image/png'));
+        };
+        imgFirma.src = firmaUrl;
+      };
+      imgCarnet.src = fotoCarnetUrl;
+    }
+
+    window.copiarImagenValeLiquidacion = function() {
+      const img = document.getElementById('img-vale-liquidacion-preview');
+      if (!img || !img.src) return;
+
+      fetch(img.src)
+        .then(function(res) { return res.blob(); })
+        .then(function(blob) {
+          if (navigator.clipboard && window.ClipboardItem) {
+            navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]).then(function() {
+              alert('📋 ¡Imagen del Vale copiada al portapapeles! Ya puedes pegarla con Ctrl + V.');
+            }).catch(function() {
+              alert('Para copiar la imagen, haz clic derecho sobre ella y elige "Copiar imagen".');
+            });
+          } else {
+            alert('Haz clic derecho sobre el vale y selecciona "Copiar imagen".');
+          }
+        }).catch(function() {
+          alert('Haz clic derecho sobre el vale y selecciona "Copiar imagen".');
+        });
+    };
+
+    // --------------------------------------------------------
+    // CONSTANCIA DE PAGO: PEGAR / SUBIR / GUARDAR IMAGEN
+    // --------------------------------------------------------
+    var imagenConstanciaTemporal = null;
+
+    window.abrirModalConstanciaPago = function(gestorNombre) {
+      if (!appState.constanciasPago) appState.constanciasPago = {};
+      const semana = appState.semanaActiva;
+      const key = gestorNombre.toLowerCase().trim() + '__' + semana;
+      const constanciaGuardada = appState.constanciasPago[key] || null;
+
+      document.getElementById('constancia-input-gestor-nombre').value = gestorNombre;
+      document.getElementById('constancia-input-semana').value = semana;
+
+      const infoSemana = getWeekDateRange(semana);
+      document.getElementById('constancia-modal-subtitulo').textContent = gestorNombre + ' · Semana ' + semana.split('-W')[1] + ' (' + (infoSemana.rangoLegible || infoSemana.label) + ')';
+
+      const prevCont = document.getElementById('constancia-preview-container');
+      const prevImg = document.getElementById('img-constancia-guardada');
+
+      if (constanciaGuardada && constanciaGuardada.imagenBase64) {
+        imagenConstanciaTemporal = constanciaGuardada.imagenBase64;
+        prevImg.src = constanciaGuardada.imagenBase64;
+        prevCont.classList.remove('hidden');
+      } else {
+        imagenConstanciaTemporal = null;
+        prevImg.src = '';
+        prevCont.classList.add('hidden');
+      }
+
+      abrirModal('modal-constancia-pago');
+      setTimeout(function() {
+        const dz = document.getElementById('dropzone-constancia-pago');
+        if (dz) dz.focus();
+      }, 100);
+    };
+
+    window.pegarConstanciaDesdePortapapeles = function(event) {
+      var items = (event.clipboardData || event.originalEvent.clipboardData).items;
+      for (var i = 0; i < items.length; i++) {
+        if (items[i].type.indexOf('image') !== -1) {
+          var blob = items[i].getAsFile();
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            asignarImagenConstancia(e.target.result);
+          };
+          reader.readAsDataURL(blob);
+          event.preventDefault();
+          break;
+        }
+      }
+    };
+
+    window.cargarArchivoConstancia = function(event) {
+      var file = event.target.files && event.target.files[0];
+      if (!file) return;
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        asignarImagenConstancia(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    };
+
+    function asignarImagenConstancia(base64) {
+      imagenConstanciaTemporal = base64;
+      var prevCont = document.getElementById('constancia-preview-container');
+      var prevImg = document.getElementById('img-constancia-guardada');
+      prevImg.src = base64;
+      prevCont.classList.remove('hidden');
+    }
+
+    window.eliminarConstanciaActual = function() {
+      imagenConstanciaTemporal = null;
+      document.getElementById('img-constancia-guardada').src = '';
+      document.getElementById('constancia-preview-container').classList.add('hidden');
+      document.getElementById('input-archivo-constancia').value = '';
+    };
+
+    window.guardarConstanciaPagoModal = function() {
+      const gestorNombre = document.getElementById('constancia-input-gestor-nombre').value;
+      const semana = document.getElementById('constancia-input-semana').value || appState.semanaActiva;
+
+      if (!gestorNombre) return;
+      if (!appState.constanciasPago) appState.constanciasPago = {};
+      const key = gestorNombre.toLowerCase().trim() + '__' + semana;
+
+      if (imagenConstanciaTemporal) {
+        appState.constanciasPago[key] = {
+          gestorNombre: gestorNombre,
+          semana: semana,
+          imagenBase64: imagenConstanciaTemporal,
+          fechaGuardado: new Date().toISOString()
+        };
+        alert('✓ ¡Constancia de pago guardada exitosamente para ' + gestorNombre + '!');
+      } else {
+        delete appState.constanciasPago[key];
+        alert('Constancia retirada.');
+      }
+
+      cerrarModal('modal-constancia-pago');
       guardarEnCacheRobusto();
       renderizarTodo();
-
-      let mensajeExito = '🎉 ¡Semana ' + semana.split('-W')[1] + ' marcada como PAGADA para ' + gestorNombre + '!\n(' + valesMarcados + ' vales liquidados)';
-      if (compensacionMonto !== 0) {
-        mensajeExito += '\nCompensación de error registrada: ' + (compensacionMonto > 0 ? '+' : '') + compensacionMonto.toLocaleString('es-ES') + ' CUP (' + (motivo || 'Ajuste') + ')';
-      }
-      alert(mensajeExito);
     };
 
     window.liquidarSemanaGestor = function(gestorNombre) {
