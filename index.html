@@ -25,7 +25,7 @@
   <!-- AUTO-GUARDADO: Base de datos embebida en el propio archivo -->
   <script id="self-embedded-database">
     window.__EMBEDDED_GESTORES_DB__ = {
-  "timestamp": 1793081856744,
+  "timestamp": 1793082685545,
   "gestores": [
     {
       "id": "G-1",
@@ -3810,7 +3810,7 @@
       "createdAt": 1792294625637
     }
   ],
-  "semanaActiva": "2026-W41",
+  "semanaActiva": "2026-W43",
   "config": {
     "comisionPequeno": 1500,
     "comisionGrande": 2500,
@@ -5112,14 +5112,14 @@
 
       <!-- Pie del Modal -->
       <div class="px-6 py-4 bg-black border-t border-yellow-500/25 flex flex-col sm:flex-row items-center justify-between gap-3">
-        <button type="button" onclick="volverAPasoCompensacion()" class="w-full sm:w-auto px-4 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-yellow-300/80 text-xs font-semibold flex items-center justify-center gap-1.5">
+        <button type="button" onclick="volverAPasoCompensacion()" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-yellow-300/80 text-xs font-semibold flex items-center justify-center gap-1.5">
           <i data-lucide="arrow-left" class="w-4 h-4"></i>
           <span>Volver al Desglose</span>
         </button>
 
-        <button type="button" onclick="procesarFirmaYGenerarValeLiquidacion()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 hover:from-yellow-400 hover:to-amber-500 text-black font-black text-xs sm:text-sm shadow-xl shadow-yellow-950/60 flex items-center justify-center gap-2 transition-all cursor-pointer">
-          <i data-lucide="check-check" class="w-4 h-4"></i>
-          <span>Confirmar y Marcar Semana Pagada</span>
+        <button type="button" id="btn-guardar-firma-carnet-vale" onclick="procesarFirmaYGenerarValeLiquidacion()" class="w-full sm:w-auto px-8 py-3 rounded-2xl bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-500 hover:from-yellow-300 hover:to-amber-400 text-black font-black text-sm shadow-2xl shadow-yellow-500/30 flex items-center justify-center gap-2.5 transition-all cursor-pointer transform hover:scale-[1.02] active:scale-[0.98]">
+          <i data-lucide="save" class="w-5 h-5 text-black"></i>
+          <span>Guardar y Descargar Vale</span>
         </button>
       </div>
 
@@ -5716,6 +5716,7 @@ function guardarEnCacheRobusto() {
             var actualTs = Number(appState.timestamp) || 0;
             if (dbRemotoTs >= actualTs || appState.vales.length === 0) {
               appState = dbRemoto;
+              appState.semanaActiva = getISOWeekString(new Date());
               window.appState = appState;
               guardarEnCacheRobusto();
               actualizarSelectorSemanas();
@@ -5752,9 +5753,8 @@ function guardarEnCacheRobusto() {
         appState.vales = [];
       }
 
-      if (!appState.semanaActiva) {
-        appState.semanaActiva = getISOWeekString(new Date());
-      }
+      // Siempre establecer por defecto la semana actual (martes a lunes en curso)
+      appState.semanaActiva = getISOWeekString(new Date());
 
       
       var defaultHashes = {
@@ -8590,11 +8590,24 @@ function guardarEnCacheRobusto() {
         guardarEnCacheRobusto();
         renderizarTodo();
 
-        // Mostrar Vale en Modal descargable
+        // Disparar descarga automática en el dispositivo de inmediato
+        const nombreArchivo = 'Vale_Liquidacion_' + gestorNombre.replace(/\s+/g, '_') + '_' + semana + '.png';
+        try {
+          const enlaceDescargaAuto = document.createElement('a');
+          enlaceDescargaAuto.href = valeImgDataUrl;
+          enlaceDescargaAuto.download = nombreArchivo;
+          document.body.appendChild(enlaceDescargaAuto);
+          enlaceDescargaAuto.click();
+          document.body.removeChild(enlaceDescargaAuto);
+        } catch (e) {
+          console.warn('Error al activar descarga automática:', e);
+        }
+
+        // Mostrar Vale en Modal con opción de descarga manual y copia
         document.getElementById('img-vale-liquidacion-preview').src = valeImgDataUrl;
         const btnDescarga = document.getElementById('btn-descargar-vale-liquidacion');
         btnDescarga.href = valeImgDataUrl;
-        btnDescarga.download = 'Vale_Liquidacion_' + gestorNombre.replace(/\s+/g, '_') + '_' + semana + '.png';
+        btnDescarga.download = nombreArchivo;
 
         cerrarModal('modal-hoja-firma-semana');
         abrirModal('modal-vale-liquidacion-generado');
