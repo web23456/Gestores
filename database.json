@@ -1,5 +1,5 @@
 {
-  "timestamp": 1793080078557,
+  "timestamp": 1793081856744,
   "gestores": [
     {
       "id": "G-1",
@@ -3799,5 +3799,6 @@
       "motor"
     ]
   },
-  "compensaciones": {}
+  "compensaciones": {},
+  "constanciasPago": {}
 }
