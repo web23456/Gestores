@@ -294,7 +294,7 @@
           <label class="block text-xs font-bold text-yellow-400/90 uppercase tracking-wider mb-1">Usuario</label>
           <div class="relative">
             <i data-lucide="user" class="w-4 h-4 absolute left-3 top-3 text-yellow-500/60"></i>
-            <input type="text" id="login-username" required placeholder="Tu usuario o Karel" 
+            <input type="text" id="login-username" required placeholder="Tu usuario" 
                    class="w-full bg-black border border-yellow-500/20 text-white rounded-xl pl-9 pr-3 py-2.5 text-xs focus:ring-2 focus:ring-yellow-400 focus:outline-none focus:border-yellow-500/50">
           </div>
         </div>
@@ -438,7 +438,7 @@
   <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-5 space-y-6">
 
     <!-- CARTEL DESTACADO: INSTALAR COMO APLICACIÓN -->
-    <div id="cartel-instalar-app" class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-amber-950/60 via-yellow-950/40 to-black border-2 border-yellow-500/50 p-4 sm:p-5 shadow-2xl backdrop-blur-md transition-all">
+    <div id="cartel-instalar-app" class="hidden relative overflow-hidden rounded-2xl bg-gradient-to-r from-amber-950/60 via-yellow-950/40 to-black border-2 border-yellow-500/50 p-4 sm:p-5 shadow-2xl backdrop-blur-md transition-all">
       <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div class="flex items-center gap-3.5">
           <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-400 to-yellow-600 flex items-center justify-center text-black font-extrabold shadow-lg shadow-yellow-500/30 shrink-0">
@@ -4087,10 +4087,43 @@ function guardarEnCacheRobusto() {
     var deferredPromptPWA = null;
     var nuevoServiceWorkerEsperando = null;
 
+    // Verificación instantánea si se ejecuta dentro de la APK / PWA instalada
+    function estaEnModoInstalado() {
+      return (window.matchMedia('(display-mode: standalone)').matches) ||
+             (window.matchMedia('(display-mode: fullscreen)').matches) ||
+             (window.matchMedia('(display-mode: minimal-ui)').matches) ||
+             (window.navigator.standalone === true) ||
+             (document.referrer.includes('android-app://'));
+    }
+
+    function ocultarOpcionesInstalacionSiYaInstalada() {
+      if (estaEnModoInstalado()) {
+        var btnHeader = document.getElementById('btn-instalar-app-pwa');
+        if (btnHeader) {
+          btnHeader.classList.add('hidden');
+          btnHeader.classList.remove('flex');
+        }
+        var cartel = document.getElementById('cartel-instalar-app');
+        if (cartel) {
+          cartel.classList.add('hidden');
+        }
+        return true;
+      }
+      return false;
+    }
+
+    // Ejecutar chequeo de modo standalone de inmediato y al cargar
+    ocultarOpcionesInstalacionSiYaInstalada();
+    window.addEventListener('DOMContentLoaded', ocultarOpcionesInstalacionSiYaInstalada);
+
     // Escucha del evento nativo beforeinstallprompt
     window.addEventListener('beforeinstallprompt', function(e) {
       e.preventDefault();
       deferredPromptPWA = e;
+      // Si la aplicación ya está instalada y corriendo como standalone, NUNCA mostrar la opción de instalar
+      if (ocultarOpcionesInstalacionSiYaInstalada()) {
+        return;
+      }
       var btnHeader = document.getElementById('btn-instalar-app-pwa');
       if (btnHeader) {
         btnHeader.classList.remove('hidden');
