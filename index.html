@@ -25,7 +25,7 @@
   <!-- AUTO-GUARDADO: Base de datos embebida en el propio archivo -->
   <script id="self-embedded-database">
     window.__EMBEDDED_GESTORES_DB__ = {
-  "timestamp": 1793083587622,
+  "timestamp": 1793084815851,
   "gestores": [
     {
       "id": "G-1",
@@ -8477,10 +8477,10 @@ function guardarEnCacheRobusto() {
 
       const reader = new FileReader();
       reader.onload = function(e) {
-        // Redimensionar para optimizar base64
+        // Redimensionar para optimizar base64 y ahorrar espacio sin perder legibilidad
         const img = new Image();
         img.onload = function() {
-          const maxDim = 800;
+          const maxDim = 500;
           let w = img.width;
           let h = img.height;
           if (w > maxDim || h > maxDim) {
@@ -8497,7 +8497,7 @@ function guardarEnCacheRobusto() {
           c.height = h;
           const ctx = c.getContext('2d');
           ctx.drawImage(img, 0, 0, w, h);
-          fotoCarnetBase64 = c.toDataURL('image/jpeg', 0.85);
+          fotoCarnetBase64 = c.toDataURL('image/jpeg', 0.68);
 
           const prevImg = document.getElementById('hoja-carnet-preview-img');
           const prevCont = document.getElementById('hoja-carnet-preview-container');
@@ -8933,11 +8933,38 @@ function guardarEnCacheRobusto() {
     };
 
     function asignarImagenConstancia(base64) {
-      imagenConstanciaTemporal = base64;
-      var prevCont = document.getElementById('constancia-preview-container');
-      var prevImg = document.getElementById('img-constancia-guardada');
-      prevImg.src = base64;
-      prevCont.classList.remove('hidden');
+      if (!base64) return;
+      // Optimizar y comprimir la constancia adjunta para ahorrar espacio en la base de datos
+      const img = new Image();
+      img.onload = function() {
+        const maxDim = 800;
+        let w = img.width;
+        let h = img.height;
+        if (w > maxDim || h > maxDim) {
+          if (w > h) {
+            h = Math.round((h * maxDim) / w);
+            w = maxDim;
+          } else {
+            w = Math.round((w * maxDim) / h);
+            h = maxDim;
+          }
+        }
+        const c = document.createElement('canvas');
+        c.width = w;
+        c.height = h;
+        const ctx = c.getContext('2d');
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, w, h);
+        ctx.drawImage(img, 0, 0, w, h);
+        const optBase64 = c.toDataURL('image/jpeg', 0.72);
+
+        imagenConstanciaTemporal = optBase64;
+        var prevCont = document.getElementById('constancia-preview-container');
+        var prevImg = document.getElementById('img-constancia-guardada');
+        prevImg.src = optBase64;
+        prevCont.classList.remove('hidden');
+      };
+      img.src = base64;
     }
 
     window.eliminarConstanciaActual = function() {
