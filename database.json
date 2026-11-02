@@ -210,9 +210,1255 @@
       "zona": "Mensajería y Redes",
       "foto": "",
       "activo": true
+    },
+    {
+      "id": "G-1793644784725-1rrs",
+      "nombre": "Gestor Sin Nombre",
+      "username": "gestorsinnombre",
+      "passwordHash": "0cbba1357815e3c38bd370451e27aaaf127e19290ca6a0a550de830b3ff2ab49",
+      "telefono": "54685605",
+      "telefonoSecundario": "",
+      "zona": "Mensajería / Redes",
+      "foto": "",
+      "activo": true
+    },
+    {
+      "id": "G-1793644784766-8no3",
+      "nombre": "Yarelis Rodriguez Rodriguez",
+      "username": "yarelisrodriguezrodriguez",
+      "passwordHash": "0cbba1357815e3c38bd370451e27aaaf127e19290ca6a0a550de830b3ff2ab49",
+      "telefono": "58456051",
+      "telefonoSecundario": "",
+      "zona": "Mensajería / Redes",
+      "foto": "",
+      "activo": true
     }
   ],
   "vales": [
+    {
+      "id": "V-1793644784770-y4dccd",
+      "folio": "VAL-383984",
+      "fecha": "2026-11-02",
+      "semana": "2026-W43",
+      "moneda": "USD",
+      "gestorNombre": "Leydys",
+      "gestorTelefono": "53506875",
+      "clienteNombre": "Cliente Sin Nombre",
+      "clienteCI": "",
+      "clienteTelefono": "",
+      "direccion": "",
+      "rawTextoWhatsApp": "[30/10 11:25 p. m.] +53 5 3506875: 📝*𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 comercial* *(RECOGER EN EL LOCAL)*\n🩵 *𝐅𝐞𝐜𝐡𝐚*: 31-10\n🩵 *Nombre del Cliente*: Alexis\n🩵 *#De teléfono del Cliente*: 52072349\n🩵 *𝐏𝐞𝐝𝐢𝐝𝐨*:  cocina infraroja de 3500w\n🩵 *𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝*: 1\n🩵 *𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨*: 35 usd\n🩵 *𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨*: USD \n🩵 *𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫*: 50 Usd(devolver 15 usd)\n🩵 *𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 comercial*: Leydys \n🩵 *# De teléfono del comercial: 53506875",
+      "items": [
+        {
+          "id": "it-5h6ds3kn6",
+          "producto": "Olla Reina Houslux",
+          "tipoEquipo": "Pequeño",
+          "cantidad": 1,
+          "precioVenta": 47,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 47,
+      "granComisionCUP": 1500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784770
+    },
+    {
+      "id": "V-1793644784770-af3dty",
+      "folio": "VAL-935167",
+      "fecha": "2026-10-15",
+      "semana": "2026-W41",
+      "moneda": "USD",
+      "gestorNombre": "Yuliet Moreno Rodríguez",
+      "gestorTelefono": "56778089",
+      "clienteNombre": "Clotilde",
+      "clienteCI": "no",
+      "clienteTelefono": "no",
+      "direccion": "recogida",
+      "rawTextoWhatsApp": "[30/10 4:26 p. m.] Discipulado Alex Nuevo: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬(𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: 30-10\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Clotilde\n✨ CI : no\n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: no\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente :recogida\n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: 1fogon de petróleo y 1freidora\n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1,1\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:15 USD y 48 USD\n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:USD\n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: no\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 63 USD\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: no\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:Yuliet\n ✨ #De teléfono del Gestor:56778089\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:no",
+      "items": [
+        {
+          "id": "it-0znauyvy",
+          "producto": "fogon de petróleo",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 15,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        },
+        {
+          "id": "it-79wtxo52",
+          "producto": "freidora",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 48,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 63,
+      "granComisionCUP": 3000,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784770
+    },
+    {
+      "id": "V-1793644784770-p50jlt",
+      "folio": "VAL-961819",
+      "fecha": "2026-10-30",
+      "semana": "2026-W43",
+      "moneda": "USD",
+      "gestorNombre": "Elizabeth",
+      "gestorTelefono": "56974248",
+      "clienteNombre": "Peña el Barbero",
+      "clienteCI": "",
+      "clienteTelefono": "50513298",
+      "direccion": "Vía blanca 263/ acierto y Villanueva diez de octubre luyano a 1 cuadra del hospital migel enriqez",
+      "rawTextoWhatsApp": "[30/10 1:55 p. m.] Tata: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬  comerciales (𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: 30 octubre 26\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Peña el Barbero \n✨ CI : \n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 50513298\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente :Vía blanca 263/ acierto y Villanueva diez de octubre luyano a 1 cuadra del hospital migel enriqez\nCasa hace esquina en vía blanca y Villanueva. Biplanta rojo . Hay un árbol grande de pino grande q se ve en el garaje. Preguntar por el peña el barbero .\n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: ventilador de pared y ventilador de pedestal \n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1y 1 \n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:25 usd y 30 usd \n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:usd y cup\n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: 1200\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 10 usd + 39,600+ 1200= 10 usd y 40,800\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: no\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:Elizabeth \n ✨ #De teléfono del Gestor:56974248\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:no",
+      "items": [
+        {
+          "id": "it-9sf10ih2",
+          "producto": "ventilador de pared",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 25,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        },
+        {
+          "id": "it-un6mqtf6",
+          "producto": "ventilador de pedestal",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 30,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 55,
+      "granComisionCUP": 3000,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784770
+    },
+    {
+      "id": "V-1793644784770-y5hev7",
+      "folio": "VAL-288750",
+      "fecha": "2026-11-02",
+      "semana": "2026-W43",
+      "moneda": "USD",
+      "gestorNombre": "JOSÉ MIGUEL MARTÍNEZ ACOSTA",
+      "gestorTelefono": "54822881",
+      "clienteNombre": "Cliente Sin Nombre",
+      "clienteCI": "",
+      "clienteTelefono": "",
+      "direccion": "",
+      "rawTextoWhatsApp": "[30/10 1:21 p. m.] Cuñado Jose_💙✨📖: 📝*𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 comercial* *(RECOGER EN EL LOCAL)*\n🩵 *𝐅𝐞𝐜𝐡𝐚*: 30.10.26\n🩵 *Nombre del Cliente*: maide Diaz \n🩵 *#De teléfono del Cliente*: \n🩵 *𝐏𝐞𝐝𝐢𝐝𝐨*: 1 fogón de petróleo \n🩵 *𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝*: 1\n🩵 *𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨*: 15 usd (13 200 cup) \n🩵 *𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨*: cup\n🩵 *𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫*: 13 200 cup\n🩵 *𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 comercial*:José miguel Martínez Acosta \n🩵 *# De teléfono del comercial: 54822881 \n\nLa dirección es Georgia 101 entre constitución y coliseo la palma arroyó naranjo\n\nEn el semaforo de la palma cojes la calzada porvenir y subes 2 cuadras hasta llegar a la tienda que hace esquina y dobla mano derecha (en dirección a mantilla) y subes dos cuadras para arriba al frente de un platanar casa en alto",
+      "items": [
+        {
+          "id": "it-k43s4cfe7",
+          "producto": "Olla Reina Houslux",
+          "tipoEquipo": "Pequeño",
+          "cantidad": 1,
+          "precioVenta": 47,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 47,
+      "granComisionCUP": 1500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784770
+    },
+    {
+      "id": "V-1793644784770-5ul6zr",
+      "folio": "VAL-969814",
+      "fecha": "2026-10-15",
+      "semana": "2026-W41",
+      "moneda": "USD",
+      "gestorNombre": "Yarelis Rodriguez Rodriguez",
+      "gestorTelefono": "58456051",
+      "clienteNombre": "Guadalupe Ceballos Izquierdo",
+      "clienteCI": "70031731795",
+      "clienteTelefono": "52383195",
+      "direccion": "calle 500 #1/ j y final Rpto Sibarimar Guanabo",
+      "rawTextoWhatsApp": "[30/10 11:50 a. m.] Mi Amor: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬  comerciales (𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓i𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: 30-10-2026\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Guadalupe Ceballos Izquierdo \n✨ CI : 70031731795 \n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 52383195\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢o𝐧 𝐝𝐞𝐥 cliente :calle 500 #1/ j y final Rpto Sibarimar Guanabo \n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: 2 Alarma\n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 2 \n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭i𝐜𝐮𝐥𝐨: 56  \n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:USD\n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫i𝐚: 5000\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 2\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: ninguno\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 comercial:Yarelis Rodriguez Rodriguez \n ✨ #De teléfono del comercial:58456051 \n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:",
+      "items": [
+        {
+          "id": "it-v1voxlcm",
+          "producto": "Alarma",
+          "cantidad": 2,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 56,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 3000
+        }
+      ],
+      "totalVenta": 112,
+      "granComisionCUP": 3000,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784770
+    },
+    {
+      "id": "V-1793644784748-woi6p1",
+      "folio": "VAL-489598",
+      "fecha": "2026-11-02",
+      "semana": "2026-W43",
+      "moneda": "USD",
+      "gestorNombre": "Gestor Sin Nombre",
+      "gestorTelefono": "54685605",
+      "clienteNombre": "Cliente Sin Nombre",
+      "clienteCI": "",
+      "clienteTelefono": "",
+      "direccion": "",
+      "rawTextoWhatsApp": "[30/10 11:46 a. m.] Mamá: 📝*𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 comercial* *(RECOGER EN EL LOCAL)*\n🩵 *𝐅𝐞𝐜𝐡𝐚*: 30 de octubre \n🩵 *Nombre del Cliente*: caridad \n🩵 *#De teléfono del Cliente*: 5 2534758\n🩵 *𝐏𝐞𝐝𝐢𝐝𝐨*: 1 fogón de petróleo \n🩵 *𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝*: 1\n🩵 *𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨*: 15 usd \n🩵 *𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨*:usd  \n🩵 *𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫*: \n🩵 *𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 comercial*: yanisleidy Villafuerte \n🩵 *# De teléfono del comercial: 55144949\n\nLa direcciones Georgia 101 entre constitución y coliseo la palma arroyó naranjo\n\nEn el semaforo de la palma cojes la calzada porvenir y subes 2 cuadras hasta llegar a la tienda que hace esquina y dobla mano derecha (en dirección a mantilla) y subes dos cuadras para arriba al frente de un platanar casa en alto",
+      "items": [
+        {
+          "id": "it-6rtlh3wiq",
+          "producto": "Olla Reina Houslux",
+          "tipoEquipo": "Pequeño",
+          "cantidad": 1,
+          "precioVenta": 47,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 47,
+      "granComisionCUP": 1500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784748
+    },
+    {
+      "id": "V-1793644784748-ynymhd",
+      "folio": "VAL-192468",
+      "fecha": "2026-10-15",
+      "semana": "2026-W41",
+      "moneda": "USD",
+      "gestorNombre": "Betty",
+      "gestorTelefono": "58709199",
+      "clienteNombre": "ingrid",
+      "clienteCI": "",
+      "clienteTelefono": "52366338",
+      "direccion": "7ma/114 Y116#11412baj playa seria la entrega",
+      "rawTextoWhatsApp": "[30/10 9:12 a. m.] Bety Yosbany: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬(𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: 30/\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:ingrid \n✨ CI : \n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 52366338\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente :7ma/114 Y116#11412baj playa seria la entrega\n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: ventilador de pared\n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:30usd\n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:usd +cup\n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: 2000\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫:20 USD +8700cup +2000 (del mensajero) \n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: no\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:Betty\n ✨ #De teléfono del Gestor:58709199\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:",
+      "items": [
+        {
+          "id": "it-aqpgimnx",
+          "producto": "ventilador de pared",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 30,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 30,
+      "granComisionCUP": 1500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784748
+    },
+    {
+      "id": "V-1793644784748-2f4kno",
+      "folio": "VAL-790025",
+      "fecha": "2026-10-30",
+      "semana": "2026-W43",
+      "moneda": "USD",
+      "gestorNombre": "Elizabeth",
+      "gestorTelefono": "56974248",
+      "clienteNombre": "Felix",
+      "clienteCI": "",
+      "clienteTelefono": "52523669",
+      "direccion": "Playa 3ra entre 36a y 38 en playa #3612",
+      "rawTextoWhatsApp": "[29/10 8:32 p. m.] Mi Amor: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬  comerciales (𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: 30 octubre 26 \n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Felix\n✨ CI : \n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 52523669\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente :Playa 3ra entre 36a y 38 en playa #3612\n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: ventilador de pared \n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 5\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:30usd \n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:usd \n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: 3000\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 150 usd + 2000\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: no\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:Elizabeth \n ✨ #De teléfono del Gestor:56974248\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:1000",
+      "items": [
+        {
+          "id": "it-vhk29bv9",
+          "producto": "ventilador de pared",
+          "cantidad": 5,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 30,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 7500
+        }
+      ],
+      "totalVenta": 150,
+      "granComisionCUP": 7500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784748
+    },
+    {
+      "id": "V-1793644784748-j1usn5",
+      "folio": "VAL-461680",
+      "fecha": "2026-11-02",
+      "semana": "2026-W43",
+      "moneda": "USD",
+      "gestorNombre": "Betty",
+      "gestorTelefono": "58709199",
+      "clienteNombre": "Cliente Sin Nombre",
+      "clienteCI": "",
+      "clienteTelefono": "",
+      "direccion": "",
+      "rawTextoWhatsApp": "[29/10 5:58 p. m.] Bety Yosbany: 📝*𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 comercial* *(RECOGER EN EL LOCAL)*\n🩵 *𝐅𝐞𝐜𝐡𝐚*: 29/10\n🩵 *Nombre del Cliente*: lliosvany\n🩵 *#De teléfono del Cliente*:52465103 \n🩵 *𝐏𝐞𝐝𝐢𝐝𝐨*: ventilador recargable F6\n🩵 *𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝*: 1\n🩵 *𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨*: 37usd\n🩵 *𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨*: cup\n🩵 *𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫*: 32.200cup\n🩵 *𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 comercial*:Bety\n🩵 *# De teléfono del comercial:58709199 \n\nLa direcciones Georgia 101 entre constitución y coliseo la palma arroyó naranjo\n\nEn el semaforo de la palma cojes la calzada porvenir y subes 2 cuadras hasta llegar a la tienda que hace esquina y dobla mano derecha (en dirección a mantilla) y subes dos cuadras para arriba al frente de un platanar casa en alto",
+      "items": [
+        {
+          "id": "it-uf4ujtpjr",
+          "producto": "Olla Reina Houslux",
+          "tipoEquipo": "Pequeño",
+          "cantidad": 1,
+          "precioVenta": 47,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 47,
+      "granComisionCUP": 1500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784748
+    },
+    {
+      "id": "V-1793644784748-1swgdz",
+      "folio": "VAL-759635",
+      "fecha": "2026-10-29",
+      "semana": "2026-W43",
+      "moneda": "USD",
+      "gestorNombre": "Elizabeth",
+      "gestorTelefono": "56974248",
+      "clienteNombre": "Maikel",
+      "clienteCI": "",
+      "clienteTelefono": "53614333",
+      "direccion": "Lawton 10 de octubre Concepción # 1136 entre 22 y 23",
+      "rawTextoWhatsApp": "[29/10 5:09 p. m.] Tata: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬  comerciales (𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: 29 octubre 26 \n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Maikel \n✨ CI : \n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 53614333\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente :Lawton 10 de octubre Concepción # 1136 entre 22 y 23\n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: ventilador de pedestal \n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 2\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:25usd \n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:usd \n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: 1200\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 50 usd +1200\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: no \n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:Elizabeth \n ✨ #De teléfono del Gestor:56974248\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:no",
+      "items": [
+        {
+          "id": "it-irn3kt9t",
+          "producto": "ventilador de pedestal",
+          "cantidad": 2,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 25,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 3000
+        }
+      ],
+      "totalVenta": 50,
+      "granComisionCUP": 3000,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784748
+    },
+    {
+      "id": "V-1793644784738-sff16f",
+      "folio": "VAL-762139",
+      "fecha": "2026-10-15",
+      "semana": "2026-W41",
+      "moneda": "USD",
+      "gestorNombre": "Yuliet Moreno Rodríguez",
+      "gestorTelefono": "56778089",
+      "clienteNombre": "Daliana",
+      "clienteCI": "91051820111",
+      "clienteTelefono": "no",
+      "direccion": "recogida",
+      "rawTextoWhatsApp": "[29/10 4:35 p. m.] Discipulado Alex Nuevo: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬(𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: 29-10\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Daliana\n✨ CI : 91051820111\n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: no\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente :recogida\n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: 1ventilador recargable\n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:27 USD\n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:USD\n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: no\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 27 USD\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: no\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: Yuliet \n ✨ #De teléfono del Gestor:56778089\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:no",
+      "items": [
+        {
+          "id": "it-twlgl47r",
+          "producto": "ventilador recargable",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 27,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 27,
+      "granComisionCUP": 1500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784738
+    },
+    {
+      "id": "V-1793644784737-peri8l",
+      "folio": "VAL-849831",
+      "fecha": "2026-10-28",
+      "semana": "2026-W43",
+      "moneda": "USD",
+      "gestorNombre": "Betty",
+      "gestorTelefono": "58709199",
+      "clienteNombre": "Ernesto alexander",
+      "clienteCI": "",
+      "clienteTelefono": "72726031",
+      "direccion": "Ave 27 / 234y 236 edif 54 apt 4 san agustin la lisa",
+      "rawTextoWhatsApp": "[29/10 12:11 p. m.] Bety Yosbany: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬(𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: 28/10\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Ernesto alexander\n✨ CI : \n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 72726031\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente :Ave 27 / 234y 236 edif 54 apt 4 san agustin la lisa\n✨ 𝐏𝐞𝐝𝐢𝐝𝐨:olla reina roja + arrocera  \n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝:1 +1 \n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨: 46 usd  + 27usd =73\n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:80 usd\n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: 3000\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫:73 usd de articulo +4 usd de mensajeria\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: 7 usd de la tienda y 440 cup el mensajero\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: Betty\n ✨ #De teléfono del Gestor:58709199\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:",
+      "items": [
+        {
+          "id": "it-92mzbtwt",
+          "producto": "olla reina roja",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 46,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        },
+        {
+          "id": "it-p16mcvho",
+          "producto": "arrocera",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 27,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 73,
+      "granComisionCUP": 3000,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784737
+    },
+    {
+      "id": "V-1793644784737-xmtdyg",
+      "folio": "VAL-128781",
+      "fecha": "2026-10-29",
+      "semana": "2026-W43",
+      "moneda": "USD",
+      "gestorNombre": "Dayanis García Almanza",
+      "gestorTelefono": "51349671",
+      "clienteNombre": "Maria Eusebia Benítez",
+      "clienteCI": "65032311757",
+      "clienteTelefono": "5 8354532",
+      "direccion": "Habana del este reparto Camilo Cienfuegos Edificio 324B apt1",
+      "rawTextoWhatsApp": "[29/10 11:09 a. m.] +53 5 1349671: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬(𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: 29.10.26\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Maria Eusebia Benítez \n✨ CI : 65032311757 \n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 5 8354532\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente :Habana del este reparto Camilo Cienfuegos Edificio 324B apt1\n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: olla reina bravo King arrocera estelectric y cocina infrarroja garuda de 3500W \n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1,1y1 \n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:46,27 y 35 usd \n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:usd\n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: 2500 cup\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 110 usd mas 2500 cup\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: 2 usd \n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:Dayanis García Almanza \n ✨ #De teléfono del Gestor:51349671\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:no",
+      "items": [
+        {
+          "id": "it-8rwtu44q",
+          "producto": "olla reina bravo King",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 46,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        },
+        {
+          "id": "it-v5xih20a",
+          "producto": "arrocera estelectric",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 27,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        },
+        {
+          "id": "it-kl0t0h5w",
+          "producto": "cocina infrarroja garuda de 3500W",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 35,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 108,
+      "granComisionCUP": 4500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784737
+    },
+    {
+      "id": "V-1793644784737-8lqtdw",
+      "folio": "VAL-971540",
+      "fecha": "2026-10-15",
+      "semana": "2026-W41",
+      "moneda": "USD",
+      "gestorNombre": "Yuliet Moreno Rodríguez",
+      "gestorTelefono": "56778089",
+      "clienteNombre": "Yosvani Rodríguez",
+      "clienteCI": "90022228587",
+      "clienteTelefono": "no",
+      "direccion": "Recogida",
+      "rawTextoWhatsApp": "[29/10 10:51 a. m.] Discipulado Alex Nuevo: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬(𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: 29-10\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Yosvani Rodríguez \n✨ CI : 90022228587\n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: no\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente :Recogida\n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: 1 ventilador recargable \n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:37 USD\n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:MN\n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: no\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 31,635\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: no\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: Yuliet \n ✨ #De teléfono del Gestor:56778089\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: no",
+      "items": [
+        {
+          "id": "it-n4q1h0gg",
+          "producto": "ventilador recargable",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 37,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 37,
+      "granComisionCUP": 1500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784737
+    },
+    {
+      "id": "V-1793644784737-1jftsi",
+      "folio": "VAL-693326",
+      "fecha": "2026-10-28",
+      "semana": "2026-W43",
+      "moneda": "USD",
+      "gestorNombre": "Magdiel",
+      "gestorTelefono": "53575726",
+      "clienteNombre": "Annalie",
+      "clienteCI": "",
+      "clienteTelefono": "+53 5 3991706",
+      "direccion": "guanabacoa mikito calle san sebastián enter coco y luz #160",
+      "rawTextoWhatsApp": "[29/10 10:19 a. m.] Mi Amor: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬(𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: 28 de octubre \n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Annalie\n✨ CI : \n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: +53 5 3991706\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente :guanabacoa mikito calle san sebastián enter coco y luz #160\n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: cocina inflarojo 2000w, freidora de aire, cafetera\n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1,1,1\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨: 33 USD( 28 380), 48 USD (41280), 27 USD (23 220)\n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨: Cup\n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: 3500\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 92 880 cup y 3500 cup\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: \n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: magdiel alfaro \n ✨ #De teléfono del Gestor: 53575726\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:",
+      "items": [
+        {
+          "id": "it-p0urutef",
+          "producto": "cocina",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 33,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        },
+        {
+          "id": "it-69xn7lbe",
+          "producto": "inflarojo 2000w",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 48,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        },
+        {
+          "id": "it-qfnfm3ga",
+          "producto": "freidora de aire",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 27,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        },
+        {
+          "id": "it-k7xwy7bv",
+          "producto": "cafetera",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 27,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 135,
+      "granComisionCUP": 6000,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784737
+    },
+    {
+      "id": "V-1793644784737-95gpod",
+      "folio": "VAL-866907",
+      "fecha": "2026-10-29",
+      "semana": "2026-W43",
+      "moneda": "USD",
+      "gestorNombre": "adalis Lopez",
+      "gestorTelefono": "54843139",
+      "clienteNombre": "jose carlos",
+      "clienteCI": "",
+      "clienteTelefono": "+53 5 2906809",
+      "direccion": "Avenida Santa amalia #120 entre Dolores y Santa Isabel ,Santa Amalia",
+      "rawTextoWhatsApp": "[28/10 11:46 p. m.] Mi Amor: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬  comerciales (𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: 29/10\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: jose carlos\n✨ CI : \n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: +53 5 2906809\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente :Avenida Santa amalia #120 entre Dolores y Santa Isabel ,Santa Amalia\n✨ 𝐏𝐞𝐝𝐢𝐝𝐨:  1 cocina de 3500 w.  \n1 fogón de petróleo \n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1 y 1\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:35 usd y 15 usd\n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨: usd\n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: 1000\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 50 usd y 1000\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: adalis Lopez \n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 comercial: adalis Lopez \n ✨ #De teléfono del comercial: 54843139",
+      "items": [
+        {
+          "id": "it-2059f0i9",
+          "producto": "cocina de 3500 w.",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 35,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        },
+        {
+          "id": "it-8f9misxv",
+          "producto": "fogón de petróleo",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 15,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 50,
+      "granComisionCUP": 3000,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784737
+    },
+    {
+      "id": "V-1793644784737-zz0n3o",
+      "folio": "VAL-162281",
+      "fecha": "2026-10-15",
+      "semana": "2026-W41",
+      "moneda": "USD",
+      "gestorNombre": "Yakelin",
+      "gestorTelefono": "54286609",
+      "clienteNombre": "Dina",
+      "clienteCI": "",
+      "clienteTelefono": "+53 63986387",
+      "direccion": "Graciela No.91 entre San Mariano y Santa Catalina víbora",
+      "rawTextoWhatsApp": "[28/10 5:51 p. m.] Mamá: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬(𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: 28\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Dina\n✨ CI : \n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: +53 63986387\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente :Graciela No.91 entre San Mariano y Santa Catalina víbora\nA dos cuadras de la Iglesia de San Juan Bosco\nDina Martines o Juan Carlos Martinez\nBiplanta color verde con columnas rojas..10 de Octubre\n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: 1 batidora con trituradora 1 Olla arrocera vaporera 1 juego  4 piezas de saltenes \n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1,1,1\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:25USD +28USD+25USD\n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:USD\n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: 1200\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜over 100USD Y 12OOMN\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: 22USD\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:Yakelin\n ✨ #De teléfono del Gestor:54286609\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:",
+      "items": [
+        {
+          "id": "it-7cenyfbt",
+          "producto": "batidora con trituradora 1",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 25,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        },
+        {
+          "id": "it-ub0o099m",
+          "producto": "Olla arrocera vaporera 1 juego  4 piezas de saltenes",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 28,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 53,
+      "granComisionCUP": 3000,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784737
+    },
+    {
+      "id": "V-1793644784737-ofgenb",
+      "folio": "VAL-557781",
+      "fecha": "2026-10-28",
+      "semana": "2026-W43",
+      "moneda": "USD",
+      "gestorNombre": "Betty",
+      "gestorTelefono": "58709199",
+      "clienteNombre": "zoila",
+      "clienteCI": "",
+      "clienteTelefono": "+53 5 4407740",
+      "direccion": "En mi casa",
+      "rawTextoWhatsApp": "[28/10 2:39 p. m.] Bety Yosbany: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬  comerciales+53 5 4407740 (𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: 28/10\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: zoila\n✨ CI : \n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: +53 5 4407740\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente :En mi casa \n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: juego de olla de calabaza\n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:25\n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨: cup\n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: no\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 21.500 cup\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: no\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 comercial: Betty\n ✨ #De teléfono del comercial:58709199\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:no",
+      "items": [
+        {
+          "id": "it-yx2w4b8r",
+          "producto": "olla de calabaza",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 25,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 25,
+      "granComisionCUP": 1500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784737
+    },
+    {
+      "id": "V-1793644784737-zt8xuq",
+      "folio": "VAL-653876",
+      "fecha": "2026-10-28",
+      "semana": "2026-W43",
+      "moneda": "USD",
+      "gestorNombre": "Magdiel",
+      "gestorTelefono": "53575726",
+      "clienteNombre": "María Julia Hernández Saborit",
+      "clienteCI": "",
+      "clienteTelefono": "+53 63716342",
+      "direccion": "Calle 230 e/ 33 y 35a edif 120 apto 17 san agustin lisa",
+      "rawTextoWhatsApp": "[28/10 2:16 p. m.] Magdiel: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬(𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: 28 de octubre \n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: María Julia Hernández Saborit\n✨ CI : \n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: +53 63716342\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente : Calle 230 e/ 33 y 35a edif 120 apto 17 san agustin lisa\n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: cocina inflarojo 2000w y sartén eléctrico \n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1 y 1\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨: 33 USD y 32 USD \n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨: USD \n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: 3000\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 65 USD y 3000\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: \n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: magdiel alfaro \n ✨ #De teléfono del Gestor: 53575726\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:",
+      "items": [
+        {
+          "id": "it-vcbdckqm",
+          "producto": "cocina",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 33,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        },
+        {
+          "id": "it-t8neglti",
+          "producto": "inflarojo 2000w",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 32,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        },
+        {
+          "id": "it-9ygv6d70",
+          "producto": "sartén eléctrico",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 0,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 65,
+      "granComisionCUP": 4500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784737
+    },
+    {
+      "id": "V-1793644784737-gr8vyb",
+      "folio": "VAL-393091",
+      "fecha": "2026-10-28",
+      "semana": "2026-W43",
+      "moneda": "USD",
+      "gestorNombre": "Liz Mariam",
+      "gestorTelefono": "54763168",
+      "clienteNombre": "Raycel Medina",
+      "clienteCI": "",
+      "clienteTelefono": "56596489",
+      "direccion": "Calle 236 /247 y 249  abel santamaria, Boyero referencia la cuadra de las piscinas",
+      "rawTextoWhatsApp": "[28/10 1:56 p. m.] +53 5 4763168: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬  comerciales (𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: 28/10/26\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Raycel Medina \n✨ CI : \n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 56596489\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente :Calle 236 /247 y 249  abel santamaria, Boyero referencia la cuadra de las piscinas\n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: Fogón de petróleo \n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:15 usd \n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:usd \n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: 3500\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 15 usd y 3500 mensajería \n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: no\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 comercial:Liz Mariam Baró Falcón \n ✨ #De teléfono del comercial:#54763168 \n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:no",
+      "items": [
+        {
+          "id": "it-70cb4uf5",
+          "producto": "Fogón de petróleo",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 15,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 15,
+      "granComisionCUP": 1500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784737
+    },
+    {
+      "id": "V-1793644784737-jcp7zw",
+      "folio": "VAL-115540",
+      "fecha": "2026-10-15",
+      "semana": "2026-W41",
+      "moneda": "USD",
+      "gestorNombre": "Yakelin",
+      "gestorTelefono": "54286609",
+      "clienteNombre": "Aliuska Bell",
+      "clienteCI": "",
+      "clienteTelefono": "+53 5 9752803",
+      "direccion": "Vigia # 215 / Romay y Cerrada..CERRO (atare)",
+      "rawTextoWhatsApp": "[28/10 9:59 a. m.] Mamá: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬(𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: 28\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Aliuska Bell\n✨ CI : \n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: +53 5 9752803\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente :Vigia # 215 / Romay y Cerrada..CERRO (atare)\n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: 1 ventilador pared\n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:30USD\n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:USD\n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: 1900\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 30USD +1900mn\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: no\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:Yakelin\n ✨ #De teléfono del Gestor:54286609\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:",
+      "items": [
+        {
+          "id": "it-6lbkmdmr",
+          "producto": "ventilador pared",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 30,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 30,
+      "granComisionCUP": 1500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784737
+    },
+    {
+      "id": "V-1793644784737-p64868",
+      "folio": "VAL-345737",
+      "fecha": "2026-10-28",
+      "semana": "2026-W43",
+      "moneda": "USD",
+      "gestorNombre": "JOSÉ MIGUEL MARTÍNEZ ACOSTA",
+      "gestorTelefono": "54822881",
+      "clienteNombre": "Gabriel",
+      "clienteCI": "",
+      "clienteTelefono": "+53 5 0054777",
+      "direccion": "Calle 5ta entre camilo cienfuego y jose marti edificio 72 apt 9 reparto eléctrico arroyó naranjo",
+      "rawTextoWhatsApp": "[27/10 11:42 p. m.] Cuñado Jose_💙✨📖: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬(𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: 28.10.26\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Gabriel\n✨ CI : \n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: +53 5 0054777\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente : Calle 5ta entre camilo cienfuego y jose marti edificio 72 apt 9 reparto eléctrico arroyó naranjo\n punto de referencia ponchera de calle 5ta \n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: 2 sartenes electricos 800w \n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 2\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:32 usd (27 520 CUP) \n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:cup\n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: 1800 cup \n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 27 520+27 520+1800=56 840 cup\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: no \n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:JOSÉ MIGUEL MARTÍNEZ ACOSTA \n ✨ #De teléfono del Gestor:54822881 \n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:no",
+      "items": [
+        {
+          "id": "it-1fky09cb",
+          "producto": "sartenes electricos 800w",
+          "cantidad": 2,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 32,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 3000
+        }
+      ],
+      "totalVenta": 64,
+      "granComisionCUP": 3000,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784737
+    },
+    {
+      "id": "V-1793644784724-f18p73",
+      "folio": "VAL-246348",
+      "fecha": "2026-10-15",
+      "semana": "2026-W41",
+      "moneda": "USD",
+      "gestorNombre": "Yuliet Moreno Rodríguez",
+      "gestorTelefono": "56778089",
+      "clienteNombre": "Yuliet",
+      "clienteCI": "no",
+      "clienteTelefono": "no",
+      "direccion": "recogida",
+      "rawTextoWhatsApp": "[27/10 4:32 p. m.] Discipulado Alex Nuevo: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬(𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: 27-10\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Yuliet \n✨ CI : no\n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: no\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente :recogida\n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: 3 ventiladores de pedestal \n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 3\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:25 USD\n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:USD\n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: no\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 75 USD\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: no\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:Yuliet\n ✨ #De teléfono del Gestor:56778089\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:no",
+      "items": [
+        {
+          "id": "it-8bubi2io",
+          "producto": "ventiladores de pedestal",
+          "cantidad": 3,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 25,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 4500
+        }
+      ],
+      "totalVenta": 75,
+      "granComisionCUP": 4500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784724
+    },
+    {
+      "id": "V-1793644784724-vrwf65",
+      "folio": "VAL-604413",
+      "fecha": "2026-10-27",
+      "semana": "2026-W43",
+      "moneda": "USD",
+      "gestorNombre": "Yakelin",
+      "gestorTelefono": "54286609",
+      "clienteNombre": "Luiso",
+      "clienteCI": "",
+      "clienteTelefono": "+53 5 4635248",
+      "direccion": "Mi dirección exacta es 21 entre 50 y 52 #5008 ..PLAYA Punto de referencia iglesia Amarilla de 19 y 50",
+      "rawTextoWhatsApp": "[27/10 3:44 p. m.] Mamá: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬(𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: 27 octubre\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Luiso\n✨ CI : \n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: +53 5 4635248\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente :Mi dirección exacta es 21 entre 50 y 52 #5008 ..PLAYA Punto de referencia iglesia Amarilla de 19 y 50\n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: 1 Olla Reina Roja\n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:46\n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:40USD+5160mn\n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: 2000\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 40USD+5160+2000\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: no\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:Yakelin\n ✨ #De teléfono del Gestor:54286609\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:",
+      "items": [
+        {
+          "id": "it-fodqwelw",
+          "producto": "Olla Reina Roja",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 46,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 46,
+      "granComisionCUP": 1500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784724
+    },
+    {
+      "id": "V-1793644784724-v4utgc",
+      "folio": "VAL-202556",
+      "fecha": "2026-11-02",
+      "semana": "2026-W43",
+      "moneda": "USD",
+      "gestorNombre": "adalis Lopez",
+      "gestorTelefono": "54843139",
+      "clienteNombre": "Cliente Sin Nombre",
+      "clienteCI": "",
+      "clienteTelefono": "",
+      "direccion": "",
+      "rawTextoWhatsApp": "[27/10 2:34 p. m.] Mi Amor: 📝*𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬* *(RECOGER EN EL LOCAL)*\n✨️ *𝐅𝐞𝐜𝐡𝐚*: 27/10\n✨️Nombre del Cliente*: amistad de claudia \n✨️ *#De teléfono del Cliente*: \n✨️*𝐏𝐞𝐝𝐢𝐝𝐨*: 1 olla de micropresión \n✨️*𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝*: 1\n✨️*𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨*: 25 usd\n✨️*𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨*: usd\n✨️*𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫*: 25 isd\n✨️ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫*: adalis Lopez \n✨️*# De teléfono del Gestor:  54843139\n\nLa direcciones Georgia 101 entre constitución y coliseo la palma arroyó naranjo\n\nEn el semaforo de la palma cojes la calzada porvenir y subes 2 cuadras hasta llegar a la tienda que hace esquina y dobla mano derecha (en dirección a mantilla) y subes dos cuadras para arriba al frente de un platanar casa en alto",
+      "items": [
+        {
+          "id": "it-rtdikj1ej",
+          "producto": "Olla Reina Houslux",
+          "tipoEquipo": "Pequeño",
+          "cantidad": 1,
+          "precioVenta": 47,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 47,
+      "granComisionCUP": 1500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784724
+    },
+    {
+      "id": "V-1793644784724-kf2zs3",
+      "folio": "VAL-713904",
+      "fecha": "2026-10-27",
+      "semana": "2026-W43",
+      "moneda": "USD",
+      "gestorNombre": "Yariagne Santiago",
+      "gestorTelefono": "52669436",
+      "clienteNombre": "Yaisel Ferrera Matos",
+      "clienteCI": "91082030113",
+      "clienteTelefono": "58312397",
+      "direccion": "Calle Cervantes #17A /Calle Camaguey y Calle Oriente",
+      "rawTextoWhatsApp": "[27/10 2:24 p. m.] Mi Amor: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬  comerciales (𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: 27 de octubre \n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:Yaisel Ferrera Matos\n✨ CI : 91082030113\n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 58312397\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente : Calle Cervantes #17A /Calle Camaguey y Calle Oriente \n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: 1 Arrocera ,1olla reina y 1 cocina infrarrojo de 2000wt\n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1,1,1\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:27usd,46usd y 33usd\n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨: usd \n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: 1500\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 106 usd +1500 mensajería \n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: 4 usd\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:Yariagne Santiago \n ✨ #De teléfono del Gestor: 52669436\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:\n\nArroyo Naranjo \nParraga",
+      "items": [
+        {
+          "id": "it-vv53bmds",
+          "producto": "Arrocera",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 27,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        },
+        {
+          "id": "it-eydn8r57",
+          "producto": "olla reina",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 46,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        },
+        {
+          "id": "it-8622lfkw",
+          "producto": "cocina infrarrojo de 2000wt",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 33,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 106,
+      "granComisionCUP": 4500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784724
+    },
+    {
+      "id": "V-1793644784723-65nubd",
+      "folio": "VAL-582854",
+      "fecha": "2026-10-15",
+      "semana": "2026-W41",
+      "moneda": "USD",
+      "gestorNombre": "Yakelin",
+      "gestorTelefono": "54286609",
+      "clienteNombre": "Yuberluen",
+      "clienteCI": "",
+      "clienteTelefono": "55575224 o 63237243",
+      "direccion": "Calle j entre 23 y 25 #501 frente al Parke el Quijote..VEDADO",
+      "rawTextoWhatsApp": "[27/10 12:22 p. m.] Mamá: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬(𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: 27\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Yuberluen\n✨ CI : \n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 55575224 o 63237243\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente :Calle j entre 23 y 25 #501 frente al Parke el Quijote..VEDADO\n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: 1 Olla \n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:49USD\n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:USD\n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: 1800\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 50USD + 1800 mensajeria \n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: 1 usd o mn\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:Yakelin \n ✨ #De teléfono del Gestor:54286609\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:",
+      "items": [
+        {
+          "id": "it-cfsweks3",
+          "producto": "Olla",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 49,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 49,
+      "granComisionCUP": 1500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784724
+    },
+    {
+      "id": "V-1793644784723-gnyfcv",
+      "folio": "VAL-912934",
+      "fecha": "2026-10-27",
+      "semana": "2026-W43",
+      "moneda": "USD",
+      "gestorNombre": "Elizabeth",
+      "gestorTelefono": "56974248",
+      "clienteNombre": "Alejandro Veiga",
+      "clienteCI": "",
+      "clienteTelefono": "52841392",
+      "direccion": "Calle 39 # 904 entre ave 26 y calle 28 Nuevo Vedado",
+      "rawTextoWhatsApp": "[27/10 11:25 a. m.] Tata: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬  comerciales (𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: 27 octubre 26\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:Alejandro Veiga \n✨ CI : \n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 52841392\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente :Calle 39 # 904 entre ave 26 y calle 28 Nuevo Vedado \n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: ventilador de pared \n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 2\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:30usd \n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:usd\n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: 1900\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 100usd +1900= 100 usd 1900\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫:40 usd \n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:Elizabeth \n ✨ #De teléfono del Gestor:56974248\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:",
+      "items": [
+        {
+          "id": "it-q57hs3cl",
+          "producto": "ventilador de pared",
+          "cantidad": 2,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 30,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 3000
+        }
+      ],
+      "totalVenta": 60,
+      "granComisionCUP": 3000,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784723
+    },
+    {
+      "id": "V-1793644784723-6fgzz1",
+      "folio": "VAL-600992",
+      "fecha": "2026-10-27",
+      "semana": "2026-W43",
+      "moneda": "USD",
+      "gestorNombre": "Betty",
+      "gestorTelefono": "58709199",
+      "clienteNombre": "Milka",
+      "clienteCI": "",
+      "clienteTelefono": "+53 5 1616388✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente :calle 4 esquina 35edif 862A apoyo 10 plaza de la revolucion",
+      "direccion": "",
+      "rawTextoWhatsApp": "[27/10 11:16 a. m.] Bety Yosbany: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬  comerciales (𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚:27/10 \n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:Milka \n✨ CI : \n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: +53 5 1616388✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente :calle 4 esquina 35edif 862A apoyo 10 plaza de la revolucion\n \n✨ 𝐏𝐞𝐝𝐢𝐝𝐨:1 jueguito de olla de calabaza +1 el juego de sarten +1 fogon infrraroja de 3500w +1 una olla reina +1 una arrocera + 1batidora\n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1++1+1+1+1+1\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:25, 25, 35, 49, 27, 25\n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:usd\n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: 1800 \n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 186 usd + 1800\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: 14 usd\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 comercial:Betty\n ✨ #De teléfono del comercial:58709199\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:",
+      "items": [
+        {
+          "id": "it-lzuo1gb1",
+          "producto": "jueguito de olla de calabaza",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 25,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        },
+        {
+          "id": "it-63pt0w5x",
+          "producto": "el juego de sarten",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 25,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        },
+        {
+          "id": "it-c4cu6j23",
+          "producto": "fogon infrraroja de 3500w",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 35,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        },
+        {
+          "id": "it-xryccokg",
+          "producto": "una olla reina",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 49,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        },
+        {
+          "id": "it-zs7svs8o",
+          "producto": "una arrocera",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 27,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        },
+        {
+          "id": "it-a61nkix8",
+          "producto": "batidora",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 25,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 186,
+      "granComisionCUP": 9000,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784723
+    },
+    {
+      "id": "V-1793644784723-qcqv7p",
+      "folio": "VAL-802637",
+      "fecha": "2026-10-27",
+      "semana": "2026-W43",
+      "moneda": "USD",
+      "gestorNombre": "Leydys",
+      "gestorTelefono": "53506875",
+      "clienteNombre": "Alexis",
+      "clienteCI": "",
+      "clienteTelefono": "52072349",
+      "direccion": "",
+      "rawTextoWhatsApp": "[27/10 10:46 a. m.] +53 5 3506875: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫  𝐠𝐞𝐬𝐭𝐨𝐫\n✨𝐅𝐞𝐜𝐡𝐚: 27 octubre\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Alexis\n✨ CI : \n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 52072349\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥\n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: set de 2 ollas de micropresión\n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:25usd\n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:USD\n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚:Recogida en el local \n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 25 usd\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: no\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: Leydys \n ✨ #De teléfono del Gestor:53506875\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:",
+      "items": [
+        {
+          "id": "it-i3bkfbcj",
+          "producto": "set de 2 ollas de micropresión",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 25,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 25,
+      "granComisionCUP": 1500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784723
+    },
+    {
+      "id": "V-1793644784723-phtu2l",
+      "folio": "VAL-694397",
+      "fecha": "2026-10-27",
+      "semana": "2026-W43",
+      "moneda": "USD",
+      "gestorNombre": "Dayanis García Almanza",
+      "gestorTelefono": "51349671",
+      "clienteNombre": "Yumilis Gomez",
+      "clienteCI": "",
+      "clienteTelefono": "50568661",
+      "direccion": "Yo soy de miraflores Viejo esto es al lado de la linea que divide arroyo con boyeros",
+      "rawTextoWhatsApp": "[27/10 10:03 a. m.] +53 5 1349671: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬(𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: 27.10.26\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Yumilis Gomez \n✨ CI : \n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 50568661\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente :Yo soy de miraflores Viejo esto es al lado de la linea que divide arroyo con boyeros \nCalle J numero 10009 , 2 interior entre 1ra y avenida del oeste \n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: fogon de petróleo \n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:15 usd \n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:usd \n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: 1800 cup\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 20 usd mas 1800 cup\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: 5 usd \n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:Dayanis García Almanza \n ✨ #De teléfono del Gestor:51349671\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:no",
+      "items": [
+        {
+          "id": "it-jjhzlkru",
+          "producto": "fogon de petróleo",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 15,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 15,
+      "granComisionCUP": 1500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784723
+    },
+    {
+      "id": "V-1793644784723-frz24s",
+      "folio": "VAL-437863",
+      "fecha": "2026-10-15",
+      "semana": "2026-W41",
+      "moneda": "USD",
+      "gestorNombre": "Yuliet Moreno Rodríguez",
+      "gestorTelefono": "56778089",
+      "clienteNombre": "Doralis",
+      "clienteCI": "no",
+      "clienteTelefono": "no",
+      "direccion": "recogida",
+      "rawTextoWhatsApp": "[27/10 9:52 a. m.] Discipulado Alex Nuevo: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬(𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: 26-10\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Doralis\n✨ CI : no\n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: no\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente :recogida\n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: 1 Reina\n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:49 USD\n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:USD\n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: no\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 49 USD\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: \n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: Yulieth Moreno Rodríguez \n ✨ #De teléfono del Gestor:56778089\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:no",
+      "items": [
+        {
+          "id": "it-x3sap7e0",
+          "producto": "Reina",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 49,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 49,
+      "granComisionCUP": 1500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784723
+    },
+    {
+      "id": "V-1793644784723-tw02sv",
+      "folio": "VAL-300144",
+      "fecha": "2026-10-27",
+      "semana": "2026-W43",
+      "moneda": "USD",
+      "gestorNombre": "la titi",
+      "gestorTelefono": "53328026",
+      "clienteNombre": "leydi",
+      "clienteCI": "06091465132",
+      "clienteTelefono": "58092626",
+      "direccion": "Calle 7ma 1ro de mayo alquiler ángel es por la panadería al frente buscar la mipime Ombasar cuando estes en la mipime seguir al final un caserío q hay ahí municipio Boyero",
+      "rawTextoWhatsApp": "[27/10 9:50 a. m.] +53 5 3328026: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬(𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂) \n✨𝐅𝐞𝐜𝐡𝐚: 27 octubre\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: leydi\n✨ CI : 06091465132\n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 58092626\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente :Calle 7ma 1ro de mayo alquiler ángel es por la panadería al frente buscar la mipime Ombasar cuando estes en la mipime seguir al final un caserío q hay ahí municipio Boyero \n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: 1 cafetera\n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:27 USD\n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:USD\n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: 3500\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 40USD + 3500\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: 13 la cliente quiere si es posible le devuelvan 10usd y 3 en mn\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:la titi\n ✨ #De teléfono del Gestor:53328026\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:",
+      "items": [
+        {
+          "id": "it-no3cndtm",
+          "producto": "cafetera",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 27,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 27,
+      "granComisionCUP": 1500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784723
+    },
+    {
+      "id": "V-1793644784723-erbegh",
+      "folio": "VAL-633344",
+      "fecha": "2026-11-02",
+      "semana": "2026-W43",
+      "moneda": "USD",
+      "gestorNombre": "Betty",
+      "gestorTelefono": "58709199",
+      "clienteNombre": "Ivan",
+      "clienteCI": "",
+      "clienteTelefono": "+63008521",
+      "direccion": "panchito gomez #331apto #5entre 20 de mayo y aranguren cerro",
+      "rawTextoWhatsApp": "[24/10 1:00 p. m.] Bety Yosbany: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬  comerciales (𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: \n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Ivan\n✨ CI : \n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: +63008521\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente :panchito gomez #331apto #5entre 20 de mayo y aranguren cerro\n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: power bank\n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:22\n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:usd\n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: 1900\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 22usd +1900\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: no\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 comercial:Betty\n ✨ #De teléfono del comercial:58709199\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:no",
+      "items": [
+        {
+          "id": "it-yewkxm4x",
+          "producto": "power bank",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 22,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 22,
+      "granComisionCUP": 1500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784723
+    },
+    {
+      "id": "V-1793644784723-w6w63n",
+      "folio": "VAL-714766",
+      "fecha": "2026-11-02",
+      "semana": "2026-W43",
+      "moneda": "USD",
+      "gestorNombre": "Elizabeth",
+      "gestorTelefono": "56974248",
+      "clienteNombre": "Cliente Sin Nombre",
+      "clienteCI": "",
+      "clienteTelefono": "52416798",
+      "direccion": "Calle guinera 670/Moisés maestri y porvenir reparto parraga punto de referencia detras del antiguo paradero de parraga",
+      "rawTextoWhatsApp": "[23/10 2:04 p. m.] Tata: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬  comerciales (𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: \n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: \n✨ CI : \n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 52416798\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente :Calle guinera 670/Moisés maestri y porvenir reparto parraga punto de referencia detras del antiguo paradero de parraga \n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: ventilador de pared \n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:30usd(25,200)\n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:usd cup\n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: 1500\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 20 usd+ 8400 +1500 =20usd 9900\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: no \n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:Elizabeth \n ✨ #De teléfono del Gestor:56974248\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:no",
+      "items": [
+        {
+          "id": "it-meo1o59k",
+          "producto": "ventilador de pared",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 30,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 30,
+      "granComisionCUP": 1500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784723
+    },
+    {
+      "id": "V-1793644784723-h2hjt8",
+      "folio": "VAL-539984",
+      "fecha": "2026-11-02",
+      "semana": "2026-W43",
+      "moneda": "USD",
+      "gestorNombre": "Liz Mariam",
+      "gestorTelefono": "54763168",
+      "clienteNombre": "Heydi",
+      "clienteCI": "",
+      "clienteTelefono": "58875828",
+      "direccion": "Fray Alonso 385  entre Apodaca y final Guanabacoa",
+      "rawTextoWhatsApp": "[23/10 12:23 p. m.] +53 5 4763168: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬(𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: \n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Heydi\n✨ CI : \n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 58875828\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente :Fray Alonso 385  entre Apodaca y final Guanabacoa \n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: una infrarroja 2000w y ventilador recargable f6\n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1 y 1\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:33 usd y 37usd \n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨: MN\n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: 4000 cup\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 58.800+4000=62.800 mn\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: no\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:Liz Mariam Baro Falcón \n ✨ #De teléfono del Gestor:#54763168\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:no",
+      "items": [
+        {
+          "id": "it-vf8mly5i",
+          "producto": "una infrarroja 2000w",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 33,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        },
+        {
+          "id": "it-mq7yl1cw",
+          "producto": "ventilador recargable f6",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 37,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 70,
+      "granComisionCUP": 3000,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1793644784723
+    },
     {
       "id": "V-1793076690447-0a54qn",
       "folio": "VAL-957707",
