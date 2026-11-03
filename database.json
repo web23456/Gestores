@@ -3245,35 +3245,6 @@
       "createdAt": 1793076690445
     },
     {
-      "id": "V-1793076690445-0nglsh",
-      "folio": "VAL-681006",
-      "fecha": "2026-10-24",
-      "semana": "2026-W42",
-      "moneda": "USD",
-      "gestorNombre": "Devorah Cárdenas",
-      "gestorTelefono": "52705888",
-      "clienteNombre": "José Gonzalez",
-      "clienteCI": "67101527049",
-      "clienteTelefono": "58182525",
-      "direccion": "61 / 138 y140 #13813 de la casa Mariano",
-      "rawTextoWhatsApp": "[24/10 10:56 a. m.] Mi Amor: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬  comerciales (𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: 24 de Octubre \n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: José Gonzalez \n✨ CI : 67101527049\n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 58182525\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente : 61 / 138 y140 #13813 de la casa Mariano\n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: Fogón de petróleo \n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨: 15 usd\n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨: \n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: 2500\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 15 + 2500\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: 5usd\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: Devorah Cárdenas \n ✨ #De teléfono del Gestor: 52705888\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: 0",
-      "items": [
-        {
-          "id": "it-uporte3s",
-          "producto": "Fogón de petróleo",
-          "cantidad": 1,
-          "tipoEquipo": "Pequeño",
-          "precioVenta": 15,
-          "comisionUnitCUP": 1500,
-          "comisionTotalCUP": 1500
-        }
-      ],
-      "totalVenta": 15,
-      "granComisionCUP": 1500,
-      "estadoComision": "PENDIENTE",
-      "createdAt": 1793076690445
-    },
-    {
       "id": "V-1793076690445-0h9mpm",
       "folio": "VAL-859393",
       "fecha": "2026-10-24",
