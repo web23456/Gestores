@@ -224,14 +224,15 @@
     },
     {
       "id": "G-1793644784766-8no3",
-      "nombre": "Yarelis Rodriguez Rodriguez",
-      "username": "yarelisrodriguezrodriguez",
-      "passwordHash": "0cbba1357815e3c38bd370451e27aaaf127e19290ca6a0a550de830b3ff2ab49",
+      "nombre": "Yanelis Iglesia",
+      "username": "yanelis iglesia",
+      "passwordHash": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
       "telefono": "58456051",
       "telefonoSecundario": "",
       "zona": "Mensajería / Redes",
       "foto": "",
-      "activo": true
+      "activo": true,
+      "documentoIdentidad": ""
     },
     {
       "id": "G-1793644983387-dnh7",
