@@ -3388,16 +3388,37 @@ function guardarEnCacheRobusto() {
 
         var p = parsearFacturaTexto(rawBloque);
 
+        var gestorTel = p.telGestor || '';
         var gestorNombre = (p.gestor || '').trim();
-        if (!gestorNombre || gestorNombre.toLowerCase() === 'gestor sin nombre') {
-          // Si no se pudo detectar el nombre, buscar por el teléfono del gestor en los gestores registrados
-          if (gestorTel) {
-            var matchPorTel = encontrarGestorExistente('', gestorTel, appState.gestores);
-            if (matchPorTel && matchPorTel.gestor) gestorNombre = matchPorTel.gestor.nombre;
+
+        // Si el teléfono vino pero el nombre no o es genérico, resolver por teléfono primero
+        if (gestorTel && (!gestorNombre || gestorNombre.toLowerCase() === 'gestor sin nombre' || gestorNombre.toLowerCase() === 'gestor pendiente')) {
+          var matchPorTel = encontrarGestorExistente('', gestorTel, appState.gestores);
+          if (matchPorTel && matchPorTel.gestor) {
+            gestorNombre = matchPorTel.gestor.nombre;
           }
         }
-        if (!gestorNombre) gestorNombre = 'Gestor Pendiente';
-        var gestorTel = p.telGestor || '';
+
+        // Si aún no hay nombre, intentar extraer el nombre del remitente de WhatsApp
+        // Ejemplo: "[2/11 7:43 p. m.] Adalis Lopez:" o "[1/11 9:20 a. m.] Bety Yosbany:"
+        if (!gestorNombre || gestorNombre.toLowerCase() === 'gestor sin nombre' || gestorNombre.toLowerCase() === 'gestor pendiente') {
+          var mHeader = rawBloque.match(/^\[[^\]]+\]\s*([^:\n\r]+):/m);
+          if (mHeader && mHeader[1]) {
+            var posibleRemitente = mHeader[1].replace(/^[+✨💙📝•\-*⁉️!\s]+/, '').trim();
+            // Descartar si el remitente es genérico como "Mamá", "Mi Amor", etc.
+            if (!/^(mama|papa|mi amor|amor|yo|tu|admin|cuñado|cuñada)/i.test(posibleRemitente)) {
+              var matchRem = encontrarGestorExistente(posibleRemitente, gestorTel, appState.gestores);
+              if (matchRem && matchRem.gestor) {
+                gestorNombre = matchRem.gestor.nombre;
+              }
+            }
+          }
+        }
+
+        // Si aún así no se tiene nombre, marcarlo como "Por Asignar" (NUNCA como un gestor nuevo con nombre)
+        if (!gestorNombre || gestorNombre.toLowerCase() === 'gestor sin nombre') {
+          gestorNombre = 'Gestor Por Asignar';
+        }
         var clienteNombre = p.cliente || 'Cliente Sin Nombre';
         var clienteTel = p.telCliente || '';
         var clienteCI = p.ci || '';
@@ -3569,29 +3590,51 @@ function guardarEnCacheRobusto() {
         var matchG = encontrarGestorExistente(c.gestorNombre, c.gestorTelefono, appState.gestores);
         var gExistente = matchG ? matchG.gestor : null;
 
-        // BLINDAJE ESTRICTO: Nunca registrar "Gestor Sin Nombre" ni nombres vacíos como nuevo gestor
+        // BLINDAJE ESTRICTO DE REGISTRO EN LOTE:
+        // 1. Verificar si el nombre es inválido o genérico
         var nombreValido = (c.gestorNombre || '').trim();
+        var nLow = nombreValido.toLowerCase();
         var esNombreInvalido = !nombreValido || 
-          nombreValido.toLowerCase() === 'gestor sin nombre' || 
-          nombreValido.toLowerCase() === 'gestor pendiente' || 
-          nombreValido.toLowerCase() === 'sin nombre' ||
-          nombreValido.length < 2;
+          nLow === 'gestor sin nombre' || 
+          nLow === 'gestor pendiente' || 
+          nLow === 'gestor por asignar' || 
+          nLow === 'sin nombre' ||
+          nLow === 'por asignar' ||
+          nLow.length < 3;
 
+        // 2. Si no coincide con ninguno existente y el nombre es legítimo, crear nuevo gestor
         if (!gExistente && !esNombreInvalido) {
-          gExistente = {
-            id: 'G-' + Date.now() + '-' + Math.random().toString(36).substr(2, 4),
-            nombre: c.gestorNombre,
-            username: c.gestorNombre.toLowerCase().replace(/[^a-z0-9]/g, ''),
-            passwordHash: simpleHashFallback('123456'),
-            telefono: c.gestorTelefono || '',
-            telefonoSecundario: '',
-            zona: 'Mensajería / Redes',
-            foto: '',
-            activo: true
-          };
-          appState.gestores.push(gExistente);
-          gestoresNuevosCount++;
-        } else if (c.gestorTelefono && !gExistente.telefono) {
+          // Doble verificación: comprobar que no exista otro gestor con el mismo primer nombre y teléfono
+          var existeDuplicado = appState.gestores.some(function(gx) {
+            if (limpiarNombreGestor(gx.nombre) === limpiarNombreGestor(nombreValido)) return true;
+            if (c.gestorTelefono && gx.telefono) {
+              var t1 = extraerNumerosVale(c.gestorTelefono).slice(-8);
+              var t2 = extraerNumerosVale(gx.telefono).slice(-8);
+              if (t1 && t2 && t1.length >= 8 && t1 === t2) return true;
+            }
+            return false;
+          });
+
+          if (!existeDuplicado) {
+            gExistente = {
+              id: 'G-' + Date.now() + '-' + Math.random().toString(36).substr(2, 4),
+              nombre: c.gestorNombre,
+              username: c.gestorNombre.toLowerCase().replace(/[^a-z0-9]/g, ''),
+              passwordHash: simpleHashFallback('123456'),
+              telefono: c.gestorTelefono || '',
+              telefonoSecundario: '',
+              zona: 'Mensajería / Redes',
+              foto: '',
+              activo: true
+            };
+            appState.gestores.push(gExistente);
+            gestoresNuevosCount++;
+          } else {
+            // Si ya existía uno parecido, asociar a ese
+            var matchParecido = encontrarGestorExistente(c.gestorNombre, c.gestorTelefono, appState.gestores);
+            if (matchParecido) gExistente = matchParecido.gestor;
+          }
+        } else if (gExistente && c.gestorTelefono && !gExistente.telefono) {
           gExistente.telefono = c.gestorTelefono;
         }
 
@@ -3798,7 +3841,8 @@ function guardarEnCacheRobusto() {
     function limpiarNombreGestor(nombre) {
       if (!nombre) return '';
       var n = normalizarCadenaVale(nombre);
-      n = n.replace(/\b(de|del|la|el|mensajeria|gestor|gestora|ventas)\b/g, ' ')
+      // Eliminar palabras parásitas y prefijos comunes de WhatsApp
+      n = n.replace(/\b(de|del|la|el|mensajeria|gestor|gestora|ventas|comercial|comerciales|comerciales\*|comercial\*)\b/g, ' ')
            .replace(/\s+/g, ' ')
            .trim();
       return n;
@@ -3832,9 +3876,12 @@ function guardarEnCacheRobusto() {
         if (nomCandClean === nomG) {
           return { gestor: g, metodo: 'NOMBRE_EXACTO', confianza: 1.0 };
         }
-        if ((nomCandClean.length >= 6 && nomG.includes(nomCandClean)) ||
-            (nomG.length >= 6 && nomCandClean.includes(nomG))) {
-          return { gestor: g, metodo: 'NOMBRE_CONTENIDO', confianza: 0.95 };
+        // Inclusión bidireccional (ej: "yanelis" dentro de "yanelis castillo" o viceversa)
+        if (nomCandClean.length >= 4 && nomG.length >= 4) {
+          if (nomG.startsWith(nomCandClean) || nomCandClean.startsWith(nomG) ||
+              nomG.includes(nomCandClean) || nomCandClean.includes(nomG)) {
+            return { gestor: g, metodo: 'NOMBRE_CONTENIDO', confianza: 0.95 };
+          }
         }
       }
 
