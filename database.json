@@ -179,17 +179,6 @@
       "activo": true
     },
     {
-      "id": "G-413",
-      "nombre": "yanelis",
-      "username": "yanelis",
-      "passwordHash": "36fe378dd56e517f054b67aaa04993914e8a9de7d8526b1c13c592a07c69b44f",
-      "telefono": "54827360",
-      "telefonoSecundario": "",
-      "zona": "Mensajería y Redes",
-      "foto": "",
-      "activo": true
-    },
-    {
       "id": "G-925",
       "nombre": "yanelis castillo",
       "username": "yanelis_castillo",
@@ -210,29 +199,6 @@
       "zona": "Mensajería y Redes",
       "foto": "",
       "activo": true
-    },
-    {
-      "id": "G-1793644784725-1rrs",
-      "nombre": "Gestor Sin Nombre",
-      "username": "gestorsinnombre",
-      "passwordHash": "0cbba1357815e3c38bd370451e27aaaf127e19290ca6a0a550de830b3ff2ab49",
-      "telefono": "54685605",
-      "telefonoSecundario": "",
-      "zona": "Mensajería / Redes",
-      "foto": "",
-      "activo": true
-    },
-    {
-      "id": "G-1793644784766-8no3",
-      "nombre": "Yanelis Castillo",
-      "username": "yanelis iglesia",
-      "passwordHash": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
-      "telefono": "58456051",
-      "telefonoSecundario": "",
-      "zona": "Mensajería / Redes",
-      "foto": "",
-      "activo": true,
-      "documentoIdentidad": ""
     },
     {
       "id": "G-1793644983387-dnh7",
@@ -456,7 +422,7 @@
       "fecha": "2026-20-11",
       "semana": "2027-W32",
       "moneda": "USD",
-      "gestorNombre": "Gestor Sin Nombre",
+      "gestorNombre": "Marilay",
       "gestorTelefono": "54685605",
       "clienteNombre": "dayani  licea Almaguer",
       "clienteCI": "09082969215",
@@ -2604,22 +2570,32 @@
       "clienteCI": "",
       "clienteTelefono": "50779369",
       "direccion": "casa de adalis",
-      "rawTextoWhatsApp": "[26/10 9:23 a. m.] Mi Amor: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬  comerciales (𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: 26 octubre 26\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: liennis lopez \n✨ CI : \n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 50779369\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente :casa de adalis \n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: set de dos ollas de micropresión\n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:25usd (21,250)\n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:cup\n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: no\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 21,250\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: no\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:Yoandra \n ✨ #De teléfono del Gestor:53997648\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:",
+      "rawTextoWhatsApp": "[26/10 9:23 a. m.] Mi Amor: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬  comerciales (𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: 26 octubre 26\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: liennis lopez \n✨ CI : \n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 50779369\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente :casa de adalis \n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: set de dos ollas de micropresión y una arrocera \n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1 y 1\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:25usd (21,250) y 27\n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:cup\n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: no\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 21,250\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: no\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:Yoandra \n ✨ #De teléfono del Gestor:53997648\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:",
       "items": [
         {
-          "id": "it-3z7jmhhp",
+          "id": "it-icnyrqja",
           "producto": "set de dos ollas de micropresión",
           "cantidad": 1,
           "tipoEquipo": "Pequeño",
           "precioVenta": 25,
           "comisionUnitCUP": 1500,
           "comisionTotalCUP": 1500
+        },
+        {
+          "id": "it-9m5o3bcf",
+          "producto": "una arrocera",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 27,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
         }
       ],
-      "totalVenta": 25,
-      "granComisionCUP": 1500,
+      "totalVenta": 52,
+      "granComisionCUP": 3000,
       "estadoComision": "PENDIENTE",
-      "createdAt": 1793076690446
+      "createdAt": 1793076690446,
+      "updatedAt": 1793677587119
     },
     {
       "id": "V-1793076690446-qag7ao",
@@ -2944,17 +2920,18 @@
         {
           "id": "it-xiigb4ui",
           "producto": "ventilador de pared",
-          "cantidad": 1,
+          "cantidad": 2,
           "tipoEquipo": "Pequeño",
           "precioVenta": 30,
           "comisionUnitCUP": 1500,
           "comisionTotalCUP": 1500
         }
       ],
-      "totalVenta": 30,
-      "granComisionCUP": 1500,
+      "totalVenta": 60,
+      "granComisionCUP": 3000,
       "estadoComision": "PENDIENTE",
-      "createdAt": 1793076690446
+      "createdAt": 1793076690446,
+      "updatedAt": 1793677759418
     },
     {
       "id": "V-1793076690445-2n72yc",
