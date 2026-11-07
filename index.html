@@ -1046,9 +1046,17 @@
           </div>
         </div>
 
-        <div class="pt-3 border-t border-yellow-500/20 flex justify-end gap-2.5">
-          <button type="button" onclick="cerrarModal('modal-gestor')" class="px-4 py-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-yellow-300/80 text-xs font-medium">Cancelar</button>
-          <button type="submit" class="px-5 py-2 rounded-lg bg-yellow-500 hover:bg-yellow-400 text-white text-xs font-bold shadow-md">Guardar Gestor</button>
+        <div class="pt-3 border-t border-yellow-500/20 flex items-center justify-between gap-2.5">
+          <div>
+            <button type="button" id="btn-eliminar-gestor" onclick="confirmarEliminarGestor()" class="hidden px-3 py-2 rounded-lg bg-rose-950/80 hover:bg-rose-900 text-rose-300 border border-rose-600/40 text-xs font-bold transition flex items-center gap-1.5 shadow-sm">
+              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+              Eliminar Gestor
+            </button>
+          </div>
+          <div class="flex items-center gap-2.5">
+            <button type="button" onclick="cerrarModal('modal-gestor')" class="px-4 py-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-yellow-300/80 text-xs font-medium">Cancelar</button>
+            <button type="submit" class="px-5 py-2 rounded-lg bg-yellow-500 hover:bg-yellow-400 text-white text-xs font-bold shadow-md">Guardar Gestor</button>
+          </div>
         </div>
       </form>
     </div>
@@ -2237,7 +2245,9 @@ function guardarEnCacheRobusto() {
       const inputBusqueda = document.getElementById('input-buscar-gestor');
       const filtro = (inputBusqueda ? inputBusqueda.value : '').toLowerCase().trim();
 
-      let lista = appState.gestores;
+      let lista = [...appState.gestores].sort(function(a, b) {
+        return (a.nombre || '').localeCompare(b.nombre || '', 'es', { sensitivity: 'base' });
+      });
 
       // PRIVACIDAD ESTRICTA: Si es Gestor, SOLO SE VE A ÉL MISMO
       if (currentUser && currentUser.role === 'GESTOR') {
@@ -4255,6 +4265,71 @@ function guardarEnCacheRobusto() {
       abrirModal('modal-registro-vale');
     };
 
+    window.confirmarEliminarGestor = async function() {
+      const id = document.getElementById('gestor-form-id').value;
+      if (!id) return;
+      const g = appState.gestores.find(function(x) { return x.id === id; });
+      if (!g) return;
+
+      // 1. Advertencia de seguridad
+      const confirmar = confirm(
+        '⚠️ ATENCIÓN: DECISIÓN DELICADA E IRREVERSIBLE\n\n' +
+        '¿Estás seguro de que deseas eliminar permanentemente al gestor "' + g.nombre + '"?\n\n' +
+        '• Se eliminará su registro de gestores.\n' +
+        '• Se eliminará TODO su historial de vales y ventas asociadas.\n\n' +
+        'Para proceder, deberás ingresar la contraseña de Administrador.'
+      );
+      if (!confirmar) return;
+
+      // 2. Pedir contraseña de Administrador
+      const passAdmin = prompt('🔒 AUTENTICACIÓN DE ADMINISTRADOR REQUERIDA:\n\nIngresa la contraseña de Administrador para confirmar la eliminación:');
+      if (!passAdmin) {
+        alert('❌ Operación cancelada. No se ingresó la contraseña.');
+        return;
+      }
+
+      const hashIngresado = await calcularSHA256(passAdmin.trim());
+      const ADMIN_HASH = 'a6b1a9195200294f0514be30992c7ce6d443ebe9a27ceb711c271f54a3161be8';
+
+      if (hashIngresado !== ADMIN_HASH) {
+        alert('⛔ Contraseña de Administrador incorrecta. Operación denegada.');
+        return;
+      }
+
+      // 3. Eliminar historial de vales asociados a este gestor
+      const nombreGestorNorm = (g.nombre || '').toLowerCase().trim();
+      const valesPrevios = appState.vales ? appState.vales.length : 0;
+      
+      if (Array.isArray(appState.vales)) {
+        appState.vales = appState.vales.filter(function(v) {
+          if (!v.gestorNombre) return true;
+          const vNombreNorm = v.gestorNombre.toLowerCase().trim();
+          if (vNombreNorm === nombreGestorNorm) return false;
+          // Coincidencia inteligente adicional
+          if (typeof encontrarGestorExistente === 'function') {
+            const matchV = encontrarGestorExistente(v.gestorNombre, v.gestorTelefono, [g]);
+            if (matchV !== null) return false;
+          }
+          return true;
+        });
+      }
+      const valesEliminados = valesPrevios - (appState.vales ? appState.vales.length : 0);
+
+      // 4. Eliminar gestor de la lista de gestores
+      appState.gestores = appState.gestores.filter(function(x) { return x.id !== id; });
+
+      // 5. Guardar en caché y sincronizar con LocalHost Bot / GitHub
+      guardarEnCacheRobusto();
+      renderizarTodo();
+      cerrarModal('modal-gestor');
+
+      alert(
+        '✅ Gestor "' + g.nombre + '" eliminado exitosamente.\n\n' +
+        '• Historial eliminado: ' + valesEliminados + ' vale(s) asociados borrados.\n' +
+        '• Base de datos actualizada.'
+      );
+    };
+
     window.abrirModalNuevoGestor = function() {
       document.getElementById('modal-gestor-titulo').textContent = 'Registrar Nuevo Gestor';
       document.getElementById('form-gestor').reset();
@@ -4264,6 +4339,8 @@ function guardarEnCacheRobusto() {
       document.getElementById('gestor-form-documento').value = '';
       document.getElementById('gestor-form-foto-preview').classList.add('hidden');
       document.getElementById('gestor-form-foto-placeholder').classList.remove('hidden');
+      const btnEliminar = document.getElementById('btn-eliminar-gestor');
+      if (btnEliminar) btnEliminar.classList.add('hidden');
       abrirModal('modal-gestor');
     };
 
@@ -4292,6 +4369,14 @@ function guardarEnCacheRobusto() {
         placeholder.classList.remove('hidden');
       }
 
+      const btnEliminar = document.getElementById('btn-eliminar-gestor');
+      if (btnEliminar) {
+        if (currentUser && currentUser.role === 'ADMIN') {
+          btnEliminar.classList.remove('hidden');
+        } else {
+          btnEliminar.classList.add('hidden');
+        }
+      }
       abrirModal('modal-gestor');
     };
 
