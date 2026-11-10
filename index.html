@@ -2,6 +2,9 @@
 <html lang="es" class="dark">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>K y A . Primera Mano — Portal de Gestores & Vales de Venta</title>
   
@@ -8178,6 +8181,7 @@
           <span>📊 Resumen Semanal</span>
         </button>
 
+        <button id="btn-forzar-recarga-datos" onclick="forzarSincronizacionTotal()" class="px-3 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-500 hover:to-teal-600 text-white font-extrabold text-xs flex items-center gap-1.5 shadow-md shadow-emerald-950/40 border border-emerald-400/40 transition-all cursor-pointer" title="Comprobar y descargar inmediatamente los últimos vales y gestores registrados"><i data-lucide="refresh-cw" id="icono-btn-refrescar" class="w-4 h-4 text-white"></i><span>🔄 Actualizar Datos</span></button>
         <button id="btn-admin-nuevo-gestor" onclick="abrirModalNuevoGestor()" 
                 class="px-3 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-yellow-300 font-semibold text-xs flex items-center gap-1.5 border border-yellow-500/20 transition-all">
           <i data-lucide="user-plus" class="w-4 h-4 text-yellow-400"></i>
@@ -9797,28 +9801,7 @@ function guardarEnCacheRobusto() {
       }
 
       // 2. Intentar cargar database.json autónomo (salvas separadas del código HTML)
-      try {
-        fetch('./database.json?t=' + Date.now()).then(function(res) {
-          if (res.ok) return res.json();
-          throw new Error('database.json no disponible');
-        }).then(function(dbRemoto) {
-          if (dbRemoto && Array.isArray(dbRemoto.vales) && dbRemoto.vales.length > 0) {
-            var dbRemotoTs = Number(dbRemoto.timestamp) || 0;
-            var actualTs = Number(appState.timestamp) || 0;
-            if (dbRemotoTs >= actualTs || appState.vales.length === 0) {
-              appState = dbRemoto;
-              appState.semanaActiva = getISOWeekString(new Date());
-              window.appState = appState;
-              guardarEnCacheRobusto();
-              actualizarSelectorSemanas();
-              renderizarTodo();
-              console.log('📦 Base de datos sincronizada desde database.json independiente!');
-            }
-          }
-        }).catch(function(e) {
-          // Normal si no existe o se carga offline
-        });
-      } catch(e) {}
+      sincronizarDatosVivosRemotos(false);
 
       if (!appState.config) {
         appState.config = {
@@ -13744,6 +13727,103 @@ function guardarEnCacheRobusto() {
     }
 
     // Monitor de conexión Online / Offline
+    
+    // --------------------------------------------------------
+    // SISTEMA UNIVERSAL ANTI-CACHE DE DATOS VIVOS (GITHUB / LOCAL)
+    // --------------------------------------------------------
+    let _sincronizandoRemoto = false;
+
+    async function descargarDatabaseConBypassCache() {
+      const timestampUrl = Date.now() + '_' + Math.random().toString(36).substr(2, 6);
+      const urls = [
+        // Canal 1: GitHub API directa (supera cualquier caché CDN o de GitHub Pages)
+        'https://api.github.com/repos/web23456/Gestores/contents/database.json?ref=main&t=' + timestampUrl,
+        // Canal 2: raw.githubusercontent.com
+        'https://raw.githubusercontent.com/web23456/Gestores/main/database.json?t=' + timestampUrl,
+        // Canal 3: database.json local / repo Pages
+        './database.json?t=' + timestampUrl
+      ];
+
+      for (let i = 0; i < urls.length; i++) {
+        const url = urls[i];
+        try {
+          const headers = { 'Cache-Control': 'no-cache, no-store, must-revalidate', 'Pragma': 'no-cache' };
+          if (url.includes('api.github.com')) {
+            headers['Accept'] = 'application/vnd.github.v3.raw';
+          }
+          const res = await fetch(url, { method: 'GET', headers: headers, cache: 'no-store' });
+          if (res.ok) {
+            const data = await res.json();
+            if (data && Array.isArray(data.gestores) && Array.isArray(data.vales)) {
+              return data;
+            }
+          }
+        } catch (err) {
+          console.warn('Canal ' + (i+1) + ' falló:', err.message);
+        }
+      }
+      return null;
+    }
+
+    window.sincronizarDatosVivosRemotos = async function(mostrarAvisoExito) {
+      if (_sincronizandoRemoto) return;
+      _sincronizandoRemoto = true;
+      const iconoBtn = document.getElementById('icono-btn-refrescar');
+      if (iconoBtn) iconoBtn.classList.add('animate-spin');
+
+      try {
+        const dbRemoto = await descargarDatabaseConBypassCache();
+        if (dbRemoto) {
+          const dbRemotoTs = Number(dbRemoto.timestamp) || 0;
+          const actualTs = Number(appState.timestamp) || 0;
+          const totalValesRemotos = dbRemoto.vales ? dbRemoto.vales.length : 0;
+          const totalValesLocales = appState.vales ? appState.vales.length : 0;
+
+          // Si el remoto es más nuevo o tiene más vales o no teníamos datos
+          if (dbRemotoTs > actualTs || totalValesRemotos !== totalValesLocales || totalValesLocales === 0) {
+            console.log('🔄 Nuevos datos vivos detectados en GitHub (Remoto:', totalValesRemotos, 'vales | Local:', totalValesLocales, 'vales)');
+            appState = dbRemoto;
+            window.appState = appState;
+            guardarEnCacheRobusto();
+            actualizarSelectorSemanas();
+            renderizarTodo();
+
+            if (mostrarAvisoExito) {
+              alert('✅ ¡Datos actualizados exitosamente!\n\n• Vales sincronizados: ' + totalValesRemotos + '\n• Gestores activos: ' + (dbRemoto.gestores ? dbRemoto.gestores.length : 0));
+            }
+          } else if (mostrarAvisoExito) {
+            alert('✓ Ya tienes la versión más reciente (' + totalValesRemotos + ' vales sincronizados en vivo).');
+          }
+        } else if (mostrarAvisoExito) {
+          alert('⚠️ No se pudo conectar al servidor de datos. Revisa tu conexión a internet.');
+        }
+      } catch (e) {
+        console.warn('Error en sincronización en segundo plano:', e);
+      } finally {
+        _sincronizandoRemoto = false;
+        if (iconoBtn) iconoBtn.classList.remove('animate-spin');
+      }
+    };
+
+    window.forzarSincronizacionTotal = async function() {
+      // 1. Limpiar caches del Service Worker para garantizar que la próxima carga sea limpia
+      if ('caches' in window) {
+        try {
+          const keys = await caches.keys();
+          await Promise.all(keys.map(k => caches.delete(k)));
+        } catch(e) {}
+      }
+      // 2. Descargar los datos frescos de GitHub
+      await window.sincronizarDatosVivosRemotos(true);
+    };
+
+    // Auto-comprobación periódica de nuevos datos cada 30 segundos mientras la app esté abierta
+    setInterval(function() {
+      if (navigator.onLine) {
+        window.sincronizarDatosVivosRemotos(false);
+      }
+    }, 30000);
+
     window.addEventListener('online', function() {
       console.log('🌐 Conexión restablecida.');
       // Comprobar si hay cambios en la base de datos remota al volver a estar online
