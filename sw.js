@@ -1,7 +1,7 @@
 // Service Worker v2 para K y A . Primera Mano - Portal de Gestores
 // Soporte 100% Offline y Detección Automática de Actualizaciones en la Web
 
-const CACHE_NAME = 'gestores-cache-v1793126882551';
+const CACHE_NAME = 'gestores-k-y-a-v3-live';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -67,9 +67,18 @@ self.addEventListener('fetch', (event) => {
 
   const isData = url.pathname.endsWith('database.json');
 
-  if (isHtml || isData) {
+  // 1. Datos vivos o APIs de GitHub -> NUNCA CACHEAR O SIEMPRE NETWORK FIRST SIN CACHE PARA JSON
+  if (isData || url.hostname.includes('github') || url.pathname.endsWith('.json')) {
     event.respondWith(
-      fetch(event.request)
+      fetch(event.request, { cache: 'no-store' })
+        .catch(() => caches.match(event.request))
+    );
+    return;
+  }
+
+  if (isHtml) {
+    event.respondWith(
+      fetch(event.request, { cache: 'no-cache' })
         .then((networkRes) => {
           if (networkRes && networkRes.status === 200) {
             const clone = networkRes.clone();
@@ -81,8 +90,7 @@ self.addEventListener('fetch', (event) => {
           // Si estamos offline o la red falla, responder con la versión en caché
           return caches.match(event.request).then((cached) => {
             if (cached) return cached;
-            if (isHtml) return caches.match('./index.html');
-            return null;
+            return caches.match('./index.html');
           });
         })
     );
