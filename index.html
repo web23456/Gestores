@@ -7449,6 +7449,7 @@
     }
 function guardarEnCacheRobusto() {
       try {
+        appState.timestamp = Date.now();
         window.appState = appState;
         const payload = JSON.stringify(appState);
         notificarCambioAlBot();
@@ -9252,8 +9253,8 @@ function guardarEnCacheRobusto() {
           fecha: c.fecha,
           semana: c.semana,
           moneda: c.moneda,
-          gestorNombre: gExistente.nombre,
-          gestorTelefono: gExistente.telefono,
+          gestorNombre: gExistente ? gExistente.nombre : (c.gestorNombre || "Gestor Por Asignar"),
+          gestorTelefono: gExistente ? gExistente.telefono : (c.gestorTelefono || ""),
           clienteNombre: c.clienteNombre,
           clienteCI: c.clienteCI,
           clienteTelefono: c.clienteTelefono,
