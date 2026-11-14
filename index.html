@@ -14920,18 +14920,29 @@ function guardarEnCacheRobusto() {
         return;
       }
 
-      var valesSemana = appState.vales.filter(function(v) {
-        return v.semana === appState.semanaActiva && v.gestorNombre && v.gestorNombre.toLowerCase().trim() === gestor.nombre.toLowerCase().trim();
+      // Detectar si hay filtro de fechas activo
+      var hayFiltroFecha = filtroRangoFechasActivo && (filtroRangoFechasActivo.desde || filtroRangoFechasActivo.hasta);
+      var valesBase = obtenerValesFiltradosActivos();
+
+      // Filtrar los vales que corresponden a este gestor (por nombre exacto o asociación inteligente)
+      var valesGestor = valesBase.filter(function(v) {
+        if (!v.gestorNombre) return false;
+        if (v.gestorNombre.toLowerCase().trim() === gestor.nombre.toLowerCase().trim()) return true;
+        if (typeof encontrarGestorExistente === 'function') {
+          var matchV = encontrarGestorExistente(v.gestorNombre, v.gestorTelefono, [gestor]);
+          return matchV !== null;
+        }
+        return false;
       });
 
-      var totalVales = valesSemana.length;
+      var totalVales = valesGestor.length;
       var totalEquipos = 0;
       var gananciaComisionCUP = 0;
       var totalDescuentosCUP = 0;
       var ventasUSD = 0;
       var ventasCUP = 0;
 
-      valesSemana.forEach(function(v) {
+      valesGestor.forEach(function(v) {
         gananciaComisionCUP += (Number(v.granComisionCUP) || 0);
         if (v.moneda === 'CUP') {
           ventasCUP += (Number(v.totalVenta) || 0);
@@ -14947,15 +14958,38 @@ function guardarEnCacheRobusto() {
         }
       });
 
-      var rangoInfo = getWeekDateRange(appState.semanaActiva);
-      var rangoTexto = rangoInfo ? rangoInfo.label : appState.semanaActiva;
+      // Encabezados y títulos dinámicos según el filtrado
+      var tituloReporte = '📊 *RESUMEN SEMANAL DE GESTOR*';
+      var lineaPeriodo = '';
+
+      if (hayFiltroFecha) {
+        var d = filtroRangoFechasActivo.desde;
+        var h = filtroRangoFechasActivo.hasta;
+        if (d && h && d === h) {
+          tituloReporte = '📊 *RESUMEN DE VENTAS DEL DÍA*';
+          lineaPeriodo = '📅 *Fecha:* ' + d + '\n';
+        } else if (d && h) {
+          tituloReporte = '📊 *RESUMEN DE VENTAS POR FECHA*';
+          lineaPeriodo = '📅 *Período:* ' + d + ' al ' + h + '\n';
+        } else if (d) {
+          tituloReporte = '📊 *RESUMEN DE VENTAS POR FECHA*';
+          lineaPeriodo = '📅 *Desde:* ' + d + '\n';
+        } else {
+          tituloReporte = '📊 *RESUMEN DE VENTAS POR FECHA*';
+          lineaPeriodo = '📅 *Hasta:* ' + h + '\n';
+        }
+      } else {
+        var rangoInfo = getWeekDateRange(appState.semanaActiva);
+        var rangoTexto = rangoInfo ? rangoInfo.label : appState.semanaActiva;
+        lineaPeriodo = '📅 *Ciclo Semanal:* ' + rangoTexto + ' (' + appState.semanaActiva + ')\n';
+      }
 
       var msg = '👑 *K y A . PRIMERA MANO* 👑\n' +
-                '📊 *RESUMEN SEMANAL DE GESTOR*\n' +
+                tituloReporte + '\n' +
                 '━━━━━━━━━━━━━━━━━━━━\n' +
                 '👤 *Gestor:* ' + gestor.nombre + '\n' +
                 '📍 *Zona:* ' + (gestor.zona || 'Ventas') + '\n' +
-                '📅 *Ciclo Semanal:* ' + rangoTexto + ' (' + appState.semanaActiva + ')\n' +
+                lineaPeriodo +
                 '━━━━━━━━━━━━━━━━━━━━\n' +
                 '📦 *Cantidad de Vales:* ' + totalVales + '\n' +
                 '⚡ *Equipos Vendidos:* ' + totalEquipos + ' artículo(s)\n';
@@ -14967,20 +15001,23 @@ function guardarEnCacheRobusto() {
       }
       msg += '💰 *GANANCIA COMISIÓN:* ' + gananciaComisionCUP.toLocaleString('es-ES') + ' CUP\n';
 
-      // Incluir compensación de error si existe
-      if (!appState.compensaciones) appState.compensaciones = {};
-      var compK = gestor.nombre.toLowerCase().trim() + '__' + appState.semanaActiva;
-      var compReg = appState.compensaciones[compK];
-      if (compReg && Number(compReg.montoCUP) !== 0) {
-        var cSign = Number(compReg.montoCUP) > 0 ? '+' : '';
-        msg += '⚖️ *Compensación / Ajuste:* ' + cSign + Number(compReg.montoCUP).toLocaleString('es-ES') + ' CUP (' + (compReg.motivo || 'Ajuste') + ')\n';
-        var totalFinalLiquidado = gananciaComisionCUP + Number(compReg.montoCUP);
-        msg += '💳 *TOTAL FINAL LIQUIDADO:* ' + totalFinalLiquidado.toLocaleString('es-ES') + ' CUP\n';
+      // Compensación de error si existe (aplica al ciclo semanal)
+      if (!hayFiltroFecha) {
+        if (!appState.compensaciones) appState.compensaciones = {};
+        var compK = gestor.nombre.toLowerCase().trim() + '__' + appState.semanaActiva;
+        var compReg = appState.compensaciones[compK];
+        if (compReg && Number(compReg.montoCUP) !== 0) {
+          var cSign = Number(compReg.montoCUP) > 0 ? '+' : '';
+          msg += '⚖️ *Compensación / Ajuste:* ' + cSign + Number(compReg.montoCUP).toLocaleString('es-ES') + ' CUP (' + (compReg.motivo || 'Ajuste') + ')\n';
+          var totalFinalLiquidado = gananciaComisionCUP + Number(compReg.montoCUP);
+          msg += '💳 *TOTAL FINAL LIQUIDADO:* ' + totalFinalLiquidado.toLocaleString('es-ES') + ' CUP\n';
+        }
       }
 
+      var textoDespedida = hayFiltroFecha ? '✨ *¡Excelente trabajo!*' : '✨ *¡Excelente trabajo esta semana!*';
+
       msg += '━━━━━━━━━━━━━━━━━━━━\n' +
-             '✨ *¡Excelente trabajo esta semana!*\n' +
-             '🌐 *Ver tus vales y detalles:* https://web23456.github.io/Gestores/\n' +
+             textoDespedida + '\n' +
              '_K y A . Primera Mano — Tu Tienda de Confianza_';
 
       var url = 'https://api.whatsapp.com/send?phone=' + (numLimpio.startsWith('53') ? numLimpio : ('53' + numLimpio)) + '&text=' + encodeURIComponent(msg);
