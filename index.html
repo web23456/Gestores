@@ -9959,24 +9959,23 @@ function guardarEnCacheRobusto() {
     // INICIALIZACIÓN
     // --------------------------------------------------------
     function inicializar() {
-      // 1. Cargar datos vivos desde la base de datos embebida (GitHub)
+      // 1. Cargar datos vivos desde la base de datos embebida (GitHub) con máxima prioridad
       const cached = cargarDesdeCacheRobusto();
-      if (window.__EMBEDDED_GESTORES_DB__ && typeof window.__EMBEDDED_GESTORES_DB__ === 'object') {
+      if (window.__EMBEDDED_GESTORES_DB__ && typeof window.__EMBEDDED_GESTORES_DB__ === 'object' && Array.isArray(window.__EMBEDDED_GESTORES_DB__.gestores) && window.__EMBEDDED_GESTORES_DB__.gestores.length > 0) {
         const emb = window.__EMBEDDED_GESTORES_DB__;
         const embTs = Number(emb.timestamp) || 0;
         const cacheTs = cached ? (Number(cached.timestamp) || 0) : 0;
-        // Si la base embebida es igual o más reciente que la caché, o si estamos en LocalHost / fresh, usar embebida
-        if (embTs >= cacheTs || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.search.includes('fresh')) {
+        if (!cached || !Array.isArray(cached.gestores) || cached.gestores.length < emb.gestores.length || embTs >= cacheTs || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.search.includes('fresh')) {
           appState = emb;
         } else {
           appState = cached;
         }
-      } else if (cached) {
+      } else if (cached && Array.isArray(cached.gestores) && cached.gestores.length > 0) {
         appState = cached;
       }
 
       // 2. Intentar cargar database.json autónomo (salvas separadas del código HTML)
-      sincronizarDatosVivosRemotos(false);
+      if (typeof window.sincronizarDatosVivosRemotos === "function") { window.sincronizarDatosVivosRemotos(false); }
 
       if (!appState.config) {
         appState.config = {
@@ -10156,8 +10155,7 @@ function guardarEnCacheRobusto() {
     // --------------------------------------------------------
     function obtenerDescuentoVale(v) {
       if (!v) return null;
-      var vDescInfo = obtenerDescuentoVale(v);
-            if (vDescInfo && Number(vDescInfo.monto) > 0) {
+      if (v.descuentoGestor && Number(v.descuentoGestor.monto) > 0) {
         return v.descuentoGestor;
       }
       var ext = extraerDescuentoAlGestor(v.rawTextoWhatsApp);
@@ -10296,7 +10294,8 @@ function guardarEnCacheRobusto() {
       }
     }
 
-    window.renderizarGestores = function() {
+    window.renderizarGestores = renderizarGestores;
+    function renderizarGestores() {
       const contenedor = document.getElementById('contenedor-tarjetas-gestores');
       if (!contenedor) return;
 
@@ -10505,10 +10504,11 @@ function guardarEnCacheRobusto() {
             let notasTag = v.notas ? '<div class="mt-1 text-[10px] text-amber-300 bg-amber-950/40 border border-amber-500/30 px-2 py-0.5 rounded flex items-center gap-1 font-sans" title="' + v.notas + '"><i data-lucide="sticky-note" class="w-3 h-3 text-yellow-400 shrink-0"></i><span class="truncate max-w-[200px]">' + v.notas + '</span></div>' : '';
 
             let descuentoBadge = '';
-            if (v.descuentoGestor && Number(vDescInfo.monto) > 0) {
-              descuentoBadge = '<div class="mt-1 text-[10px] text-rose-300 bg-rose-950/50 border border-rose-500/40 px-2 py-0.5 rounded font-mono font-bold flex items-center gap-1" title="' + ((obtenerDescuentoVale(v)||{}).motivo || 'Descuento') + '">' +
+            const vDesc = obtenerDescuentoVale(v);
+            if (vDesc && Number(vDesc.monto) > 0) {
+              descuentoBadge = '<div class="mt-1 text-[10px] text-rose-300 bg-rose-950/50 border border-rose-500/40 px-2 py-0.5 rounded font-mono font-bold flex items-center gap-1" title="' + (vDesc.motivo || 'Descuento') + '">' +
                 '<i data-lucide="alert-triangle" class="w-3 h-3 text-rose-400 shrink-0"></i>' +
-                '<span>Desc: -' + Number(v.descuentoGestor.monto).toLocaleString('es-ES') + ' ' + (vDescInfo.moneda || 'CUP') + '</span>' +
+                '<span>Desc: -' + Number(vDesc.monto).toLocaleString('es-ES') + ' ' + (vDesc.moneda || 'CUP') + '</span>' +
               '</div>';
             }
 
