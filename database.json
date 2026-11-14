@@ -1,5 +1,5 @@
 {
-  "timestamp": 1794677948494,
+  "timestamp": 1794678052546,
   "gestores": [
     {
       "id": "G-1",
@@ -1669,11 +1669,12 @@
         }
       ],
       "totalVenta": 83,
-      "granComisionCUP": 2700,
+      "granComisionCUP": 700,
       "descuentoGestor": {
-        "monto": 300,
+        "monto": 2300,
         "motivo": "300",
-        "moneda": "CUP"
+        "moneda": "CUP",
+        "fecha": "2026-11-14T17:40:52.546Z"
       },
       "estadoComision": "PENDIENTE",
       "createdAt": 1794664591520
