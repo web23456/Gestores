@@ -11978,14 +11978,15 @@ function guardarEnCacheRobusto() {
       return n;
     }
 
-    // ALGORITMO INTELIGENTE: Identifica al gestor aunque escriba mal su nombre
+    // ALGORITMO INTELIGENTE: Identifica al gestor usando su teléfono como referencia infalible
     function encontrarGestorExistente(nombreCandidato, telefonoCandidato, listaGestores) {
       if (!Array.isArray(listaGestores) || listaGestores.length === 0) return null;
       var telCandClean = extraerNumerosVale(telefonoCandidato);
       var nomCandClean = limpiarNombreGestor(nombreCandidato);
       if (!nomCandClean && !telCandClean) return null;
 
-      // Paso 1: Coincidencia telefónica directa (infalible si coincide los últimos 8 dígitos)
+      // Paso 1: Coincidencia telefónica directa (REGLA DE ORO / REFERENCIA INTELIGENTE)
+      // Permite identificar al gestor con 100% de certeza aunque ahora escriba su nombre con dos apellidos o variado
       if (telCandClean && telCandClean.length >= 8) {
         var ultimos8Cand = telCandClean.slice(-8);
         for (var i = 0; i < listaGestores.length; i++) {
@@ -11998,9 +11999,16 @@ function guardarEnCacheRobusto() {
         }
       }
 
-      // Paso 2: Coincidencia exacta o por inclusión limpia
+      // Paso 2: Coincidencia por nombre (solo si los teléfonos NO son contradictorios)
+      // Si el candidato trae un teléfono y el gestor existente tiene un teléfono DIFERENTE,
+      // NUNCA emparejar: son dos personas distintas que comparten el mismo nombre de pila.
       for (var i = 0; i < listaGestores.length; i++) {
         var g = listaGestores[i];
+        var gTel = extraerNumerosVale(g.telefono);
+        if (telCandClean && telCandClean.length >= 8 && gTel && gTel.length >= 8 && gTel.slice(-8) !== telCandClean.slice(-8)) {
+          continue; // Teléfonos incompatibles: ¡Dos gestores diferentes con el mismo nombre!
+        }
+
         var nomG = limpiarNombreGestor(g.nombre);
         if (!nomG) continue;
         if (nomCandClean === nomG) {
@@ -12023,6 +12031,11 @@ function guardarEnCacheRobusto() {
 
       for (var i = 0; i < listaGestores.length; i++) {
         var g = listaGestores[i];
+        var gTel = extraerNumerosVale(g.telefono);
+        if (telCandClean && telCandClean.length >= 8 && gTel && gTel.length >= 8 && gTel.slice(-8) !== telCandClean.slice(-8)) {
+          continue; // No emparejar difusamente si los teléfonos son diferentes
+        }
+
         var nomG = limpiarNombreGestor(g.nombre);
         if (!nomG) continue;
 
@@ -12056,6 +12069,66 @@ function guardarEnCacheRobusto() {
       }
 
       return null;
+    }
+
+    // ALGORITMO DE ENRIQUECIMIENTO INTELIGENTE:
+    // Cuando un gestor empieza a incluir sus apellidos en los vales, actualiza su ficha de gestor
+    // y sus vales históricos usando el número de teléfono como referencia infalible.
+    function sincronizarNombreGestorMasCompleto(gestorExistente, nombreNuevo, telefonoNuevo, appState) {
+      if (!gestorExistente || !nombreNuevo) return false;
+
+      // Si el gestor en BD no tenía teléfono y ahora viene con teléfono, registrarlo
+      if (telefonoNuevo && !gestorExistente.telefono) {
+        gestorExistente.telefono = telefonoNuevo;
+      }
+
+      var nLimpioNuevo = (nombreNuevo || '').trim();
+      var nLow = nLimpioNuevo.toLowerCase();
+      if (!nLimpioNuevo || nLow === 'gestor sin nombre' || nLow === 'gestor pendiente' || nLow === 'gestor por asignar' || nLow === 'sin nombre' || nLow.length < 3) {
+        return false;
+      }
+
+      var nLimpioActual = (gestorExistente.nombre || '').trim();
+      var palabrasActual = nLimpioActual.split(/\s+/).filter(function(w) { return w.length > 1; });
+      var palabrasNuevo = nLimpioNuevo.split(/\s+/).filter(function(w) { return w.length > 1; });
+
+      // Criterio inteligente: si el nuevo nombre incluye apellidos (más palabras)
+      // o es más completo y específico que el actual
+      var esMasCompleto = (palabrasNuevo.length > palabrasActual.length) ||
+                          (palabrasNuevo.length === palabrasActual.length && nLimpioNuevo.length > nLimpioActual.length && !nLimpioActual.includes(' '));
+
+      if (esMasCompleto) {
+        var nombreAnterior = gestorExistente.nombre;
+        gestorExistente.nombre = nLimpioNuevo;
+        console.log('[Gestores] Nombre de gestor actualizado a nombre completo:', nombreAnterior, '->', nLimpioNuevo);
+
+        // Actualizar vales históricos de ESTE gestor de forma segura
+        if (appState && Array.isArray(appState.vales)) {
+          var gTel = extraerNumerosVale(gestorExistente.telefono);
+          var gTel8 = gTel && gTel.length >= 8 ? gTel.slice(-8) : null;
+
+          appState.vales.forEach(function(v) {
+            var vTel = extraerNumerosVale(v.gestorTelefono);
+            var vTel8 = vTel && vTel.length >= 8 ? vTel.slice(-8) : null;
+
+            var coincide = false;
+            if (gTel8 && vTel8) {
+              coincide = (gTel8 === vTel8);
+            } else if (!vTel8) {
+              coincide = v.gestorNombre && v.gestorNombre.toLowerCase().trim() === nombreAnterior.toLowerCase().trim();
+            }
+
+            if (coincide) {
+              v.gestorNombre = nLimpioNuevo;
+              if (gestorExistente.telefono && !v.gestorTelefono) {
+                v.gestorTelefono = gestorExistente.telefono;
+              }
+            }
+          });
+        }
+        return true;
+      }
+      return false;
     }
 
     function calcularSimilitudJaccard(str1, str2) {
@@ -13834,7 +13907,14 @@ function guardarEnCacheRobusto() {
         // Detección inteligente del gestor (incluso si está mal escrito o con coletillas como "de")
         var matchG = encontrarGestorExistente(gestorNombre, gestorTel, appState.gestores);
         if (matchG) {
-          candidato.gestorNombre = matchG.gestor.nombre;
+          // Si el candidato trae un nombre más completo (con apellidos), preferir mostrar el nombre más rico
+          var palabrasCand = (gestorNombre || '').trim().split(/\s+/).filter(function(w) { return w.length > 1; });
+          var palabrasG = (matchG.gestor.nombre || '').trim().split(/\s+/).filter(function(w) { return w.length > 1; });
+          if (palabrasCand.length > palabrasG.length) {
+            candidato.gestorNombre = gestorNombre.trim();
+          } else {
+            candidato.gestorNombre = matchG.gestor.nombre;
+          }
           candidato.gestorTelefono = matchG.gestor.telefono || gestorTel;
         }
 
@@ -13921,9 +14001,14 @@ function guardarEnCacheRobusto() {
       var semanasAfectadasSet = new Set();
 
       validos.forEach(function(c) {
-        // Auto-asociar gestor existente de forma inteligente o registrarlo si es realmente nuevo
+        // Auto-asociar gestor existente de forma inteligente usando su teléfono como referencia
         var matchG = encontrarGestorExistente(c.gestorNombre, c.gestorTelefono, appState.gestores);
         var gExistente = matchG ? matchG.gestor : null;
+
+        // Si el gestor ya existe, enriquecer inteligentemente su nombre con apellidos si ahora viene más completo
+        if (gExistente) {
+          sincronizarNombreGestorMasCompleto(gExistente, c.gestorNombre, c.gestorTelefono, appState);
+        }
 
         // BLINDAJE ESTRICTO DE REGISTRO EN LOTE:
         // 1. Verificar si el nombre es inválido o genérico
@@ -13967,7 +14052,10 @@ function guardarEnCacheRobusto() {
           } else {
             // Si ya existía uno parecido, asociar a ese
             var matchParecido = encontrarGestorExistente(c.gestorNombre, c.gestorTelefono, appState.gestores);
-            if (matchParecido) gExistente = matchParecido.gestor;
+            if (matchParecido) {
+              gExistente = matchParecido.gestor;
+              sincronizarNombreGestorMasCompleto(gExistente, c.gestorNombre, c.gestorTelefono, appState);
+            }
           }
         } else if (gExistente && c.gestorTelefono && !gExistente.telefono) {
           gExistente.telefono = c.gestorTelefono;
@@ -14281,8 +14369,12 @@ function guardarEnCacheRobusto() {
           activo: true
         };
         appState.gestores.push(gestorExistente);
-      } else if (gestorTel && !gestorExistente.telefono) {
-        gestorExistente.telefono = gestorTel;
+      } else {
+        // Enriquecer nombre con apellidos si ahora viene más completo
+        sincronizarNombreGestorMasCompleto(gestorExistente, gestorNombre, gestorTel, appState);
+        if (gestorTel && !gestorExistente.telefono) {
+          gestorExistente.telefono = gestorTel;
+        }
       }
 
       let totalVenta = 0;
