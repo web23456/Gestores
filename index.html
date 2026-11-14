@@ -9625,9 +9625,9 @@
     // SISTEMA DE CACHE ROBUSTO & MULTI-CAPA
     // --------------------------------------------------------
     const CACHE_KEYS = {
-      PRIMARY: 'ELECTROCONTA_GESTORES_CACHE_PRIMARY_V5',
-      BACKUP: 'ELECTROCONTA_GESTORES_CACHE_BACKUP_V5',
-      SESSION: 'ELECTROCONTA_GESTORES_SESSION_CACHE_V5'
+      PRIMARY: 'ELECTROCONTA_GESTORES_CACHE_PRIMARY_V6',
+      BACKUP: 'ELECTROCONTA_GESTORES_CACHE_BACKUP_V6',
+      SESSION: 'ELECTROCONTA_GESTORES_SESSION_CACHE_V6'
     };
 
     let appState = {
@@ -9713,6 +9713,152 @@ function guardarEnCacheRobusto() {
       }
       return null;
     }
+
+    function normalizarCadenaVale(str) {
+      if (!str) return '';
+      return String(str)
+        .toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9]/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
+    function extraerNumerosVale(str) {
+      if (!str) return '';
+      return String(str).replace(/\D/g, '');
+    }
+
+    function calcularLevenshteinDistancia(a, b) {
+      if (!a || !b) return (a || b || '').length;
+      var m = a.length, n = b.length;
+      var dp = Array.from({ length: m + 1 }, function() { return new Array(n + 1).fill(0); });
+      for (var i = 0; i <= m; i++) dp[i][0] = i;
+      for (var j = 0; j <= n; j++) dp[0][j] = j;
+      for (var i = 1; i <= m; i++) {
+        for (var j = 1; j <= n; j++) {
+          var cost = a[i - 1] === b[j - 1] ? 0 : 1;
+          dp[i][j] = Math.min(
+            dp[i - 1][j] + 1,
+            dp[i][j - 1] + 1,
+            dp[i - 1][j - 1] + cost
+          );
+        }
+      }
+      return dp[m][n];
+    }
+
+    function calcularSimilitudLevenshtein(a, b) {
+      var maxLen = Math.max(a.length, b.length);
+      if (maxLen === 0) return 1;
+      return (maxLen - calcularLevenshteinDistancia(a, b)) / maxLen;
+    }
+
+    function limpiarNombreGestor(nombre) {
+      if (!nombre) return '';
+      var n = normalizarCadenaVale(nombre);
+      // Eliminar palabras parásitas y prefijos comunes de WhatsApp
+      n = n.replace(/\b(de|del|la|el|mensajeria|gestor|gestora|ventas|comercial|comerciales|comerciales\*|comercial\*)\b/g, ' ')
+           .replace(/\s+/g, ' ')
+           .trim();
+      return n;
+    }
+
+    // ALGORITMO INTELIGENTE: Identifica al gestor aunque escriba mal su nombre
+    function encontrarGestorExistente(nombreCandidato, telefonoCandidato, listaGestores) {
+      if (!Array.isArray(listaGestores) || listaGestores.length === 0) return null;
+      var telCandClean = extraerNumerosVale(telefonoCandidato);
+      var nomCandClean = limpiarNombreGestor(nombreCandidato);
+      if (!nomCandClean && !telCandClean) return null;
+
+      // Paso 1: Coincidencia telefónica directa (infalible si coincide los últimos 8 dígitos)
+      if (telCandClean && telCandClean.length >= 8) {
+        var ultimos8Cand = telCandClean.slice(-8);
+        for (var i = 0; i < listaGestores.length; i++) {
+          var g = listaGestores[i];
+          var gTel = extraerNumerosVale(g.telefono);
+          var gTel2 = extraerNumerosVale(g.telefonoSecundario);
+          if ((gTel && gTel.slice(-8) === ultimos8Cand) || (gTel2 && gTel2.slice(-8) === ultimos8Cand)) {
+            return { gestor: g, metodo: 'TELEFONO', confianza: 1.0 };
+          }
+        }
+      }
+
+      // Paso 2: Coincidencia exacta o por inclusión limpia
+      for (var i = 0; i < listaGestores.length; i++) {
+        var g = listaGestores[i];
+        var nomG = limpiarNombreGestor(g.nombre);
+        if (!nomG) continue;
+        if (nomCandClean === nomG) {
+          return { gestor: g, metodo: 'NOMBRE_EXACTO', confianza: 1.0 };
+        }
+        // Inclusión bidireccional (ej: "yanelis" dentro de "yanelis castillo" o viceversa)
+        if (nomCandClean.length >= 4 && nomG.length >= 4) {
+          if (nomG.startsWith(nomCandClean) || nomCandClean.startsWith(nomG) ||
+              nomG.includes(nomCandClean) || nomCandClean.includes(nomG)) {
+            return { gestor: g, metodo: 'NOMBRE_CONTENIDO', confianza: 0.95 };
+          }
+        }
+      }
+
+      // Paso 3: Similitud Difusa por palabras y Levenshtein
+      var mejorMatch = null;
+      var mejorScore = 0;
+
+      var tokensCand = nomCandClean.split(' ').filter(function(w) { return w.length > 2; });
+
+      for (var i = 0; i < listaGestores.length; i++) {
+        var g = listaGestores[i];
+        var nomG = limpiarNombreGestor(g.nombre);
+        if (!nomG) continue;
+
+        var tokensG = nomG.split(' ').filter(function(w) { return w.length > 2; });
+
+        // Similitud global de texto
+        var simLev = calcularSimilitudLevenshtein(nomCandClean, nomG);
+
+        // Similitud por tokens (permite nombres con apellidos intercambiados o un apellido faltante)
+        var sumaTokens = 0;
+        tokensCand.forEach(function(tc) {
+          var maxT = 0;
+          tokensG.forEach(function(tg) {
+            var s = calcularSimilitudLevenshtein(tc, tg);
+            if (s > maxT) maxT = s;
+          });
+          sumaTokens += maxT;
+        });
+        var simTokens = tokensCand.length > 0 ? (sumaTokens / tokensCand.length) : 0;
+
+        var score = Math.max(simLev, simTokens);
+        if (score > mejorScore) {
+          mejorScore = score;
+          mejorMatch = g;
+        }
+      }
+
+      // Umbral: Si la similitud difusa es suficientemente alta (mínimo 78% para evitar falsos positivos con nombres cortos diferentes como Yanelis vs Yakelin)
+      if (mejorMatch && mejorScore >= 0.78) {
+        return { gestor: mejorMatch, metodo: 'SIMILITUD_DIFUSA', confianza: mejorScore };
+      }
+
+      return null;
+    }
+
+    function calcularSimilitudJaccard(str1, str2) {
+      if (!str1 || !str2) return 0;
+      var set1 = new Set(str1.split(' ').filter(function(x) { return x.length > 2; }));
+      var set2 = new Set(str2.split(' ').filter(function(x) { return x.length > 2; }));
+      if (set1.size === 0 || set2.size === 0) return 0;
+
+      var interseccion = 0;
+      set1.forEach(function(elem) {
+        if (set2.has(elem)) interseccion++;
+      });
+      var union = set1.size + set2.size - interseccion;
+      return union === 0 ? 0 : (interseccion / union);
+    }
+
+
 
     // --------------------------------------------------------
     // CÁLCULO DE SEMANAS DE GESTIÓN (DE MARTES A LUNES)
@@ -9856,8 +10002,16 @@ function guardarEnCacheRobusto() {
         appState.vales = [];
       }
 
-      // Siempre establecer por defecto la semana actual (martes a lunes en curso)
-      appState.semanaActiva = getISOWeekString(new Date());
+      // Priorizar la semana con actividad más reciente si la actual está vacía
+      var semHoy = getISOWeekString(new Date());
+      var valesSemHoy = appState.vales.filter(function(v) { return v.semana === semHoy; });
+      if (valesSemHoy.length === 0 && appState.vales.length > 0) {
+        // Buscar la semana más reciente con vales registrados
+        var semConVales = Array.from(new Set(appState.vales.map(function(v) { return v.semana; }).filter(Boolean))).sort().reverse();
+        appState.semanaActiva = semConVales[0] || semHoy;
+      } else {
+        appState.semanaActiva = semHoy;
+      }
 
       
       var defaultHashes = {
@@ -11732,150 +11886,6 @@ function guardarEnCacheRobusto() {
     // ========================================================
     // ALGORITMO INTELIGENTE: DETECCIÓN DE VALES IDÉNTICOS / DUPLICADOS
     // ========================================================
-    function normalizarCadenaVale(str) {
-      if (!str) return '';
-      return String(str)
-        .toLowerCase()
-        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-        .replace(/[^a-z0-9]/g, ' ')
-        .replace(/\s+/g, ' ')
-        .trim();
-    }
-
-    function extraerNumerosVale(str) {
-      if (!str) return '';
-      return String(str).replace(/\D/g, '');
-    }
-
-    function calcularLevenshteinDistancia(a, b) {
-      if (!a || !b) return (a || b || '').length;
-      var m = a.length, n = b.length;
-      var dp = Array.from({ length: m + 1 }, function() { return new Array(n + 1).fill(0); });
-      for (var i = 0; i <= m; i++) dp[i][0] = i;
-      for (var j = 0; j <= n; j++) dp[0][j] = j;
-      for (var i = 1; i <= m; i++) {
-        for (var j = 1; j <= n; j++) {
-          var cost = a[i - 1] === b[j - 1] ? 0 : 1;
-          dp[i][j] = Math.min(
-            dp[i - 1][j] + 1,
-            dp[i][j - 1] + 1,
-            dp[i - 1][j - 1] + cost
-          );
-        }
-      }
-      return dp[m][n];
-    }
-
-    function calcularSimilitudLevenshtein(a, b) {
-      var maxLen = Math.max(a.length, b.length);
-      if (maxLen === 0) return 1;
-      return (maxLen - calcularLevenshteinDistancia(a, b)) / maxLen;
-    }
-
-    function limpiarNombreGestor(nombre) {
-      if (!nombre) return '';
-      var n = normalizarCadenaVale(nombre);
-      // Eliminar palabras parásitas y prefijos comunes de WhatsApp
-      n = n.replace(/\b(de|del|la|el|mensajeria|gestor|gestora|ventas|comercial|comerciales|comerciales\*|comercial\*)\b/g, ' ')
-           .replace(/\s+/g, ' ')
-           .trim();
-      return n;
-    }
-
-    // ALGORITMO INTELIGENTE: Identifica al gestor aunque escriba mal su nombre
-    function encontrarGestorExistente(nombreCandidato, telefonoCandidato, listaGestores) {
-      if (!Array.isArray(listaGestores) || listaGestores.length === 0) return null;
-      var telCandClean = extraerNumerosVale(telefonoCandidato);
-      var nomCandClean = limpiarNombreGestor(nombreCandidato);
-      if (!nomCandClean && !telCandClean) return null;
-
-      // Paso 1: Coincidencia telefónica directa (infalible si coincide los últimos 8 dígitos)
-      if (telCandClean && telCandClean.length >= 8) {
-        var ultimos8Cand = telCandClean.slice(-8);
-        for (var i = 0; i < listaGestores.length; i++) {
-          var g = listaGestores[i];
-          var gTel = extraerNumerosVale(g.telefono);
-          var gTel2 = extraerNumerosVale(g.telefonoSecundario);
-          if ((gTel && gTel.slice(-8) === ultimos8Cand) || (gTel2 && gTel2.slice(-8) === ultimos8Cand)) {
-            return { gestor: g, metodo: 'TELEFONO', confianza: 1.0 };
-          }
-        }
-      }
-
-      // Paso 2: Coincidencia exacta o por inclusión limpia
-      for (var i = 0; i < listaGestores.length; i++) {
-        var g = listaGestores[i];
-        var nomG = limpiarNombreGestor(g.nombre);
-        if (!nomG) continue;
-        if (nomCandClean === nomG) {
-          return { gestor: g, metodo: 'NOMBRE_EXACTO', confianza: 1.0 };
-        }
-        // Inclusión bidireccional (ej: "yanelis" dentro de "yanelis castillo" o viceversa)
-        if (nomCandClean.length >= 4 && nomG.length >= 4) {
-          if (nomG.startsWith(nomCandClean) || nomCandClean.startsWith(nomG) ||
-              nomG.includes(nomCandClean) || nomCandClean.includes(nomG)) {
-            return { gestor: g, metodo: 'NOMBRE_CONTENIDO', confianza: 0.95 };
-          }
-        }
-      }
-
-      // Paso 3: Similitud Difusa por palabras y Levenshtein
-      var mejorMatch = null;
-      var mejorScore = 0;
-
-      var tokensCand = nomCandClean.split(' ').filter(function(w) { return w.length > 2; });
-
-      for (var i = 0; i < listaGestores.length; i++) {
-        var g = listaGestores[i];
-        var nomG = limpiarNombreGestor(g.nombre);
-        if (!nomG) continue;
-
-        var tokensG = nomG.split(' ').filter(function(w) { return w.length > 2; });
-
-        // Similitud global de texto
-        var simLev = calcularSimilitudLevenshtein(nomCandClean, nomG);
-
-        // Similitud por tokens (permite nombres con apellidos intercambiados o un apellido faltante)
-        var sumaTokens = 0;
-        tokensCand.forEach(function(tc) {
-          var maxT = 0;
-          tokensG.forEach(function(tg) {
-            var s = calcularSimilitudLevenshtein(tc, tg);
-            if (s > maxT) maxT = s;
-          });
-          sumaTokens += maxT;
-        });
-        var simTokens = tokensCand.length > 0 ? (sumaTokens / tokensCand.length) : 0;
-
-        var score = Math.max(simLev, simTokens);
-        if (score > mejorScore) {
-          mejorScore = score;
-          mejorMatch = g;
-        }
-      }
-
-      // Umbral: Si la similitud difusa es suficientemente alta (mínimo 78% para evitar falsos positivos con nombres cortos diferentes como Yanelis vs Yakelin)
-      if (mejorMatch && mejorScore >= 0.78) {
-        return { gestor: mejorMatch, metodo: 'SIMILITUD_DIFUSA', confianza: mejorScore };
-      }
-
-      return null;
-    }
-
-    function calcularSimilitudJaccard(str1, str2) {
-      if (!str1 || !str2) return 0;
-      var set1 = new Set(str1.split(' ').filter(function(x) { return x.length > 2; }));
-      var set2 = new Set(str2.split(' ').filter(function(x) { return x.length > 2; }));
-      if (set1.size === 0 || set2.size === 0) return 0;
-
-      var interseccion = 0;
-      set1.forEach(function(elem) {
-        if (set2.has(elem)) interseccion++;
-      });
-      var union = set1.size + set2.size - interseccion;
-      return union === 0 ? 0 : (interseccion / union);
-    }
-
     function detectarValeIdentico(candidato, idExcluir) {
       if (!appState || !Array.isArray(appState.vales)) return null;
 
