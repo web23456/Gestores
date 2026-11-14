@@ -8335,6 +8335,34 @@
           <span>Semana Actual</span>
         </button>
       </div>
+
+      <!-- FILTRO PERSONALIZADO POR RANGO DE FECHAS (DE DÍA A DÍA) -->
+      <div class="w-full flex items-center justify-between flex-wrap gap-2 pt-2 border-t border-yellow-500/15">
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="text-xs font-bold text-yellow-400 flex items-center gap-1">
+            <i data-lucide="calendar-range" class="w-3.5 h-3.5"></i>
+            <span>Filtrar por Fechas:</span>
+          </span>
+          <div class="flex items-center gap-1.5 text-xs">
+            <label for="filtro-fecha-desde" class="text-yellow-300/70 font-semibold text-[11px]">Desde:</label>
+            <input type="date" id="filtro-fecha-desde" onchange="aplicarFiltroRangoFechas()" class="bg-black border border-yellow-500/30 text-yellow-300 rounded-lg px-2.5 py-1 text-xs focus:ring-1 focus:ring-yellow-400 focus:outline-none">
+          </div>
+          <div class="flex items-center gap-1.5 text-xs">
+            <label for="filtro-fecha-hasta" class="text-yellow-300/70 font-semibold text-[11px]">Hasta:</label>
+            <input type="date" id="filtro-fecha-hasta" onchange="aplicarFiltroRangoFechas()" class="bg-black border border-yellow-500/30 text-yellow-300 rounded-lg px-2.5 py-1 text-xs focus:ring-1 focus:ring-yellow-400 focus:outline-none">
+          </div>
+          <button type="button" onclick="aplicarFiltroRangoFechas()" class="px-3 py-1 rounded-lg bg-yellow-500/20 hover:bg-yellow-500/40 text-yellow-300 border border-yellow-500/30 text-xs font-bold transition-all cursor-pointer flex items-center gap-1">
+            <i data-lucide="filter" class="w-3 h-3"></i> Filtrar
+          </button>
+          <button type="button" id="btn-limpiar-rango-fechas" onclick="limpiarFiltroRangoFechas()" class="hidden px-2.5 py-1 rounded-lg bg-rose-950/40 hover:bg-rose-900/60 text-rose-300 border border-rose-500/30 text-xs font-semibold transition-all cursor-pointer flex items-center gap-1">
+            <i data-lucide="x" class="w-3 h-3"></i> Quitar Filtro (Volver a Semana)
+          </button>
+        </div>
+        <div id="badge-filtro-activo" class="hidden text-[11px] text-amber-300 bg-amber-950/40 border border-amber-500/30 px-2.5 py-0.5 rounded-full font-mono font-bold flex items-center gap-1">
+          <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+          <span id="badge-filtro-texto">Filtro de fechas activo</span>
+        </div>
+      </div>
     </div>
 
     <!-- TARJETAS DE MÉTRICAS GLOBALES DE LA SEMANA -->
@@ -8759,6 +8787,7 @@
                   <th class="px-4 py-2.5 text-center">Equipos</th>
                   <th class="px-4 py-2.5 text-right">Ventas Totales (USD)</th>
                   <th class="px-4 py-2.5 text-right">Comisión Total (CUP)</th>
+                  <th class="px-4 py-2.5 text-right text-rose-400">Descuentos</th>
                   <th class="px-4 py-2.5 text-center">Estado</th>
                 </tr>
               </thead>
@@ -9922,6 +9951,15 @@ function guardarEnCacheRobusto() {
     }
 
     window.seleccionarSemana = function(semana) {
+      filtroRangoFechasActivo = null;
+      var inputDesde = document.getElementById('filtro-fecha-desde');
+      var inputHasta = document.getElementById('filtro-fecha-hasta');
+      if (inputDesde) inputDesde.value = '';
+      if (inputHasta) inputHasta.value = '';
+      var btnLimpiar = document.getElementById('btn-limpiar-rango-fechas');
+      if (btnLimpiar) btnLimpiar.classList.add('hidden');
+      var badgeActivo = document.getElementById('badge-filtro-activo');
+      if (badgeActivo) badgeActivo.classList.add('hidden');
       const semanaActual = getISOWeekString(new Date());
       if (semana > semanaActual) {
         alert('⚠️ No se pueden seleccionar semanas futuras que aún no han llegado.');
@@ -9960,6 +9998,22 @@ function guardarEnCacheRobusto() {
     };
 
     // --------------------------------------------------------
+    // HELPER: OBTENER DESCUENTO DE VALE (EXISTENTE O EXTRAÍDO)
+    // --------------------------------------------------------
+    function obtenerDescuentoVale(v) {
+      if (!v) return null;
+      var vDescInfo = obtenerDescuentoVale(v);
+            if (vDescInfo && Number(vDescInfo.monto) > 0) {
+        return v.descuentoGestor;
+      }
+      var ext = extraerDescuentoAlGestor(v.rawTextoWhatsApp);
+      if (ext && ext.monto > 0) {
+        return ext;
+      }
+      return null;
+    }
+
+    // --------------------------------------------------------
     // RENDERIZADO GLOBAL
     // --------------------------------------------------------
     function renderizarTodo() {
@@ -9968,9 +10022,77 @@ function guardarEnCacheRobusto() {
       if (window.lucide) window.lucide.createIcons();
     }
 
+    // --------------------------------------------------------
+    // FILTRO PERSONALIZADO POR RANGO DE FECHAS (DE DÍA A DÍA)
+    // --------------------------------------------------------
+    var filtroRangoFechasActivo = null; // { desde: 'YYYY-MM-DD', hasta: 'YYYY-MM-DD' }
+
+    function obtenerValesFiltradosActivos() {
+      if (filtroRangoFechasActivo && (filtroRangoFechasActivo.desde || filtroRangoFechasActivo.hasta)) {
+        var d = filtroRangoFechasActivo.desde || '1970-01-01';
+        var h = filtroRangoFechasActivo.hasta || '2099-12-31';
+        return appState.vales.filter(function(v) {
+          if (!v.fecha) return false;
+          return v.fecha >= d && v.fecha <= h;
+        });
+      }
+      return appState.vales.filter(function(v) {
+        return v.semana === appState.semanaActiva;
+      });
+    }
+
+    window.aplicarFiltroRangoFechas = function() {
+      var inputDesde = document.getElementById('filtro-fecha-desde');
+      var inputHasta = document.getElementById('filtro-fecha-hasta');
+      var desde = inputDesde ? inputDesde.value : '';
+      var hasta = inputHasta ? inputHasta.value : '';
+
+      if (!desde && !hasta) {
+        window.limpiarFiltroRangoFechas();
+        return;
+      }
+
+      if (desde && hasta && desde > hasta) {
+        alert('⚠️ La fecha "Desde" no puede ser posterior a la fecha "Hasta".');
+        return;
+      }
+
+      filtroRangoFechasActivo = { desde: desde, hasta: hasta };
+
+      var btnLimpiar = document.getElementById('btn-limpiar-rango-fechas');
+      if (btnLimpiar) btnLimpiar.classList.remove('hidden');
+
+      var badgeActivo = document.getElementById('badge-filtro-activo');
+      var badgeTexto = document.getElementById('badge-filtro-texto');
+      if (badgeActivo) badgeActivo.classList.remove('hidden');
+      if (badgeTexto) badgeTexto.textContent = 'Rango: ' + (desde || 'Inicio') + ' al ' + (hasta || 'Fin');
+
+      var titSem = document.getElementById('titulo-semana-activa');
+      if (titSem) titSem.textContent = 'Filtrado: ' + (desde || '...') + ' → ' + (hasta || '...');
+
+      renderizarTodo();
+    };
+
+    window.limpiarFiltroRangoFechas = function() {
+      filtroRangoFechasActivo = null;
+      var inputDesde = document.getElementById('filtro-fecha-desde');
+      var inputHasta = document.getElementById('filtro-fecha-hasta');
+      if (inputDesde) inputDesde.value = '';
+      if (inputHasta) inputHasta.value = '';
+
+      var btnLimpiar = document.getElementById('btn-limpiar-rango-fechas');
+      if (btnLimpiar) btnLimpiar.classList.add('hidden');
+
+      var badgeActivo = document.getElementById('badge-filtro-activo');
+      if (badgeActivo) badgeActivo.classList.add('hidden');
+
+      actualizarSelectorSemanas();
+      renderizarTodo();
+    };
+
     function renderizarKPIs() {
-      const valesSemana = appState.vales.filter(function(v) { 
-        if (v.semana !== appState.semanaActiva) return false;
+      const valesBase = obtenerValesFiltradosActivos();
+      const valesSemana = valesBase.filter(function(v) { 
         if (currentUser && currentUser.role === 'GESTOR') {
           return v.gestorNombre && v.gestorNombre.toLowerCase().trim() === currentUser.gestorNombre.toLowerCase().trim();
         }
@@ -10064,10 +10186,10 @@ function guardarEnCacheRobusto() {
 
       contenedor.innerHTML = '';
 
+      const valesBaseFiltrados = obtenerValesFiltradosActivos();
       for (let i = 0; i < lista.length; i++) {
         const g = lista[i];
-        const valesSemanaGestor = appState.vales.filter(function(v) {
-          if (v.semana !== appState.semanaActiva) return false;
+        const valesSemanaGestor = valesBaseFiltrados.filter(function(v) {
           if (!v.gestorNombre) return false;
           if (v.gestorNombre.toLowerCase().trim() === g.nombre.toLowerCase().trim()) return true;
           var matchV = encontrarGestorExistente(v.gestorNombre, v.gestorTelefono, [g]);
@@ -10079,6 +10201,7 @@ function guardarEnCacheRobusto() {
         let ventasCUPSemana = 0;
         let comisionTotalSemanaCUP = 0;
         let comisionPendienteSemanaCUP = 0;
+        let descuentosTotalSemanaCUP = 0;
 
         for (let j = 0; j < valesSemanaGestor.length; j++) {
           const v = valesSemanaGestor[j];
@@ -10089,6 +10212,10 @@ function guardarEnCacheRobusto() {
           comisionTotalSemanaCUP += com;
           if (v.estadoComision !== 'PAGADA') {
             comisionPendienteSemanaCUP += com;
+          }
+          const descV = obtenerDescuentoVale(v);
+          if (descV && Number(descV.monto) > 0) {
+            descuentosTotalSemanaCUP += Number(descV.monto);
           }
         }
 
@@ -10170,11 +10297,12 @@ function guardarEnCacheRobusto() {
               '</div>' +
             '</div>' +
           '</div>' +
-          '<div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 bg-black/70 p-3 rounded-xl border border-yellow-500/20 text-center">' +
-            '<div><span class="text-[10px] text-yellow-300/70 uppercase block font-semibold">Vales Semana</span><span class="text-sm font-black text-white font-mono">' + valesSemanaGestor.length + '</span></div>' +
+          '<div class="grid grid-cols-2 sm:grid-cols-5 gap-2 bg-black/70 p-3 rounded-xl border border-yellow-500/20 text-center items-center">' +
+            '<div><span class="text-[10px] text-yellow-300/70 uppercase block font-semibold">Vales</span><span class="text-sm font-black text-white font-mono">' + valesSemanaGestor.length + '</span></div>' +
             '<div><span class="text-[10px] text-yellow-300/70 uppercase block font-semibold">Equipos</span><span class="text-sm font-black text-yellow-400 font-mono">' + equiposSemana + '</span></div>' +
             '<div><span class="text-[10px] text-yellow-300/70 uppercase block font-semibold">Ventas</span><span class="text-sm font-bold text-teal-400 font-mono block">' + ventasDisplay + '</span></div>' +
             comisionDisplayHtml +
+            '<div><span class="text-[10px] text-rose-400/90 uppercase block font-bold">Descuentos</span><span class="text-sm font-black font-mono ' + (descuentosTotalSemanaCUP > 0 ? 'text-rose-400' : 'text-zinc-500') + '">' + (descuentosTotalSemanaCUP > 0 ? '-' + descuentosTotalSemanaCUP.toLocaleString('es-ES') + ' CUP' : '$0') + '</span></div>' +
           '</div>' +
           '<div class="gestor-actions-bar flex items-center gap-2 flex-wrap">' +
             btnMarcarPago +
@@ -10223,10 +10351,10 @@ function guardarEnCacheRobusto() {
             let notasTag = v.notas ? '<div class="mt-1 text-[10px] text-amber-300 bg-amber-950/40 border border-amber-500/30 px-2 py-0.5 rounded flex items-center gap-1 font-sans" title="' + v.notas + '"><i data-lucide="sticky-note" class="w-3 h-3 text-yellow-400 shrink-0"></i><span class="truncate max-w-[200px]">' + v.notas + '</span></div>' : '';
 
             let descuentoBadge = '';
-            if (v.descuentoGestor && Number(v.descuentoGestor.monto) > 0) {
-              descuentoBadge = '<div class="mt-1 text-[10px] text-rose-300 bg-rose-950/50 border border-rose-500/40 px-2 py-0.5 rounded font-mono font-bold flex items-center gap-1" title="' + (v.descuentoGestor.motivo || 'Descuento') + '">' +
+            if (v.descuentoGestor && Number(vDescInfo.monto) > 0) {
+              descuentoBadge = '<div class="mt-1 text-[10px] text-rose-300 bg-rose-950/50 border border-rose-500/40 px-2 py-0.5 rounded font-mono font-bold flex items-center gap-1" title="' + ((obtenerDescuentoVale(v)||{}).motivo || 'Descuento') + '">' +
                 '<i data-lucide="alert-triangle" class="w-3 h-3 text-rose-400 shrink-0"></i>' +
-                '<span>Desc: -' + Number(v.descuentoGestor.monto).toLocaleString('es-ES') + ' ' + (v.descuentoGestor.moneda || 'CUP') + '</span>' +
+                '<span>Desc: -' + Number(v.descuentoGestor.monto).toLocaleString('es-ES') + ' ' + (vDescInfo.moneda || 'CUP') + '</span>' +
               '</div>';
             }
 
@@ -10422,7 +10550,7 @@ function guardarEnCacheRobusto() {
       }
 
       if (gestoresResumen.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="8" class="text-center p-4 text-yellow-500/50">No hay registros para mostrar.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="9" class="text-center p-4 text-yellow-500/50">No hay registros para mostrar.</td></tr>';
       } else {
         for (let j = 0; j < gestoresResumen.length; j++) {
           const g = gestoresResumen[j];
@@ -10435,6 +10563,7 @@ function guardarEnCacheRobusto() {
           const com = valesG.reduce(function(acc, v) { return acc + (Number(v.granComisionCUP) || 0); }, 0);
           const pagada = valesG.filter(function(v) { return v.estadoComision === 'PAGADA'; }).reduce(function(acc, v) { return acc + (Number(v.granComisionCUP) || 0); }, 0);
           const pendiente = com - pagada;
+          const totalDescG = valesG.reduce(function(acc, v) { var d = obtenerDescuentoVale(v); return acc + (d ? Number(d.monto) || 0 : 0); }, 0);
 
           const tr = document.createElement('tr');
           tr.className = 'hover:bg-zinc-950/80';
@@ -10444,6 +10573,7 @@ function guardarEnCacheRobusto() {
             '<td class="px-4 py-2.5 text-center font-bold text-yellow-400">' + eq + '</td>' +
             '<td class="px-4 py-2.5 text-right font-mono text-yellow-400">$' + (usd + cup).toFixed(2) + ' USD</td>' +
             '<td class="px-4 py-2.5 text-right font-mono font-black text-yellow-300">' + com.toLocaleString('es-ES') + ' CUP</td>' +
+            '<td class="px-4 py-2.5 text-right font-mono font-bold ' + (totalDescG > 0 ? 'text-rose-400' : 'text-zinc-600') + '">' + (totalDescG > 0 ? '-' + totalDescG.toLocaleString('es-ES') + ' CUP' : '-') + '</td>' +
             '<td class="px-4 py-2.5 text-center">' +
               (valesG.length === 0 ? '<span class="text-yellow-500/50 font-mono text-[10px]">Sin ventas</span>' : (pendiente === 0 ? '<span class="text-yellow-400 font-bold text-[10px]">PAGADA</span>' : '<span class="text-rose-400 font-bold text-[10px]">PENDIENTE (' + pendiente.toLocaleString('es-ES') + ' CUP)</span>')) +
             '</td>';
@@ -10509,6 +10639,21 @@ function guardarEnCacheRobusto() {
         }
       }
       return year + '-' + String(month).padStart(2, '0') + '-' + String(day).padStart(2, '0');
+    }
+
+    function extraerDescuentoAlGestor(raw) {
+      if (!raw) return null;
+      var norm = normalizarMathUnicode(raw).normalize("NFKD");
+      var m = norm.match(/descontar\s*al\s*gestor\s*:?\s*([^\n\r]*)/i);
+      if (!m) return null;
+      var linea = m[1].trim();
+      if (!linea || /^(no|ninguno|ninguna|nada|-|0|\s*)$/i.test(linea)) return null;
+      if (/^\[?\d+[\/\.]\d+/i.test(linea) || /^arroyo\s+naranjo/i.test(linea) || /mensajer[ií]a\s+para/i.test(linea)) return null;
+      var matchNum = linea.match(/(\d+(?:[\.,]\d+)?)/);
+      if (!matchNum) return null;
+      var monto = parseFloat(matchNum[1].replace(",", "."));
+      if (isNaN(monto) || monto <= 0) return null;
+      return { monto: monto, motivo: linea, moneda: "CUP" };
     }
 
     function parsearFacturaTexto(raw) {
@@ -10926,7 +11071,8 @@ function guardarEnCacheRobusto() {
         items: items,
         precioMensajeria: precioMensajeria.trim(),
         totalRecojer: totalRecojer.trim(),
-        dineroDevolver: dineroDevolver.trim()
+        dineroDevolver: dineroDevolver.trim(),
+        descontarAlGestor: extraerDescuentoAlGestor(raw)
       };
     }
 
@@ -11227,6 +11373,10 @@ function guardarEnCacheRobusto() {
           totalVenta += c * (Number(it.precioVenta) || 0);
           granComisionCUP += c * (Number(it.comisionUnitCUP) || 1500);
         }
+        var autoDescLote = p.descontarAlGestor || extraerDescuentoAlGestor(rawBloque);
+        if (autoDescLote && autoDescLote.monto > 0) {
+          granComisionCUP = Math.max(0, granComisionCUP - autoDescLote.monto);
+        }
 
         var folioGen = 'VAL-' + Math.floor(100000 + Math.random() * 900000);
 
@@ -11246,6 +11396,7 @@ function guardarEnCacheRobusto() {
           items: items,
           totalVenta: totalVenta,
           granComisionCUP: granComisionCUP,
+          descuentoGestor: (autoDescLote && autoDescLote.monto > 0) ? autoDescLote : undefined,
           estadoComision: 'PENDIENTE',
           esDuplicado: false,
           motivoDup: ''
@@ -11437,6 +11588,7 @@ function guardarEnCacheRobusto() {
           items: c.items,
           totalVenta: c.totalVenta,
           granComisionCUP: c.granComisionCUP,
+          descuentoGestor: c.descuentoGestor || extraerDescuentoAlGestor(c.rawTextoWhatsApp) || undefined,
           estadoComision: 'PENDIENTE',
           createdAt: Date.now()
         };
@@ -11884,6 +12036,10 @@ function guardarEnCacheRobusto() {
         totalVenta += c * (Number(it.precioVenta) || 0);
         granComisionCUP += c * (Number(it.comisionUnitCUP) || 1500);
       }
+      var autoDesc = extraerDescuentoAlGestor(rawTexto);
+      if (autoDesc && autoDesc.monto > 0) {
+        granComisionCUP = Math.max(0, granComisionCUP - autoDesc.monto);
+      }
 
       // --------------------------------------------------------
       // DETECCIÓN Y RECHAZO DE VALES IDÉNTICOS / DUPLICADOS
@@ -11960,7 +12116,8 @@ function guardarEnCacheRobusto() {
           totalVenta: totalVenta,
           granComisionCUP: granComisionCUP,
           estadoComision: 'PENDIENTE',
-          createdAt: Date.now()
+          createdAt: Date.now(),
+          descuentoGestor: (autoDesc && autoDesc.monto > 0) ? autoDesc : undefined
         };
         appState.vales.unshift(nuevoVale);
       }
@@ -12418,6 +12575,7 @@ function guardarEnCacheRobusto() {
       var totalVales = valesSemana.length;
       var totalEquipos = 0;
       var gananciaComisionCUP = 0;
+      var totalDescuentosCUP = 0;
       var ventasUSD = 0;
       var ventasCUP = 0;
 
@@ -12431,6 +12589,10 @@ function guardarEnCacheRobusto() {
         (v.items || []).forEach(function(it) {
           totalEquipos += (Number(it.cantidad) || 1);
         });
+        var d = obtenerDescuentoVale(v);
+        if (d && Number(d.monto) > 0) {
+          totalDescuentosCUP += Number(d.monto);
+        }
       });
 
       var rangoInfo = getWeekDateRange(appState.semanaActiva);
@@ -12448,6 +12610,9 @@ function guardarEnCacheRobusto() {
 
       msg += '💵 *Volumen Ventas USD:* $' + (ventasUSD + ventasCUP).toFixed(2) + ' USD\n';
 
+      if (totalDescuentosCUP > 0) {
+        msg += '⚠️ *Descuentos Aplicados:* -' + totalDescuentosCUP.toLocaleString('es-ES') + ' CUP\n';
+      }
       msg += '💰 *GANANCIA COMISIÓN:* ' + gananciaComisionCUP.toLocaleString('es-ES') + ' CUP\n';
 
       // Incluir compensación de error si existe
@@ -13415,6 +13580,7 @@ function guardarEnCacheRobusto() {
         const comCUP = valesG.reduce(function(acc, v) { return acc + (Number(v.granComisionCUP) || 0); }, 0);
         const comPagada = valesG.filter(function(v) { return v.estadoComision === 'PAGADA'; }).reduce(function(acc, v) { return acc + (Number(v.granComisionCUP) || 0); }, 0);
         const pendiente = comCUP - comPagada;
+        const descCUP = valesG.reduce(function(acc, v) { var d = obtenerDescuentoVale(v); return acc + (d ? Number(d.monto) || 0 : 0); }, 0);
 
         return {
           'Gestor': g.nombre,
@@ -13424,6 +13590,7 @@ function guardarEnCacheRobusto() {
           'Vales Emitidos': valesG.length,
           'Equipos Vendidos': equipos,
           'Ventas Totales (USD)': (factUSD + factCUP),
+          'Descuentos (CUP)': descCUP,
           'Gran Comisión (CUP)': comCUP,
           'Comisión Pagada (CUP)': comPagada,
           'Saldo Pendiente (CUP)': pendiente,
@@ -13455,6 +13622,7 @@ function guardarEnCacheRobusto() {
           'Artículos': (v.items || []).map(function(it) { return it.cantidad + 'x ' + it.producto + ' (' + (it.tipoEquipo || 'Pequeño') + ')'; }).join(', '),
           'Total Equipos': (v.items || []).reduce(function(a, b) { return a + (Number(b.cantidad) || 1); }, 0),
           'Total Venta': v.totalVenta + ' ' + v.moneda,
+          'Descuento al Gestor': (function() { var d = obtenerDescuentoVale(v); return d ? d.monto + ' CUP (' + (d.motivo || 'Descuento') + ')' : 'Ninguno'; })(),
           'Gran Comisión (CUP)': v.granComisionCUP,
           'Estado Comisión': v.estadoComision
         };
