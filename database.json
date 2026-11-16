@@ -1,5 +1,5 @@
 {
-  "timestamp": 1794804860414,
+  "timestamp": 1794805105323,
   "gestores": [
     {
       "id": "G-1",
@@ -595,17 +595,18 @@
         {
           "id": "it-asotzp8f",
           "producto": "piezas",
-          "cantidad": 4,
+          "cantidad": 1,
           "tipoEquipo": "Pequeño",
           "precioVenta": 25,
           "comisionUnitCUP": 1500,
           "comisionTotalCUP": 6000
         }
       ],
-      "totalVenta": 100,
-      "granComisionCUP": 6000,
+      "totalVenta": 25,
+      "granComisionCUP": 1500,
       "estadoComision": "PENDIENTE",
-      "createdAt": 1794803596297
+      "createdAt": 1794803596297,
+      "updatedAt": 1794805105322
     },
     {
       "id": "V-1794803596297-1w65ao",
