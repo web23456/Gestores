@@ -1,5 +1,5 @@
 {
-  "timestamp": 1794806862760,
+  "timestamp": 1794806963912,
   "gestores": [
     {
       "id": "G-1",
@@ -8417,9 +8417,15 @@
         }
       ],
       "totalVenta": 30,
-      "granComisionCUP": 1500,
+      "granComisionCUP": 0,
       "estadoComision": "PENDIENTE",
-      "createdAt": 1793076690446
+      "createdAt": 1793076690446,
+      "descuentoGestor": {
+        "monto": 2800,
+        "motivo": "Descuento por incidencia en vale",
+        "moneda": "CUP",
+        "fecha": "2026-11-16T05:29:23.912Z"
+      }
     },
     {
       "id": "V-1793076690446-h90pot",
