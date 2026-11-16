@@ -1,5 +1,5 @@
 {
-  "timestamp": 1794805105323,
+  "timestamp": 1794805236897,
   "gestores": [
     {
       "id": "G-1",
@@ -445,22 +445,32 @@
       "clienteCI": "",
       "clienteTelefono": "52637729",
       "direccion": "Georgia 101 entre constitución y coliseo la palma arroyó naranjo",
-      "rawTextoWhatsApp": "[15/11 5:12 p. m.] Mi Amor: 📝*𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 comercial* *(RECOGER EN EL LOCAL)*\n🩵 *𝐅𝐞𝐜𝐡𝐚*: 15/11\n🩵 *Nombre del Cliente*: Eriberto\n🩵 *#De teléfono del Cliente*: 52637729\n🩵 *𝐏𝐞𝐝𝐢𝐝𝐨*: sartén eléctrico \n🩵 *𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝*: 1\n🩵 *𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨*: 32 USD\n🩵 *𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨*: USD\n🩵 *𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫*: \n🩵 *𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 comercial*: Modesta Hernández\n🩵 *# De teléfono del comercial: 56698547\n\nLa direcciones Georgia 101 entre constitución y coliseo la palma arroyó naranjo\n\nEn el semaforo de la palma cojes la calzada porvenir y subes 2 cuadras hasta llegar a la tienda que hace esquina y dobla mano derecha (en dirección a mantilla) y subes dos cuadras para arriba al frente de un platanar casa en alto",
+      "rawTextoWhatsApp": "[15/11 5:12 p. m.] Mi Amor: 📝*𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 comercial* *(RECOGER EN EL LOCAL)*\n🩵 *𝐅𝐞𝐜𝐡𝐚*: 15/11\n🩵 *Nombre del Cliente*: Eriberto\n🩵 *#De teléfono del Cliente*: 52637729\n🩵 *𝐏𝐞𝐝𝐢𝐝𝐨*: sartén eléctrico y un juego de sartenes\n🩵 *𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝*: 1 y 1\n🩵 *𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨*: 32 USD\n🩵 *𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨*: USD\n🩵 *𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫*: \n🩵 *𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 comercial*: Modesta Hernández\n🩵 *# De teléfono del comercial: 56698547\n\nLa direcciones Georgia 101 entre constitución y coliseo la palma arroyó naranjo\n\nEn el semaforo de la palma cojes la calzada porvenir y subes 2 cuadras hasta llegar a la tienda que hace esquina y dobla mano derecha (en dirección a mantilla) y subes dos cuadras para arriba al frente de un platanar casa en alto",
       "items": [
         {
-          "id": "it-39mtt851",
+          "id": "it-w2j3u5vo",
           "producto": "sartén eléctrico",
           "cantidad": 1,
           "tipoEquipo": "Pequeño",
           "precioVenta": 32,
           "comisionUnitCUP": 1500,
           "comisionTotalCUP": 1500
+        },
+        {
+          "id": "it-1jvsof0e",
+          "producto": "un juego de sartenes",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 25,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
         }
       ],
-      "totalVenta": 32,
-      "granComisionCUP": 1500,
+      "totalVenta": 57,
+      "granComisionCUP": 3000,
       "estadoComision": "PENDIENTE",
-      "createdAt": 1794803596298
+      "createdAt": 1794803596298,
+      "updatedAt": 1794805236897
     },
     {
       "id": "V-1794803596297-w6mg4u",
