@@ -1,5 +1,5 @@
 {
-  "timestamp": 1794805882344,
+  "timestamp": 1794806804248,
   "gestores": [
     {
       "id": "G-1",
@@ -3450,7 +3450,7 @@
       "rawTextoWhatsApp": "[10/11 9:21 p. m.] Tata: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬  comerciales (𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: 11 nov 26 \n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Sandy \n✨ CI : \n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 5 3582187\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente :Edificio b41 apto 9 zona 5 Alamar\n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: Olla Reyna RCA y Olla arrocera 1.8 L\n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1y1 \n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:52Usd y 27 USd \n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:Usd \n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: 3000\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 52 usd + 27usd + 2500 cup=100usd 2500cup\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: 21 Usd\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:Elizabeth Martínez \n ✨ #De teléfono del Gestor:56974248\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:500 cup",
       "items": [
         {
-          "id": "it-eiv9vqc0",
+          "id": "it-csj0i9wm",
           "producto": "Olla Reyna RCA",
           "cantidad": 1,
           "tipoEquipo": "Pequeño",
@@ -3459,7 +3459,7 @@
           "comisionTotalCUP": 1500
         },
         {
-          "id": "it-60l1niuu",
+          "id": "it-qkkg51kh",
           "producto": "Olla arrocera 1.8 L",
           "cantidad": 1,
           "tipoEquipo": "Pequeño",
@@ -3476,7 +3476,8 @@
         "moneda": "CUP"
       },
       "estadoComision": "PENDIENTE",
-      "createdAt": 1794664591518
+      "createdAt": 1794664591518,
+      "updatedAt": 1794806804247
     },
     {
       "id": "V-1794664591518-x6npho",
@@ -11144,7 +11145,7 @@
       "createdAt": 1792294625637
     }
   ],
-  "semanaActiva": "2026-W43",
+  "semanaActiva": "2026-W45",
   "config": {
     "comisionPequeno": 1500,
     "comisionGrande": 2500,
