@@ -1,5 +1,5 @@
 {
-  "timestamp": 1794861487328,
+  "timestamp": 1794861575354,
   "gestores": [
     {
       "id": "G-1",
@@ -11164,7 +11164,7 @@
       "createdAt": 1792294625637
     }
   ],
-  "semanaActiva": "2026-W42",
+  "semanaActiva": "2026-W45",
   "config": {
     "comisionPequeno": 1500,
     "comisionGrande": 2500,
