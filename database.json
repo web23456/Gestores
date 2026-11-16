@@ -1,5 +1,5 @@
 {
-  "timestamp": 1794807109355,
+  "timestamp": 1794807202816,
   "gestores": [
     {
       "id": "G-1",
@@ -8433,10 +8433,10 @@
       "estadoComision": "PENDIENTE",
       "createdAt": 1793076690446,
       "descuentoGestor": {
-        "monto": 2800,
+        "monto": 2000,
         "motivo": "Descuento por incidencia en vale",
         "moneda": "CUP",
-        "fecha": "2026-11-16T05:29:23.912Z"
+        "fecha": "2026-11-16T05:33:22.815Z"
       }
     },
     {
