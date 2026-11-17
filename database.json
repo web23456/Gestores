@@ -1,5 +1,5 @@
 {
-  "timestamp": 1794884732181,
+  "timestamp": 1794886138691,
   "gestores": [
     {
       "id": "G-1",
@@ -4286,7 +4286,7 @@
         {
           "id": "it-bshy4nu7",
           "producto": "Batidora Hamilton",
-          "cantidad": 2,
+          "cantidad": 1,
           "tipoEquipo": "Pequeño",
           "precioVenta": 35,
           "comisionUnitCUP": 1500,
@@ -4302,10 +4302,11 @@
           "comisionTotalCUP": 1500
         }
       ],
-      "totalVenta": 122,
-      "granComisionCUP": 4500,
+      "totalVenta": 87,
+      "granComisionCUP": 3000,
       "estadoComision": "PENDIENTE",
-      "createdAt": 1794664591516
+      "createdAt": 1794664591516,
+      "updatedAt": 1794886138691
     },
     {
       "id": "V-1794664591515-hqekyg",
