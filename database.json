@@ -1,5 +1,5 @@
 {
-  "timestamp": 1794884261881,
+  "timestamp": 1794884656116,
   "gestores": [
     {
       "id": "G-1",
@@ -957,15 +957,6 @@
           "comisionTotalCUP": 3000
         },
         {
-          "id": "it-w9w1knol",
-          "producto": "Ventilador de pedestal 10  pulgada",
-          "cantidad": 2,
-          "tipoEquipo": "Pequeño",
-          "precioVenta": 28,
-          "comisionUnitCUP": 1500,
-          "comisionTotalCUP": 3000
-        },
-        {
           "id": "it-qeo6s4ij",
           "producto": "Licuadora trituradora",
           "cantidad": 1,
@@ -975,10 +966,11 @@
           "comisionTotalCUP": 1500
         }
       ],
-      "totalVenta": 252,
-      "granComisionCUP": 13500,
+      "totalVenta": 196,
+      "granComisionCUP": 10500,
       "estadoComision": "PENDIENTE",
-      "createdAt": 1794884261879
+      "createdAt": 1794884261879,
+      "updatedAt": 1794884656115
     },
     {
       "id": "V-1794884261878-4v3epk",
