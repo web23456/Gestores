@@ -1,5 +1,5 @@
 {
-  "timestamp": 1794930123380,
+  "timestamp": 1794930199625,
   "gestores": [
     {
       "id": "G-1",
@@ -382,12 +382,13 @@
       "id": "G-1794664591520-povt",
       "nombre": "Yany guinera",
       "username": "yany",
-      "passwordHash": "0cbba1357815e3c38bd370451e27aaaf127e19290ca6a0a550de830b3ff2ab49",
+      "passwordHash": "155638fc30b5a533629495c597172f7a29d450d7f8b9e6438a2787ffacb1d472",
       "telefono": "53466318",
       "telefonoSecundario": "",
       "zona": "Mensajería / Redes",
       "foto": "",
-      "activo": true
+      "activo": true,
+      "documentoIdentidad": "87100210174"
     },
     {
       "id": "G-1794664591521-6rf8",
@@ -11858,7 +11859,7 @@
       "createdAt": 1792294625637
     }
   ],
-  "semanaActiva": "2026-W44",
+  "semanaActiva": "2026-W45",
   "config": {
     "comisionPequeno": 1500,
     "comisionGrande": 2500,
