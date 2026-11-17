@@ -1,5 +1,5 @@
 {
-  "timestamp": 1794887975023,
+  "timestamp": 1794887993166,
   "gestores": [
     {
       "id": "G-1",
@@ -445,6 +445,44 @@
     }
   ],
   "vales": [
+    {
+      "id": "V-1794887993166-hhee6d",
+      "folio": "VAL-955526",
+      "fecha": "2026-11-13",
+      "semana": "2026-W45",
+      "moneda": "USD",
+      "gestorNombre": "Ileana Isabel",
+      "gestorTelefono": "59178023",
+      "clienteNombre": "Yalaine Navarro Oviedo",
+      "clienteCI": "82073007031",
+      "clienteTelefono": "58452887",
+      "direccion": "Centro Habana, Águila esq San Miguel.",
+      "rawTextoWhatsApp": "📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬(𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: 13/11/26\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Yalaine Navarro Oviedo\n✨ CI : 82073007031\n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 58452887\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente :Centro Habana, Águila esq San Miguel.\nCentro de trabajo: tienda en MN (venden productos de limpieza)\n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: juego de ollas de micropresión y batidora Hamilton beach \n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 2 y 1\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨: 25 USD + 37 USD\n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨: MN\n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: $2000\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: $80040 + $2000 (mensajería)\n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: \n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: Ileana \n ✨ #De teléfono del Gestor: 59178023\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:",
+      "items": [
+        {
+          "id": "it-sjbhdvxn",
+          "producto": "ollas de micropresión",
+          "cantidad": 2,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 25,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 3000
+        },
+        {
+          "id": "it-47k38tb3",
+          "producto": "batidora Hamilton beach",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 37,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 87,
+      "granComisionCUP": 4500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1794887993166
+    },
     {
       "id": "V-1794884261881-rp9jmb",
       "folio": "VAL-994602",
