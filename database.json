@@ -1,5 +1,5 @@
 {
-  "timestamp": 1794978897752,
+  "timestamp": 1794978918494,
   "gestores": [
     {
       "id": "G-1",
@@ -447,44 +447,6 @@
     }
   ],
   "vales": [
-    {
-      "id": "V-1794978897751-7hl39b",
-      "folio": "VAL-687246",
-      "fecha": "2026-11-13",
-      "semana": "2026-W45",
-      "moneda": "USD",
-      "gestorNombre": "Alys García",
-      "gestorTelefono": "52546107",
-      "clienteNombre": "Lisset",
-      "clienteCI": "",
-      "clienteTelefono": "5 6238133",
-      "direccion": "Avenida 1ra edificio 878, apto 19, entre calle 10 y Avenida Guanabacoa. Reparto Chibas",
-      "rawTextoWhatsApp": "📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬  comerciales (𝑴𝒆𝒏𝒔𝒂𝒋𝒆𝒓í𝒂)\n✨𝐅𝐞𝐜𝐡𝐚: 13 Noviembre / 26\n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Lisset \n✨ CI : \n✨ 𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:  5 6238133\n✨ 𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 cliente : Avenida 1ra edificio 878, apto 19, entre calle 10 y Avenida Guanabacoa. Reparto Chibas\n✨ 𝐏𝐞𝐝𝐢𝐝𝐨: Sartén eléctrico \nFreidora de Aire ESTELECTRIC \n\n✨ 𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1+1\n ✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:  32 y 48 USD \n✨ 𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨: USD \n✨ 𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: 2000 cup\n✨ 𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫: 80 USD \n✨ 𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: \n✨ 𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 comercial: Alys García \n ✨ #De teléfono del comercial: 52546107\n✨ 𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: no",
-      "items": [
-        {
-          "id": "it-j3dh3ah4",
-          "producto": "Sartén eléctrico",
-          "cantidad": 1,
-          "tipoEquipo": "Pequeño",
-          "precioVenta": 32,
-          "comisionUnitCUP": 1500,
-          "comisionTotalCUP": 1500
-        },
-        {
-          "id": "it-v8c8ysft",
-          "producto": "Freidora de Aire ESTELECTRIC",
-          "cantidad": 1,
-          "tipoEquipo": "Pequeño",
-          "precioVenta": 48,
-          "comisionUnitCUP": 1500,
-          "comisionTotalCUP": 1500
-        }
-      ],
-      "totalVenta": 80,
-      "granComisionCUP": 3000,
-      "estadoComision": "PENDIENTE",
-      "createdAt": 1794978897752
-    },
     {
       "id": "V-1794926160313-3ty0ip",
       "folio": "VAL-644441",
