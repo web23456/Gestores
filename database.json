@@ -1,5 +1,5 @@
 {
-  "timestamp": 1795048101258,
+  "timestamp": 1795048203924,
   "gestores": [
     {
       "id": "G-1",
@@ -2522,21 +2522,13 @@
           "precioVenta": 35,
           "comisionUnitCUP": 1500,
           "comisionTotalCUP": 1500
-        },
-        {
-          "id": "it-m6xdnwvx",
-          "producto": "infrarojo 3500W",
-          "cantidad": 1,
-          "tipoEquipo": "Pequeño",
-          "precioVenta": 30,
-          "comisionUnitCUP": 1500,
-          "comisionTotalCUP": 1500
         }
       ],
-      "totalVenta": 65,
-      "granComisionCUP": 3000,
+      "totalVenta": 35,
+      "granComisionCUP": 1500,
       "estadoComision": "PENDIENTE",
-      "createdAt": 1794803596289
+      "createdAt": 1794803596289,
+      "updatedAt": 1795048203924
     },
     {
       "id": "V-1794803596289-38pxzd",
