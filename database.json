@@ -1,5 +1,5 @@
 {
-  "timestamp": 1795048203924,
+  "timestamp": 1795048629810,
   "gestores": [
     {
       "id": "G-1",
@@ -1388,11 +1388,11 @@
       "clienteCI": "",
       "clienteTelefono": "+53 5 8125982",
       "direccion": "Georgia 101 entre constitución y coliseo la palma arroyó naranjo",
-      "rawTextoWhatsApp": "[15/11 10:46 p. m.] Mi Amor: 📝*𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 comercial* *(RECOGER EN EL LOCAL)*\n🩵 *𝐅𝐞𝐜𝐡𝐚*: 16/11\n🩵 *Nombre del Cliente*: katya\n🩵 *#De teléfono del Cliente*: +53 5 8125982\n🩵 *𝐏𝐞𝐝𝐢𝐝𝐨*: 1\n🩵 *𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝*: \n🩵 *𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨*: 40\n🩵 *𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨*: usd \n🩵 *𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫*: 40\n🩵 *𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 comercial*: Elizabeth Laurencio \n🩵 *# De teléfono del comercial: 54968100 \n\nLa direcciones Georgia 101 entre constitución y coliseo la palma arroyó naranjo\n\nEn el semaforo de la palma cojes la calzada porvenir y subes 2 cuadras hasta llegar a la tienda que hace esquina y dobla mano derecha (en dirección a mantilla) y subes dos cuadras para arriba al frente de un platanar casa en alto",
+      "rawTextoWhatsApp": "[15/11 10:46 p. m.] Mi Amor: 📝*𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 comercial* *(RECOGER EN EL LOCAL)*\n🩵 *𝐅𝐞𝐜𝐡𝐚*: 16/11\n🩵 *Nombre del Cliente*: katya\n🩵 *#De teléfono del Cliente*: +53 5 8125982\n🩵 *𝐏𝐞𝐝𝐢𝐝𝐨*: Fogon de Petroleo\n🩵 *𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝*:1\n🩵 *𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨*: 40\n🩵 *𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨*: usd \n🩵 *𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫*: 40\n🩵 *𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 comercial*: Elizabeth Laurencio \n🩵 *# De teléfono del comercial: 54968100 \n\nLa direcciones Georgia 101 entre constitución y coliseo la palma arroyó naranjo\n\nEn el semaforo de la palma cojes la calzada porvenir y subes 2 cuadras hasta llegar a la tienda que hace esquina y dobla mano derecha (en dirección a mantilla) y subes dos cuadras para arriba al frente de un platanar casa en alto",
       "items": [
         {
-          "id": "it-u07m3riz",
-          "producto": "1",
+          "id": "it-18u18k4r",
+          "producto": "Fogon de Petroleo",
           "cantidad": 1,
           "tipoEquipo": "Pequeño",
           "precioVenta": 40,
@@ -1403,7 +1403,8 @@
       "totalVenta": 40,
       "granComisionCUP": 1500,
       "estadoComision": "PENDIENTE",
-      "createdAt": 1794884261880
+      "createdAt": 1794884261880,
+      "updatedAt": 1795048541324
     },
     {
       "id": "V-1794884261878-tyqvic",
@@ -12215,7 +12216,7 @@
       "createdAt": 1792294625637
     }
   ],
-  "semanaActiva": "2026-W45",
+  "semanaActiva": "2026-W44",
   "config": {
     "comisionPequeno": 1500,
     "comisionGrande": 2500,
