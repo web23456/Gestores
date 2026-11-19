@@ -1,5 +1,5 @@
 {
-  "timestamp": 1795111914683,
+  "timestamp": 1795112489394,
   "gestores": [
     {
       "id": "G-1",
@@ -6432,7 +6432,7 @@
       "semana": "2026-W44",
       "moneda": "USD",
       "gestorNombre": "la titi",
-      "gestorTelefono": "53328026",
+      "gestorTelefono": "5353328026",
       "clienteNombre": "yaima Peláez Fabiana",
       "clienteCI": "79090707550",
       "clienteTelefono": "53294196",
@@ -6442,7 +6442,7 @@
         {
           "id": "it-36vqwgez",
           "producto": "💥Combo arrocera estelectric",
-          "cantidad": 2,
+          "cantidad": 1,
           "tipoEquipo": "Pequeño",
           "precioVenta": 25,
           "comisionUnitCUP": 1500,
@@ -6468,16 +6468,7 @@
         },
         {
           "id": "it-oo0hr2ay",
-          "producto": "una cazuela con tapa los juegos naranja",
-          "cantidad": 1,
-          "tipoEquipo": "Pequeño",
-          "precioVenta": 0,
-          "comisionUnitCUP": 1500,
-          "comisionTotalCUP": 1500
-        },
-        {
-          "id": "it-26eoq1zo",
-          "producto": "\udca5 2 combos",
+          "producto": "Juegos sartenes",
           "cantidad": 1,
           "tipoEquipo": "Pequeño",
           "precioVenta": 0,
@@ -6485,10 +6476,11 @@
           "comisionTotalCUP": 1500
         }
       ],
-      "totalVenta": 148,
-      "granComisionCUP": 9000,
+      "totalVenta": 123,
+      "granComisionCUP": 6000,
       "estadoComision": "PENDIENTE",
-      "createdAt": 1794277992135
+      "createdAt": 1794277992135,
+      "updatedAt": 1795112489394
     },
     {
       "id": "V-1794277992135-6yhnok",
