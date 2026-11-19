@@ -1,5 +1,5 @@
 {
-  "timestamp": 1795049960400,
+  "timestamp": 1795050023195,
   "gestores": [
     {
       "id": "G-1",
@@ -807,9 +807,15 @@
         }
       ],
       "totalVenta": 37,
-      "granComisionCUP": 1500,
+      "granComisionCUP": 0,
       "estadoComision": "PENDIENTE",
-      "createdAt": 1794979007122
+      "createdAt": 1794979007122,
+      "descuentoGestor": {
+        "monto": 1500,
+        "motivo": "Por un error en la comision anterior eran 7500lo que tenia que cobrar y cobro 9000",
+        "moneda": "CUP",
+        "fecha": "2026-11-19T01:00:23.190Z"
+      }
     },
     {
       "id": "V-1794926160313-3ty0ip",
