@@ -1,5 +1,5 @@
 {
-  "timestamp": 1795194678755,
+  "timestamp": 1795194765433,
   "gestores": [
     {
       "id": "G-1",
@@ -851,15 +851,6 @@
           "comisionTotalCUP": 1500
         },
         {
-          "id": "it-todvmdkc",
-          "producto": "modelo calabacita  naranja",
-          "cantidad": 1,
-          "tipoEquipo": "Pequeño",
-          "precioVenta": 35,
-          "comisionUnitCUP": 1500,
-          "comisionTotalCUP": 1500
-        },
-        {
           "id": "it-3a5evdyu",
           "producto": "cocina infrarroja Garuda 3500 w",
           "cantidad": 1,
@@ -869,10 +860,11 @@
           "comisionTotalCUP": 1500
         }
       ],
-      "totalVenta": 90,
-      "granComisionCUP": 4500,
+      "totalVenta": 55,
+      "granComisionCUP": 3000,
       "estadoComision": "PENDIENTE",
-      "createdAt": 1795194138007
+      "createdAt": 1795194138007,
+      "updatedAt": 1795194765433
     },
     {
       "id": "V-1795194138007-mi57a5",
