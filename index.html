@@ -16506,6 +16506,132 @@ function guardarEnCacheRobusto() {
       return { monto: monto, motivo: linea, moneda: "CUP" };
     }
 
+    // =========================================================
+    // DICCIONARIO APRENDIDO DE PRODUCTOS REALES Y EXISTENTES
+    // Aprende dinámicamente de todos los vales registrados en la base de datos
+    // y corrige errores ortográficos, abreviaciones y nombres mal escritos.
+    // =========================================================
+    function obtenerCatalogoProductosAprendido() {
+      var catalogoBase = [
+        'ventilador de pared',
+        'Olla Reina Houslux',
+        'ventilador de pedestal',
+        'olla reina',
+        'batidora',
+        'freidora de aire',
+        'arrocera',
+        'Arrocera estelectric',
+        'sartén eléctrico',
+        'olla arrocera',
+        'ventiladores de pared Dawang',
+        'cafetera',
+        'fogón de petróleo',
+        'ventilador recargable',
+        'olla reina jm',
+        'olla reina houselux',
+        'Plancha de ropa',
+        'olla Reina RCA',
+        'cocina infraroja 3500W garuda',
+        'cocina infrarroja',
+        'olla reina roja',
+        'cocina de petróleo',
+        'Sartén Eléctrico',
+        'Cafetera eléctrica',
+        'juego de sartenes',
+        'Ventiladores de pared',
+        'olla reina 7 litros',
+        'fogones de petróleo',
+        'ventilador pared',
+        'cafetera eléctrica',
+        'set de ollas de micropresión',
+        'Olla Reyna Bravoking',
+        'Olla reina',
+        'ventilador 3 en 1',
+        'sandwichera',
+        'extractor de grasa',
+        'dispensador de agua',
+        'televisor'
+      ];
+
+      var productosMap = new Map();
+      catalogoBase.forEach(function(p) {
+        var n = p.toLowerCase().trim();
+        if (n && !productosMap.has(n)) productosMap.set(n, p);
+      });
+
+      // Aprendizaje dinámico: Leer productos reales de todos los vales existentes en appState
+      if (typeof appState !== 'undefined' && Array.isArray(appState.vales)) {
+        appState.vales.forEach(function(v) {
+          if (Array.isArray(v.items)) {
+            v.items.forEach(function(it) {
+              var p = (it.producto || '').trim();
+              if (!p) return;
+              var pLow = p.toLowerCase();
+              // Descartar si solo es la palabra combo
+              if (/^(?:un\s+)?combo(?:\s+triple|\s+familiar|\s+de\s+cocina)?$/i.test(pLow)) return;
+              if (pLow.length >= 3 && !productosMap.has(pLow)) {
+                productosMap.set(pLow, p);
+              }
+            });
+          }
+        });
+      }
+
+      return Array.from(productosMap.values());
+    }
+
+    // Corrige un nombre de producto usando el catálogo aprendido y distancia Levenshtein
+    function corregirNombreProductoAprendido(nombreOriginal) {
+      if (!nombreOriginal || typeof nombreOriginal !== 'string') return '';
+      var limpio = nombreOriginal
+        .replace(/\b(?:un\s+combo\s+de|combo\s+triple\s*:|combo\s+de|combo|cobo)\b/gi, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+
+      if (!limpio || /^(?:combo|cobo)$/i.test(limpio)) return '';
+
+      var normOriginal = normalizarCadenaVale(limpio);
+      var catalogo = obtenerCatalogoProductosAprendido();
+
+      var mejorMatch = null;
+      var mejorScore = 0;
+
+      for (var i = 0; i < catalogo.length; i++) {
+        var prodReal = catalogo[i];
+        var normReal = normalizarCadenaVale(prodReal);
+        if (!normReal) continue;
+
+        // Coincidencia exacta normalizada
+        if (normOriginal === normReal) {
+          return prodReal;
+        }
+
+        // Si uno contiene al otro con longitud sustancial
+        if (normOriginal.length >= 5 && normReal.includes(normOriginal)) {
+          var sc = normOriginal.length / normReal.length;
+          if (sc > mejorScore) { mejorScore = sc; mejorMatch = prodReal; }
+        } else if (normReal.length >= 5 && normOriginal.includes(normReal)) {
+          var sc = normReal.length / normOriginal.length;
+          if (sc > mejorScore) { mejorScore = sc; mejorMatch = prodReal; }
+        }
+
+        // Similitud de Levenshtein
+        var sim = calcularSimilitudLevenshtein(normOriginal, normReal);
+        if (sim > mejorScore) {
+          mejorScore = sim;
+          mejorMatch = prodReal;
+        }
+      }
+
+      // Si la similitud con un producto real es >= 68%, corregir automáticamente
+      if (mejorMatch && mejorScore >= 0.68) {
+        return mejorMatch;
+      }
+
+      // Si es un producto nuevo añadido recientemente, se conserva su nombre original limpio
+      return limpio;
+    }
+
     function parsearFacturaTexto(raw) {
       const origLines = (raw || '').split(/\r?\n/).map(function(l) { return l.trim(); }).filter(Boolean);
       
@@ -16723,9 +16849,11 @@ function guardarEnCacheRobusto() {
       // ALGORITMO ANTI-FALLOS CON ENTENDIMIENTO DE LENGUAJE NATURAL
       function segmentarEquiposInteligente(texto) {
         let limpio = (texto || '')
-          .replace(/^Un\s+combo\s+(?:de\s+)?/i, '')
-          .replace(/^combo\s+(?:triple\s*:\s*|de\s+)?/i, '')
+          .replace(/^Un\s+c[oó]m?bo\s+(?:de\s+)?/i, '')
+          .replace(/^c[oó]m?bo\s+(?:triple\s*:\s*|de\s+)?/i, '')
           .replace(/^juego\s+de\s+/i, '')
+          .replace(/\b(?:c[oó]m?bo|cobo|combos)\b/gi, '')
+          .replace(/\s{2,}/g, ' ')
           .trim();
 
         limpio = limpio.replace(/\b(?:todo\s+en\s+negro|en\s+color\s+\w+|color\s+\w+)\b/gi, '').trim();
@@ -16808,6 +16936,7 @@ function guardarEnCacheRobusto() {
         for (let i = 0; i < expandedSegments.length; i++) {
           let seg = expandedSegments[i].trim();
           if (!seg) continue;
+          if (/^(?:c[oó]m?bo|cobo|combos)$/i.test(seg.replace(/^[\d\s\*\-\:]+/,'').trim())) continue;
 
           seg = seg.replace(/^(\d+)([a-zA-ZáéíóúÁÉÍÓÚñÑ])/, function(m, p1, p2) {
             return p1 + ' ' + p2;
@@ -16860,9 +16989,15 @@ function guardarEnCacheRobusto() {
         }
       }
 
+      // Filtrar previamente cualquier línea vacía o que sea simplemente la palabra combo/cobo
+      linesToProcess = linesToProcess.filter(function(l) {
+        const c = (l || '').replace(/^[\d\s\*\-\:]+/, '').trim().toLowerCase();
+        return c && !/^(?:c[oó]m?bo|cobo|combos)$/i.test(c);
+      });
+
       const items = [];
       const totalEquiposDetectados = linesToProcess.length;
-      const esCombo = /combo/i.test(raw);
+      const esCombo = /c[oó]m?bo/i.test(raw);
       const tieneUnicoPrecioGlobal = (individualPrices.length === 1 && (totalEquiposDetectados > 1 || esCombo));
 
       for (let lIdx = 0; lIdx < linesToProcess.length; lIdx++) {
@@ -16875,8 +17010,18 @@ function guardarEnCacheRobusto() {
           cant = parseInt(mQty[1], 10);
           cleanProd = mQty[2].trim();
         } else if (cantidadesRespectivas.length > lIdx) {
-          // Asignación respectiva por posición
+          // Corroboración de cantidad por posición desde el campo 'Cantidad'
           cant = cantidadesRespectivas[lIdx] || 1;
+        } else if (cantidadesRespectivas.length === 1 && totalEquiposDetectados === 1) {
+          cant = cantidadesRespectivas[0] || 1;
+        }
+
+        // Aplicar aprendizaje y autocorrección de productos existentes y reales
+        cleanProd = corregirNombreProductoAprendido(cleanProd);
+
+        // Descartar si el nombre final resultante es 'combo' o 'cobo'
+        if (!cleanProd || /^(?:c[oó]m?bo|cobo|combos)$/i.test(cleanProd.toLowerCase())) {
+          continue;
         }
 
         const clasif = clasificarEquipo(cleanProd);
