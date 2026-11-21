@@ -15994,6 +15994,14 @@ function guardarEnCacheRobusto() {
           }
         }
 
+        // REGLA: Mostrar ÚNICAMENTE gestores que vendieron (tienen vales/ventas/comisiones) o tienen deudas (descuentos/penalizaciones)
+        // Ocultar a los que tienen 0 ventas/comisiones y 0 deudas/descuentos
+        const tieneVentasOComision = (valesSemanaGestor.length > 0) || (ventasUSDSemana > 0) || (comisionTotalSemanaCUP > 0) || (equiposSemana > 0);
+        const tieneDeudasODescuentos = (descuentosTotalSemanaCUP > 0);
+        if (!tieneVentasOComision && !tieneDeudasODescuentos) {
+          continue;
+        }
+
         const card = document.createElement('div');
         card.className = 'bg-zinc-950/90 border border-yellow-500/20 hover:border-yellow-500/20 rounded-2xl overflow-hidden shadow-lg transition-all';
         
