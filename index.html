@@ -16511,6 +16511,71 @@ function guardarEnCacheRobusto() {
     // Aprende dinámicamente de todos los vales registrados en la base de datos
     // y corrige errores ortográficos, abreviaciones y nombres mal escritos.
     // =========================================================
+    // Aprende y memoriza los precios individuales en dólares a partir de vales con un solo producto
+    function obtenerPreciosProductosAprendidos() {
+      var preciosMap = new Map();
+      if (typeof appState !== 'undefined' && Array.isArray(appState.vales)) {
+        appState.vales.forEach(function(v) {
+          if (Array.isArray(v.items) && v.items.length === 1) {
+            var it = v.items[0];
+            var pRaw = (it.producto || '').trim();
+            var cant = parseInt(it.cantidad, 10) || 1;
+            var pVenta = parseFloat(it.precioVenta) || 0;
+            if (pRaw && pVenta > 0) {
+              var pUnit = Number((pVenta / (cant > 0 ? cant : 1)).toFixed(2));
+              var pNorm = normalizarCadenaVale(pRaw);
+              if (pNorm && !/^(?:c[oó]m?bo|cobo|combos)$/i.test(pNorm)) {
+                if (!preciosMap.has(pNorm)) {
+                  preciosMap.set(pNorm, []);
+                }
+                preciosMap.get(pNorm).push(pUnit);
+              }
+            }
+          }
+        });
+      }
+      return preciosMap;
+    }
+
+    // Estima o predice el precio en USD aprendido para un producto
+    function estimarPrecioProductoAprendido(nombreProd) {
+      if (!nombreProd) return 0;
+      var norm = normalizarCadenaVale(nombreProd);
+      if (!norm) return 0;
+      var mapaPrecios = obtenerPreciosProductosAprendidos();
+
+      // 1. Coincidencia exacta normalizada
+      if (mapaPrecios.has(norm)) {
+        var arr = mapaPrecios.get(norm);
+        return arr[arr.length - 1]; // Último precio memorizado más actualizado
+      }
+
+      // 2. Coincidencia por similitud Levenshtein o contención
+      var mejorScore = 0;
+      var mejorPrecio = 0;
+      mapaPrecios.forEach(function(arr, prodNorm) {
+        var precioActual = arr[arr.length - 1];
+        if (norm.length >= 5 && (prodNorm.includes(norm) || norm.includes(prodNorm))) {
+          var sc = Math.min(norm.length, prodNorm.length) / Math.max(norm.length, prodNorm.length);
+          if (sc > mejorScore) {
+            mejorScore = sc;
+            mejorPrecio = precioActual;
+          }
+        }
+        var sim = calcularSimilitudLevenshtein(norm, prodNorm);
+        if (sim > mejorScore) {
+          mejorScore = sim;
+          mejorPrecio = precioActual;
+        }
+      });
+
+      if (mejorScore >= 0.70 && mejorPrecio > 0) {
+        return mejorPrecio;
+      }
+
+      return 0;
+    }
+
     function obtenerCatalogoProductosAprendido() {
       var catalogoBase = [
         'ventilador de pared',
@@ -17060,15 +17125,21 @@ function guardarEnCacheRobusto() {
             precio = individualPrices[0];
           }
 
-          // Paso 3: Fallback de catálogo si no vino precio
+          // Paso 3: Fallback inteligente aprendido de precios memorizados de vales individuales
           if (precio === 0) {
-            if (prodLower.includes('reina')) precio = 47;
-            else if (prodLower.includes('arrocera')) precio = 28;
-            else if (prodLower.includes('batidora') || prodLower.includes('licuadora')) precio = 25;
-            else if (prodLower.includes('infraro') || prodLower.includes('fogon') || prodLower.includes('inflaro') || prodLower.includes('cocina')) precio = 30;
-            else if (prodLower.includes('pedestal') || prodLower.includes('ciclon')) precio = 25;
-            else if (prodLower.includes('pared') || prodLower.includes('paret')) precio = 30;
-            else if (prodLower.includes('cafetera')) precio = 27;
+            var precioAprendido = estimarPrecioProductoAprendido(cleanProd);
+            if (precioAprendido > 0) {
+              precio = precioAprendido;
+            } else {
+              // Si es un producto totalmente nuevo o no registrado aún, recurrir al catálogo base
+              if (prodLower.includes('reina')) precio = 47;
+              else if (prodLower.includes('arrocera')) precio = 28;
+              else if (prodLower.includes('batidora') || prodLower.includes('licuadora')) precio = 25;
+              else if (prodLower.includes('infraro') || prodLower.includes('fogon') || prodLower.includes('inflaro') || prodLower.includes('cocina')) precio = 30;
+              else if (prodLower.includes('pedestal') || prodLower.includes('ciclon')) precio = 25;
+              else if (prodLower.includes('pared') || prodLower.includes('paret')) precio = 30;
+              else if (prodLower.includes('cafetera')) precio = 27;
+            }
           }
         }
 
