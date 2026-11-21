@@ -15835,8 +15835,11 @@ function guardarEnCacheRobusto() {
 
     function obtenerValesFiltradosActivos() {
       if (filtroRangoFechasActivo && (filtroRangoFechasActivo.desde || filtroRangoFechasActivo.hasta)) {
-        var d = filtroRangoFechasActivo.desde || '1970-01-01';
-        var h = filtroRangoFechasActivo.hasta || '2099-12-31';
+        var rawD = filtroRangoFechasActivo.desde || '1970-01-01';
+        var rawH = filtroRangoFechasActivo.hasta || '2099-12-31';
+        // Auto-ordenar inteligentemente sin importar cuál se seleccionó primero
+        var d = rawD <= rawH ? rawD : rawH;
+        var h = rawD <= rawH ? rawH : rawD;
         return appState.vales.filter(function(v) {
           if (!v.fecha) return false;
           return v.fecha >= d && v.fecha <= h;
@@ -15858,9 +15861,11 @@ function guardarEnCacheRobusto() {
         return;
       }
 
+      // Si ambas fechas están definidas y 'desde' es mayor que 'hasta', se auto-ajustan sin alertas ni bloqueos molestos
       if (desde && hasta && desde > hasta) {
-        alert('⚠️ La fecha "Desde" no puede ser posterior a la fecha "Hasta".');
-        return;
+        var temp = desde;
+        desde = hasta;
+        hasta = temp;
       }
 
       filtroRangoFechasActivo = { desde: desde, hasta: hasta };
