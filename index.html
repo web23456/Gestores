@@ -15661,6 +15661,38 @@ function guardarEnCacheRobusto() {
       guardarEnCacheRobusto();
       actualizarSelectorSemanas();
       verificarSesionPrevia();
+
+      // FILTRO INTELIGENTE DE FECHA POR DEFECTO (AÑO, MES Y DÍA DE HOY)
+      // En modo escritorio / bot se activa con la fecha actual del sistema
+      try {
+        var hoyObj = new Date();
+        var yyyy = hoyObj.getFullYear();
+        var mm = String(hoyObj.getMonth() + 1).padStart(2, '0');
+        var dd = String(hoyObj.getDate()).padStart(2, '0');
+        var fechaHoyStr = yyyy + '-' + mm + '-' + dd;
+
+        var inputDesde = document.getElementById('filtro-fecha-desde');
+        var inputHasta = document.getElementById('filtro-fecha-hasta');
+        if (inputDesde && inputHasta) {
+          inputDesde.value = fechaHoyStr;
+          inputHasta.value = fechaHoyStr;
+          filtroRangoFechasActivo = { desde: fechaHoyStr, hasta: fechaHoyStr };
+
+          var btnLimpiar = document.getElementById('btn-limpiar-rango-fechas');
+          if (btnLimpiar) btnLimpiar.classList.remove('hidden');
+
+          var badgeActivo = document.getElementById('badge-filtro-activo');
+          var badgeTexto = document.getElementById('badge-filtro-texto');
+          if (badgeActivo) badgeActivo.classList.remove('hidden');
+          if (badgeTexto) badgeTexto.textContent = 'Día: ' + fechaHoyStr;
+
+          var titSem = document.getElementById('titulo-semana-activa');
+          if (titSem) titSem.textContent = 'Día: ' + fechaHoyStr;
+        }
+      } catch (errFecha) {
+        console.warn('No se pudo aplicar filtro de fecha inicial:', errFecha);
+      }
+
       renderizarTodo();
       window.appState = appState;
     }
