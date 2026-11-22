@@ -14730,7 +14730,7 @@
         </button>
         <button type="button" onclick="avanzarAFirmaYCarnetLiquidacion()" class="px-5 py-2 rounded-xl bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-400 hover:to-amber-500 text-white font-bold text-xs shadow-lg shadow-yellow-950/50 flex items-center gap-1.5 transition-all cursor-pointer">
           <i data-lucide="file-signature" class="w-4 h-4"></i>
-          <span>Continuar: Carnet y Firma Digital ➔</span>
+          <span>Continuar: Firma y Conformidad ➔</span>
         </button>
       </div>
     </div>
@@ -14749,14 +14749,14 @@
             <i data-lucide="file-check-2" class="w-5 h-5"></i>
           </div>
           <div>
-            <h3 class="font-black text-white text-base">Hoja Oficial de Liquidación y Firma</h3>
-            <p class="text-[11px] text-yellow-300/70">Requisito obligatorio: Adjuntar foto de carnet y firma digital</p>
+            <h3 class="font-black text-white text-base">Confirmación de Liquidación y Firma</h3>
+            <p class="text-[11px] text-yellow-300/70">Firma para confirmar la recepción del pago sin descargas ni fotos</p>
           </div>
         </div>
         <div class="flex items-center gap-2">
-          <button type="button" onclick="procesarFirmaYGenerarValeLiquidacion()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-300 hover:to-amber-400 text-black font-black text-xs shadow-lg flex items-center gap-1.5 transition-all cursor-pointer">
-            <i data-lucide="download" class="w-3.5 h-3.5 text-black"></i>
-            <span>Guardar y Descargar</span>
+          <button type="button" onclick="procesarFirmaYGenerarValeLiquidacion()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-black text-xs shadow-lg flex items-center gap-1.5 transition-all cursor-pointer">
+            <i data-lucide="check" class="w-3.5 h-3.5 text-white"></i>
+            <span>Confirmar Pago</span>
           </button>
           <button onclick="cerrarModal('modal-hoja-firma-semana')" class="text-yellow-300/70 hover:text-white p-1">
             <i data-lucide="x" class="w-5 h-5"></i>
@@ -14781,44 +14781,14 @@
           </div>
         </div>
 
-        <!-- 1. FOTO DE CARNET (OBLIGATORIO) -->
-        <div class="bg-zinc-900/60 border border-yellow-500/25 rounded-2xl p-4 space-y-3">
-          <div class="flex items-center justify-between">
-            <label class="font-extrabold text-white text-xs sm:text-sm flex items-center gap-2">
-              <i data-lucide="id-card" class="w-4 h-4 text-yellow-400"></i>
-              <span>1. Foto del Carnet de Identidad <span class="text-rose-400">*</span></span>
-            </label>
-            <span id="hoja-carnet-status" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30">
-              Pendiente
-            </span>
-          </div>
-          <p class="text-[11px] text-yellow-200/70 leading-relaxed">
-            Adjunta o toma una foto nítida de tu carnet de identidad o documento que acredite la recepción conforme de la comisión.
-          </p>
 
-          <div class="flex flex-col sm:flex-row items-center gap-3">
-            <label class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-300 border border-yellow-500/40 text-xs font-bold flex items-center justify-center gap-2 cursor-pointer transition-all">
-              <i data-lucide="upload" class="w-4 h-4"></i>
-              <span>Seleccionar o Tomar Foto</span>
-              <input type="file" id="hoja-input-carnet-file" accept="image/*" class="hidden" onchange="cargarFotoCarnetGestor(event)">
-            </label>
-            <button type="button" id="btn-eliminar-foto-carnet" onclick="eliminarFotoCarnetGestor()" class="hidden px-3 py-2 rounded-xl bg-rose-950/40 border border-rose-500/30 text-rose-300 hover:text-white text-xs font-semibold">
-              Quitar Foto
-            </button>
-          </div>
-
-          <!-- Preview de la foto del carnet -->
-          <div id="hoja-carnet-preview-container" class="hidden relative rounded-xl border border-yellow-500/30 overflow-hidden bg-black max-h-48 flex items-center justify-center p-2">
-            <img id="hoja-carnet-preview-img" src="" alt="Carnet Gestor" class="max-h-44 object-contain rounded-lg shadow-md cursor-zoom-in hover:opacity-95" onclick="abrirVisorImagenCompleta(this.src)" title="Toca para ampliar carnet">
-          </div>
-        </div>
 
         <!-- 2. FIRMA DIGITAL (OBLIGATORIO) -->
         <div class="bg-zinc-900/60 border border-yellow-500/25 rounded-2xl p-4 space-y-3">
           <div class="flex items-center justify-between">
             <label class="font-extrabold text-white text-xs sm:text-sm flex items-center gap-2">
               <i data-lucide="pen-tool" class="w-4 h-4 text-yellow-400"></i>
-              <span>2. Firma Digital del Gestor <span class="text-rose-400">*</span></span>
+              <span>Firma de Conformidad del Gestor</span>
             </label>
             <div class="flex items-center gap-2">
               <span id="hoja-firma-status" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30">
@@ -14859,9 +14829,9 @@
           <span>Volver al Desglose</span>
         </button>
 
-        <button type="button" id="btn-guardar-firma-carnet-vale" onclick="procesarFirmaYGenerarValeLiquidacion()" class="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500 hover:from-yellow-300 hover:to-amber-300 text-black font-black text-sm shadow-2xl shadow-yellow-500/40 flex items-center justify-center gap-2.5 transition-all cursor-pointer transform hover:scale-[1.02] active:scale-[0.98] border-2 border-yellow-200">
-          <i data-lucide="download" class="w-5 h-5 text-black"></i>
-          <span>Guardar y Descargar Vale</span>
+        <button type="button" id="btn-guardar-firma-carnet-vale" onclick="procesarFirmaYGenerarValeLiquidacion()" class="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-600 hover:from-emerald-400 hover:to-teal-400 text-white font-black text-sm shadow-2xl shadow-emerald-500/40 flex items-center justify-center gap-2.5 transition-all cursor-pointer transform hover:scale-[1.02] active:scale-[0.98] border-2 border-emerald-400">
+          <i data-lucide="check-circle" class="w-5 h-5 text-white"></i>
+          <span>Marcar como Pagada y Certificada ✓</span>
         </button>
       </div>
 
@@ -16222,7 +16192,7 @@ function guardarEnCacheRobusto() {
         if (constanciaInfo && (constanciaInfo.imagenBase64 || constanciaInfo.montoPagado || constanciaInfo.fechaPago || constanciaInfo.estado === 'PAGADA')) {
           constanciaHtml = '<div class="text-[10px] text-emerald-300 bg-emerald-950/60 border border-emerald-500/40 px-2 py-0.5 rounded-lg font-mono flex items-center gap-1 transition-all mt-1" title="Semana pagada y certificada">' +
             '<i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-400"></i>' +
-            '<span>Pagada (' + (constanciaInfo.montoPagado ? Number(constanciaInfo.montoPagado).toLocaleString('es-ES') + ' CUP' : 'Certificada') + ')</span>' +
+            '<span>Pagada y Certificada (' + (constanciaInfo.montoPagado ? Number(constanciaInfo.montoPagado).toLocaleString('es-ES') + ' CUP' : '✓') + ')</span>' +
           '</div>';
         }
 
@@ -18992,10 +18962,10 @@ function guardarEnCacheRobusto() {
         granTotal: granTotal
       };
 
-      // Preparar modal de hoja en blanco
+      // Preparar modal de firma
       document.getElementById('hoja-firma-gestor-nombre').textContent = gestorNombre;
       const infoSemana = getWeekDateRange(semana);
-      document.getElementById('hoja-firma-semana-rango').textContent = 'Semana ' + semana.split('-W')[1] + ' · ' + (infoSemana.rangoLegible || infoSemana.label);
+      document.getElementById('hoja-firma-semana-rango').textContent = 'Semana ' + (semana.split('-W')[1] || semana) + ' · ' + (infoSemana.rangoLegible || infoSemana.label);
       document.getElementById('hoja-firma-monto-total').textContent = granTotal.toLocaleString('es-ES') + ' CUP';
       
       const compTag = document.getElementById('hoja-firma-compensacion-tag');
@@ -19006,27 +18976,17 @@ function guardarEnCacheRobusto() {
         compTag.textContent = 'Sin compensaciones pendientes';
       }
 
-      // Reiniciar fotos y firmas
-      fotoCarnetBase64 = null;
-      firmaDigitalBase64 = null;
+      // Reiniciar estado de firma
       puntosFirmaCount = 0;
-      document.getElementById('hoja-carnet-status').textContent = 'Pendiente';
-      document.getElementById('hoja-carnet-status').className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30';
-      document.getElementById('hoja-firma-status').textContent = 'Pendiente';
-      document.getElementById('hoja-firma-status').className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30';
-      
-      const prevImg = document.getElementById('hoja-carnet-preview-img');
-      const prevCont = document.getElementById('hoja-carnet-preview-container');
-      const btnDelFoto = document.getElementById('btn-eliminar-foto-carnet');
-      prevImg.src = '';
-      prevCont.classList.add('hidden');
-      btnDelFoto.classList.add('hidden');
-      document.getElementById('hoja-input-carnet-file').value = '';
+      const stFirma = document.getElementById('hoja-firma-status');
+      if (stFirma) {
+        stFirma.textContent = 'Pendiente';
+        stFirma.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30';
+      }
 
       cerrarModal('modal-liquidar-semana');
       abrirModal('modal-hoja-firma-semana');
 
-      // Inicializar Canvas de firma
       setTimeout(inicializarCanvasFirma, 100);
     };
 
@@ -19190,25 +19150,16 @@ function guardarEnCacheRobusto() {
         return;
       }
 
-      // Validaciones obligatorias
-      if (!fotoCarnetBase64) {
-        alert('⚠️ ATENCIÓN: Es obligatorio adjuntar la foto del carnet de identidad del gestor.');
+      if (puntosFirmaCount < 8) {
+        alert('⚠️ Por favor firme en el recuadro blanco para confirmar la conformidad del pago.');
         return;
       }
 
-      if (puntosFirmaCount < 15) {
-        alert('⚠️ ATENCIÓN: Es obligatorio que el gestor firme digitalmente en el recuadro blanco.');
-        return;
-      }
-
-      firmaDigitalBase64 = canvasFirmaInstancia.toDataURL('image/png');
-
-      const infoSemana = getWeekDateRange(liquidacionEnProceso.semana);
       const gestorNombre = liquidacionEnProceso.gestorNombre;
       const semana = liquidacionEnProceso.semana;
       const granTotal = liquidacionEnProceso.granTotal;
 
-      // 1. Guardar en Base de Datos: Marcar vales como PAGADA
+      // 1. Marcar vales como PAGADA
       let valesMarcados = 0;
       for (let i = 0; i < appState.vales.length; i++) {
         const v = appState.vales[i];
@@ -19221,7 +19172,7 @@ function guardarEnCacheRobusto() {
       // 2. Guardar compensación si existe
       if (!appState.compensaciones) appState.compensaciones = {};
       const compKey = gestorNombre.toLowerCase().trim() + '__' + semana;
-      if (liquidacionEnProceso.compensacionMonto !== 0 || liquidacionEnProceso.compensacionMotivo !== '') {
+      if (liquidacionEnProceso.compensacionMonto !== 0 || (liquidacionEnProceso.compensacionMotivo && liquidacionEnProceso.compensacionMotivo !== '')) {
         appState.compensaciones[compKey] = {
           gestorNombre: gestorNombre,
           semana: semana,
@@ -19231,45 +19182,28 @@ function guardarEnCacheRobusto() {
         };
       }
 
-      // 3. Renderizar imagen del Vale Oficial en Canvas y descargar inmediatamente en el dispositivo
-      generarImagenValeLiquidacionOficial(liquidacionEnProceso, firmaDigitalBase64, function(valeImgDataUrl) {
-        
-        // Guardar constancia de texto en base de datos (ligera, segura, sin fotos pesadas)
-        if (!appState.constanciasPago) appState.constanciasPago = {};
-        const constKey = gestorNombre.toLowerCase().trim() + '__' + semana;
-        appState.constanciasPago[constKey] = {
-          gestorNombre: gestorNombre,
-          semana: semana,
-          montoPagado: granTotal,
-          estado: 'PAGADA',
-          fechaPago: new Date().toISOString()
-        };
+      // 3. Guardar registro de constancia certificada (sin imágenes pesadas)
+      if (!appState.constanciasPago) appState.constanciasPago = {};
+      const constKey = gestorNombre.toLowerCase().trim() + '__' + semana;
+      appState.constanciasPago[constKey] = {
+        gestorNombre: gestorNombre,
+        semana: semana,
+        montoPagado: granTotal,
+        estado: 'PAGADA',
+        fechaPago: new Date().toISOString()
+      };
 
-        guardarEnCacheRobusto();
-        renderizarTodo();
+      // 4. Persistir en almacenamiento y refrescar interfaz
+      guardarEnCacheRobusto();
+      renderizarTodo();
 
-        // Disparar descarga automática en el dispositivo de inmediato
-        const nombreArchivo = 'Vale_Liquidacion_' + gestorNombre.replace(/\s+/g, '_') + '_' + semana + '.png';
-        try {
-          const enlaceDescargaAuto = document.createElement('a');
-          enlaceDescargaAuto.href = valeImgDataUrl;
-          enlaceDescargaAuto.download = nombreArchivo;
-          document.body.appendChild(enlaceDescargaAuto);
-          enlaceDescargaAuto.click();
-          document.body.removeChild(enlaceDescargaAuto);
-        } catch (e) {
-          console.warn('Error al activar descarga automática:', e);
-        }
+      cerrarModal('modal-hoja-firma-semana');
 
-        // Mostrar Vale en Modal con opción de descarga manual y copia
-        document.getElementById('img-vale-liquidacion-preview').src = valeImgDataUrl;
-        const btnDescarga = document.getElementById('btn-descargar-vale-liquidacion');
-        btnDescarga.href = valeImgDataUrl;
-        btnDescarga.download = nombreArchivo;
-
-        cerrarModal('modal-hoja-firma-semana');
-        abrirModal('modal-vale-liquidacion-generado');
-      });
+      if (typeof mostrarNotificacion === 'function') {
+        mostrarNotificacion('✓ Comisión de ' + gestorNombre + ' marcada como Pagada y Certificada (' + granTotal.toLocaleString('es-ES') + ' CUP).', 'exito');
+      } else {
+        alert('✓ Comisión de ' + gestorNombre + ' marcada como Pagada y Certificada.');
+      }
     };
 
     function generarImagenValeLiquidacionOficial(data, firmaUrl, callback) {
