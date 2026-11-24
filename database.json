@@ -1,5 +1,5 @@
 {
-  "timestamp": 1795555248454,
+  "timestamp": 1795555261084,
   "gestores": [
     {
       "id": "G-1",
@@ -5537,35 +5537,6 @@
       ],
       "totalVenta": 157,
       "granComisionCUP": 6000,
-      "estadoComision": "PENDIENTE",
-      "createdAt": 1794675515162
-    },
-    {
-      "id": "V-1794675515162-joy1rk",
-      "folio": "VAL-497278",
-      "fecha": "2026-11-10",
-      "semana": "2026-W45",
-      "moneda": "USD",
-      "gestorNombre": "Adriana",
-      "gestorTelefono": "53475847",
-      "clienteNombre": "Rosy",
-      "clienteCI": "",
-      "clienteTelefono": "54100518",
-      "direccion": "",
-      "rawTextoWhatsApp": "[10/11 2:41 p. m.] Mi Amor: 📝*𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 comercial* *(RECOGER EN EL LOCAL)*\n🩵 *𝐅𝐞𝐜𝐡𝐚*: 10/11/2026\n🩵 *Nombre del Cliente*: Rosy\n🩵 *#De teléfono del Cliente*: 54100518\n🩵 *𝐏𝐞𝐝𝐢𝐝𝐨*: Ventiladores de pared \n🩵 *𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝*: 3\n🩵 *𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨*: $ 30USD cada uno ( total $90 USD)\n🩵 *𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨*: Efectivo en USD\n🩵 *𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫*: $ 4.500 cup\n🩵 *𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 comercial*:Adriana \n🩵 *# De teléfono del comercial: 53475847",
-      "items": [
-        {
-          "id": "it-dgnbgaaa",
-          "producto": "Ventiladores de pared",
-          "cantidad": 3,
-          "tipoEquipo": "Pequeño",
-          "precioVenta": 30,
-          "comisionUnitCUP": 1500,
-          "comisionTotalCUP": 4500
-        }
-      ],
-      "totalVenta": 90,
-      "granComisionCUP": 4500,
       "estadoComision": "PENDIENTE",
       "createdAt": 1794675515162
     },
