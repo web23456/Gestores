@@ -1,5 +1,5 @@
 {
-  "timestamp": 1795535574826,
+  "timestamp": 1795535609873,
   "gestores": [
     {
       "id": "G-1",
@@ -3895,7 +3895,7 @@
       ],
       "totalVenta": 57,
       "granComisionCUP": 3000,
-      "estadoComision": "PENDIENTE",
+      "estadoComision": "PAGADA",
       "createdAt": 1794803596298,
       "updatedAt": 1794805236897
     },
@@ -4827,7 +4827,7 @@
       ],
       "totalVenta": 25,
       "granComisionCUP": 1500,
-      "estadoComision": "PENDIENTE",
+      "estadoComision": "PAGADA",
       "createdAt": 1794803596289
     },
     {
@@ -14694,6 +14694,13 @@
       "montoPagado": 1500,
       "estado": "PAGADA",
       "fechaPago": "2026-11-24T15:51:07.153Z"
+    },
+    "modesta hernández__2026-W45": {
+      "gestorNombre": "Modesta Hernández",
+      "semana": "2026-W45",
+      "montoPagado": 4500,
+      "estado": "PAGADA",
+      "fechaPago": "2026-11-24T15:53:29.872Z"
     }
   }
 }
