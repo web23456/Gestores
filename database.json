@@ -1,5 +1,5 @@
 {
-  "timestamp": 1795553410086,
+  "timestamp": 1795553452679,
   "gestores": [
     {
       "id": "G-1",
@@ -893,7 +893,7 @@
       ],
       "totalVenta": 80,
       "granComisionCUP": 3000,
-      "estadoComision": "PENDIENTE",
+      "estadoComision": "PAGADA",
       "createdAt": 1795496128067
     },
     {
@@ -14759,6 +14759,13 @@
       "montoPagado": 12000,
       "estado": "PAGADA",
       "fechaPago": "2026-11-24T20:50:10.086Z"
+    },
+    "glenis reyes__2026-W46": {
+      "gestorNombre": "Glenis Reyes",
+      "semana": "2026-W46",
+      "montoPagado": 3000,
+      "estado": "PAGADA",
+      "fechaPago": "2026-11-24T20:50:52.679Z"
     }
   }
 }
