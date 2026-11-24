@@ -1,5 +1,5 @@
 {
-  "timestamp": 1795553889962,
+  "timestamp": 1795553986518,
   "gestores": [
     {
       "id": "G-1",
@@ -4021,7 +4021,7 @@
       ],
       "totalVenta": 35,
       "granComisionCUP": 1500,
-      "estadoComision": "PENDIENTE",
+      "estadoComision": "PAGADA",
       "createdAt": 1794803596297
     },
     {
@@ -14802,6 +14802,13 @@
       "montoPagado": 1500,
       "estado": "PAGADA",
       "fechaPago": "2026-11-24T20:54:24.943Z"
+    },
+    "eunice__2026-W45": {
+      "gestorNombre": "Eunice",
+      "semana": "2026-W45",
+      "montoPagado": 1500,
+      "estado": "PAGADA",
+      "fechaPago": "2026-11-24T20:59:46.518Z"
     }
   }
 }
