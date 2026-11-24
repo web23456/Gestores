@@ -1,5 +1,5 @@
 {
-  "timestamp": 1795496455841,
+  "timestamp": 1795496612394,
   "gestores": [
     {
       "id": "G-1",
@@ -956,7 +956,7 @@
       },
       "estadoComision": "PENDIENTE",
       "createdAt": 1795496128066,
-      "updatedAt": 1795496455841
+      "updatedAt": 1795496612394
     },
     {
       "id": "V-1795496128066-0hpnin",
