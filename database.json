@@ -1,5 +1,5 @@
 {
-  "timestamp": 1795557164959,
+  "timestamp": 1795557190892,
   "gestores": [
     {
       "id": "G-1",
@@ -1928,7 +1928,7 @@
       ],
       "totalVenta": 190,
       "granComisionCUP": 9000,
-      "estadoComision": "PENDIENTE",
+      "estadoComision": "PAGADA",
       "createdAt": 1795194138009
     },
     {
@@ -14709,6 +14709,13 @@
       "montoPagado": 9000,
       "estado": "PAGADA",
       "fechaPago": "2026-11-24T21:52:10.018Z"
+    },
+    "adalis lopez__2026-W46": {
+      "gestorNombre": "adalis Lopez",
+      "semana": "2026-W46",
+      "montoPagado": 9000,
+      "estado": "PAGADA",
+      "fechaPago": "2026-11-24T21:53:10.892Z"
     }
   }
 }
