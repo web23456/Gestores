@@ -1,5 +1,5 @@
 {
-  "timestamp": 1795553249872,
+  "timestamp": 1795553261614,
   "gestores": [
     {
       "id": "G-1",
@@ -8248,7 +8248,7 @@
       ],
       "totalVenta": 25,
       "granComisionCUP": 1500,
-      "estadoComision": "PENDIENTE",
+      "estadoComision": "PAGADA",
       "createdAt": 1794277992137
     },
     {
@@ -8515,7 +8515,7 @@
       ],
       "totalVenta": 46,
       "granComisionCUP": 1500,
-      "estadoComision": "PENDIENTE",
+      "estadoComision": "PAGADA",
       "createdAt": 1794277992128
     },
     {
@@ -14724,6 +14724,13 @@
       "montoPagado": 1500,
       "estado": "PAGADA",
       "fechaPago": "2026-11-24T20:47:01.627Z"
+    },
+    "odelvis rodríguez ginarte__2026-W44": {
+      "gestorNombre": "Odelvis Rodríguez Ginarte",
+      "semana": "2026-W44",
+      "montoPagado": 3000,
+      "estado": "PAGADA",
+      "fechaPago": "2026-11-24T20:47:41.614Z"
     }
   }
 }
