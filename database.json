@@ -1,5 +1,5 @@
 {
-  "timestamp": 1795554045374,
+  "timestamp": 1795554557818,
   "gestores": [
     {
       "id": "G-1",
@@ -517,7 +517,7 @@
       ],
       "totalVenta": 15,
       "granComisionCUP": 1500,
-      "estadoComision": "PENDIENTE",
+      "estadoComision": "PAGADA",
       "createdAt": 1795553827078
     },
     {
@@ -672,7 +672,7 @@
       ],
       "totalVenta": 37,
       "granComisionCUP": 1500,
-      "estadoComision": "PENDIENTE",
+      "estadoComision": "PAGADA",
       "createdAt": 1795496128069
     },
     {
@@ -14809,6 +14809,13 @@
       "montoPagado": 1500,
       "estado": "PAGADA",
       "fechaPago": "2026-11-24T20:59:46.518Z"
+    },
+    "adriana__2026-W46": {
+      "gestorNombre": "Adriana",
+      "semana": "2026-W46",
+      "montoPagado": 3000,
+      "estado": "PAGADA",
+      "fechaPago": "2026-11-24T21:09:17.818Z"
     }
   }
 }
