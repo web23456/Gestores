@@ -1,5 +1,5 @@
 {
-  "timestamp": 1795555176540,
+  "timestamp": 1795555187660,
   "gestores": [
     {
       "id": "G-1",
@@ -6953,35 +6953,6 @@
       "items": [
         {
           "id": "it-qre5ael1x",
-          "producto": "Olla Reina Houslux",
-          "tipoEquipo": "Pequeño",
-          "cantidad": 1,
-          "precioVenta": 47,
-          "comisionUnitCUP": 1500,
-          "comisionTotalCUP": 1500
-        }
-      ],
-      "totalVenta": 47,
-      "granComisionCUP": 1500,
-      "estadoComision": "PENDIENTE",
-      "createdAt": 1794664591517
-    },
-    {
-      "id": "V-1794664591517-gh7x4f",
-      "folio": "VAL-980730",
-      "fecha": "2026-11-10",
-      "semana": "2026-W45",
-      "moneda": "USD",
-      "gestorNombre": "Adriana",
-      "gestorTelefono": "53475847",
-      "clienteNombre": "Cliente Sin Nombre",
-      "clienteCI": "",
-      "clienteTelefono": "",
-      "direccion": "",
-      "rawTextoWhatsApp": "[10/11 2:41 p. m.] Mi Amor: 📝*𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 comercial* *(RECOGER EN EL LOCAL)*\n🩵 *𝐅𝐞𝐜𝐡𝐚*: 10/11/2026\n🩵 *Nombre del Cliente*: Amigos de Rosy\n🩵 *#De teléfono del Cliente*: 54100518\n🩵 *𝐏𝐞𝐝𝐢𝐝𝐨*: Ventiladores de pared \n🩵 *𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝*: 1\n🩵 *𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨*: $ 30USD \n🩵 *𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨*: Efectivo en USD\n🩵 *𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐣𝐞𝐫*: $ 1.500 cup\n🩵 *𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 comercial*:Adriana \n🩵 *# De teléfono del comercial: 53475847\n[10/11 2:48 p. m.] Mi Amor: 📝*𝐅𝐚𝐜𝐭𝐮𝐫𝐚  *(RECOGER EN EL LOCAL)*\n🩵 *𝐅𝐞𝐜𝐡𝐚*: 10/11/26\n🩵 *Nombre del Cliente*: Odet Castro\n🩵 *#De teléfono del Cliente*: 55002268\n🩵 *𝐏𝐞𝐝𝐢𝐝𝐨*: Olla arrocera y olla Reina RCA y freidora de aire\n🩵 *𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝*: 1 , 1 y 1\n🩵 *𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨*: 27 ,52 y 48usd\n🩵 *𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨*: usd\n🩵 *𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨g𝐞𝐫*: 127 usd\n🩵 *𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 comercial*: Rosa Beatriz \n🩵 *# De teléfono del comercial: 58943741\n\nLa direcciones Georgia 101 entre constitución y coliseo la palma arroyó naranjo\n\nEn el semaforo de la palma cojes la calzada porvenir y subes 2 cuadras hasta llegar a la tienda que hace esquina y dobla mano derecha (en dirección a mantilla) y subes dos cuadras para arriba al frente de un platanar casa en alto",
-      "items": [
-        {
-          "id": "it-b8eoqrl6b",
           "producto": "Olla Reina Houslux",
           "tipoEquipo": "Pequeño",
           "cantidad": 1,
