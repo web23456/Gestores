@@ -1,5 +1,5 @@
 {
-  "timestamp": 1795553370990,
+  "timestamp": 1795553410086,
   "gestores": [
     {
       "id": "G-1",
@@ -1687,7 +1687,7 @@
       ],
       "totalVenta": 240,
       "granComisionCUP": 12000,
-      "estadoComision": "PENDIENTE",
+      "estadoComision": "PAGADA",
       "createdAt": 1795294802957
     },
     {
@@ -14752,6 +14752,13 @@
       "montoPagado": 1500,
       "estado": "PAGADA",
       "fechaPago": "2026-11-24T20:49:30.990Z"
+    },
+    "hilda pileta__2026-W46": {
+      "gestorNombre": "Hilda Pileta",
+      "semana": "2026-W46",
+      "montoPagado": 12000,
+      "estado": "PAGADA",
+      "fechaPago": "2026-11-24T20:50:10.086Z"
     }
   }
 }
