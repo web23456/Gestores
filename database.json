@@ -1,5 +1,5 @@
 {
-  "timestamp": 1795553299573,
+  "timestamp": 1795553327312,
   "gestores": [
     {
       "id": "G-1",
@@ -1658,7 +1658,7 @@
       ],
       "totalVenta": 33,
       "granComisionCUP": 1500,
-      "estadoComision": "PENDIENTE",
+      "estadoComision": "PAGADA",
       "createdAt": 1795408295680
     },
     {
@@ -14738,6 +14738,13 @@
       "montoPagado": 4500,
       "estado": "PAGADA",
       "fechaPago": "2026-11-24T20:48:19.573Z"
+    },
+    "saraí__2026-W46": {
+      "gestorNombre": "Saraí",
+      "semana": "2026-W46",
+      "montoPagado": 1500,
+      "estado": "PAGADA",
+      "fechaPago": "2026-11-24T20:48:47.312Z"
     }
   }
 }
