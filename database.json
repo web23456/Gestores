@@ -1,5 +1,5 @@
 {
-  "timestamp": 1795536628106,
+  "timestamp": 1795536717776,
   "gestores": [
     {
       "id": "G-1",
@@ -1238,7 +1238,7 @@
           "producto": "dw cazuelas",
           "cantidad": 1,
           "tipoEquipo": "Pequeño",
-          "precioVenta": 50,
+          "precioVenta": 25,
           "comisionUnitCUP": 1500,
           "comisionTotalCUP": 1500
         },
@@ -1251,11 +1251,11 @@
           "comisionUnitCUP": 1500
         }
       ],
-      "totalVenta": 75,
+      "totalVenta": 50,
       "granComisionCUP": 3000,
       "estadoComision": "PENDIENTE",
       "createdAt": 1795408295687,
-      "updatedAt": 1795536628106
+      "updatedAt": 1795536717776
     },
     {
       "id": "V-1795408295686-mgk57u",
