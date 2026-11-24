@@ -1,5 +1,5 @@
 {
-  "timestamp": 1795553327312,
+  "timestamp": 1795553370990,
   "gestores": [
     {
       "id": "G-1",
@@ -2200,7 +2200,7 @@
       ],
       "totalVenta": 25,
       "granComisionCUP": 1500,
-      "estadoComision": "PENDIENTE",
+      "estadoComision": "PAGADA",
       "createdAt": 1795194138007
     },
     {
@@ -3113,7 +3113,7 @@
       ],
       "totalVenta": 37,
       "granComisionCUP": 0,
-      "estadoComision": "PENDIENTE",
+      "estadoComision": "PAGADA",
       "createdAt": 1794979007122,
       "descuentoGestor": {
         "monto": 1500,
@@ -14745,6 +14745,13 @@
       "montoPagado": 1500,
       "estado": "PAGADA",
       "fechaPago": "2026-11-24T20:48:47.312Z"
+    },
+    "alys garcía__2026-W46": {
+      "gestorNombre": "Alys García",
+      "semana": "2026-W46",
+      "montoPagado": 1500,
+      "estado": "PAGADA",
+      "fechaPago": "2026-11-24T20:49:30.990Z"
     }
   }
 }
