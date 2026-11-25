@@ -1,5 +1,5 @@
 {
-  "timestamp": 1795639378119,
+  "timestamp": 1795639519374,
   "gestores": [
     {
       "id": "G-1",
@@ -2026,15 +2026,16 @@
           "producto": "sartén eléctrico",
           "cantidad": 1,
           "tipoEquipo": "Pequeño",
-          "precioVenta": 0,
+          "precioVenta": 32,
           "comisionUnitCUP": 1500,
           "comisionTotalCUP": 1500
         }
       ],
-      "totalVenta": 80,
+      "totalVenta": 112,
       "granComisionCUP": 4500,
       "estadoComision": "PENDIENTE",
-      "createdAt": 1795194138009
+      "createdAt": 1795194138009,
+      "updatedAt": 1795639519374
     },
     {
       "id": "V-1795194138009-jccwfq",
