@@ -1,5 +1,5 @@
 {
-  "timestamp": 1795566431453,
+  "timestamp": 1795566457754,
   "gestores": [
     {
       "id": "G-1",
@@ -491,6 +491,64 @@
     }
   ],
   "vales": [
+    {
+      "id": "V-1795566298599-8jxlro",
+      "folio": "VAL-191997",
+      "fecha": "2026-11-24",
+      "semana": "2026-W47",
+      "moneda": "USD",
+      "gestorNombre": "Modesta Hernández",
+      "gestorTelefono": "56698547",
+      "clienteNombre": "0rlando",
+      "clienteCI": "",
+      "clienteTelefono": "",
+      "direccion": "𝐆𝐞𝐨𝐫𝐠𝐢𝐚 𝟏𝟎𝟏, 𝐞𝐧𝐭𝐫𝐞 𝐂𝐨𝐧𝐬𝐭𝐢𝐭𝐮𝐜𝐢ó𝐧 𝐲 𝐂𝐨𝐥𝐢𝐬𝐞𝐨, 𝐋𝐚 𝐏𝐚𝐥𝐦𝐚, 𝐀𝐫𝐫𝐨𝐲𝐨 𝐍𝐚𝐫𝐚𝐧𝐣𝐨.",
+      "rawTextoWhatsApp": "[24/11 10:01 a. m.] +53 5 6698547: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐜𝐨𝐦𝐞𝐫𝐜𝐢𝐚𝐥𝐞𝐬 (𝐑𝐄𝐂𝐎𝐆𝐄𝐑 𝐄𝐍 𝐄𝐋 𝐋𝐎𝐂𝐀𝐋)\n\n🏪𝐅𝐞cha: 24/11\n🏪𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 0rlando\n🏪#𝐃𝐞 𝐭𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 52909246\n🏪𝐏𝐞𝐝𝐢𝐝𝐨 juego de ollas de micropresión \n🏪𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝:1\n🏪𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:25 usd\n🏪𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:usd\n🏪𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐠𝐞𝐫:25 usd\n🏪𝐕𝐚𝐥𝐨𝐫 𝐝𝐞𝐥 𝐝ó𝐥𝐚𝐫:\n🏪𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐜𝐨𝐦𝐞𝐫𝐜𝐢𝐚𝐥: Modesta Hernández \n🏪#𝐃𝐞 𝐭𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐜𝐨𝐦𝐞𝐫𝐜𝐢𝐚𝐥:56698547\n🏪𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:\n\n📍𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 𝐥𝐨𝐜𝐚𝐥:\n\n𝐆𝐞𝐨𝐫𝐠𝐢𝐚 𝟏𝟎𝟏, 𝐞𝐧𝐭𝐫𝐞 𝐂𝐨𝐧𝐬𝐭𝐢𝐭𝐮𝐜𝐢ó𝐧 𝐲 𝐂𝐨𝐥𝐢𝐬𝐞𝐨, 𝐋𝐚 𝐏𝐚𝐥𝐦𝐚, 𝐀𝐫𝐫𝐨𝐲𝐨 𝐍𝐚𝐫𝐚𝐧𝐣𝐨.\n\n📍𝐂ó𝐦𝐨 𝐥𝐥𝐞𝐠𝐚𝐫:\n\n𝐄𝐧 𝐞𝐥 𝐬𝐞𝐦á𝐟𝐨𝐫𝐨 𝐝𝐞 𝐋𝐚 𝐏𝐚𝐥𝐦𝐚 𝐜𝐨𝐠𝐞𝐬 𝐥𝐚 𝐂𝐚𝐥𝐳𝐚𝐝𝐚 𝐏𝐨𝐫𝐯𝐞𝐧𝐢𝐫 𝐲 𝐬𝐮𝐛𝐞𝐬 𝟐 𝐜𝐮𝐚𝐝𝐫𝐚𝐬 𝐡𝐚𝐬𝐭𝐚 𝐥𝐥𝐞𝐠𝐚𝐫 𝐚 𝐥𝐚 𝐭𝐢𝐞𝐧𝐝𝐚 𝐪𝐮𝐞 𝐡𝐚𝐜𝐞 𝐞𝐬𝐪𝐮𝐢𝐧𝐚. 𝐃𝐨𝐛𝐥𝐚𝐬 𝐚 𝐦𝐚𝐧𝐨 𝐝𝐞𝐫𝐞𝐜𝐡𝐚 (𝐞𝐧 𝐝𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐚 𝐌𝐚𝐧𝐭𝐢𝐥𝐥𝐚) 𝐲 𝐬𝐮𝐛𝐞𝐬 𝟐 𝐜𝐮𝐚𝐝𝐫𝐚𝐬 𝐦á𝐬. 𝐄𝐬𝐭𝐚𝐦𝐨𝐬 𝐚𝐥 𝐟𝐫𝐞𝐧𝐭𝐞 𝐝𝐞 𝐮𝐧 𝐩𝐥𝐚𝐭𝐚𝐧𝐚𝐥, 𝐞𝐧 𝐮𝐧𝐚 𝐜𝐚𝐬𝐚 𝐞𝐧 𝐚𝐥𝐭𝐨.",
+      "items": [
+        {
+          "id": "it-tkhqvfs9n",
+          "producto": "Olla Reina Houslux",
+          "tipoEquipo": "Pequeño",
+          "cantidad": 1,
+          "precioVenta": 47,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 47,
+      "granComisionCUP": 1500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1795566298599
+    },
+    {
+      "id": "V-1795566298599-m99dq8",
+      "folio": "VAL-254902",
+      "fecha": "2026-11-24",
+      "semana": "2026-W47",
+      "moneda": "USD",
+      "gestorNombre": "Odelvis Rodríguez Ginarte",
+      "gestorTelefono": "50174223",
+      "clienteNombre": "Marisleidys",
+      "clienteCI": "",
+      "clienteTelefono": "54102704",
+      "direccion": "San Quintín 514 entre Cerezo y Macedonia (Cerro)",
+      "rawTextoWhatsApp": "[23/11 6:17 p. m.] +53 5 0174223: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬 (𝐌𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚)\n\n🪀𝐅𝐞𝐜𝐡𝐚:24/11\n🪀𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:Marisleidys\n🪀𝐂𝐈:\n🪀𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:54102704\n🪀𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: San Quintín 514 entre Cerezo y Macedonia (*Cerro*)\n🪀𝐏𝐞𝐝𝐢𝐝𝐨:  Olla de presión 6L\n🪀𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝:1\n🪀𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨: 28USD\n🪀𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨: USD\n🪀𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: 1900\n🪀𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐠𝐞𝐫: 30USD + 1900\n🪀𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: 2USD\n🪀𝐕𝐚𝐥𝐨𝐫 𝐝𝐞𝐥 𝐝ó𝐥𝐚𝐫:\n🪀𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: Odelvis Rodríguez Ginarte \n🪀#𝐃𝐞 𝐭𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:50174223\n🪀𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: 𝐍𝐨",
+      "items": [
+        {
+          "id": "it-as371ora",
+          "producto": "Olla de presión 6L",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 28,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 28,
+      "granComisionCUP": 1500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1795566298599
+    },
     {
       "id": "V-1795555632583-8pmkj4",
       "folio": "VAL-574761",
