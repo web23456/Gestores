@@ -1,5 +1,5 @@
 {
-  "timestamp": 1795643107836,
+  "timestamp": 1795643267804,
   "gestores": [
     {
       "id": "G-1",
@@ -700,7 +700,7 @@
       ],
       "totalVenta": 28,
       "granComisionCUP": 1500,
-      "estadoComision": "PENDIENTE",
+      "estadoComision": "PAGADA",
       "createdAt": 1795496128069
     },
     {
@@ -729,7 +729,7 @@
       ],
       "totalVenta": 16,
       "granComisionCUP": 1500,
-      "estadoComision": "PENDIENTE",
+      "estadoComision": "PAGADA",
       "createdAt": 1795496128069
     },
     {
@@ -846,7 +846,7 @@
       ],
       "totalVenta": 32,
       "granComisionCUP": 1500,
-      "estadoComision": "PENDIENTE",
+      "estadoComision": "PAGADA",
       "createdAt": 1795496128068
     },
     {
@@ -971,7 +971,7 @@
       ],
       "totalVenta": 56,
       "granComisionCUP": 3000,
-      "estadoComision": "PENDIENTE",
+      "estadoComision": "PAGADA",
       "createdAt": 1795496128067
     },
     {
@@ -2489,7 +2489,7 @@
       ],
       "totalVenta": 60,
       "granComisionCUP": 3000,
-      "estadoComision": "PENDIENTE",
+      "estadoComision": "PAGADA",
       "createdAt": 1795194138007
     },
     {
@@ -3134,7 +3134,7 @@
       ],
       "totalVenta": 15,
       "granComisionCUP": 1500,
-      "estadoComision": "PENDIENTE",
+      "estadoComision": "PAGADA",
       "createdAt": 1794979007122
     },
     {
@@ -14781,6 +14781,13 @@
       "montoPagado": 9000,
       "estado": "PAGADA",
       "fechaPago": "2026-11-24T21:53:10.892Z"
+    },
+    "rosa beatriz__2026-W46": {
+      "gestorNombre": "Rosa Beatriz",
+      "semana": "2026-W46",
+      "montoPagado": 12000,
+      "estado": "PAGADA",
+      "fechaPago": "2026-11-25T21:47:47.804Z"
     }
   }
 }
