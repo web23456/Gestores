@@ -1,5 +1,5 @@
 {
-  "timestamp": 1795843710509,
+  "timestamp": 1795843749419,
   "gestores": [
     {
       "id": "G-1",
@@ -488,9 +488,659 @@
       "zona": "Mensajería / Redes",
       "foto": "",
       "activo": true
+    },
+    {
+      "id": "G-1795843707925-ni7d",
+      "nombre": "Aliuska Frías",
+      "username": "aliuskafras",
+      "passwordHash": "0cbba1357815e3c38bd370451e27aaaf127e19290ca6a0a550de830b3ff2ab49",
+      "telefono": "53333861",
+      "telefonoSecundario": "",
+      "zona": "Mensajería / Redes",
+      "foto": "",
+      "activo": true
+    },
+    {
+      "id": "G-1795843707927-9f5y",
+      "nombre": "maylenis",
+      "username": "maylenis",
+      "passwordHash": "0cbba1357815e3c38bd370451e27aaaf127e19290ca6a0a550de830b3ff2ab49",
+      "telefono": "55591653",
+      "telefonoSecundario": "",
+      "zona": "Mensajería / Redes",
+      "foto": "",
+      "activo": true
     }
   ],
   "vales": [
+    {
+      "id": "V-1795843707928-avxn7k",
+      "folio": "VAL-857187",
+      "fecha": "2026-11-27",
+      "semana": "2026-W47",
+      "moneda": "USD",
+      "gestorNombre": "maylenis",
+      "gestorTelefono": "55591653",
+      "clienteNombre": "Arleti",
+      "clienteCI": "",
+      "clienteTelefono": "",
+      "direccion": "𝐆𝐞𝐨𝐫𝐠𝐢𝐚 𝟏𝟎𝟏, 𝐞𝐧𝐭𝐫𝐞 𝐂𝐨𝐧𝐬𝐭𝐢𝐭𝐮𝐜𝐢ó𝐧 𝐲 𝐂𝐨𝐥𝐢𝐬𝐞𝐨, 𝐋𝐚 𝐏𝐚𝐥𝐦𝐚, 𝐀𝐫𝐫𝐨𝐲𝐨 𝐍𝐚𝐫𝐚𝐧𝐣𝐨.",
+      "rawTextoWhatsApp": "[27/11 10:24 p. m.] Mi Amor: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐜𝐨𝐦𝐞𝐫𝐜𝐢𝐚𝐥𝐞𝐬 (𝐑𝐄𝐂𝐎𝐆𝐄𝐑 𝐄𝐍 𝐄𝐋 𝐋𝐎𝐂𝐀𝐋)\n\n🏪𝐅𝐞𝐜𝐡𝐚: 27 -11-2026\n🏪𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:  Arleti\n🏪#𝐃𝐞 𝐭𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 58436697\n🏪𝐏𝐞𝐝𝐢𝐝𝐨: arocera con vaporera 1.8 L\n1 olla a presión multifuncion 7 L \n1 sartén Eléctrico royal \n🏪𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1 arrocera 1 sartén 1olla de presión multifuncional \n🏪𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨: 28usd ,52usd,32usd \n🏪𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:usd\n🏪𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐠𝐞𝐫:112\n🏪𝐕𝐚𝐥𝐨𝐫 𝐝𝐞𝐥 𝐝ó𝐥𝐚𝐫:990\n🏪𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐜𝐨𝐦𝐞𝐫𝐜𝐢𝐚𝐥:maylenis \n🏪#𝐃𝐞 𝐭𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐜𝐨𝐦𝐞𝐫𝐜𝐢𝐚𝐥 : 55591653 \n🏪𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:\n\n📍𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 𝐥𝐨𝐜𝐚𝐥:\n\n𝐆𝐞𝐨𝐫𝐠𝐢𝐚 𝟏𝟎𝟏, 𝐞𝐧𝐭𝐫𝐞 𝐂𝐨𝐧𝐬𝐭𝐢𝐭𝐮𝐜𝐢ó𝐧 𝐲 𝐂𝐨𝐥𝐢𝐬𝐞𝐨, 𝐋𝐚 𝐏𝐚𝐥𝐦𝐚, 𝐀𝐫𝐫𝐨𝐲𝐨 𝐍𝐚𝐫𝐚𝐧𝐣𝐨.\n\n📍𝐂ó𝐦𝐨 𝐥𝐥𝐞𝐠𝐚𝐫:\n\n𝐄𝐧 𝐞𝐥 𝐬𝐞𝐦á𝐟𝐨𝐫𝐨 𝐝𝐞 𝐋𝐚 𝐏𝐚𝐥𝐦𝐚 𝐜𝐨𝐠𝐞𝐬 𝐥𝐚 𝐂𝐚𝐥𝐳𝐚𝐝𝐚 𝐏𝐨𝐫𝐯𝐞𝐧𝐢𝐫 𝐲 𝐬𝐮𝐛𝐞𝐬 𝟐 𝐜𝐮𝐚𝐝𝐫𝐚𝐬 𝐡𝐚𝐬𝐭𝐚 𝐥𝐥𝐞𝐠𝐚𝐫 𝐚 𝐥𝐚 𝐭𝐢𝐞𝐧𝐝𝐚 𝐪𝐮𝐞 𝐡𝐚𝐜𝐞 𝐞𝐬𝐪𝐮𝐢𝐧𝐚. 𝐃𝐨𝐛𝐥𝐚𝐬 𝐚 𝐦𝐚𝐧𝐨 𝐝𝐞𝐫𝐞𝐜𝐡𝐚 (𝐞𝐧 𝐝𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐚 𝐌𝐚𝐧𝐭𝐢𝐥𝐥𝐚) 𝐲 𝐬𝐮𝐛𝐞𝐬 𝟐 𝐜𝐮𝐚𝐝𝐫𝐚𝐬 𝐦á𝐬. 𝐄𝐬𝐭𝐚𝐦𝐨𝐬 𝐚𝐥 𝐟𝐫𝐞𝐧𝐭𝐞 𝐝𝐞 𝐮𝐧 𝐩𝐥𝐚𝐭𝐚𝐧𝐚𝐥, 𝐞𝐧 𝐮𝐧𝐚 𝐜𝐚𝐬𝐚 𝐞𝐧 𝐚𝐥𝐭𝐨.",
+      "items": [
+        {
+          "id": "it-9ihgq2qy",
+          "producto": "arocera con vaporera 1.8 L",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 28,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        },
+        {
+          "id": "it-j9fma5lf",
+          "producto": "Olla A presión multifuncional  De 7 litros",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 52,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        },
+        {
+          "id": "it-q61n2a3e",
+          "producto": "sartén eléctrico",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 32,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 112,
+      "granComisionCUP": 4500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1795843707928
+    },
+    {
+      "id": "V-1795843707927-hw6ix8",
+      "folio": "VAL-355191",
+      "fecha": "2026-11-27",
+      "semana": "2026-W47",
+      "moneda": "USD",
+      "gestorNombre": "Dayanis García Almanza",
+      "gestorTelefono": "51349671",
+      "clienteNombre": "Mirza Navarro Rodríguez",
+      "clienteCI": "",
+      "clienteTelefono": "5 3769728",
+      "direccion": "Calle Leonor 15 entre Calzada de Buenos Aires y calle Carvajal cerro",
+      "rawTextoWhatsApp": "[27/11 2:19 p. m.] +53 5 1349671: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬 (𝐌𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚)\n\n🪀𝐅𝐞𝐜𝐡𝐚:27.11.26\n🪀𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:Mirza Navarro Rodríguez\n🪀𝐂𝐈:\n🪀𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:5 3769728\n🪀𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:Calle Leonor 15 entre Calzada de Buenos Aires y calle Carvajal cerro \n🪀𝐏𝐞𝐝𝐢𝐝𝐨:olla reina milexus de 7 litros, Arrocera de 1.8 litros estelectric y batidora \n🪀𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝:1,1y1 \n🪀𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:52,28 y 25 usd \n🪀𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:usd\n🪀𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚:2500 cup\n🪀𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐠𝐞𝐫:110 usd mas 2500 cup\n🪀𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫:5 usd \n🪀𝐕𝐚𝐥𝐨𝐫 𝐝𝐞𝐥 𝐝ó𝐥𝐚𝐫:\n🪀𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:Dayanis García Almanza \n🪀#𝐃𝐞 𝐭𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:51349671\n🪀𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: 𝐍𝐨",
+      "items": [
+        {
+          "id": "it-ojl70pkg",
+          "producto": "olla reina milexus de 6 litros",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 52,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        },
+        {
+          "id": "it-uxn96pea",
+          "producto": "Arrocera de 1.8 litros estelectric",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 28,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        },
+        {
+          "id": "it-fz64s40u",
+          "producto": "batidora",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 25,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 105,
+      "granComisionCUP": 4500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1795843707927
+    },
+    {
+      "id": "V-1795843707927-e1zl6p",
+      "folio": "VAL-515072",
+      "fecha": "2026-11-27",
+      "semana": "2026-W47",
+      "moneda": "USD",
+      "gestorNombre": "Hilda Pileta",
+      "gestorTelefono": "63726904",
+      "clienteNombre": "Dayana Matos",
+      "clienteCI": "",
+      "clienteTelefono": "59806834",
+      "direccion": "58c finca Santa Catalina barrio Guantanamero por la unidad militar el ITM q esta en 51y58  preguntar por Mansanillo o Dayana",
+      "rawTextoWhatsApp": "[27/11 1:20 p. m.] +53 63726904: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬 (𝐌𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚)\n\n🪀𝐅𝐞𝐜𝐡𝐚: 27/11/26\n🪀𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Dayana Matos\n🪀𝐂𝐈:\n🪀𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 59806834\n🪀𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 58c finca Santa Catalina barrio Guantanamero por la unidad militar el ITM q esta en 51y58  preguntar por Mansanillo o Dayana\n🪀𝐏𝐞𝐝𝐢𝐝𝐨: Combo triple de Olla Reyna Milexus 7 litros, Olla Arrocera Estelectric 1.8 litros (con vaporera) y Cocina Infrarroja Garuda 3500 watts\n🪀𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1\n🪀𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨: 115 USD\n🪀𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨: CUP\n🪀𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: 2500 CUP \n🪀𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐠𝐞𝐫: 113850 CUP + 2500 CUP\n🪀𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫:\n🪀𝐕𝐚𝐥𝐨𝐫 𝐝𝐞𝐥 𝐝ó𝐥𝐚𝐫: 990\n🪀𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: Hilda Pileta \n🪀#𝐃𝐞 𝐭𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: 63726904\n🪀𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: 𝐍𝐨",
+      "items": [
+        {
+          "id": "it-p67ua2vm",
+          "producto": "olla reina Milexus 7 litros",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 38.33,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        },
+        {
+          "id": "it-xwvrvp1p",
+          "producto": "Olla Arrocera Estelectric 1.8 litros (con vaporera)",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 38.33,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        },
+        {
+          "id": "it-xuovk9mx",
+          "producto": "cocina infrarroja Garuda 3500 w",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 38.33,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 114.99,
+      "granComisionCUP": 4500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1795843707927
+    },
+    {
+      "id": "V-1795843707927-b223ii",
+      "folio": "VAL-566377",
+      "fecha": "2026-11-27",
+      "semana": "2026-W47",
+      "moneda": "USD",
+      "gestorNombre": "Dayanis García Almanza",
+      "gestorTelefono": "51349671",
+      "clienteNombre": "Anett menendez medero",
+      "clienteCI": "",
+      "clienteTelefono": "5 5523087",
+      "direccion": "San anastacio 668 entre santa catalina y milagro lawton",
+      "rawTextoWhatsApp": "[27/11 12:09 p. m.] +53 5 1349671: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬 (𝐌𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚)\n\n🪀𝐅𝐞𝐜𝐡𝐚:27.11.26\n🪀𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:\nAnett menendez medero \n🪀𝐂𝐈:\n🪀𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:5 5523087\n🪀𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:San anastacio 668 entre santa catalina y milagro lawton\n🪀𝐏𝐞𝐝𝐢𝐝𝐨:ventilador de pared \n🪀𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝:1\n🪀𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:30 usd \n🪀𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:usd\n🪀𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚:1500 cup\n🪀𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐠𝐞𝐫:30 usd mas 1500 cup\n🪀𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫:no\n🪀𝐕𝐚𝐥𝐨𝐫 𝐝𝐞𝐥 𝐝ó𝐥𝐚𝐫:\n🪀𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:Dayanis García Almanza \n🪀#𝐃𝐞 𝐭𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:51349671\n🪀𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: 𝐍𝐨",
+      "items": [
+        {
+          "id": "it-xyrpj5u8",
+          "producto": "ventilador de pared",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 30,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 30,
+      "granComisionCUP": 1500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1795843707927
+    },
+    {
+      "id": "V-1795843707927-y86dwi",
+      "folio": "VAL-362593",
+      "fecha": "2026-11-27",
+      "semana": "2026-W47",
+      "moneda": "USD",
+      "gestorNombre": "Lisney Daniela Colas Nelson",
+      "gestorTelefono": "63738234",
+      "clienteNombre": "Melaine",
+      "clienteCI": "",
+      "clienteTelefono": "",
+      "direccion": "𝐆𝐞𝐨𝐫𝐠𝐢𝐚 𝟏𝟎𝟏, 𝐞𝐧𝐭𝐫𝐞 𝐂𝐨𝐧𝐬𝐭𝐢𝐭𝐮𝐜𝐢ó𝐧 𝐲 𝐂𝐨𝐥𝐢𝐬𝐞𝐨, 𝐋𝐚 𝐏𝐚𝐥𝐦𝐚, 𝐀𝐫𝐫𝐨𝐲𝐨 𝐍𝐚𝐫𝐚𝐧𝐣𝐨.",
+      "rawTextoWhatsApp": "[27/11 12:01 p. m.] +53 5 0174223: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐜𝐨𝐦𝐞𝐫𝐜𝐢𝐚𝐥𝐞𝐬 (𝐑𝐄𝐂𝐎𝐆𝐄𝐑 𝐄𝐍 𝐄𝐋 𝐋𝐎𝐂𝐀𝐋)\n\n🏪𝐅𝐞𝐜𝐡𝐚:27/11\n🏪𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Melaine \n🏪#𝐃𝐞 𝐭𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:51145850\n🏪𝐏𝐞𝐝𝐢𝐝𝐨:olla electrica \n🏪𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝:1\n🏪𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:38USD\n🏪𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨: USD \n🏪𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐠𝐞𝐫:40USD\n🏪𝐕𝐚𝐥𝐨𝐫 𝐝𝐞𝐥 𝐝ó𝐥𝐚𝐫:\n🏪𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐜𝐨𝐦𝐞𝐫𝐜𝐢𝐚𝐥: Lisney Daniela Colas Nelson \n🏪#𝐃𝐞 𝐭𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐜𝐨𝐦𝐞𝐫𝐜𝐢𝐚𝐥: 63738234\n🏪𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:\n\n📍𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 𝐥𝐨𝐜𝐚𝐥:\n\n𝐆𝐞𝐨𝐫𝐠𝐢𝐚 𝟏𝟎𝟏, 𝐞𝐧𝐭𝐫𝐞 𝐂𝐨𝐧𝐬𝐭𝐢𝐭𝐮𝐜𝐢ó𝐧 𝐲 𝐂𝐨𝐥𝐢𝐬𝐞𝐨, 𝐋𝐚 𝐏𝐚𝐥𝐦𝐚, 𝐀𝐫𝐫𝐨𝐲𝐨 𝐍𝐚𝐫𝐚𝐧𝐣𝐨.\n\n📍𝐂ó𝐦𝐨 𝐥𝐥𝐞𝐠𝐚𝐫:\n\n𝐄𝐧 𝐞𝐥 𝐬𝐞𝐦á𝐟𝐨𝐫𝐨 𝐝𝐞 𝐋𝐚 𝐏𝐚𝐥𝐦𝐚 𝐜𝐨𝐠𝐞𝐬 𝐥𝐚 𝐂𝐚𝐥𝐳𝐚𝐝𝐚 𝐏𝐨𝐫𝐯𝐞𝐧𝐢𝐫 𝐲 𝐬𝐮𝐛𝐞𝐬 𝟐 𝐜𝐮𝐚𝐝𝐫𝐚𝐬 𝐡𝐚𝐬𝐭𝐚 𝐥𝐥𝐞𝐠𝐚𝐫 𝐚 𝐥𝐚 𝐭𝐢𝐞𝐧𝐝𝐚 𝐪𝐮𝐞 𝐡𝐚𝐜𝐞 𝐞𝐬𝐪𝐮𝐢𝐧𝐚. 𝐃𝐨𝐛𝐥𝐚𝐬 𝐚 𝐦𝐚𝐧𝐨 𝐝𝐞𝐫𝐞𝐜𝐡𝐚 (𝐞𝐧 𝐝𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐚 𝐌𝐚𝐧𝐭𝐢𝐥𝐥𝐚) 𝐲 𝐬𝐮𝐛𝐞𝐬 𝟐 𝐜𝐮𝐚𝐝𝐫𝐚𝐬 𝐦á𝐬. 𝐄𝐬𝐭𝐚𝐦𝐨𝐬 𝐚𝐥 𝐟𝐫𝐞𝐧𝐭𝐞 𝐝𝐞 𝐮𝐧 𝐩𝐥𝐚𝐭𝐚𝐧𝐚𝐥, 𝐞𝐧 𝐮𝐧𝐚 𝐜𝐚𝐬𝐚 𝐞𝐧 𝐚𝐥𝐭𝐨.",
+      "items": [
+        {
+          "id": "it-immyob3g",
+          "producto": "plancha electrica",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 38,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 38,
+      "granComisionCUP": 1500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1795843707927
+    },
+    {
+      "id": "V-1795843707927-nrbj8y",
+      "folio": "VAL-715145",
+      "fecha": "2026-11-27",
+      "semana": "2026-W47",
+      "moneda": "USD",
+      "gestorNombre": "magdiel alfaro",
+      "gestorTelefono": "53575726",
+      "clienteNombre": "Damaris",
+      "clienteCI": "",
+      "clienteTelefono": "59765321",
+      "direccion": "calle flores #17 pasaje Florida, retiro Calvario,esto es antes de llegar al puente después del ecoin 5",
+      "rawTextoWhatsApp": "[27/11 11:57 a. m.] Tata: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬 (𝐌𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚)\n\n🪀𝐅𝐞𝐜𝐡𝐚:27 noviembre 26\n🪀𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:Damaris \n🪀𝐂𝐈:\n🪀𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:59765321\n🪀𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:calle flores #17 pasaje Florida, retiro Calvario,esto es antes de llegar al puente después del ecoin 5\n🪀Pedido:cocina infrarroja 2000W \n🪀𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝:1\n🪀𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:33 usd \n🪀𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:usd \n🪀𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚:1800\n🪀𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐠𝐞𝐫: 33usd+1800\n🪀𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫:no\n🪀𝐕𝐚𝐥𝐨𝐫 𝐝𝐞𝐥 𝐝ó𝐥𝐚𝐫:no\n🪀𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:Magdiel Alfaro \n🪀#𝐃𝐞 𝐭𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:53575726\n🪀𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: 𝐍𝐨",
+      "items": [
+        {
+          "id": "it-5ubg0ywe",
+          "producto": "Cocina infrarroja 3500w",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 33,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 33,
+      "granComisionCUP": 1500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1795843707927
+    },
+    {
+      "id": "V-1795843707927-jk43kd",
+      "folio": "VAL-332071",
+      "fecha": "2026-11-27",
+      "semana": "2026-W47",
+      "moneda": "USD",
+      "gestorNombre": "Rosa Beatriz",
+      "gestorTelefono": "58943741",
+      "clienteNombre": "Carolina",
+      "clienteCI": "",
+      "clienteTelefono": "52979844",
+      "direccion": "Libertad/ Figueroa y Destrampes. Santo Suarez",
+      "rawTextoWhatsApp": "[27/11 9:49 a. m.] Rosa Yasnay: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬 (𝐌𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚)\n\n🪀𝐅𝐞𝐜𝐡𝐚:27/11/26\n👀👀Entregar a partir de las 2:00pm, llamar antes para confirmar su estancia en la dirección 👀👀\n🪀𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:Carolina\n🪀𝐂𝐈:\n🪀𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:52979844\n🪀𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:\nLibertad/ Figueroa y Destrampes. Santo Suarez\n🪀𝐏𝐞𝐝𝐢𝐝𝐨: Plancha de ropa\n🪀𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1\n🪀𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:15 usd\n🪀𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨: usd\n🪀𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: 1200\n🪀𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐠𝐞𝐫:15 usd y 1200 cup\n🪀𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫:\n🪀𝐕𝐚𝐥𝐨𝐫 𝐝𝐞𝐥 𝐝ó𝐥𝐚𝐫:\n🪀𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: Rosa Beatriz \n🪀#𝐃𝐞 𝐭𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:58943741\n🪀𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: 𝐍𝐨",
+      "items": [
+        {
+          "id": "it-7ymaqg13",
+          "producto": "Plancha de ropa",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 15,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 15,
+      "granComisionCUP": 1500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1795843707927
+    },
+    {
+      "id": "V-1795843707927-8c7m65",
+      "folio": "VAL-485572",
+      "fecha": "2026-11-27",
+      "semana": "2026-W47",
+      "moneda": "USD",
+      "gestorNombre": "Karelia Carralero Reyes",
+      "gestorTelefono": "56553025",
+      "clienteNombre": "Karelia Carralero Reyes",
+      "clienteCI": "",
+      "clienteTelefono": "56553025",
+      "direccion": "calle 3ra #679b entre central y varona santa fe Guanabacoa",
+      "rawTextoWhatsApp": "[26/11 10:24 p. m.] +53 5 6553025: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬 (𝐌𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚)\n👀 Entregar en horario de la tarde\n🪀𝐅𝐞𝐜𝐡𝐚: 27/11/26\n🪀𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:  Karelia Carralero Reyes \n🪀𝐂𝐈:\n🪀𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 56553025 \n🪀𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: calle 3ra #679b entre central y varona santa fe Guanabacoa \n🪀𝐏𝐞𝐝𝐢𝐝𝐨: Sartén para ecoflow verde\n🪀𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1 \n🪀𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨: 38 usd\n🪀𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨: USD \n🪀𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: $3000\n🪀𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐠𝐞𝐫: 40 USD \n🪀𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: 2 USD \n🪀𝐕𝐚𝐥𝐨𝐫 𝐝𝐞𝐥 𝐝ó𝐥𝐚𝐫:\n🪀𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: KARELIA CARRALERO REYES \n🪀#𝐃𝐞 𝐭𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: 56553025 \n🪀𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: $1500",
+      "items": [
+        {
+          "id": "it-4diti143",
+          "producto": "Sartén para ecoflow verde",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 38,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 38,
+      "granComisionCUP": 0,
+      "descuentoGestor": {
+        "monto": 1500,
+        "motivo": "$1500",
+        "moneda": "CUP"
+      },
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1795843707927
+    },
+    {
+      "id": "V-1795843707926-1jliqi",
+      "folio": "VAL-627855",
+      "fecha": "2026-11-27",
+      "semana": "2026-W47",
+      "moneda": "USD",
+      "gestorNombre": "Aliuska Frías",
+      "gestorTelefono": "53333861",
+      "clienteNombre": "•  Hephtali Zabulon DJENONTIN",
+      "clienteCI": "07071663921",
+      "clienteTelefono": "•  +53 54623041 / +229 65890895 (WhatsApp)",
+      "direccion": "Carretera Panamericana Km 3½, Santa Fe, La Habana, Cuba ( Escuela Latinoamericana de Medicina)",
+      "rawTextoWhatsApp": "[26/11 5:05 p. m.] +53 5 3333861: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬 (𝐌𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚)\n\n🪀𝐅𝐞𝐜𝐡𝐚:27/11/26\n🪀𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:• * Hephtali Zabulon DJENONTIN \n🪀𝐂𝐈:07071663921\n🪀𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:•  +53 54623041 / +229 65890895 (WhatsApp)\n🪀𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:Carretera Panamericana Km 3½, Santa Fe, La Habana, Cuba ( Escuela Latinoamericana de Medicina)\n🪀𝐏𝐞𝐝𝐢𝐝𝐨: Freidora de aire Estrelectric y Batidoras \n🪀𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1 y 2\n🪀𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:48 USD y 25 USD \n🪀𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:USD\n🪀𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚:5000 CUP\n🪀𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐠𝐞𝐫:100 USD y 5000 Cup\n🪀𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫:2 USD \n🪀𝐕𝐚𝐥𝐨𝐫 𝐝𝐞𝐥 𝐝ó𝐥𝐚𝐫:\n🪀𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:Aliuska Frías \n🪀#𝐃𝐞 𝐭𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:53333861\n🪀𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: 𝐍𝐨\n👁️Si es posible por favor darle un estimado de hora de entrega al cliente, es estudiante de medicina y debe salir de clase para recibir los artículos 👁️👁️",
+      "items": [
+        {
+          "id": "it-mj3s3luw",
+          "producto": "Freidora de aire de 5 litros estelectric",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 48,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        },
+        {
+          "id": "it-v3fjla8k",
+          "producto": "batidora",
+          "cantidad": 2,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 25,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 3000
+        }
+      ],
+      "totalVenta": 98,
+      "granComisionCUP": 4500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1795843707926
+    },
+    {
+      "id": "V-1795843707924-r0xosn",
+      "folio": "VAL-859408",
+      "fecha": "2026-11-26",
+      "semana": "2026-W47",
+      "moneda": "USD",
+      "gestorNombre": "Karelia Carralero Reyes",
+      "gestorTelefono": "56553025",
+      "clienteNombre": "Alina L8nares",
+      "clienteCI": "",
+      "clienteTelefono": "",
+      "direccion": "𝐆𝐞𝐨𝐫𝐠𝐢𝐚 𝟏𝟎𝟏, 𝐞𝐧𝐭𝐫𝐞 𝐂𝐨𝐧𝐬𝐭𝐢𝐭𝐮𝐜𝐢ó𝐧 𝐲 𝐂𝐨𝐥𝐢𝐬𝐞𝐨, 𝐋𝐚 𝐏𝐚𝐥𝐦𝐚, 𝐀𝐫𝐫𝐨𝐲𝐨 𝐍𝐚𝐫𝐚𝐧𝐣𝐨.",
+      "rawTextoWhatsApp": "[26/11 3:10 p. m.] +53 5 6553025: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐜𝐨𝐦𝐞𝐫𝐜𝐢𝐚𝐥𝐞𝐬 (𝐑𝐄𝐂𝐎𝐆𝐄𝐑 𝐄𝐍 𝐄𝐋 𝐋𝐎𝐂𝐀𝐋)\n\n🏪𝐅𝐞𝐜𝐡𝐚:\n26/11/26\n🏪𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Alina L8nares\n🏪#𝐃𝐞 𝐭𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:+53 5 3242579\n🏪𝐏𝐞𝐝𝐢𝐝𝐨: Sartén eléctrico \n🏪𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝:1\n🏪𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨: 32 USD \n🏪𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨: USD \n🏪𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐠𝐞𝐫: 40 USD \n🏪𝐕𝐚𝐥𝐨𝐫 𝐝𝐞𝐥 𝐝ó𝐥𝐚𝐫:\n🏪𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐜𝐨𝐦𝐞𝐫𝐜𝐢𝐚𝐥: Karelia Carralero Reyes \n🏪#𝐃𝐞 𝐭𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐜𝐨𝐦𝐞𝐫𝐜𝐢𝐚𝐥: 56553025 \n🏪𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: no\n\n📍𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 𝐥𝐨𝐜𝐚𝐥:\n\n𝐆𝐞𝐨𝐫𝐠𝐢𝐚 𝟏𝟎𝟏, 𝐞𝐧𝐭𝐫𝐞 𝐂𝐨𝐧𝐬𝐭𝐢𝐭𝐮𝐜𝐢ó𝐧 𝐲 𝐂𝐨𝐥𝐢𝐬𝐞𝐨, 𝐋𝐚 𝐏𝐚𝐥𝐦𝐚, 𝐀𝐫𝐫𝐨𝐲𝐨 𝐍𝐚𝐫𝐚𝐧𝐣𝐨.\n\n📍𝐂ó𝐦𝐨 𝐥𝐥𝐞𝐠𝐚𝐫:\n\n𝐄𝐧 𝐞𝐥 𝐬𝐞𝐦á𝐟𝐨𝐫𝐨 𝐝𝐞 𝐋𝐚 𝐏𝐚𝐥𝐦𝐚 𝐜𝐨𝐠𝐞𝐬 𝐥𝐚 𝐂𝐚𝐥𝐳𝐚𝐝𝐚 𝐏𝐨𝐫𝐯𝐞𝐧𝐢𝐫 𝐲 𝐬𝐮𝐛𝐞𝐬 𝟐 𝐜𝐮𝐚𝐝𝐫𝐚𝐬 𝐡𝐚𝐬𝐭𝐚 𝐥𝐥𝐞𝐠𝐚𝐫 𝐚 𝐥𝐚 𝐭𝐢𝐞𝐧𝐝𝐚 𝐪𝐮𝐞 𝐡𝐚𝐜𝐞 𝐞𝐬𝐪𝐮𝐢𝐧𝐚. 𝐃𝐨𝐛𝐥𝐚𝐬 𝐚 𝐦𝐚𝐧𝐨 𝐝𝐞𝐫𝐞𝐜𝐡𝐚 (𝐞𝐧 𝐝𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐚 𝐌𝐚𝐧𝐭𝐢𝐥𝐥𝐚) 𝐲 𝐬𝐮𝐛𝐞𝐬 𝟐 𝐜𝐮𝐚𝐝𝐫𝐚𝐬 𝐦á𝐬. 𝐄𝐬𝐭𝐚𝐦𝐨𝐬 𝐚𝐥 𝐟𝐫𝐞𝐧𝐭𝐞 𝐝𝐞 𝐮𝐧 𝐩𝐥𝐚𝐭𝐚𝐧𝐚𝐥, 𝐞𝐧 𝐮𝐧𝐚 𝐜𝐚𝐬𝐚 𝐞𝐧 𝐚𝐥𝐭𝐨.",
+      "items": [
+        {
+          "id": "it-m4mhxkfv",
+          "producto": "sartén eléctrico",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 32,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 32,
+      "granComisionCUP": 1500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1795843707924
+    },
+    {
+      "id": "V-1795843707924-vvco24",
+      "folio": "VAL-474203",
+      "fecha": "2026-11-26",
+      "semana": "2026-W47",
+      "moneda": "USD",
+      "gestorNombre": "Yany guinera",
+      "gestorTelefono": "53466318",
+      "clienteNombre": "yudith",
+      "clienteCI": "",
+      "clienteTelefono": "",
+      "direccion": "𝐆𝐞𝐨𝐫𝐠𝐢𝐚 𝟏𝟎𝟏, 𝐞𝐧𝐭𝐫𝐞 𝐂𝐨𝐧𝐬𝐭𝐢𝐭𝐮𝐜𝐢ó𝐧 𝐲 𝐂𝐨𝐥𝐢𝐬𝐞𝐨, 𝐋𝐚 𝐏𝐚𝐥𝐦𝐚, 𝐀𝐫𝐫𝐨𝐲𝐨 𝐍𝐚𝐫𝐚𝐧𝐣𝐨.",
+      "rawTextoWhatsApp": "[26/11 2:58 p. m.] +53 5 3466318: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐜𝐨𝐦𝐞𝐫𝐜𝐢𝐚𝐥𝐞𝐬 (𝐑𝐄𝐂𝐎𝐆𝐄𝐑 𝐄𝐍 𝐄𝐋 𝐋𝐎𝐂𝐀𝐋)\n\n🏪𝐅𝐞𝐜𝐡𝐚:26 de nov\n🏪𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: yudith\n🏪#𝐃𝐞 𝐭𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 55652292\n🏪𝐏𝐞𝐝𝐢𝐝𝐨: cafetera electrica \nFreidorade aire\n🏪𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1 . 1 \n🏪𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨: 28 .  48 = 76\n🏪𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:usd\n🏪𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐠𝐞𝐫: \n🏪𝐕𝐚𝐥𝐨𝐫 𝐝𝐞𝐥 𝐝ó𝐥𝐚𝐫:\n🏪𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐜𝐨𝐦𝐞𝐫𝐜𝐢𝐚𝐥:yany guinera \n🏪#𝐃𝐞 𝐭𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐜𝐨𝐦𝐞𝐫𝐜𝐢𝐚𝐥: 5 3466318 \n🏪𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:\n\n📍𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 𝐥𝐨𝐜𝐚𝐥:\n\n𝐆𝐞𝐨𝐫𝐠𝐢𝐚 𝟏𝟎𝟏, 𝐞𝐧𝐭𝐫𝐞 𝐂𝐨𝐧𝐬𝐭𝐢𝐭𝐮𝐜𝐢ó𝐧 𝐲 𝐂𝐨𝐥𝐢𝐬𝐞𝐨, 𝐋𝐚 𝐏𝐚𝐥𝐦𝐚, 𝐀𝐫𝐫𝐨𝐲𝐨 𝐍𝐚𝐫𝐚𝐧𝐣𝐨.\n\n📍𝐂ó𝐦𝐨 𝐥𝐥𝐞𝐠𝐚𝐫:\n\n𝐄𝐧 𝐞𝐥 𝐬𝐞𝐦á𝐟𝐨𝐫𝐨 𝐝𝐞 𝐋𝐚 𝐏𝐚𝐥𝐦𝐚 𝐜𝐨𝐠𝐞𝐬 𝐥𝐚 𝐂𝐚𝐥𝐳𝐚𝐝𝐚 𝐏𝐨𝐫𝐯𝐞𝐧𝐢𝐫 𝐲 𝐬𝐮𝐛𝐞𝐬 𝟐 𝐜𝐮𝐚𝐝𝐫𝐚𝐬 𝐡𝐚𝐬𝐭𝐚 𝐥𝐥𝐞𝐠𝐚𝐫 𝐚 𝐥𝐚 𝐭𝐢𝐞𝐧𝐝𝐚 𝐪𝐮𝐞 𝐡𝐚𝐜𝐞 𝐞𝐬𝐪𝐮𝐢𝐧𝐚. 𝐃𝐨𝐛𝐥𝐚𝐬 𝐚 𝐦𝐚𝐧𝐨 𝐝𝐞𝐫𝐞𝐜𝐡𝐚 (𝐞𝐧 𝐝𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐚 𝐌𝐚𝐧𝐭𝐢𝐥𝐥𝐚) 𝐲 𝐬𝐮𝐛𝐞𝐬 𝟐 𝐜𝐮𝐚𝐝𝐫𝐚𝐬 𝐦á𝐬. 𝐄𝐬𝐭𝐚𝐦𝐨𝐬 𝐚𝐥 𝐟𝐫𝐞𝐧𝐭𝐞 𝐝𝐞 𝐮𝐧 𝐩𝐥𝐚𝐭𝐚𝐧𝐚𝐥, 𝐞𝐧 𝐮𝐧𝐚 𝐜𝐚𝐬𝐚 𝐞𝐧 𝐚𝐥𝐭𝐨.",
+      "items": [
+        {
+          "id": "it-6c5ui5y7",
+          "producto": "Cafetera eléctrica",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 28,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        },
+        {
+          "id": "it-k0n3fjw1",
+          "producto": "freidora de aire",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 48,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 76,
+      "granComisionCUP": 3000,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1795843707924
+    },
+    {
+      "id": "V-1795843707924-qp7rcv",
+      "folio": "VAL-386275",
+      "fecha": "2026-11-26",
+      "semana": "2026-W47",
+      "moneda": "USD",
+      "gestorNombre": "magdiel alfaro",
+      "gestorTelefono": "53575726",
+      "clienteNombre": "dayami",
+      "clienteCI": "",
+      "clienteTelefono": "+5352903147",
+      "direccion": "calle 99A entre 54 y 56 (Detrás del edificio 74 alberro nuevo entrar por la tienda antillanito o por la escuela quintín bandera) cotorro",
+      "rawTextoWhatsApp": "[26/11 1:40 p. m.] Magdiel: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬 (𝐌𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚)\n\n🪀𝐅𝐞𝐜𝐡𝐚:26.11.26\n🪀𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: dayami\n🪀𝐂𝐈:\n🪀𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: +5352903147\n🪀𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: calle 99A entre 54 y 56 (Detrás del edificio 74 alberro nuevo entrar por la tienda antillanito o por la escuela quintín bandera) cotorro\n🪀𝐏𝐞𝐝𝐢𝐝𝐨: freidora de aire\n🪀𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝:1\n🪀𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:48 USD \n🪀𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨: cup \n🪀𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: 3000\n🪀𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐠𝐞𝐫: 50 USD + 3000\n🪀𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: 2 USD \n🪀𝐕𝐚𝐥𝐨𝐫 𝐝𝐞𝐥 𝐝ó𝐥𝐚𝐫:\n🪀𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:magdiel Alfaro \n🪀#𝐃𝐞 𝐭𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:53575726\n🪀𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: 𝐍𝐨",
+      "items": [
+        {
+          "id": "it-wg2hqxbh",
+          "producto": "freidora de aire",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 48,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 48,
+      "granComisionCUP": 1500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1795843707924
+    },
+    {
+      "id": "V-1795843707924-y1w9i8",
+      "folio": "VAL-539884",
+      "fecha": "2026-11-26",
+      "semana": "2026-W47",
+      "moneda": "USD",
+      "gestorNombre": "Hilda Pileta",
+      "gestorTelefono": "63726904",
+      "clienteNombre": "Andro Rodríguez Martínez",
+      "clienteCI": "94081729863",
+      "clienteTelefono": "55670092",
+      "direccion": "Calle 19/36 y 42, Playa, referencia el taller de Dong Feng, es un gimnasio que se llama Alpha",
+      "rawTextoWhatsApp": "[26/11 1:21 p. m.] +53 63726904: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬 (𝐌𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚)\n\n🪀𝐅𝐞𝐜𝐡𝐚: 26/11/26\n🪀𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Andro Rodríguez Martínez \n🪀𝐂𝐈: 94081729863\n🪀𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 55670092\n🪀𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Calle 19/36 y 42, Playa, referencia el taller de Dong Feng, es un gimnasio que se llama Alpha\n🪀𝐏𝐞𝐝𝐢𝐝𝐨: Ventilador de pared 18 pulgadas\n🪀𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 6\n🪀𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨: 30 USD\n🪀𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨: USD\n🪀𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚: 3000 CUP\n🪀𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐠𝐞𝐫: 180 USD, 3000 CUP\n🪀𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫: No\n🪀𝐕𝐚𝐥𝐨𝐫 𝐝𝐞𝐥 𝐝ó𝐥𝐚𝐫:\n🪀𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: Hilda Pileta\n🪀#𝐃𝐞 𝐭𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: 63726904\n🪀𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: 𝐍𝐨",
+      "items": [
+        {
+          "id": "it-3l7wzasz",
+          "producto": "ventilador de pedestal de 18 pulgadas",
+          "cantidad": 6,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 30,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 9000
+        }
+      ],
+      "totalVenta": 180,
+      "granComisionCUP": 9000,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1795843707924
+    },
+    {
+      "id": "V-1795843707924-1w0zvp",
+      "folio": "VAL-658904",
+      "fecha": "2026-11-26",
+      "semana": "2026-W47",
+      "moneda": "USD",
+      "gestorNombre": "Dayanis García Almanza",
+      "gestorTelefono": "51349671",
+      "clienteNombre": "Hazael Pérez sosa",
+      "clienteCI": "",
+      "clienteTelefono": "5 6619816",
+      "direccion": "La dirección es calle tunicu # 37 entre calle guaimaro y calle hanabanilla arroyo naranjo los pinos",
+      "rawTextoWhatsApp": "[26/11 12:22 p. m.] +53 5 1349671: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬 (𝐌𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚)\n\n🪀𝐅𝐞𝐜𝐡𝐚:26.11.26\n🪀𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:Hazael Pérez sosa\n🪀𝐂𝐈:\n🪀𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 5 6619816\n🪀𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:La dirección es calle tunicu # 37 entre calle guaimaro y calle hanabanilla arroyo naranjo los pinos\n🪀𝐏𝐞𝐝𝐢𝐝𝐨:cajita HD \n🪀𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝:1\n🪀𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:23 usd \n🪀𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:usd\n🪀𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚:2000 cup ( 2 usd ) \n🪀𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐠𝐞𝐫:100 usd \n🪀𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫:73,125 cup\n🪀𝐕𝐚𝐥𝐨𝐫 𝐝𝐞𝐥 𝐝ó𝐥𝐚𝐫:\n🪀𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:Dayanis García Almanza \n🪀#𝐃𝐞 𝐭𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:51349671\n🪀𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: 𝐍𝐨",
+      "items": [
+        {
+          "id": "it-rnwxpf4k",
+          "producto": "cajita hd",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 23,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 23,
+      "granComisionCUP": 1500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1795843707924
+    },
+    {
+      "id": "V-1795843707924-mpd8fr",
+      "folio": "VAL-259553",
+      "fecha": "2026-11-26",
+      "semana": "2026-W47",
+      "moneda": "USD",
+      "gestorNombre": "Rosa Beatriz",
+      "gestorTelefono": "58943741",
+      "clienteNombre": "Nelson",
+      "clienteCI": "",
+      "clienteTelefono": "53615093",
+      "direccion": "PRADO 303 entre animas y virtudes Habana Vieja(En un restaurante llamado Había una vez)",
+      "rawTextoWhatsApp": "[26/11 10:00 a. m.] Rosa Yasnay: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬 (𝐌𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚)\n\n🪀𝐅𝐞𝐜𝐡𝐚:26/11/ 2026\n👀👀Está en el trabajo hasta las 2:00pm. Llamar para confirmar q este ahí en esa dirección 👀👀👀\n🪀𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Nelson \n🪀𝐂𝐈:\n🪀𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:53615093\n🪀𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: \nPRADO 303 entre animas y virtudes Habana Vieja(En un restaurante llamado Había una vez)\n𝐏𝐞𝐝𝐢𝐝𝐨: Plancha Royal\n🪀𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝:1\n🪀𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 e𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:15usd\n🪀𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:cup\n🪀𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚:2000\n🪀𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐠𝐞𝐫: 14775cup+ 2000cup\n🪀𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫:\n🪀𝐕𝐚𝐥𝐨𝐫 𝐝𝐞𝐥 𝐝ó𝐥𝐚𝐫:985\n🪀𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: Rosa Beatriz \n🪀#𝐃𝐞 𝐭𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:58943741\n🪀𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: 𝐍𝐨",
+      "items": [
+        {
+          "id": "it-ujf3qmve",
+          "producto": "Plancha Royal",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 0,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 0,
+      "granComisionCUP": 1500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1795843707924
+    },
+    {
+      "id": "V-1795843707924-mvt86b",
+      "folio": "VAL-658974",
+      "fecha": "2026-11-26",
+      "semana": "2026-W47",
+      "moneda": "USD",
+      "gestorNombre": "Yany guinera",
+      "gestorTelefono": "53466318",
+      "clienteNombre": "yanisleidy Hernández",
+      "clienteCI": "",
+      "clienteTelefono": "",
+      "direccion": "𝐆𝐞𝐨𝐫𝐠𝐢𝐚 𝟏𝟎𝟏, 𝐞𝐧𝐭𝐫𝐞 𝐂𝐨𝐧𝐬𝐭𝐢𝐭𝐮𝐜𝐢ó𝐧 𝐲 𝐂𝐨𝐥𝐢𝐬𝐞𝐨, 𝐋𝐚 𝐏𝐚𝐥𝐦𝐚, 𝐀𝐫𝐫𝐨𝐲𝐨 𝐍𝐚𝐫𝐚𝐧𝐣𝐨.",
+      "rawTextoWhatsApp": "[26/11 9:21 a. m.] +53 5 3466318: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐜𝐨𝐦𝐞𝐫𝐜𝐢𝐚𝐥𝐞𝐬 (𝐑𝐄𝐂𝐎𝐆𝐄𝐑 𝐄𝐍 𝐄𝐋 𝐋𝐎𝐂𝐀𝐋)\n\n🏪𝐅𝐞𝐜𝐡𝐚:26 de nov\n🏪𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:yanisleidy Hernández \n🏪#𝐃𝐞 𝐭𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:55652292\n🏪𝐏𝐞𝐝𝐢𝐝𝐨: ventilador d pared\n🏪𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝:1\n🏪𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨: 30\n🏪𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨: efectivo\n🏪𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐠𝐞𝐫: 30\n🏪𝐕𝐚𝐥𝐨𝐫 𝐝𝐞𝐥 𝐝ó𝐥𝐚𝐫:\n🏪𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐜𝐨𝐦𝐞𝐫𝐜𝐢𝐚𝐥:yany guinera \n🏪#𝐃𝐞 𝐭𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐜𝐨𝐦𝐞𝐫𝐜𝐢𝐚𝐥:5 3466318 \n🏪𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:\n\n📍𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 𝐥𝐨𝐜𝐚𝐥:\n\n𝐆𝐞𝐨𝐫𝐠𝐢𝐚 𝟏𝟎𝟏, 𝐞𝐧𝐭𝐫𝐞 𝐂𝐨𝐧𝐬𝐭𝐢𝐭𝐮𝐜𝐢ó𝐧 𝐲 𝐂𝐨𝐥𝐢𝐬𝐞𝐨, 𝐋𝐚 𝐏𝐚𝐥𝐦𝐚, 𝐀𝐫𝐫𝐨𝐲𝐨 𝐍𝐚𝐫𝐚𝐧𝐣𝐨.\n\n📍𝐂ó𝐦𝐨 𝐥𝐥𝐞𝐠𝐚𝐫:\n\n𝐄𝐧 𝐞𝐥 𝐬𝐞𝐦á𝐟𝐨𝐫𝐨 𝐝𝐞 𝐋𝐚 𝐏𝐚𝐥𝐦𝐚 𝐜𝐨𝐠𝐞𝐬 𝐥𝐚 𝐂𝐚𝐥𝐳𝐚𝐝𝐚 𝐏𝐨𝐫𝐯𝐞𝐧𝐢𝐫 𝐲 𝐬𝐮𝐛𝐞𝐬 𝟐 𝐜𝐮𝐚𝐝𝐫𝐚𝐬 𝐡𝐚𝐬𝐭𝐚 𝐥𝐥𝐞𝐠𝐚𝐫 𝐚 𝐥𝐚 𝐭𝐢𝐞𝐧𝐝𝐚 𝐪𝐮𝐞 𝐡𝐚𝐜𝐞 𝐞𝐬𝐪𝐮𝐢𝐧𝐚. 𝐃𝐨𝐛𝐥𝐚𝐬 𝐚 𝐦𝐚𝐧𝐨 𝐝𝐞𝐫𝐞𝐜𝐡𝐚 (𝐞𝐧 𝐝𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐚 𝐌𝐚𝐧𝐭𝐢𝐥𝐥𝐚) 𝐲 𝐬𝐮𝐛𝐞𝐬 𝟐 𝐜𝐮𝐚𝐝𝐫𝐚𝐬 𝐦á𝐬. 𝐄𝐬𝐭𝐚𝐦𝐨𝐬 𝐚𝐥 𝐟𝐫𝐞𝐧𝐭𝐞 𝐝𝐞 𝐮𝐧 𝐩𝐥𝐚𝐭𝐚𝐧𝐚𝐥, 𝐞𝐧 𝐮𝐧𝐚 𝐜𝐚𝐬𝐚 𝐞𝐧 𝐚𝐥𝐭𝐨.",
+      "items": [
+        {
+          "id": "it-fpcsb9o9",
+          "producto": "ventilador de pared",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 30,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 30,
+      "granComisionCUP": 1500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1795843707924
+    },
+    {
+      "id": "V-1795843707923-8ini1r",
+      "folio": "VAL-952538",
+      "fecha": "2026-11-26",
+      "semana": "2026-W47",
+      "moneda": "USD",
+      "gestorNombre": "Yany guinera",
+      "gestorTelefono": "53466318",
+      "clienteNombre": "yanisleidy hernandez",
+      "clienteCI": "",
+      "clienteTelefono": "",
+      "direccion": "𝐆𝐞𝐨𝐫𝐠𝐢𝐚 𝟏𝟎𝟏, 𝐞𝐧𝐭𝐫𝐞 𝐂𝐨𝐧𝐬𝐭𝐢𝐭𝐮𝐜𝐢ó𝐧 𝐲 𝐂𝐨𝐥𝐢𝐬𝐞𝐨, 𝐋𝐚 𝐏𝐚𝐥𝐦𝐚, 𝐀𝐫𝐫𝐨𝐲𝐨 𝐍𝐚𝐫𝐚𝐧𝐣𝐨.",
+      "rawTextoWhatsApp": "[25/11 9:13 p. m.] +53 5 3466318: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐜𝐨𝐦𝐞𝐫𝐜𝐢𝐚𝐥𝐞𝐬 (𝐑𝐄𝐂𝐎𝐆𝐄𝐑 𝐄𝐍 𝐄𝐋 𝐋𝐎𝐂𝐀𝐋)\n\n🏪𝐅𝐞𝐜𝐡𝐚:26 de nov\n🏪𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: yanisleidy hernandez\n🏪#𝐃𝐞 𝐭𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 55652292\n🏪𝐏𝐞𝐝𝐢𝐝𝐨:olla reina milexus\n🏪𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝: 1\n🏪𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:52\n🏪𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:usd\n🏪𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐠𝐞𝐫: 52\n🏪𝐕𝐚𝐥𝐨𝐫 𝐝𝐞𝐥 𝐝ó𝐥𝐚𝐫:\n🏪𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐜𝐨𝐦𝐞𝐫𝐜𝐢𝐚𝐥: yany guinera\n🏪#𝐃𝐞 𝐭𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐜𝐨𝐦𝐞𝐫𝐜𝐢𝐚𝐥: 53466318\n🏪𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:\n\n📍𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 𝐥𝐨𝐜𝐚𝐥:\n\n𝐆𝐞𝐨𝐫𝐠𝐢𝐚 𝟏𝟎𝟏, 𝐞𝐧𝐭𝐫𝐞 𝐂𝐨𝐧𝐬𝐭𝐢𝐭𝐮𝐜𝐢ó𝐧 𝐲 𝐂𝐨𝐥𝐢𝐬𝐞𝐨, 𝐋𝐚 𝐏𝐚𝐥𝐦𝐚, 𝐀𝐫𝐫𝐨𝐲𝐨 𝐍𝐚𝐫𝐚𝐧𝐣𝐨.\n\n📍𝐂ó𝐦𝐨 𝐥𝐥𝐞𝐠𝐚𝐫:\n\n𝐄𝐧 𝐞𝐥 𝐬𝐞𝐦á𝐟𝐨𝐫𝐨 𝐝𝐞 𝐋𝐚 𝐏𝐚𝐥𝐦𝐚 𝐜𝐨𝐠𝐞𝐬 𝐥𝐚 𝐂𝐚𝐥𝐳𝐚𝐝𝐚 𝐏𝐨𝐫𝐯𝐞𝐧𝐢𝐫 𝐲 𝐬𝐮𝐛𝐞𝐬 𝟐 𝐜𝐮𝐚𝐝𝐫𝐚𝐬 𝐡𝐚𝐬𝐭𝐚 𝐥𝐥𝐞𝐠𝐚𝐫 𝐚 𝐥𝐚 𝐭𝐢𝐞𝐧𝐝𝐚 𝐪𝐮𝐞 𝐡𝐚𝐜𝐞 𝐞𝐬𝐪𝐮𝐢𝐧𝐚. 𝐃𝐨𝐛𝐥𝐚𝐬 𝐚 𝐦𝐚𝐧𝐨 𝐝𝐞𝐫𝐞𝐜𝐡𝐚 (𝐞𝐧 𝐝𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐚 𝐌𝐚𝐧𝐭𝐢𝐥𝐥𝐚) 𝐲 𝐬𝐮𝐛𝐞𝐬 𝟐 𝐜𝐮𝐚𝐝𝐫𝐚𝐬 𝐦á𝐬. 𝐄𝐬𝐭𝐚𝐦𝐨𝐬 𝐚𝐥 𝐟𝐫𝐞𝐧𝐭𝐞 𝐝𝐞 𝐮𝐧 𝐩𝐥𝐚𝐭𝐚𝐧𝐚𝐥, 𝐞𝐧 𝐮𝐧𝐚 𝐜𝐚𝐬𝐚 𝐞𝐧 𝐚𝐥𝐭𝐨.",
+      "items": [
+        {
+          "id": "it-i7wr5s94",
+          "producto": "olla reina milexus",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 52,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 52,
+      "granComisionCUP": 1500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1795843707924
+    },
+    {
+      "id": "V-1795843707923-zgglin",
+      "folio": "VAL-258767",
+      "fecha": "2026-11-25",
+      "semana": "2026-W47",
+      "moneda": "USD",
+      "gestorNombre": "Rosa Beatriz",
+      "gestorTelefono": "58943741",
+      "clienteNombre": "Karine Arce",
+      "clienteCI": "",
+      "clienteTelefono": "",
+      "direccion": "𝐆𝐞𝐨𝐫𝐠𝐢𝐚 𝟏𝟎𝟏, 𝐞𝐧𝐭𝐫𝐞 𝐂𝐨𝐧𝐬𝐭𝐢𝐭𝐮𝐜𝐢ó𝐧 𝐲 𝐂𝐨𝐥𝐢𝐬𝐞𝐨, 𝐋𝐚 𝐏𝐚𝐥𝐦𝐚, 𝐀𝐫𝐫𝐨𝐲𝐨 𝐍𝐚𝐫𝐚𝐧𝐣𝐨.",
+      "rawTextoWhatsApp": "[25/11 8:20 p. m.] Rosa Yasnay: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐜𝐨𝐦𝐞𝐫𝐜𝐢𝐚𝐥𝐞𝐬 (𝐑𝐄𝐂𝐎𝐆𝐄𝐑 𝐄𝐍 𝐄𝐋 𝐋𝐎𝐂𝐀𝐋)\n\n🏪𝐅𝐞𝐜𝐡𝐚:25/11/26\n🏪𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:Karine Arce\n🏪#𝐃𝐞 𝐭𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: 50534136\n🏪𝐏𝐞𝐝𝐢𝐝𝐨:Sartén Eléctrico \n🏪𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝:2\n🏪𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:32\n🏪𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:usd\n🏪𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐠𝐞𝐫:64usd\n🏪𝐕𝐚𝐥𝐨𝐫 𝐝𝐞𝐥 𝐝ó𝐥𝐚𝐫:\n🏪𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐜𝐨𝐦𝐞𝐫𝐜𝐢𝐚𝐥:Rosa Beatriz \n🏪#𝐃𝐞 𝐭𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐜𝐨𝐦𝐞𝐫𝐜𝐢𝐚𝐥:58943741\n🏪𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:\n\n📍𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 𝐥𝐨𝐜𝐚𝐥:\n\n𝐆𝐞𝐨𝐫𝐠𝐢𝐚 𝟏𝟎𝟏, 𝐞𝐧𝐭𝐫𝐞 𝐂𝐨𝐧𝐬𝐭𝐢𝐭𝐮𝐜𝐢ó𝐧 𝐲 𝐂𝐨𝐥𝐢𝐬𝐞𝐨, 𝐋𝐚 𝐏𝐚𝐥𝐦𝐚, 𝐀𝐫𝐫𝐨𝐲𝐨 𝐍𝐚𝐫𝐚𝐧𝐣𝐨.\n\n📍𝐂ó𝐦𝐨 𝐥𝐥𝐞𝐠𝐚𝐫:\n\n𝐄𝐧 𝐞𝐥 𝐬𝐞𝐦á𝐟𝐨𝐫𝐨 𝐝𝐞 𝐋𝐚 𝐏𝐚𝐥𝐦𝐚 𝐜𝐨𝐠𝐞𝐬 𝐥𝐚 𝐂𝐚𝐥𝐳𝐚𝐝𝐚 𝐏𝐨𝐫𝐯𝐞𝐧𝐢𝐫 𝐲 𝐬𝐮𝐛𝐞𝐬 𝟐 𝐜𝐮𝐚𝐝𝐫𝐚𝐬 𝐡𝐚𝐬𝐭𝐚 𝐥𝐥𝐞𝐠𝐚𝐫 𝐚 𝐥𝐚 𝐭𝐢𝐞𝐧𝐝𝐚 𝐪𝐮𝐞 𝐡𝐚𝐜𝐞 𝐞𝐬𝐪𝐮𝐢𝐧𝐚. 𝐃𝐨𝐛𝐥𝐚𝐬 𝐚 𝐦𝐚𝐧𝐨 𝐝𝐞𝐫𝐞𝐜𝐡𝐚 (𝐞𝐧 𝐝𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐚 𝐌𝐚𝐧𝐭𝐢𝐥𝐥𝐚) 𝐲 𝐬𝐮𝐛𝐞𝐬 𝟐 𝐜𝐮𝐚𝐝𝐫𝐚𝐬 𝐦á𝐬. 𝐄𝐬𝐭𝐚𝐦𝐨𝐬 𝐚𝐥 𝐟𝐫𝐞𝐧𝐭𝐞 𝐝𝐞 𝐮𝐧 𝐩𝐥𝐚𝐭𝐚𝐧𝐚𝐥, 𝐞𝐧 𝐮𝐧𝐚 𝐜𝐚𝐬𝐚 𝐞𝐧 𝐚𝐥𝐭𝐨.",
+      "items": [
+        {
+          "id": "it-m2vujm7j",
+          "producto": "sartén eléctrico",
+          "cantidad": 2,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 32,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 3000
+        }
+      ],
+      "totalVenta": 64,
+      "granComisionCUP": 3000,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1795843707923
+    },
+    {
+      "id": "V-1795843707923-7350fo",
+      "folio": "VAL-432002",
+      "fecha": "2026-11-25",
+      "semana": "2026-W47",
+      "moneda": "USD",
+      "gestorNombre": "Yariagne Santiago",
+      "gestorTelefono": "52669436",
+      "clienteNombre": "Sheila Carballo",
+      "clienteCI": "92082930257",
+      "clienteTelefono": "58699467",
+      "direccion": "Estrella #80int / matanza y Camaguey",
+      "rawTextoWhatsApp": "[25/11 7:55 p. m.] Mi Amor: 📝𝐅𝐚𝐜𝐭𝐮𝐫𝐚 𝐚 𝐥𝐥𝐞𝐧𝐚𝐫 𝐩𝐨𝐫 𝐥𝐨𝐬 𝐠𝐞𝐬𝐭𝐨𝐫𝐞𝐬 (𝐌𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚)\n\n🪀𝐅𝐞𝐜𝐡𝐚:25 de noviembre del 2026\n🪀𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:Sheila Carballo \n🪀𝐂𝐈:92082930257\n🪀𝐓𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞:58699467\n🪀𝐃𝐢𝐫𝐞𝐜𝐜𝐢ó𝐧 𝐝𝐞𝐥 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: Estrella #80int / matanza y Camaguey \n𝐏𝐞𝐝𝐢𝐝𝐨:Freidora \n🪀𝐂𝐚𝐧𝐭𝐢𝐝𝐚𝐝:1\n🪀𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞𝐥 e𝐚𝐫𝐭í𝐜𝐮𝐥𝐨:48usd\n🪀𝐌é𝐭𝐨𝐝𝐨 𝐝𝐞 𝐩𝐚𝐠𝐨:usd\n🪀𝐏𝐫𝐞𝐜𝐢𝐨 𝐝𝐞 𝐥𝐚 𝐦𝐞𝐧𝐬𝐚𝐣𝐞𝐫í𝐚:1500\n🪀𝐓𝐨𝐭𝐚𝐥 𝐚 𝐑𝐞𝐜𝐨𝐠𝐞𝐫:48 usd+ 1500\n🪀𝐃𝐢𝐧𝐞𝐫𝐨 𝐚 𝐝𝐞𝐯𝐨𝐥𝐯𝐞𝐫:2usd\n🪀𝐕𝐚𝐥𝐨𝐫 𝐝𝐞𝐥 𝐝ó𝐥𝐚𝐫:no\n🪀𝐍𝐨𝐦𝐛𝐫𝐞 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:Yariagne Santiago \n🪀#𝐃𝐞 𝐭𝐞𝐥é𝐟𝐨𝐧𝐨 𝐝𝐞𝐥 𝐠𝐞𝐬𝐭𝐨𝐫:52669436\n🪀𝐃𝐞𝐬𝐜𝐨𝐧𝐭𝐚𝐫 𝐚𝐥 𝐠𝐞𝐬𝐭𝐨𝐫: 𝐍𝐨",
+      "items": [
+        {
+          "id": "it-ynxoi00t",
+          "producto": "freidora",
+          "cantidad": 1,
+          "tipoEquipo": "Pequeño",
+          "precioVenta": 0,
+          "comisionUnitCUP": 1500,
+          "comisionTotalCUP": 1500
+        }
+      ],
+      "totalVenta": 0,
+      "granComisionCUP": 1500,
+      "estadoComision": "PENDIENTE",
+      "createdAt": 1795843707923
+    },
     {
       "id": "V-1795709712635-t16ue8",
       "folio": "VAL-266736",
